@@ -7,6 +7,7 @@ public class TestPoint : MonoBehaviour
     private Renderer _rend;
     
     public bool isActivePoint;
+    public string ptID;
     private static TestPoint _activePoint;
 
     private void Start()
@@ -37,7 +38,8 @@ public class TestPoint : MonoBehaviour
         }
         else
         {
-            GameManager.SharedInstance.edgeManager.GenerateLine(_activePoint.transform.position, transform.position);
+            GameManager.SharedInstance.edgeManager.GenerateLine(_activePoint.transform.position, 
+                transform.position, ptID, _activePoint.ptID);
             _activePoint.isActivePoint = false;
             _activePoint.gameObject.GetComponent<Renderer>().enabled = false;
             _activePoint = null;

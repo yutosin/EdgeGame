@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TestLineGenerator : MonoBehaviour
 {
-    public GameObject linePrefab;
     private MeshRenderer _meshRenderer;
     
     // Start is called before the first frame update

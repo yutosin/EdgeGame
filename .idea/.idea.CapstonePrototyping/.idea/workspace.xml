@@ -1,100 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07e33aa5-463f-446a-bfcf-1a3765b178eb" name="Default" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
+    <list default="true" id="07e33aa5-463f-446a-bfcf-1a3765b178eb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PrototypingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PrototypingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestLineGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TestLineGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TestLineRendering.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/TestLineRendering.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-              <folding>
-                <marker date="1589322787681" expanded="false" signature="6:78" ph="..." />
-                <marker date="1589322787681" expanded="true" signature="126:1542" ph="{...}" />
-                <marker date="1589322787681" expanded="true" signature="308:1461" ph="{...}" />
-                <marker date="1589322787681" expanded="true" signature="1519:1540" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestLineRendering.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Shaders/Unlit-Color-ZAlways.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestLineGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D27DFFC2-6BB9-411A-9DB4-0B1FBACE639C/fc/bfd2449c/ApplicationManagerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Shaders/Unlit-Color.shader" />
+        <option value="$PROJECT_DIR$/Assets/Shaders/Unlit-Color-ZAlways.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TestLineRendering.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TestLineGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
-  </component>
-  <component name="ProjectView">
-    <navigator currentView="UnityExplorer" proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="SolutionExplorer">
-        <option name="show-file-system" value="false" />
-        <option name="show-all-items" value="false" />
-      </pane>
-      <pane id="UnityExplorer">
-        <subPane>
-          <expand>
-            <path>
-              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="CapstonePrototyping" type="483dac07:UnityExplorerNode$Root" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <option name="show-hidden-items" value="false" />
-      </pane>
-    </panes>
+  <component name="ProjectId" id="1c3XL8sovNDiO0DkVraT2Z6TGoD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3496708" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29992685" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="16790">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="16790" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20698">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="20698" />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SvnConfiguration">
@@ -108,75 +85,143 @@
       <option name="presentableId" value="Default" />
       <updated>1589316727524</updated>
       <workItem from="1589316732410" duration="4985000" />
+      <workItem from="1589331830180" duration="16229000" />
+      <workItem from="1589752755770" duration="2603000" />
+      <workItem from="1589758068901" duration="2000" />
+      <workItem from="1589758225429" duration="332000" />
+      <workItem from="1589758654628" duration="15822000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4985000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Errors In Solution" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Unit Tests" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18526466" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Unity" />
-      <window_info anchor="right" id="Database" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="NuGet" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
-  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="485" height="464" key="DebuggerActiveHint" timestamp="1589778088287">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="485" height="464" key="DebuggerActiveHint/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778088287" />
+    <state width="1398" height="331" key="GridCell.Tab.0.bottom" timestamp="1589778877008">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778877008" />
+    <state width="1398" height="331" key="GridCell.Tab.0.center" timestamp="1589778877007">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778877007" />
+    <state width="1398" height="331" key="GridCell.Tab.0.left" timestamp="1589778877005">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778877005" />
+    <state width="1398" height="331" key="GridCell.Tab.0.right" timestamp="1589778877007">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778877007" />
+    <state width="1398" height="331" key="GridCell.Tab.1.bottom" timestamp="1589778883745">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.1.bottom/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589778883745" />
+    <state width="1398" height="331" key="GridCell.Tab.1.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876892" />
+    <state width="1398" height="331" key="GridCell.Tab.1.center" timestamp="1589778883743">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.1.center/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589778883743" />
+    <state width="1398" height="331" key="GridCell.Tab.1.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876890" />
+    <state width="1398" height="331" key="GridCell.Tab.1.left" timestamp="1589778883742">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.1.left/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589778883742" />
+    <state width="1398" height="331" key="GridCell.Tab.1.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876888" />
+    <state width="1398" height="331" key="GridCell.Tab.1.right" timestamp="1589778883745">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.1.right/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589778883745" />
+    <state width="1398" height="331" key="GridCell.Tab.1.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876891" />
+    <state width="1398" height="331" key="GridCell.Tab.2.bottom" timestamp="1589778876896">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.2.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876896" />
+    <state width="1398" height="331" key="GridCell.Tab.2.center" timestamp="1589778876894">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.2.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876894" />
+    <state width="1398" height="331" key="GridCell.Tab.2.left" timestamp="1589778876893">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.2.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876893" />
+    <state width="1398" height="331" key="GridCell.Tab.2.right" timestamp="1589778876895">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.2.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876895" />
+    <state width="1398" height="331" key="GridCell.Tab.3.bottom" timestamp="1589778876899">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.3.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876899" />
+    <state width="1398" height="331" key="GridCell.Tab.3.center" timestamp="1589778876897">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.3.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876897" />
+    <state width="1398" height="331" key="GridCell.Tab.3.left" timestamp="1589778876896">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.3.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876896" />
+    <state width="1398" height="331" key="GridCell.Tab.3.right" timestamp="1589778876898">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="331" key="GridCell.Tab.3.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589778876898" />
+    <state x="221" y="89" key="SettingsEditor" timestamp="1589758497594">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="89" key="SettingsEditor/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589758497594" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
+          <line>60</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="58">
+            <startOffsets>
+              <option value="2127" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2156" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/TestPoint.cs</url>
+          <line>40</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" initialLine="40">
+            <startOffsets>
+              <option value="766" />
+            </startOffsets>
+            <endOffsets>
+              <option value="913" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
+          <line>265</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="247">
+            <startOffsets>
+              <option value="9987" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10020" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/TestLineRendering.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding>
-            <marker date="1589322787681" expanded="false" signature="6:78" ph="..." />
-            <marker date="1589322787681" expanded="true" signature="126:1542" ph="{...}" />
-            <marker date="1589322787681" expanded="true" signature="308:1461" ph="{...}" />
-            <marker date="1589322787681" expanded="true" signature="1519:1540" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
