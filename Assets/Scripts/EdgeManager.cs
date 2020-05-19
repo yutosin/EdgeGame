@@ -43,24 +43,42 @@ public class EdgeManager : MonoBehaviour
         //line is moving only along the x-axis it's y rot needs to be 90 and when a line is moving along the y-axis only
         //it's y-rot is 90 and it's x-rot is 180. These will be standard values since (for now) we're not rotating the
         //camera.
-        if (Mathf.Abs(p2.x - p1.x) > 0)
+        float xDistance = Mathf.Abs(p2.x - p1.x);
+        float yDistance = Mathf.Abs(p2.y - p1.y);
+        float zDistance = Mathf.Abs(p2.z - p1.z);
+        float scaleAmount;
+        if (xDistance > 0)
+        {
             yRot = 90;
-        else if (Mathf.Abs(p2.y - p1.y) > 0)
+            scaleAmount = xDistance;
+        }
+        else if (yDistance > 0)
         {
             xRot = 180;
             yRot = 90;
+            scaleAmount = yDistance;
+        }
+        else
+        {
+            scaleAmount = zDistance;
         }
 
         GameObject line =
             Instantiate(linePrefab, midPoint, Quaternion.Euler(xRot, yRot, 0));
 
         line.transform.parent = gameObject.transform;
+        var localScale = line.transform.localScale;
+        line.transform.localScale = new Vector3(localScale.x, 
+            localScale.y * scaleAmount, 
+            localScale.z);
         
         string edgeID = GenerateEdgeID(pt1ID, pt2ID);
-        var edgeVals = (true, _edgeBase[edgeID].faceIDs);
-        _edgeBase[edgeID] = edgeVals;
-        
-        CheckForFaces(_edgeBase[edgeID].faceIDs);
+        if (_edgeBase.TryGetValue(edgeID, out ValueTuple<bool, string[]> value))
+        {
+            var edgeVals = (true, value.Item2);
+            _edgeBase[edgeID] = edgeVals;
+            CheckForFaces(_edgeBase[edgeID].faceIDs);
+        }
     }
 
     private string GenerateEdgeID(string pt1ID, string pt2ID)
@@ -103,7 +121,6 @@ public class EdgeManager : MonoBehaviour
 
     private void SetUpFacesEdges(MeshRenderer renderer)
     {
-        //TO DO: Handle overlapping points; it's throwing off the face detection
         Bounds meshBounds = renderer.bounds;
         Vector3 p1, p2, p3, p4, p5, p6, p7, p8;
         p1 = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
@@ -233,6 +250,7 @@ public class EdgeManager : MonoBehaviour
         nextFaceID++;
     }
 
+    //TODO: actually generate quads when valid face is detected; also need to check for faces that aren't base scale (1) somehow
     private void CheckForFaces(string[] faceIDs)
     {
         for (int i = 0; i < faceIDs.Length; i++)

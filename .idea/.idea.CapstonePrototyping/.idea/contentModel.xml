@@ -18,6 +18,8 @@
         <e p="Scripts" t="Include">
           <e p="EdgeManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="Graph.cs" t="Include" />
+          <e p="SpacePartition.cs" t="Include" />
           <e p="TestLineGenerator.cs" t="Include" />
           <e p="TestPoint.cs" t="Include" />
         </e>
