@@ -1593,6 +1593,7 @@ MonoBehaviour:
   - {fileID: 1241467818}
   - {fileID: 440596459}
   - {fileID: 1984774013}
+  _sphereMat: {fileID: 2100000, guid: f663d87f2b3d84eb1b066eb4cd8b3a79, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

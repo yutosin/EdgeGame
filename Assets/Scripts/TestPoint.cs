@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestPoint : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class TestPoint : MonoBehaviour
         if (isActivePoint)
             return;
         _rend.enabled = true;
+        //_rend.material.color = Color.white;
     }
     
     private void OnMouseExit()
@@ -27,6 +30,7 @@ public class TestPoint : MonoBehaviour
         if (isActivePoint)
             return;
         _rend.enabled = false;
+        //_rend.material.color = new Color(1, 1, 1, 0);
     }
 
     private void OnMouseDown()
