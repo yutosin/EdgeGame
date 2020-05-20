@@ -10,7 +10,9 @@ public class Graph
     // in graph) 
     int V;
     List<int>[] adjListArray;
-    private List<int> _idConvert;
+    private List<int> _pointIds; //used to map graph ids to ids from points in world space
+    //used to map pt ids to graph ids, specifically when generating an edge and pt ids are the only available id to pass into graph
+    private Dictionary<int, int> _graphIdLookup;
 
     // constructor 
     public Graph(int V)
@@ -33,7 +35,8 @@ public class Graph
     public Graph(int V, List<int> ids)
     {
         this.V = V;
-        _idConvert = ids;
+        _graphIdLookup = new Dictionary<int, int>(ids.Count);
+        _pointIds = ids;
 
         // define the size of array as 
         // number of vertices 
@@ -45,36 +48,45 @@ public class Graph
         for (int i = 0; i < V; i++)
         {
             adjListArray[i] = new List<int>();
+            _graphIdLookup[ids[i]] = i;
         }
     }
 
     // Adds an edge to an undirected graph 
     public void addEdge(int src, int dest)
     {
+        int convertedSrc = _graphIdLookup[src];
+        int convertedDest= _graphIdLookup[dest];
+        
         // Add an edge from src to dest. 
-        adjListArray[src].Add(dest);
+        adjListArray[convertedSrc].Add(convertedDest);
 
         // Since graph is undirected, add an edge from dest 
         // to src also 
-        adjListArray[dest].Add(src);
+        adjListArray[convertedDest].Add(convertedSrc);
     }
 
-    void DFSUtil(int v, bool[] visited, List<int> validFace)
+    bool DFSUtil(int v, bool[] visited, List<int> facePoints, int firstV)
     {
         // Mark the current node as visited and print it 
         visited[v] = true;
-        validFace.Add(_idConvert[v]);
-        Debug.Log(v + " | ");
+        facePoints.Add(_pointIds[v]);
+        //Debug.Log(v + " | ");
 
         // Recur for all the vertices 
         // adjacent to this vertex 
         foreach (int x in adjListArray[v])
         {
-            if (!visited[x]) DFSUtil(x, visited, validFace);
+            if (!visited[x])
+                return DFSUtil(x, visited, facePoints, firstV);
+            if (x == firstV)
+                return true;
         }
 
+        return false;
     }
-
+    
+    //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
     public List<List<int>> connectedComponents()
     {
         // Mark all the vertices as not visited 
@@ -84,14 +96,14 @@ public class Graph
         {
             if (!visited[v])
             {
-                List<int> validFace = new List<int>(4);
+                List<int> facePoints = new List<int>(4);
                 // print all reachable vertices 
                 // from v 
-                DFSUtil(v, visited, validFace);
-                Debug.Log("");
+                bool validFace = DFSUtil(v, visited, facePoints, v);
+                //Debug.Log("");
                 
-                if (validFace.Count == 4)
-                    validFaces.Add(validFace);
+                if (facePoints.Count == 4 && validFace)
+                    validFaces.Add(facePoints);
             }
         }
 

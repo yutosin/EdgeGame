@@ -10,6 +10,7 @@ public class TestPoint : MonoBehaviour
     
     public bool isActivePoint;
     public string ptID;
+    public int listLoc;
     private static TestPoint _activePoint;
 
     private void Start()
@@ -42,8 +43,8 @@ public class TestPoint : MonoBehaviour
         }
         else
         {
-            GameManager.SharedInstance.edgeManager.GenerateLine(_activePoint.transform.position, 
-                transform.position, ptID, _activePoint.ptID);
+            GameManager.SharedInstance.edgeManager.GenerateEdge(_activePoint.transform.position, 
+                transform.position, listLoc, _activePoint.listLoc);
             _activePoint.isActivePoint = false;
             _activePoint.gameObject.GetComponent<Renderer>().enabled = false;
             _activePoint = null;

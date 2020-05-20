@@ -7,29 +7,141 @@ public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private MeshRenderer[] cubeRenderers;
+    
+    private Dictionary<string, Graph> _xGraphs;
+    private Dictionary<string, Graph> _yGraphs;
+    private Dictionary<string, Graph> _zGraphs;
+    
+    private List<Vector3> _points;
 
-    private Dictionary<string, (bool edgeActive, string[] faceIDs)> _edgeBase;
-    private Dictionary<string, string[]> _faceBase;
-    private List<TestPoint> _createdPoints; //mainly to keep track of visited points then deleted later
-
-    private int nextPtID = 1;
-    private int nextFaceID = 1;
+    private int nextPtID = 0;
 
     private void Start()
     {
-        _edgeBase = new Dictionary<string, (bool edgeActive, string[] faceIDs)>();
-        _faceBase = new Dictionary<string, string[]>();
-        _createdPoints = new List<TestPoint>();
+        _points = new List<Vector3>(cubeRenderers.Length * 8);
 
         foreach (var renderer in cubeRenderers)
         {
-            SetUpFacesEdges(renderer);
+            AddCubeVerticesToList(renderer);
         }
+        
+        Dictionary<string, List<int>> xAxisPartitions = new Dictionary<string, List<int>>();
+        Dictionary<string, List<int>> yAxisPartitions = new Dictionary<string, List<int>>();
+        Dictionary<string, List<int>> zAxisPartitions = new Dictionary<string, List<int>>();
+        
+        for (int i = 0; i < _points.Count; i++)
+        {
+            Vector3 point = _points[i];
+            string xPartitionKey = point.x.ToString();
+            string yPartitionKey = point.y.ToString();
+            string zPartitionKey = point.z.ToString();
+            if (xAxisPartitions.TryGetValue(xPartitionKey, out List<int> entry))
+                entry.Add(i);
+            else
+            {
+                xAxisPartitions[xPartitionKey] = new List<int>();
+                xAxisPartitions[xPartitionKey].Add(i);
+            }
 
-        _createdPoints = null;
+            if (yAxisPartitions.TryGetValue(yPartitionKey, out List<int> entry2))
+                entry2.Add(i);
+            else
+            {
+                yAxisPartitions[yPartitionKey] = new List<int>();
+                yAxisPartitions[yPartitionKey].Add(i);
+            }
+            
+            if (zAxisPartitions.TryGetValue(zPartitionKey, out List<int> entry3))
+                entry3.Add(i);
+            else
+            {
+                zAxisPartitions[zPartitionKey] = new List<int>();
+                zAxisPartitions[zPartitionKey].Add(i);
+            }
+        }
+        
+        _xGraphs = new Dictionary<string, Graph>(xAxisPartitions.Count);
+        _yGraphs = new Dictionary<string, Graph>(yAxisPartitions.Count);
+        _zGraphs = new Dictionary<string, Graph>(zAxisPartitions.Count);
+        
+        foreach (var xAxisPartition in xAxisPartitions)
+        {
+            List<int> partitionPoints = xAxisPartition.Value;
+            partitionPoints.Sort();
+            Graph xPartitionGraph = new Graph(xAxisPartition.Value.Count, partitionPoints);
+            _xGraphs[xAxisPartition.Key] = xPartitionGraph;
+            
+        }
+        
+        foreach (var yAxisPartition in yAxisPartitions)
+        {
+            List<int> partitionPoints = yAxisPartition.Value;
+            partitionPoints.Sort();
+            Graph yPartitionGraph = new Graph(yAxisPartition.Value.Count, partitionPoints);
+            _yGraphs[yAxisPartition.Key] = yPartitionGraph;
+        }
+        
+        foreach (var zAxisPartition in zAxisPartitions)
+        {
+            List<int> partitionPoints = zAxisPartition.Value;
+            partitionPoints.Sort();
+            Graph zPartitionGraph = new Graph(zAxisPartition.Value.Count, partitionPoints);
+            _zGraphs[zAxisPartition.Key] = zPartitionGraph;
+        }
     }
 
-    public void GenerateLine(Vector3 p1, Vector3 p2, string pt1ID, string pt2ID)
+    private void AddCubeVerticesToList(MeshRenderer renderer)
+    {
+        Bounds meshBounds = renderer.bounds;
+        Vector3[] cubeVertices = new Vector3[8];
+        cubeVertices[0] = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
+        cubeVertices[1] = new Vector3(meshBounds.min.x , meshBounds.max.y, meshBounds.max.z);
+        cubeVertices[2] = meshBounds.max;
+        cubeVertices[3] = new Vector3(meshBounds.max.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
+        cubeVertices[4] = new Vector3(cubeVertices[0].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[0].z);
+        cubeVertices[5] = new Vector3(cubeVertices[1].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[1].z);
+        cubeVertices[6] = new Vector3(cubeVertices[2].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[2].z);
+        cubeVertices[7] = new Vector3(cubeVertices[3].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[3].z);
+
+        foreach (Vector3 vertex in cubeVertices)
+        {
+            if(GenerateEdgePoint(vertex, renderer.gameObject.transform))
+                _points.Add(vertex);
+        }
+    }
+    
+    public bool GenerateEdgePoint(Vector3 pos, Transform parenTransform)
+    {
+        foreach (var testPoint in _points)
+        {
+            if (testPoint == pos)
+                return false;
+        }
+        
+        GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        TestPoint tp = edgePoint.AddComponent<TestPoint>();
+        tp.ptID = "Pt" + nextPtID;
+        tp.listLoc = nextPtID;
+        nextPtID++;
+
+        Renderer rend = edgePoint.GetComponent<Renderer>();
+        //rend.material.shader = Shader.Find("Unlit/ColorZAlways");
+        rend.enabled = false;
+        
+        SphereCollider sphereCollider = edgePoint.AddComponent<SphereCollider>();
+        sphereCollider.radius = .15f;
+        
+        edgePoint.transform.position = pos;
+        edgePoint.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        
+        if (parenTransform == null)
+            return true;
+        edgePoint.transform.parent = parenTransform;
+
+        return true;
+    }
+
+    public void GenerateEdge(Vector3 p1, Vector3 p2, int pt1ID, int pt2ID)
     {
         float xRot = 90;
         float yRot = 0;
@@ -47,223 +159,183 @@ public class EdgeManager : MonoBehaviour
         float yDistance = Mathf.Abs(p2.y - p1.y);
         float zDistance = Mathf.Abs(p2.z - p1.z);
         float scaleAmount;
+        bool xAxisEdge = false, yAxisEdge = false, zAxisEdge = false;
         if (xDistance > 0)
         {
             yRot = 90;
             scaleAmount = xDistance;
+            xAxisEdge = true;
         }
         else if (yDistance > 0)
         {
             xRot = 180;
             yRot = 90;
             scaleAmount = yDistance;
+            yAxisEdge = true;
         }
         else
         {
             scaleAmount = zDistance;
+            zAxisEdge = true;
         }
 
         GameObject line =
             Instantiate(linePrefab, midPoint, Quaternion.Euler(xRot, yRot, 0));
+        Transform lineTransform = line.transform;
 
-        line.transform.parent = gameObject.transform;
-        var localScale = line.transform.localScale;
-        line.transform.localScale = new Vector3(localScale.x, 
+        lineTransform.parent = gameObject.transform;
+        var localScale = lineTransform.localScale;
+        lineTransform.localScale = new Vector3(localScale.x, 
             localScale.y * scaleAmount, 
             localScale.z);
-        
-        string edgeID = GenerateEdgeID(pt1ID, pt2ID);
-        if (_edgeBase.TryGetValue(edgeID, out ValueTuple<bool, string[]> value))
-        {
-            var edgeVals = (true, value.Item2);
-            _edgeBase[edgeID] = edgeVals;
-            CheckForFaces(_edgeBase[edgeID].faceIDs);
-        }
-    }
 
+        string xGraphKey = p1.x.ToString();
+        string yGraphKey = p1.y.ToString();
+        string zGraphKey = p1.z.ToString();
+        
+        if (xAxisEdge)
+        {
+            _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
+            _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
+
+            var yConnectedComponents = _yGraphs[yGraphKey].connectedComponents();
+            var zConnectedComponents = _zGraphs[zGraphKey].connectedComponents();
+
+            foreach (var faceVertices in yConnectedComponents)
+            {
+                //Vector3[] vertexVectors = new Vector3[4];
+                List<Vector3> vertexVectors = new List<Vector3>(4);
+                foreach (var vertex in faceVertices)
+                {
+                    vertexVectors.Add(_points[vertex]);
+                }
+                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+            
+            foreach (var faceVertices in zConnectedComponents)
+            {
+                //Vector3[] vertexVectors = new Vector3[4];
+                List<Vector3> vertexVectors = new List<Vector3>(4);
+                foreach (var vertex in faceVertices)
+                {
+                    vertexVectors.Add(_points[vertex]);
+                }
+                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+        }
+        else if (yAxisEdge)
+        {
+            _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
+            _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
+            
+            var xConnectedComponents = _xGraphs[xGraphKey].connectedComponents();
+            var zConnectedComponents = _zGraphs[zGraphKey].connectedComponents();
+            
+            foreach (var faceVertices in xConnectedComponents)
+            {
+                //Vector3[] vertexVectors = new Vector3[4];
+                List<Vector3> vertexVectors = new List<Vector3>(4);
+                foreach (var vertex in faceVertices)
+                {
+                    vertexVectors.Add(_points[vertex]);
+                }
+                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+            
+            foreach (var faceVertices in zConnectedComponents)
+            {
+                //Vector3[] vertexVectors = new Vector3[4];
+                List<Vector3> vertexVectors = new List<Vector3>(4);
+                foreach (var vertex in faceVertices)
+                {
+                    vertexVectors.Add(_points[vertex]);
+                }
+                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+        }
+        else if (zAxisEdge)
+        {
+            _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
+            _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
+            
+            var xConnectedComponents = _xGraphs[xGraphKey].connectedComponents();
+            var yConnectedComponents = _yGraphs[yGraphKey].connectedComponents();
+            
+            foreach (var faceVertices in xConnectedComponents)
+            {
+                //Vector3[] vertexVectors = new Vector3[4];
+                List<Vector3> vertexVectors = new List<Vector3>(4);
+                foreach (var vertex in faceVertices)
+                {
+                    vertexVectors.Add(_points[vertex]);
+                }
+                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+            
+            foreach (var faceVertices in yConnectedComponents)
+            {
+                //Vector3[] vertexVectors = new Vector3[4];
+                List<Vector3> vertexVectors = new List<Vector3>(4);
+                foreach (var vertex in faceVertices)
+                {
+                    vertexVectors.Add(_points[vertex]);
+                }
+                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+        }
+        //TODO: Z graphs not creating connected components, figure that out
+        //TODO: X faces are also being generated wrong, check that out (done: flipping first vertices not necessary..but why?)
+        //TODO: something is wonky with your face vs edge logic, look into that
+    }
+    
+    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = false)
+    {
+        GameObject newQuad = new GameObject();
+        MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
+        meshRenderer.sharedMaterial.color = Color.white;
+
+        MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
+
+        Mesh mesh = new Mesh();
+
+        if (flipFirstPair)
+        {
+            Vector3[] flipped = new[] {quadVertices[1], quadVertices[0], quadVertices[2], quadVertices[3]};
+            mesh.vertices = flipped;
+        }
+        else
+            mesh.vertices = quadVertices;
+
+        Vector3[] normals = new Vector3[4]
+        {
+            -Vector3.forward,
+            -Vector3.forward,
+            -Vector3.forward,
+            -Vector3.forward
+        };
+        mesh.normals = normals;
+
+        Vector2[] uv = new Vector2[4]
+        {
+            new Vector2(0, 1),
+            new Vector2(1, 1),
+            new Vector2(1, 0),
+            new Vector2(0, 0)
+        };
+        int[] indices = new int[]
+        {
+            0, 1, 2,3
+        };
+        mesh.uv = uv;
+        mesh.SetIndices(indices, MeshTopology.Quads,0);
+
+        meshFilter.mesh = mesh;
+    }
     private string GenerateEdgeID(string pt1ID, string pt2ID)
     {
         int idCompare = string.Compare(pt1ID, pt2ID);
         string edgeID = (idCompare < 0) ? pt1ID + pt2ID : pt2ID + pt1ID;
         return edgeID;
-    }
-    
-    public string GenerateEdgePoint(Vector3 pos, Transform parenTransform)
-    {
-        foreach (var testPoint in _createdPoints)
-        {
-            if (testPoint.gameObject.transform.position == pos)
-                return testPoint.ptID;
-        }
-        
-        GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        TestPoint tp = edgePoint.AddComponent<TestPoint>();
-        _createdPoints.Add(tp);
-        tp.ptID = "Pt" + nextPtID;
-        nextPtID++;
-
-        Renderer rend = edgePoint.GetComponent<Renderer>();
-        //rend.material.shader = Shader.Find("Unlit/ColorZAlways");
-        rend.enabled = false;
-        
-        SphereCollider sphereCollider = edgePoint.AddComponent<SphereCollider>();
-        sphereCollider.radius = .15f;
-        
-        edgePoint.transform.position = pos;
-        edgePoint.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-        
-        if (parenTransform == null)
-            return tp.ptID;
-        edgePoint.transform.parent = parenTransform;
-
-        return tp.ptID;
-    }
-
-    private void SetUpFacesEdges(MeshRenderer renderer)
-    {
-        Bounds meshBounds = renderer.bounds;
-        Vector3 p1, p2, p3, p4, p5, p6, p7, p8;
-        p1 = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
-        p2 = new Vector3(meshBounds.min.x , meshBounds.max.y, meshBounds.max.z);
-        p3 = meshBounds.max;
-        p4 = new Vector3(meshBounds.max.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
-        p5 = new Vector3(p1.x, p1.y - (meshBounds.extents.z * 2), p1.z);
-        p6 = new Vector3(p2.x, p2.y - (meshBounds.extents.z * 2), p2.z);
-        p7 = new Vector3(p3.x, p3.y - (meshBounds.extents.z * 2), p3.z);
-        p8 = new Vector3(p4.x, p4.y - (meshBounds.extents.z * 2), p4.z);
-
-        string p1ID = GenerateEdgePoint(p1, renderer.gameObject.transform);
-        string p2ID = GenerateEdgePoint(p2, renderer.gameObject.transform);
-        string p3ID = GenerateEdgePoint(p3, renderer.gameObject.transform);
-        string p4ID = GenerateEdgePoint(p4, renderer.gameObject.transform);
-        string p5ID = GenerateEdgePoint(p5, renderer.gameObject.transform);
-        string p6ID = GenerateEdgePoint(p6, renderer.gameObject.transform);
-        string p7ID = GenerateEdgePoint(p7, renderer.gameObject.transform);
-        string p8ID = GenerateEdgePoint(p8, renderer.gameObject.transform);
-        
-        //Be aware: all of the edges and faces are created manually; some edges are shared by faces
-        //Create face #1 (top) and edges
-        string faceID = "face" + nextFaceID;
-        //refactor edges later to add unique entries
-        string edgeID1 = GenerateEdgeID(p1ID,p2ID);
-        string edgeID2 = GenerateEdgeID(p2ID, p3ID);
-        string edgeID3 = GenerateEdgeID(p3ID, p4ID);
-        string edgeID4 = GenerateEdgeID(p1ID, p4ID);
-        string edgeID5 = GenerateEdgeID(p5ID, p6ID);
-        string edgeID6 = GenerateEdgeID(p6ID, p7ID);
-        string edgeID7 = GenerateEdgeID(p7ID, p8ID);
-        string edgeID8 = GenerateEdgeID(p5ID, p8ID);
-        string edgeID9 = GenerateEdgeID(p1ID, p5ID);
-        string edgeID10 = GenerateEdgeID(p2ID, p6ID);
-        string edgeID11 = GenerateEdgeID(p3ID, p7ID);
-        string edgeID12 = GenerateEdgeID(p4ID, p8ID);
-        
-        _edgeBase[edgeID1] = (false, new string[2]);
-        _edgeBase[edgeID1].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID2] = (false, new string[2]);
-        _edgeBase[edgeID2].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID3] = (false, new string[2]);
-        _edgeBase[edgeID3].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID4] = (false, new string[2]);
-        _edgeBase[edgeID4].faceIDs[0] = faceID;
-
-        _faceBase[faceID] = new[] {edgeID1, edgeID2, edgeID3, edgeID4};
-
-        nextFaceID++;
-        
-        //Create face #2 (top) and edges
-        faceID = "face" + nextFaceID;
-        
-        _edgeBase[edgeID5] = (false, new string[2]);
-        _edgeBase[edgeID5].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID6] = (false, new string[2]);
-        _edgeBase[edgeID6].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID7] = (false, new string[2]);
-        _edgeBase[edgeID7].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID8] = (false, new string[2]);
-        _edgeBase[edgeID8].faceIDs[0] = faceID;
-
-        _faceBase[faceID] = new[] {edgeID5, edgeID6, edgeID7, edgeID8};
-
-        nextFaceID++;
-        
-        //Create face #3 (left) and edges
-        faceID = "face" + nextFaceID;
-
-        _edgeBase[edgeID4].faceIDs[1] = faceID;
-        _edgeBase[edgeID8].faceIDs[1] = faceID;
-        
-        _edgeBase[edgeID9] = (false, new string[2]);
-        _edgeBase[edgeID9].faceIDs[0] = faceID;
-        
-        _edgeBase[edgeID12] = (false, new string[2]);
-        _edgeBase[edgeID12].faceIDs[0] = faceID;
-
-        _faceBase[faceID] = new[] {edgeID9, edgeID8, edgeID12, edgeID4};
-
-        nextFaceID++;
-        
-        //Create face #4 (right) and edges
-        faceID = "face" + nextFaceID;
-
-        _edgeBase[edgeID2].faceIDs[1] = faceID;
-        _edgeBase[edgeID6].faceIDs[1] = faceID;
-        
-        _edgeBase[edgeID10] = (false, new string[2]);
-        _edgeBase[edgeID10].faceIDs[0] = faceID;
-
-        _edgeBase[edgeID11] = (false, new string[2]);
-        _edgeBase[edgeID11].faceIDs[0] = faceID;
-
-        _faceBase[faceID] = new[] {edgeID10, edgeID6, edgeID11, edgeID2};
-
-        nextFaceID++;
-        
-        //Create face #5 (back) and edges
-        faceID = "face" + nextFaceID;
-
-        _edgeBase[edgeID1].faceIDs[1] = faceID;
-        _edgeBase[edgeID5].faceIDs[1] = faceID;
-        _edgeBase[edgeID9].faceIDs[1] = faceID;
-        _edgeBase[edgeID10].faceIDs[1] = faceID;
-
-        _faceBase[faceID] = new[] {edgeID1, edgeID10, edgeID5, edgeID9};
-
-        nextFaceID++;
-        
-        //Create face #6 (front) and edges
-        faceID = "face" + nextFaceID;
-
-        _edgeBase[edgeID3].faceIDs[1] = faceID;
-        _edgeBase[edgeID7].faceIDs[1] = faceID;
-        _edgeBase[edgeID11].faceIDs[1] = faceID;
-        _edgeBase[edgeID12].faceIDs[1] = faceID;
-
-        _faceBase[faceID] = new[] {edgeID3, edgeID11, edgeID7, edgeID12};
-
-        nextFaceID++;
-    }
-
-    //TODO: actually generate quads when valid face is detected; also need to check for faces that aren't base scale (1) somehow
-    private void CheckForFaces(string[] faceIDs)
-    {
-        for (int i = 0; i < faceIDs.Length; i++)
-        {
-            var edgesToCheck = _faceBase[faceIDs[i]];
-            int activeEdges = 0;
-            foreach (var edge in edgesToCheck)
-            {
-                if (_edgeBase[edge].edgeActive)
-                    activeEdges++;
-            }
-            if (activeEdges >= 4)
-                Debug.Log("valid face detected");
-        }
     }
 }
