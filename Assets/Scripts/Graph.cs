@@ -10,13 +10,12 @@ public class Graph
     // in graph) 
     int V;
     List<int>[] adjListArray;
-    private int indexOffset;
+    private List<int> _idConvert;
 
     // constructor 
     public Graph(int V)
     {
         this.V = V;
-        indexOffset = 0;
 
         // define the size of array as 
         // number of vertices 
@@ -31,10 +30,10 @@ public class Graph
         }
     }
     
-    public Graph(int V, int offset)
+    public Graph(int V, List<int> ids)
     {
         this.V = V;
-        indexOffset = offset;
+        _idConvert = ids;
 
         // define the size of array as 
         // number of vertices 
@@ -64,7 +63,7 @@ public class Graph
     {
         // Mark the current node as visited and print it 
         visited[v] = true;
-        validFace.Add(v + indexOffset);
+        validFace.Add(_idConvert[v]);
         Debug.Log(v + " | ");
 
         // Recur for all the vertices 

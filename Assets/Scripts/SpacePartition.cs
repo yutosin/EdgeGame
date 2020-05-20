@@ -6,26 +6,23 @@ public class SpacePartition : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
 
-    private Dictionary<int, List<int>> _xAxisPartitions;
-    private Dictionary<int, List<int>> _yAxisPartitions;
-    private Dictionary<int, List<int>> _zAxisPartitions;
+    private Dictionary<string, List<int>> _xAxisPartitions;
+    private Dictionary<string, List<int>> _yAxisPartitions;
+    private Dictionary<string, List<int>> _zAxisPartitions;
 
-    private Dictionary<int, Graph> _xGraphs;
-    private Dictionary<int, Graph> _yGraphs;
-    private Dictionary<int, Graph> _zGraphs;
+    private Dictionary<string, Graph> _xGraphs;
+    private Dictionary<string, Graph> _yGraphs;
+    private Dictionary<string, Graph> _zGraphs;
     
     void Start()
     {
-        //create top face graph
-        //Graph faceGraph = new Graph(4);
+        _xAxisPartitions = new Dictionary<string, List<int>>();
+        _yAxisPartitions = new Dictionary<string, List<int>>();
+        _zAxisPartitions = new Dictionary<string, List<int>>();
         
-        _xAxisPartitions = new Dictionary<int, List<int>>();
-        _yAxisPartitions = new Dictionary<int, List<int>>();
-        _zAxisPartitions = new Dictionary<int, List<int>>();
-        
-        _xGraphs = new Dictionary<int, Graph>();
-        _yGraphs = new Dictionary<int, Graph>();
-        _zGraphs = new Dictionary<int, Graph>();
+        _xGraphs = new Dictionary<string, Graph>();
+        _yGraphs = new Dictionary<string, Graph>();
+        _zGraphs = new Dictionary<string, Graph>();
 
         Vector3 p1, p2, p3, p4, p5, p6, p7, p8;
         _meshRenderer = GetComponent<MeshRenderer>();
@@ -42,31 +39,32 @@ public class SpacePartition : MonoBehaviour
         Vector3[] points = new[] { p1, p2, p3, p4 };
         Vector3[] points2 = new[] { p1, p2, p3, p4, p5, p6, p7, p8 };
         
+        //TODO: Format strings to only have 2 decimal places
         for (int i = 0; i < points2.Length; i++)
         {
             Vector3 point = points2[i];
-            if (_xAxisPartitions.TryGetValue((int)point.x, out List<int> entry))
+            if (_xAxisPartitions.TryGetValue(point.x.ToString(), out List<int> entry))
                 entry.Add(i);
             else
             {
-                _xAxisPartitions[(int)point.x] = new List<int>();
-                _xAxisPartitions[(int)point.x].Add(i);
+                _xAxisPartitions[point.x.ToString()] = new List<int>();
+                _xAxisPartitions[point.x.ToString()].Add(i);
             }
 
-            if (_yAxisPartitions.TryGetValue((int)point.y, out List<int> entry2))
+            if (_yAxisPartitions.TryGetValue(point.y.ToString(), out List<int> entry2))
                 entry2.Add(i);
             else
             {
-                _yAxisPartitions[(int)point.y] = new List<int>();
-                _yAxisPartitions[(int)point.y].Add(i);
+                _yAxisPartitions[point.y.ToString()] = new List<int>();
+                _yAxisPartitions[point.y.ToString()].Add(i);
             }
             
-            if (_zAxisPartitions.TryGetValue((int)point.z, out List<int> entry3))
+            if (_zAxisPartitions.TryGetValue(point.z.ToString(), out List<int> entry3))
                 entry3.Add(i);
             else
             {
-                _zAxisPartitions[(int)point.z] = new List<int>();
-                _zAxisPartitions[(int)point.z].Add(i);
+                _zAxisPartitions[point.z.ToString()] = new List<int>();
+                _zAxisPartitions[point.z.ToString()].Add(i);
             }
         }
 
@@ -74,7 +72,7 @@ public class SpacePartition : MonoBehaviour
         {
             List<int> partitionPoints = xAxisPartition.Value;
             partitionPoints.Sort();
-            Graph xPartitionGraph = new Graph(xAxisPartition.Value.Count, partitionPoints[0]);
+            Graph xPartitionGraph = new Graph(xAxisPartition.Value.Count, partitionPoints);
             _xGraphs[xAxisPartition.Key] = xPartitionGraph;
             
         }
@@ -83,7 +81,7 @@ public class SpacePartition : MonoBehaviour
         {
             List<int> partitionPoints = yAxisPartition.Value;
             partitionPoints.Sort();
-            Graph yPartitionGraph = new Graph(yAxisPartition.Value.Count, partitionPoints[0]);
+            Graph yPartitionGraph = new Graph(yAxisPartition.Value.Count, partitionPoints);
             _yGraphs[yAxisPartition.Key] = yPartitionGraph;
         }
         
@@ -91,18 +89,30 @@ public class SpacePartition : MonoBehaviour
         {
             List<int> partitionPoints = zAxisPartition.Value;
             partitionPoints.Sort();
-            Graph zPartitionGraph = new Graph(zAxisPartition.Value.Count, partitionPoints[0]);
+            Graph zPartitionGraph = new Graph(zAxisPartition.Value.Count, partitionPoints);
             _zGraphs[zAxisPartition.Key] = zPartitionGraph;
         }
         
         //pts ordered to match zig-zag pattern from bottom left
         //Vector3[] points = new[] { p4, p3, p1, p2 };
         
-        _yGraphs[1].addEdge(0, 1);
-        _yGraphs[1].addEdge(1, 2);
-        _yGraphs[1].addEdge(2, 3);
-        _yGraphs[1].addEdge(0, 3);
-        var test = _yGraphs[1].connectedComponents();
+        _yGraphs["1.5"].addEdge(0, 1);
+        _yGraphs["1.5"].addEdge(1, 2);
+        _yGraphs["1.5"].addEdge(2, 3);
+        _yGraphs["1.5"].addEdge(0, 3);
+        
+        _zGraphs["1.5"].addEdge(0, 1);
+        _zGraphs["1.5"].addEdge(1, 2);
+        _zGraphs["1.5"].addEdge(2, 3);
+        _zGraphs["1.5"].addEdge(0, 3);
+        
+        _xGraphs["1.5"].addEdge(0, 1);
+        _xGraphs["1.5"].addEdge(1, 2);
+        _xGraphs["1.5"].addEdge(2, 3);
+        _xGraphs["1.5"].addEdge(0, 3);
+        var test = _yGraphs["1.5"].connectedComponents();
+        var test2 = _zGraphs["1.5"].connectedComponents();
+        var test3 = _xGraphs["1.5"].connectedComponents();
         foreach (var faceVertices in test)
         {
             string testString = "";
@@ -110,18 +120,46 @@ public class SpacePartition : MonoBehaviour
             foreach (var vertex in faceVertices)
             {
                 testString += vertex + " ";
-                vertexVectors[vertex] = points[vertex];
+                vertexVectors[vertex] = points2[vertex];
             }
-            GenerateQuad(vertexVectors);
+            // GenerateQuad(vertexVectors);
+            GenerateQuadWithQuadMeshTop(vertexVectors);
+            Debug.Log(testString);
+        }
+
+        foreach (var faceVertices in test2)
+        {
+            string testString = "";
+            Vector3[] vertexVectors = new Vector3[4];
+            for (int i = 0; i < faceVertices.Count; i++)
+            {
+                var vertex = faceVertices[i];
+                testString += vertex + " ";
+                vertexVectors[i] = points2[vertex];
+            }
+            //GenerateQuad(vertexVectors);
+            GenerateQuadWithQuadMeshTop(vertexVectors, true);
+            Debug.Log(testString);
+        }
+        
+        foreach (var faceVertices in test3)
+        {
+            string testString = "";
+            Vector3[] vertexVectors = new Vector3[4];
+            for (int i = 0; i < faceVertices.Count; i++)
+            {
+                var vertex = faceVertices[i];
+                testString += vertex + " ";
+                vertexVectors[i] = points2[vertex];
+            }
+            //GenerateQuad(vertexVectors);
+            GenerateQuadWithQuadMeshTop(vertexVectors, true);
             Debug.Log(testString);
         }
     }
 
-    private void GenerateQuad(Vector3[] quadVertices)
+    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = false)
     {
-        float width = 1;
-        float height = 1;
-        
         GameObject newQuad = new GameObject();
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -131,34 +169,13 @@ public class SpacePartition : MonoBehaviour
 
         Mesh mesh = new Mesh();
 
-        Vector3[] vertices = new Vector3[4]
+        if (flipFirstPair)
         {
-            new Vector3(0, 0, 0),
-            new Vector3(width, 0, 0),
-            new Vector3(0, height, 0),
-            new Vector3(width, height, 0)
-        };
-        mesh.vertices = quadVertices;
-        //mesh.vertices = vertices;
-        
-        //tris based on bottom edge l->r (0, 1) and top edge l->r (2, 3)
-        // int[] tris = new int[6]
-        // {
-        //     // lower left triangle
-        //     0, 2, 1,
-        //     // upper right triangle
-        //     2, 3, 1
-        // };
-        
-        //tris based on clockwork face vertices top left to bottom left
-        int[] tris = new int[6]
-        {
-            // lower left triangle
-            3, 0, 2,
-            // upper right triangle
-            0, 1, 2
-        };
-        mesh.triangles = tris;
+            Vector3[] flipped = new[] {quadVertices[1], quadVertices[0], quadVertices[2], quadVertices[3]};
+            mesh.vertices = flipped;
+        }
+        else
+            mesh.vertices = quadVertices;
 
         Vector3[] normals = new Vector3[4]
         {
@@ -171,17 +188,19 @@ public class SpacePartition : MonoBehaviour
 
         Vector2[] uv = new Vector2[4]
         {
-            new Vector2(0, 0),
-            new Vector2(1, 0),
             new Vector2(0, 1),
-            new Vector2(1, 1)
+            new Vector2(1, 1),
+            new Vector2(1, 0),
+            new Vector2(0, 0)
+        };
+        int[] indices = new int[]
+        {
+            0, 1, 2,3
         };
         mesh.uv = uv;
+        mesh.SetIndices(indices, MeshTopology.Quads,0);
 
         meshFilter.mesh = mesh;
-
-        //newQuad.transform.rotation = Quaternion.Euler(0, 180, 0);
-        //newQuad.transform.parent = gameObject.transform;
     }
 
     // Update is called once per frame
