@@ -293,7 +293,7 @@ public class EdgeManager : MonoBehaviour
         GameObject newQuad = new GameObject();
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
-        meshRenderer.sharedMaterial.color = Color.white;
+        meshRenderer.sharedMaterial.color = Color.gray;
 
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
 
