@@ -6,121 +6,102 @@ using UnityEngine;
 public class Graph
 {
     // A user define class to represent a graph. 
-    // A graph is an array of adjacency lists. 
-    // Size of array will be V (number of vertices 
+    // A graph is an array of connected vertices lists. 
+    // Size of array will be numVertices (number of vertices 
     // in graph) 
-    int V;
-    List<int>[] adjListArray;
+    int numVertices;
+    List<int>[] connectedListArray;
     private List<int> _pointIds; //used to map graph ids to ids from points in world space
     //used to map pt ids to graph ids, specifically when generating an edge and pt ids are the only available id to pass into graph
     private Dictionary<int, int> _graphIdLookup;
+    private List<int> _createdFaceIds;
 
     // constructor 
-    public Graph(int V)
+    public Graph(int numVertices, List<int> ids)
     {
-        this.V = V;
-
-        // define the size of array as 
-        // number of vertices 
-        adjListArray = new List<int>[V];
-
-        // Create a new list for each vertex 
-        // such that adjacent nodes can be stored 
-
-        for (int i = 0; i < V; i++)
-        {
-            adjListArray[i] = new List<int>();
-        }
-    }
-    
-    public Graph(int V, List<int> ids)
-    {
-        this.V = V;
+        this.numVertices = numVertices;
         _graphIdLookup = new Dictionary<int, int>(ids.Count);
         _pointIds = ids;
 
         // define the size of array as 
         // number of vertices 
-        adjListArray = new List<int>[V];
+        connectedListArray = new List<int>[numVertices];
+        
+        _createdFaceIds = new List<int>();
 
         // Create a new list for each vertex 
-        // such that adjacent nodes can be stored 
-
-        for (int i = 0; i < V; i++)
+        // such that connected nodes can be stored 
+        for (int i = 0; i < numVertices; i++)
         {
-            adjListArray[i] = new List<int>();
+            //since ids are sorted before add them, we basically map the world space vertex id to the 0 based index graphs
+            //use so that all the operations are easier to deal with
+            connectedListArray[i] = new List<int>();
             _graphIdLookup[ids[i]] = i;
         }
     }
-
-    //TODO: don't add duplicate edges
+    
     // Adds an edge to an undirected graph 
-    public void addEdge(int src, int dest)
+    public bool addEdge(int src, int dest)
     {
+        //pts in "world space" have no knowledge of a graphs internal vertex indexing system and pass in the world space
+        //ids; we need to convert those ids to graph ids with our lookup table
         int convertedSrc = _graphIdLookup[src];
         int convertedDest= _graphIdLookup[dest];
         
+        var srcConnectedList = connectedListArray[convertedSrc];
+        var destConnectedList = connectedListArray[convertedDest];
+
+        if (srcConnectedList.Contains(convertedDest) || destConnectedList.Contains(convertedSrc)) //prevent duplicate edges
+            return false;
+        
         // Add an edge from src to dest. 
-        adjListArray[convertedSrc].Add(convertedDest);
+        srcConnectedList.Add(convertedDest);
 
         // Since graph is undirected, add an edge from dest 
-        // to src also 
-        adjListArray[convertedDest].Add(convertedSrc);
+        // to src also
+        destConnectedList.Add(convertedSrc);
+
+        return true;
     }
-
-    bool DFSUtil(int firstV, int v, bool[] visited, List<int> facePoints, bool validFace)
+    
+    //BFFaceFinder uses a modified breadth first traversal approach where once a vertex is selected, we add the connected
+    //vertices to a queue data structure (first item in is the first item out) then inspect these connected vertices
+    //to see what they're connected to. Then we add those inspected vertices to the queue and repeat the same process until
+    //all vertices are traversed. But for our purposes we modify this to check if the connected vertices of the first
+    //inspected vertex share a connected vertex meaning they create a closed loop or a face.
+    private bool BFFaceFinder(int v, bool[] graphVisited, int firstVertex, List<int> faceVertices)
     {
-        // Mark the current node as visited and print it 
-        visited[v] = true;
-        var vertexAdjList = adjListArray[v];
-        if (vertexAdjList.Count >= 2)
-            facePoints.Add(_pointIds[v]);
-        //Debug.Log(v + " | ");
-
-        // Recur for all the vertices 
-        // adjacent to this vertex 
-        foreach (int x in vertexAdjList)
-        {
-            if (!visited[x])
-                DFSUtil(firstV,x, visited, facePoints, validFace);
-            if (facePoints.Count >= 4 && x == firstV)
-                validFace = true;
-        }
-
-        return validFace;
-    }
-
-    private bool BFFaceFinder(int v, bool[] graphVisited, int firstV, List<int> facePoints, bool[] inFace)
-    {
-        List<int> bfQueue = new List<int>(); //using as a queue
-
-        bfQueue.Add(v);
+        Queue<int> bfQueue = new Queue<int>();
+        //add first vertex to front of the queue
+        bfQueue.Enqueue(v);
+        
         while (bfQueue.Count > 0)
         {
-            int vertex = bfQueue[0];
-            bfQueue.RemoveAt(0);
-            var subVertexAdjList = adjListArray[vertex];
-            if (subVertexAdjList.Count < 2)
+            int vertex = bfQueue.Peek(); //peek returns first item in queue w/o removing it
+            bfQueue.Dequeue();
+            
+            var connectedVertexList = connectedListArray[vertex];
+            //if a vertex doesn't have at least to vertices connected to it, there's no way it can form a square/closed loop so we jet out
+            if (connectedVertexList.Count < 2)
             {
                 graphVisited[vertex] = true;
                 return false;
             }
             
-            if (subVertexAdjList.Count > 2)
+            //there are cases where a vertex may be part of more than one face meaning it's probably connected to at least
+            //4 vertices. we don't want to make those types of vertices as visited because we need to return to it
+            // and determine if its other connections are a valid face/closed loop. so we only set it to visited for
+            //two connections indicating only one face.
+            graphVisited[vertex] = connectedVertexList.Count == 2;
+            faceVertices.Add(_pointIds[vertex]);
+            
+            //loop through connected vertices and add valid vertices to queue
+            foreach (int x in connectedVertexList)
             {
-                facePoints.Add(_pointIds[vertex]);
-            }
-            else
-            {
-                graphVisited[vertex] = true;
-                facePoints.Add(_pointIds[vertex]);
-            }
-
-            foreach (int x in subVertexAdjList)
-            {
-                if (x == firstV)
+                if (x == firstVertex)
                     continue;
-                if (adjListArray[x].Count < 2)
+                //same logic as earlier; vertices w/o two connections are dead ends so skip em and mark visited
+                if (connectedListArray[x].Count < 2)
                 {
                     graphVisited[x] = true;
                     continue;
@@ -128,22 +109,19 @@ public class Graph
                 if (graphVisited[x])
                     continue;
                 
-                if (adjListArray[x].Count >= 2)
+                //this checks if the connected vertices of the first vertex share a connected vertex; this works because
+                //consider pt1 and pt2 both connected to pt0 with both their list of connected vertices containing pt3
+                //when pt1 is visited first, it goes through it's list of connected vertices and adds pt3 to the queue
+                //then pt2 is inspected and before we enqueue its vertices we check to see if the queue already contains
+                //it meaning both pt1 and pt2 connect to pt3 and pt0 making a face
+                if (bfQueue.Contains(x))
                 {
-                    if (bfQueue.Contains(x))
-                    {
-                        facePoints.Add(_pointIds[x]);
-                        graphVisited[x] = adjListArray[x].Count == 2;
-                        return true;
-                    }
-
-                    bfQueue.Add(x);
+                    faceVertices.Add(_pointIds[x]);
+                    graphVisited[x] = connectedListArray[x].Count == 2;
+                    return true;
                 }
-
-                // if (graphVisited[x] && bfQueue.Contains(x))
-                // {
-                //     return true;
-                // }
+                    
+                bfQueue.Enqueue(x);
             }
         }
 
@@ -151,24 +129,31 @@ public class Graph
     }
     
     //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
-    public List<List<int>> connectedComponents()
+    public List<List<int>> FindFaces()
     {
         // Mark all the vertices as not visited 
-        bool[] visited = new bool[V];
-        bool[] inFace = new bool[V];
+        bool[] visitedVertices = new bool[numVertices];
+        //whenever a face is found in the graph (4 points that connect to each other cyclically) it's added to the
+        //faces list; face is a list on ints corresponding to vertex (point) ids
         List<List<int>> validFaces = new List<List<int>>();
-        for (int v = 0; v < V; ++v)
+        
+        //we loop through all the vertices in the graph but thanks to the visitedVertices array and some other checks
+        //we avoid making unnecessary trips along a vertex's connected vertices
+        for (int vertex = 0; vertex < numVertices; ++vertex)
         {
-            if (!visited[v])
+            if (!visitedVertices[vertex])
             {
-                List<int> facePoints = new List<int>(4);
-                // print all reachable vertices 
-                // from v 
-                //DFSUtil(v, v, visited, facePoints, false);
-                bool validFace = BFFaceFinder(v, visited, v, facePoints, inFace);
-                //Debug.Log("");
-                if (facePoints.Count == 4 && validFace)
-                    validFaces.Add(facePoints);
+                List<int> faceVertices = new List<int>(4);
+                //starting from vertex 0, find all faces in the graph through modified breadth first graph traversal
+                bool validFace = BFFaceFinder(vertex, visitedVertices, vertex, faceVertices);
+                int idSum = 0;
+                foreach (var faceVertex in faceVertices)
+                    idSum += faceVertex;
+                if (faceVertices.Count == 4 && validFace && !_createdFaceIds.Contains(idSum))
+                {
+                    _createdFaceIds.Add(idSum);
+                    validFaces.Add(faceVertices);
+                }
             }
         }
 

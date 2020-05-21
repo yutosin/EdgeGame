@@ -151,6 +151,7 @@ public class EdgeManager : MonoBehaviour
 
     /*TODO: Longer edges that overlap multiple points should also create smaller segments e.g. pt1->pt3 would also
     create pt1->pt2 and pt->pt3*/
+    //TODO: properly use the addEdge function to make use of the bool and avoid creating edge game objec
     public void GenerateEdge(Vector3 p1, Vector3 p2, int pt1ID, int pt2ID)
     {
         float xRot = 90;
@@ -208,8 +209,8 @@ public class EdgeManager : MonoBehaviour
             _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
             _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
 
-            var yConnectedComponents = _yGraphs[yGraphKey].connectedComponents();
-            var zConnectedComponents = _zGraphs[zGraphKey].connectedComponents();
+            var yConnectedComponents = _yGraphs[yGraphKey].FindFaces();
+            var zConnectedComponents = _zGraphs[zGraphKey].FindFaces();
 
             foreach (var faceVertices in yConnectedComponents)
             {
@@ -238,8 +239,8 @@ public class EdgeManager : MonoBehaviour
             _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
             _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
             
-            var xConnectedComponents = _xGraphs[xGraphKey].connectedComponents();
-            var zConnectedComponents = _zGraphs[zGraphKey].connectedComponents();
+            var xConnectedComponents = _xGraphs[xGraphKey].FindFaces();
+            var zConnectedComponents = _zGraphs[zGraphKey].FindFaces();
             
             foreach (var faceVertices in xConnectedComponents)
             {
@@ -268,8 +269,8 @@ public class EdgeManager : MonoBehaviour
             _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
             _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
             
-            var xConnectedComponents = _xGraphs[xGraphKey].connectedComponents();
-            var yConnectedComponents = _yGraphs[yGraphKey].connectedComponents();
+            var xConnectedComponents = _xGraphs[xGraphKey].FindFaces();
+            var yConnectedComponents = _yGraphs[yGraphKey].FindFaces();
             
             foreach (var faceVertices in xConnectedComponents)
             {
