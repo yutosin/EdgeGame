@@ -352,6 +352,7 @@ public class EdgeManager : MonoBehaviour
     private void CombineCubesInLevel()
     {
         GameObject cubeHolder = new GameObject();
+        cubeHolder.name = "LevelCombinedMesh";
         cubeHolder.transform.position = Vector3.zero;
         MeshFilter levelMeshFileter = cubeHolder.transform.gameObject.AddComponent<MeshFilter>();
         MeshRenderer meshRenderer = cubeHolder.AddComponent<MeshRenderer>();
@@ -365,7 +366,6 @@ public class EdgeManager : MonoBehaviour
             MeshFilter[] meshFilters = cube.GetComponents<MeshFilter>();
 
             int i = 0;
-            Debug.Log(meshFilters.Length);
             while (i < meshFilters.Length)
             {
                 CombineInstance cubeCombine = new CombineInstance();
