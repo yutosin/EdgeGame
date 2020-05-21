@@ -288,9 +288,10 @@ public class EdgeManager : MonoBehaviour
         //TODO: something is wonky with your face vs edge logic, look into that
     }
     
-    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = false)
+    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = true)
     {
         GameObject newQuad = new GameObject();
+        gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
         meshRenderer.sharedMaterial.color = Color.gray;
@@ -301,20 +302,13 @@ public class EdgeManager : MonoBehaviour
 
         if (flipFirstPair)
         {
-            Vector3[] flipped = new[] {quadVertices[1], quadVertices[0], quadVertices[2], quadVertices[3]};
+            //Vector3[] flipped = new[] {quadVertices[1], quadVertices[0], quadVertices[2], quadVertices[3]};
+            //TODO: figure out why this order works!! you flipped the first two then reversed the whole array..why?
+            Vector3[] flipped = new[] {quadVertices[3], quadVertices[2], quadVertices[0], quadVertices[1]};
             mesh.vertices = flipped;
         }
         else
             mesh.vertices = quadVertices;
-
-        Vector3[] normals = new Vector3[4]
-        {
-            -Vector3.forward,
-            -Vector3.forward,
-            -Vector3.forward,
-            -Vector3.forward
-        };
-        mesh.normals = normals;
 
         Vector2[] uv = new Vector2[4]
         {
@@ -329,7 +323,31 @@ public class EdgeManager : MonoBehaviour
         };
         mesh.uv = uv;
         mesh.SetIndices(indices, MeshTopology.Quads,0);
+        mesh.RecalculateNormals();
+        
+        GameObject anchorPoint = new GameObject();
+        anchorPoint.transform.position = mesh.bounds.center;
+        newQuad.transform.parent = anchorPoint.transform;
+        
+        Vector3[] normals = mesh.normals;
+        //Vector3[] newNormals = new Vector3[4];
+        if (normals[0] == Vector3.back)
+        {
+            Debug.Log("back back");
+            anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (normals[0] == Vector3.down)
+        {
+            Debug.Log("down bad");
+            anchorPoint.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (normals[0] == Vector3.left)
+        {
+            Debug.Log("left eye");
+            anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
 
+        //mesh.normals = newNormals;
         meshFilter.mesh = mesh;
     }
     private string GenerateEdgeID(string pt1ID, string pt2ID)
