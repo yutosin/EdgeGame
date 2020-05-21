@@ -358,7 +358,6 @@ public class EdgeManager : MonoBehaviour
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
         meshRenderer.sharedMaterial.color = Color.black;
         
-        //CombineInstance[] combine = new CombineInstance[meshFilters.Length];
         List<CombineInstance> combines = new List<CombineInstance>(_cubeObjects.Count);
         
         foreach (var cube in _cubeObjects)
@@ -372,7 +371,7 @@ public class EdgeManager : MonoBehaviour
                 CombineInstance cubeCombine = new CombineInstance();
                 cubeCombine.mesh = meshFilters[i].sharedMesh;
                 cubeCombine.transform = meshFilters[i].transform.localToWorldMatrix;
-                meshFilters[i].gameObject.SetActive(false);
+                Destroy(meshFilters[i].gameObject);
                 combines.Add(cubeCombine);
                 i++;
             }
