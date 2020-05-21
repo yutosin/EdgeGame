@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: refactor and refine this code
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
@@ -141,6 +142,8 @@ public class EdgeManager : MonoBehaviour
         return true;
     }
 
+    /*TODO: Longer edges that overlap multiple points should also create smaller segments e.g. pt1->pt3 would also
+    create pt1->pt2 and pt->pt3*/
     public void GenerateEdge(Vector3 p1, Vector3 p2, int pt1ID, int pt2ID)
     {
         float xRot = 90;
@@ -283,9 +286,6 @@ public class EdgeManager : MonoBehaviour
                 GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
             }
         }
-        //TODO: Z graphs not creating connected components, figure that out
-        //TODO: X faces are also being generated wrong, check that out (done: flipping first vertices not necessary..but why?)
-        //TODO: something is wonky with your face vs edge logic, look into that
     }
     
     private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = true)
@@ -332,20 +332,11 @@ public class EdgeManager : MonoBehaviour
         Vector3[] normals = mesh.normals;
         //Vector3[] newNormals = new Vector3[4];
         if (normals[0] == Vector3.back)
-        {
-            Debug.Log("back back");
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
         else if (normals[0] == Vector3.down)
-        {
-            Debug.Log("down bad");
             anchorPoint.transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
         else if (normals[0] == Vector3.left)
-        {
-            Debug.Log("left eye");
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
 
         //mesh.normals = newNormals;
         meshFilter.mesh = mesh;

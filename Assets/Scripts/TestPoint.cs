@@ -36,7 +36,6 @@ public class TestPoint : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log(ptID);
         if (!_activePoint)
         {
             isActivePoint = true;
