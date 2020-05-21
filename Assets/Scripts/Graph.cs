@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Graph
@@ -66,21 +67,83 @@ public class Graph
         adjListArray[convertedDest].Add(convertedSrc);
     }
 
-    bool DFSUtil(int v, bool[] visited, List<int> facePoints, int firstV)
+    bool DFSUtil(int firstV, int v, bool[] visited, List<int> facePoints, bool validFace)
     {
         // Mark the current node as visited and print it 
         visited[v] = true;
-        facePoints.Add(_pointIds[v]);
+        var vertexAdjList = adjListArray[v];
+        if (vertexAdjList.Count >= 2)
+            facePoints.Add(_pointIds[v]);
         //Debug.Log(v + " | ");
 
         // Recur for all the vertices 
         // adjacent to this vertex 
-        foreach (int x in adjListArray[v])
+        foreach (int x in vertexAdjList)
         {
             if (!visited[x])
-                return DFSUtil(x, visited, facePoints, firstV);
-            if (x == firstV)
-                return true;
+                DFSUtil(firstV,x, visited, facePoints, validFace);
+            if (facePoints.Count >= 4 && x == firstV)
+                validFace = true;
+        }
+
+        return validFace;
+    }
+
+    private bool BFFaceFinder(int v, bool[] graphVisited, int firstV, List<int> facePoints, bool[] inFace)
+    {
+        List<int> bfQueue = new List<int>(); //using as a queue
+
+        bfQueue.Add(v);
+        while (bfQueue.Count > 0)
+        {
+            int vertex = bfQueue[0];
+            bfQueue.RemoveAt(0);
+            var subVertexAdjList = adjListArray[vertex];
+            if (subVertexAdjList.Count < 2)
+            {
+                graphVisited[vertex] = true;
+                return false;
+            }
+            
+            if (subVertexAdjList.Count > 2)
+            {
+                facePoints.Add(_pointIds[vertex]);
+            }
+            else
+            {
+                graphVisited[vertex] = true;
+                facePoints.Add(_pointIds[vertex]);
+            }
+
+            foreach (int x in subVertexAdjList)
+            {
+                if (x == firstV)
+                    continue;
+                if (adjListArray[x].Count < 2)
+                {
+                    graphVisited[x] = true;
+                    continue;
+                }
+                if (graphVisited[x])
+                    continue;
+                
+                if (adjListArray[x].Count >= 2)
+                {
+                    if (bfQueue.Contains(x))
+                    {
+                        facePoints.Add(_pointIds[x]);
+                        graphVisited[x] = adjListArray[x].Count == 2;
+                        return true;
+                    }
+
+                    bfQueue.Add(x);
+                }
+
+                // if (graphVisited[x] && bfQueue.Contains(x))
+                // {
+                //     return true;
+                // }
+            }
         }
 
         return false;
@@ -91,6 +154,7 @@ public class Graph
     {
         // Mark all the vertices as not visited 
         bool[] visited = new bool[V];
+        bool[] inFace = new bool[V];
         List<List<int>> validFaces = new List<List<int>>();
         for (int v = 0; v < V; ++v)
         {
@@ -99,9 +163,9 @@ public class Graph
                 List<int> facePoints = new List<int>(4);
                 // print all reachable vertices 
                 // from v 
-                bool validFace = DFSUtil(v, visited, facePoints, v);
+                //DFSUtil(v, v, visited, facePoints, false);
+                bool validFace = BFFaceFinder(v, visited, v, facePoints, inFace);
                 //Debug.Log("");
-                
                 if (facePoints.Count == 4 && validFace)
                     validFaces.Add(facePoints);
             }
