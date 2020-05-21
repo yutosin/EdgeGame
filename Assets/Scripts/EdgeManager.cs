@@ -7,11 +7,15 @@ using UnityEngine;
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
+    [SerializeField] private GameObject verticesHolder;
     [SerializeField] private MeshRenderer[] cubeRenderers;
+    [SerializeField] private bool combineCubes;
     
     private Dictionary<string, Graph> _xGraphs;
     private Dictionary<string, Graph> _yGraphs;
     private Dictionary<string, Graph> _zGraphs;
+
+    private List<GameObject> _cubeObjects;
     
     private List<Vector3> _points;
 
@@ -20,10 +24,12 @@ public class EdgeManager : MonoBehaviour
     private void Start()
     {
         _points = new List<Vector3>(cubeRenderers.Length * 8);
+        _cubeObjects = new List<GameObject>(cubeRenderers.Length);
 
         foreach (var renderer in cubeRenderers)
         {
             AddCubeVerticesToList(renderer);
+            _cubeObjects.Add(renderer.gameObject);
         }
         
         Dictionary<string, List<int>> xAxisPartitions = new Dictionary<string, List<int>>();
@@ -89,6 +95,9 @@ public class EdgeManager : MonoBehaviour
             Graph zPartitionGraph = new Graph(zAxisPartition.Value.Count, partitionPoints);
             _zGraphs[zAxisPartition.Key] = zPartitionGraph;
         }
+        
+        if (combineCubes)
+            CombineCubesInLevel();
     }
 
     private void AddCubeVerticesToList(MeshRenderer renderer)
@@ -106,12 +115,12 @@ public class EdgeManager : MonoBehaviour
 
         foreach (Vector3 vertex in cubeVertices)
         {
-            if(GenerateEdgePoint(vertex, renderer.gameObject.transform))
+            if(GenerateEdgePoint(vertex))
                 _points.Add(vertex);
         }
     }
     
-    public bool GenerateEdgePoint(Vector3 pos, Transform parenTransform)
+    public bool GenerateEdgePoint(Vector3 pos)
     {
         foreach (var testPoint in _points)
         {
@@ -135,9 +144,7 @@ public class EdgeManager : MonoBehaviour
         edgePoint.transform.position = pos;
         edgePoint.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         
-        if (parenTransform == null)
-            return true;
-        edgePoint.transform.parent = parenTransform;
+        edgePoint.transform.parent = verticesHolder.transform;
 
         return true;
     }
@@ -340,6 +347,43 @@ public class EdgeManager : MonoBehaviour
 
         //mesh.normals = newNormals;
         meshFilter.mesh = mesh;
+    }
+
+    private void CombineCubesInLevel()
+    {
+        GameObject cubeHolder = new GameObject();
+        cubeHolder.transform.position = Vector3.zero;
+        MeshFilter levelMeshFileter = cubeHolder.transform.gameObject.AddComponent<MeshFilter>();
+        MeshRenderer meshRenderer = cubeHolder.AddComponent<MeshRenderer>();
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
+        meshRenderer.sharedMaterial.color = Color.black;
+        
+        //CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+        List<CombineInstance> combines = new List<CombineInstance>(_cubeObjects.Count);
+        
+        foreach (var cube in _cubeObjects)
+        {
+            MeshFilter[] meshFilters = cube.GetComponents<MeshFilter>();
+
+            int i = 0;
+            Debug.Log(meshFilters.Length);
+            while (i < meshFilters.Length)
+            {
+                CombineInstance cubeCombine = new CombineInstance();
+                cubeCombine.mesh = meshFilters[i].sharedMesh;
+                cubeCombine.transform = meshFilters[i].transform.localToWorldMatrix;
+                meshFilters[i].gameObject.SetActive(false);
+                combines.Add(cubeCombine);
+                i++;
+            }
+        }
+        
+        levelMeshFileter.mesh = new Mesh();
+        levelMeshFileter.mesh.CombineMeshes(combines.ToArray(), true,true);
+        levelMeshFileter.mesh.RecalculateBounds();
+        levelMeshFileter.mesh.RecalculateNormals();
+        levelMeshFileter.mesh.Optimize();
+        cubeHolder.SetActive(true);
     }
     private string GenerateEdgeID(string pt1ID, string pt2ID)
     {

@@ -53,6 +53,7 @@ public class Graph
         }
     }
 
+    //TODO: don't add duplicate edges
     // Adds an edge to an undirected graph 
     public void addEdge(int src, int dest)
     {
