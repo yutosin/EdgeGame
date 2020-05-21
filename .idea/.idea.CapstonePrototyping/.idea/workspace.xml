@@ -22,9 +22,8 @@
     <list default="true" id="07e33aa5-463f-446a-bfcf-1a3765b178eb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CapstonePrototyping/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/GroundMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/GroundMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PrototypingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PrototypingScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +34,68 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Shaders/Unlit-Color-ZAlways.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Shaders/Unlit-Color-Transparent.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Graph.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6F39816A-39F4-47C5-8C92-A822A30A0804/6c/f5738f68/NativeInputSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestLineGenerator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D27DFFC2-6BB9-411A-9DB4-0B1FBACE639C/fc/bfd2449c/ApplicationManagerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Shaders/Unlit-Color-ZAlways.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Shaders/Unlit-Color-Transparent.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Editor/NormalsVisualizer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Graph.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -54,11 +105,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/TestLineRendering.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TestLineGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" />
         <option value="$PROJECT_DIR$/Assets/Shaders/Unlit-Color-Transparent.shader" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Graph.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GraphBFS.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Graph.cs" />
+        <option value="$PROJECT_DIR$/Assets/Plugins/Editor/NormalsVisualizer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" />
       </list>
     </option>
   </component>
@@ -89,10 +142,10 @@
       <option name="pid" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="31258">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="46371">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="31258" />
+      <option name="pid" value="46371" />
       <method v="2" />
     </configuration>
   </component>
@@ -111,7 +164,9 @@
       <workItem from="1589752755770" duration="2603000" />
       <workItem from="1589758068901" duration="2000" />
       <workItem from="1589758225429" duration="332000" />
-      <workItem from="1589758654628" duration="34784000" />
+      <workItem from="1589758654628" duration="56413000" />
+      <workItem from="1590002125741" duration="1677000" />
+      <workItem from="1590003893352" duration="16486000" />
     </task>
     <servers />
   </component>
@@ -130,104 +185,121 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="518" height="464" key="DebuggerActiveHint" timestamp="1589944302823">
+    <state x="595" y="320" key="#Notifications" timestamp="1590002189336">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="595" y="320" key="#Notifications/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590002189336" />
+    <state width="550" height="464" key="DebuggerActiveHint" timestamp="1590018882403">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="576" height="464" key="DebuggerActiveHint/0.0.1440.900@0.0.1440.900" timestamp="1589922385533" />
-    <state width="518" height="464" key="DebuggerActiveHint/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944302823" />
-    <state width="1398" height="154" key="GridCell.Tab.0.bottom" timestamp="1589944253023">
+    <state width="550" height="464" key="DebuggerActiveHint/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590018882403" />
+    <state width="1398" height="254" key="GridCell.Tab.0.bottom" timestamp="1590023368778">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589922361067" />
-    <state width="1398" height="154" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944253023" />
-    <state width="1398" height="154" key="GridCell.Tab.0.center" timestamp="1589944253022">
+    <state width="1398" height="154" key="GridCell.Tab.0.bottom/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080665" />
+    <state width="1398" height="254" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368778" />
+    <state width="1398" height="254" key="GridCell.Tab.0.center" timestamp="1590023368777">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589922361055" />
-    <state width="1398" height="154" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944253022" />
-    <state width="1398" height="154" key="GridCell.Tab.0.left" timestamp="1589944253021">
+    <state width="1398" height="154" key="GridCell.Tab.0.center/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080663" />
+    <state width="1398" height="254" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368777" />
+    <state width="1398" height="254" key="GridCell.Tab.0.left" timestamp="1590023368776">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589922361051" />
-    <state width="1398" height="154" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944253021" />
-    <state width="1398" height="154" key="GridCell.Tab.0.right" timestamp="1589944253023">
+    <state width="1398" height="154" key="GridCell.Tab.0.left/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080662" />
+    <state width="1398" height="254" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368776" />
+    <state width="1398" height="254" key="GridCell.Tab.0.right" timestamp="1590023368777">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589922361060" />
-    <state width="1398" height="154" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944253023" />
-    <state width="1398" height="154" key="GridCell.Tab.1.bottom" timestamp="1589944261316">
+    <state width="1398" height="154" key="GridCell.Tab.0.right/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080664" />
+    <state width="1398" height="254" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368777" />
+    <state width="1398" height="254" key="GridCell.Tab.1.bottom" timestamp="1590023381989">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589922360946" />
     <state width="1398" height="331" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1589922371138" />
-    <state width="1398" height="154" key="GridCell.Tab.1.bottom/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589941861280" />
-    <state width="1398" height="154" key="GridCell.Tab.1.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944261316" />
-    <state width="1398" height="154" key="GridCell.Tab.1.center" timestamp="1589944261314">
+    <state width="1398" height="154" key="GridCell.Tab.1.bottom/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080558" />
+    <state width="1398" height="254" key="GridCell.Tab.1.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023381989" />
+    <state width="1398" height="254" key="GridCell.Tab.1.center" timestamp="1590023381988">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1589922360945" />
     <state width="1398" height="331" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1589922371136" />
-    <state width="1398" height="154" key="GridCell.Tab.1.center/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589941861279" />
-    <state width="1398" height="154" key="GridCell.Tab.1.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944261314" />
-    <state width="1398" height="154" key="GridCell.Tab.1.left" timestamp="1589944261313">
+    <state width="1398" height="154" key="GridCell.Tab.1.center/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080556" />
+    <state width="1398" height="254" key="GridCell.Tab.1.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023381988" />
+    <state width="1398" height="254" key="GridCell.Tab.1.left" timestamp="1590023381987">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1589922360944" />
     <state width="1398" height="331" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1589922371135" />
-    <state width="1398" height="154" key="GridCell.Tab.1.left/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589941861278" />
-    <state width="1398" height="154" key="GridCell.Tab.1.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944261313" />
-    <state width="1398" height="154" key="GridCell.Tab.1.right" timestamp="1589944261315">
+    <state width="1398" height="154" key="GridCell.Tab.1.left/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080555" />
+    <state width="1398" height="254" key="GridCell.Tab.1.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023381987" />
+    <state width="1398" height="254" key="GridCell.Tab.1.right" timestamp="1590023381988">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1589922360945" />
     <state width="1398" height="331" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1589922371137" />
-    <state width="1398" height="154" key="GridCell.Tab.1.right/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589941861280" />
-    <state width="1398" height="154" key="GridCell.Tab.1.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944261315" />
-    <state width="1398" height="154" key="GridCell.Tab.2.bottom" timestamp="1589944252910">
+    <state width="1398" height="154" key="GridCell.Tab.1.right/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080557" />
+    <state width="1398" height="254" key="GridCell.Tab.1.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023381988" />
+    <state width="1398" height="254" key="GridCell.Tab.2.bottom" timestamp="1590023368680">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.2.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589922360948" />
-    <state width="1398" height="154" key="GridCell.Tab.2.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252910" />
-    <state width="1398" height="154" key="GridCell.Tab.2.center" timestamp="1589944252908">
+    <state width="1398" height="154" key="GridCell.Tab.2.bottom/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080562" />
+    <state width="1398" height="254" key="GridCell.Tab.2.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368680" />
+    <state width="1398" height="254" key="GridCell.Tab.2.center" timestamp="1590023368679">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.2.center/0.0.1440.900@0.0.1440.900" timestamp="1589922360947" />
-    <state width="1398" height="154" key="GridCell.Tab.2.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252908" />
-    <state width="1398" height="154" key="GridCell.Tab.2.left" timestamp="1589944252908">
+    <state width="1398" height="154" key="GridCell.Tab.2.center/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080560" />
+    <state width="1398" height="254" key="GridCell.Tab.2.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368679" />
+    <state width="1398" height="254" key="GridCell.Tab.2.left" timestamp="1590023368678">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.2.left/0.0.1440.900@0.0.1440.900" timestamp="1589922360946" />
-    <state width="1398" height="154" key="GridCell.Tab.2.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252908" />
-    <state width="1398" height="154" key="GridCell.Tab.2.right" timestamp="1589944252909">
+    <state width="1398" height="154" key="GridCell.Tab.2.left/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080559" />
+    <state width="1398" height="254" key="GridCell.Tab.2.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368678" />
+    <state width="1398" height="254" key="GridCell.Tab.2.right" timestamp="1590023368679">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.2.right/0.0.1440.900@0.0.1440.900" timestamp="1589922360947" />
-    <state width="1398" height="154" key="GridCell.Tab.2.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252909" />
-    <state width="1398" height="154" key="GridCell.Tab.3.bottom" timestamp="1589944252913">
+    <state width="1398" height="154" key="GridCell.Tab.2.right/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080561" />
+    <state width="1398" height="254" key="GridCell.Tab.2.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368679" />
+    <state width="1398" height="254" key="GridCell.Tab.3.bottom" timestamp="1590023368682">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.3.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589922360950" />
-    <state width="1398" height="154" key="GridCell.Tab.3.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252913" />
-    <state width="1398" height="154" key="GridCell.Tab.3.center" timestamp="1589944252912">
+    <state width="1398" height="154" key="GridCell.Tab.3.bottom/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080567" />
+    <state width="1398" height="254" key="GridCell.Tab.3.bottom/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368682" />
+    <state width="1398" height="254" key="GridCell.Tab.3.center" timestamp="1590023368681">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.3.center/0.0.1440.900@0.0.1440.900" timestamp="1589922360949" />
-    <state width="1398" height="154" key="GridCell.Tab.3.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252912" />
-    <state width="1398" height="154" key="GridCell.Tab.3.left" timestamp="1589944252911">
+    <state width="1398" height="154" key="GridCell.Tab.3.center/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080565" />
+    <state width="1398" height="254" key="GridCell.Tab.3.center/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368681" />
+    <state width="1398" height="254" key="GridCell.Tab.3.left" timestamp="1590023368681">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.3.left/0.0.1440.900@0.0.1440.900" timestamp="1589922360949" />
-    <state width="1398" height="154" key="GridCell.Tab.3.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252911" />
-    <state width="1398" height="154" key="GridCell.Tab.3.right" timestamp="1589944252912">
+    <state width="1398" height="154" key="GridCell.Tab.3.left/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080564" />
+    <state width="1398" height="254" key="GridCell.Tab.3.left/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368681" />
+    <state width="1398" height="254" key="GridCell.Tab.3.right" timestamp="1590023368682">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="331" key="GridCell.Tab.3.right/0.0.1440.900@0.0.1440.900" timestamp="1589922360950" />
-    <state width="1398" height="154" key="GridCell.Tab.3.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589944252912" />
+    <state width="1398" height="154" key="GridCell.Tab.3.right/1440.-517.2560.1417/0.0.1440.900@0.0.1440.900" timestamp="1589983080566" />
+    <state width="1398" height="254" key="GridCell.Tab.3.right/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590023368682" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1589758497594">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -236,100 +308,117 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="VCS.FileHistoryDialog/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1589781994988" />
+    <state x="453" y="332" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1590018782889">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="453" y="332" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1440.-540.2560.1440/0.0.1440.900@0.0.1440.900" timestamp="1590018782889" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/TestPoint.cs</url>
-          <line>44</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" initialLine="40">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
+          <line>241</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="241">
             <startOffsets>
-              <option value="917" />
+              <option value="9422" />
             </startOffsets>
             <endOffsets>
-              <option value="1064" />
+              <option value="9475" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
-          <line>265</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="247">
+          <line>252</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="252">
             <startOffsets>
-              <option value="9849" />
+              <option value="9869" />
             </startOffsets>
             <endOffsets>
-              <option value="9882" />
+              <option value="9922" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Graph.cs</url>
+          <line>74</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Graph.cs" initialLine="73">
+            <startOffsets>
+              <option value="2200" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2229" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Graph.cs</url>
+          <line>82</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Graph.cs" initialLine="81">
+            <startOffsets>
+              <option value="2443" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2459" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Graph.cs</url>
+          <line>84</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Graph.cs" initialLine="83">
+            <startOffsets>
+              <option value="2539" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2580" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
-          <line>75</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="75">
+          <line>342</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="326">
             <startOffsets>
-              <option value="2567" />
+              <option value="13353" />
             </startOffsets>
             <endOffsets>
-              <option value="2639" />
+              <option value="13376" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="13" />
+          <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/TestPoint.cs</url>
-          <line>16</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/TestPoint.cs" initialLine="16">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
+          <line>329</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="329">
             <startOffsets>
-              <option value="341" />
+              <option value="12925" />
             </startOffsets>
             <endOffsets>
-              <option value="374" />
+              <option value="12985" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="22" />
+          <option name="timeStamp" value="134" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs</url>
-          <line>105</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs" initialLine="66">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs</url>
+          <line>328</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/EdgeManager.cs" initialLine="328">
             <startOffsets>
-              <option value="4149" />
+              <option value="12889" />
             </startOffsets>
             <endOffsets>
-              <option value="4183" />
+              <option value="12912" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs</url>
-          <line>100</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs" initialLine="61">
-            <startOffsets>
-              <option value="3966" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3981" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs</url>
-          <line>72</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/SpacePartition.cs" initialLine="72">
-            <startOffsets>
-              <option value="2797" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2845" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="29" />
+          <option name="timeStamp" value="135" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
