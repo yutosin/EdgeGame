@@ -18,12 +18,11 @@ public class TestPoint : MonoBehaviour
         _rend = GetComponent<Renderer>();
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
         if (isActivePoint)
             return;
         _rend.enabled = true;
-        //_rend.material.color = Color.white;
     }
     
     private void OnMouseExit()
@@ -31,7 +30,6 @@ public class TestPoint : MonoBehaviour
         if (isActivePoint)
             return;
         _rend.enabled = false;
-        //_rend.material.color = new Color(1, 1, 1, 0);
     }
 
     private void OnMouseDown()
@@ -43,8 +41,7 @@ public class TestPoint : MonoBehaviour
         }
         else
         {
-            GameManager.SharedInstance.edgeManager.GenerateEdge(_activePoint.transform.position, 
-                transform.position, listLoc, _activePoint.listLoc);
+            GameManager.SharedInstance.edgeManager.GenerateEdge(_activePoint, this);
             _activePoint.isActivePoint = false;
             _activePoint.gameObject.GetComponent<Renderer>().enabled = false;
             _activePoint = null;
