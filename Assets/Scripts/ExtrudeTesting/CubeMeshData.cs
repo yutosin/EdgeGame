@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class CubeMeshData
 {
+    //holds sample vertices to make cubes with
     public static Vector3[] vertices =
     {
         new Vector3(1, 1, 1),
@@ -16,6 +17,7 @@ public static class CubeMeshData
         new Vector3(-1, -1, -1)
     };
 
+    //present triangles set up for making cube meshes
     public static int[][] faceTriangles =
     {
         new int[]{0, 1, 2, 3},
@@ -26,6 +28,7 @@ public static class CubeMeshData
         new int[]{3, 2, 7, 6},
     };
 
+    //to get verticies from face triangles
     public static Vector3[] faceVertices(int dir)
     {
         Vector3[] fv = new Vector3[4];
