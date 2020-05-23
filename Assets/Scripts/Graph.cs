@@ -26,7 +26,7 @@ public class Graph
         // define the size of array as 
         // number of vertices 
         connectedListArray = new List<int>[numVertices];
-        
+
         _createdFaceIds = new List<int>();
 
         // Create a new list for each vertex 
@@ -41,7 +41,7 @@ public class Graph
     }
     
     // Adds an edge to an undirected graph 
-    public bool addEdge(int src, int dest)
+    public bool addEdge(int src, int dest, bool isSubEdge = false)
     {
         //pts in "world space" have no knowledge of a graphs internal vertex indexing system and pass in the world space
         //ids; we need to convert those ids to graph ids with our lookup table
@@ -54,7 +54,7 @@ public class Graph
         if (srcConnectedList.Contains(convertedDest) || destConnectedList.Contains(convertedSrc)) //prevent duplicate edges
             return false;
         
-        // Add an edge from src to dest. 
+        // Add an edge from src to dest.
         srcConnectedList.Add(convertedDest);
 
         // Since graph is undirected, add an edge from dest 
@@ -108,7 +108,7 @@ public class Graph
                 }
                 if (graphVisited[x])
                     continue;
-                
+
                 //this checks if the connected vertices of the first vertex share a connected vertex; this works because
                 //consider pt1 and pt2 both connected to pt0 with both their list of connected vertices containing pt3
                 //when pt1 is visited first, it goes through it's list of connected vertices and adds pt3 to the queue
@@ -128,9 +128,67 @@ public class Graph
         return false;
     }
     
+    private bool isCyclicUtil(int v, bool []visited, int parent, List<int> cycleVertices) 
+    { 
+        // Mark the current node as visited 
+        visited[v] = true; 
+  
+        // Recur for all the vertices  
+        // adjacent to this vertex 
+        foreach(int i in connectedListArray[v]) 
+        { 
+            // If an adjacent is not visited,  
+            // then recur for that adjacent 
+            if (!visited[i]) 
+            {
+                if (isCyclicUtil(i, visited, v, cycleVertices))
+                {
+                    cycleVertices.Add(i);
+                    return true;
+                }
+            } 
+  
+            // If an adjacent is visited and  
+            // not parent of current vertex, 
+            // then there is a cycle. 
+            else if (i != parent)
+            {
+                cycleVertices.Add(i);
+                return true;
+            }
+        } 
+        return false; 
+    } 
+  
+    // Returns true if the graph contains  
+    // a cycle, else false. 
+    private bool isCyclic() 
+    { 
+        // Mark all the vertices as not visited  
+        // and not part of recursion stack 
+        bool []visited = new bool[numVertices]; 
+        for (int i = 0; i < numVertices; i++) 
+            visited[i] = false; 
+  
+        // Call the recursive helper function  
+        // to detect cycle in different DFS trees
+        List<List<int>> cycles = new List<List<int>>();
+        for (int u = 0; u < numVertices; u++)
+        {
+            List<int> cycleVertices = new List<int>();
+            // Don't recur for u if already visited 
+            if (!visited[u])
+                if (isCyclicUtil(u, visited, -1, cycleVertices))
+                    return true;
+        }
+
+        return false; 
+    } 
+    
     //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
     public List<List<int>> FindFaces()
     {
+        isCyclic();
         // Mark all the vertices as not visited 
         bool[] visitedVertices = new bool[numVertices];
         //whenever a face is found in the graph (4 points that connect to each other cyclically) it's added to the

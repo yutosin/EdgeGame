@@ -201,17 +201,6 @@ public class EdgeManager : MonoBehaviour
             
             if (!yGraphAddedEdge || !zGraphAddedEdge)
                 return;
-            
-            var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
-            for (int i = 0; i < edgeSubVerts.Count; i++)
-            {
-                int srcVertex = edgeSubVerts[i];
-                for (int j = i + 1; j < edgeSubVerts.Count; j++)
-                {
-                    _yGraphs[yGraphKey].addEdge(srcVertex, edgeSubVerts[j]);
-                    _zGraphs[zGraphKey].addEdge(srcVertex, edgeSubVerts[j]);
-                }
-            }
 
             var yGraphFaces = _yGraphs[yGraphKey].FindFaces();
             var zGraphFaces = _zGraphs[zGraphKey].FindFaces();
@@ -243,18 +232,7 @@ public class EdgeManager : MonoBehaviour
             
             if (!xAddedEdge || !zAddedEdge)
                 return;
-            
-            var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
-            for (int i = 0; i < edgeSubVerts.Count; i++)
-            {
-                int srcVertex = edgeSubVerts[i];
-                for (int j = i + 1; j < edgeSubVerts.Count; j++)
-                {
-                    _xGraphs[xGraphKey].addEdge(srcVertex, edgeSubVerts[j]);
-                    _zGraphs[zGraphKey].addEdge(srcVertex, edgeSubVerts[j]);
-                }
-            }
-            
+
             var xGraphFaces = _xGraphs[xGraphKey].FindFaces();
             var zGraphFaces = _zGraphs[zGraphKey].FindFaces();
             
@@ -285,18 +263,7 @@ public class EdgeManager : MonoBehaviour
             
             if (!xAddedEdge || !yAddedEdge)
                 return;
-            
-            var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
-            for (int i = 0; i < edgeSubVerts.Count; i++)
-            {
-                int srcVertex = edgeSubVerts[i];
-                for (int j = i + 1; j < edgeSubVerts.Count; j++)
-                {
-                    _xGraphs[xGraphKey].addEdge(srcVertex, edgeSubVerts[j]);
-                    _yGraphs[yGraphKey].addEdge(srcVertex, edgeSubVerts[j]);
-                }
-            }
-            
+
             var xGraphFaces = _xGraphs[xGraphKey].FindFaces();
             var yGraphFaces = _yGraphs[yGraphKey].FindFaces();
             
