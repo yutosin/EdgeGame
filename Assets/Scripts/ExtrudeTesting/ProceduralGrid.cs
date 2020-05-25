@@ -23,7 +23,7 @@ public class ProceduralGrid : MonoBehaviour
 
     private void Start()
     {
-        MakeProceduralGrid();
+        MakeContProceduralGrid();
         UpdateMesh();
     }
 
@@ -58,6 +58,49 @@ public class ProceduralGrid : MonoBehaviour
                 triangles[t + 5] = v + 3;
 
                 v += 4;
+                t += 6;
+
+            }
+        }
+    }
+
+    private void MakeContProceduralGrid()
+    {
+        //set array sizes
+        vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];
+        triangles = new int[gridSize * gridSize * 6];
+
+        //tracker integers
+        int v = 0;
+        int t = 0;
+
+        //set vertex offest
+        float vOffset = cellSize * .5f;
+
+        //create vertext grid
+        for (int x = 0; x <= gridSize; x++)
+        {
+            for (int y = 0; y <= gridSize; y++)
+            {
+                vertices[v] = new Vector3((x * cellSize) - vOffset, 0, (y * cellSize) - vOffset);
+                v++;
+
+            }
+        }
+
+        //reset vertext tracker
+        v = 0;
+
+        //setting each cells triangles
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                triangles[t] = 0;
+                triangles[t + 1] = triangles[t + 4] = v + 1;
+                triangles[t + 2] = triangles[t + 3] = v + (gridSize + 1);
+                triangles[t + 5] = v + (gridSize + 1) + 1;
+                v++;
                 t += 6;
 
             }
