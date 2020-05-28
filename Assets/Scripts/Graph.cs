@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
+public struct Vertex
+{
+    public Vertex(int id, float axis1Value, float axis2Value)
+    {
+        Id = id;
+        Axis1Value = axis1Value;
+        Axis2Value = axis2Value;
+    }
+    
+    public int Id { get; }
+    public float Axis1Value { get; }
+    public float Axis2Value { get; }
+}
+
 public class Graph
 {
     // A user define class to represent a graph. 
@@ -15,7 +29,13 @@ public class Graph
     //used to map pt ids to graph ids, specifically when generating an edge and pt ids are the only available id to pass into graph
     private Dictionary<int, int> _graphIdLookup;
     private List<int> _createdFaceIds;
-
+    
+    //Data structures for Johnson's Algorithm Implement
+    private Stack<int> _cycleStack;
+    private HashSet<int> _blocked;
+    private Dictionary<int, HashSet<int>> _bSets;
+    private List<List<int>> _cycles;
+    
     // constructor 
     public Graph(int numVertices, List<int> ids)
     {
@@ -28,6 +48,11 @@ public class Graph
         connectedListArray = new List<int>[numVertices];
 
         _createdFaceIds = new List<int>();
+        
+        _cycleStack = new Stack<int>();
+        _blocked = new HashSet<int>();
+        _bSets = new Dictionary<int, HashSet<int>>();
+        _cycles = new List<List<int>>();
 
         // Create a new list for each vertex 
         // such that connected nodes can be stored 
@@ -61,7 +86,43 @@ public class Graph
         // to src also
         destConnectedList.Add(convertedSrc);
 
+        findCycleUtil(convertedSrc);
+        
+        if (connectedListArray[convertedDest].Count > 2)
+            findCycleUtil(convertedDest);
+
+        foreach (var cycle in _cycles)
+        {
+            string cycleString = "";
+            foreach (var vertex in cycle)
+            {
+                cycleString += vertex + " ";
+            }
+            Debug.Log(cycleString);
+        }
+        
+        ClearState();
+        
         return true;
+    }
+
+    private void findCycleUtil(int startIndex)
+    {
+        foreach (var x in connectedListArray[startIndex])
+        {
+            _blocked.Remove(x);
+            GetVertexBSet(x).Clear();
+        }
+        
+        findCyclesFromVertex(startIndex, startIndex, -1);
+    }
+
+    private void ClearState()
+    {
+        _blocked.Clear();
+        _cycleStack.Clear();
+        _bSets.Clear();
+        _cycles.Clear();
     }
     
     //BFFaceFinder uses a modified breadth first traversal approach where once a vertex is selected, we add the connected
@@ -127,68 +188,74 @@ public class Graph
 
         return false;
     }
-    
-    private bool isCyclicUtil(int v, bool []visited, int parent, List<int> cycleVertices) 
-    { 
-        // Mark the current node as visited 
-        visited[v] = true; 
-  
-        // Recur for all the vertices  
-        // adjacent to this vertex 
-        foreach(int i in connectedListArray[v]) 
-        { 
-            // If an adjacent is not visited,  
-            // then recur for that adjacent 
-            if (!visited[i]) 
-            {
-                if (isCyclicUtil(i, visited, v, cycleVertices))
-                {
-                    cycleVertices.Add(i);
-                    return true;
-                }
-            } 
-  
-            // If an adjacent is visited and  
-            // not parent of current vertex, 
-            // then there is a cycle. 
-            else if (i != parent)
-            {
-                cycleVertices.Add(i);
-                return true;
-            }
-        } 
-        return false; 
-    } 
-  
-    // Returns true if the graph contains  
-    // a cycle, else false. 
-    private bool isCyclic() 
-    { 
-        // Mark all the vertices as not visited  
-        // and not part of recursion stack 
-        bool []visited = new bool[numVertices]; 
-        for (int i = 0; i < numVertices; i++) 
-            visited[i] = false; 
-  
-        // Call the recursive helper function  
-        // to detect cycle in different DFS trees
-        List<List<int>> cycles = new List<List<int>>();
-        for (int u = 0; u < numVertices; u++)
+
+    private void UnblockVertex(int vertex)
+    {
+        _blocked.Remove(vertex);
+        var bSet = GetVertexBSet(vertex);
+        foreach (int blockedVert in bSet)
         {
-            List<int> cycleVertices = new List<int>();
-            // Don't recur for u if already visited 
-            if (!visited[u])
-                if (isCyclicUtil(u, visited, -1, cycleVertices))
-                    return true;
+            if (_blocked.Contains(blockedVert))
+                UnblockVertex(blockedVert);
+        }
+        bSet.Clear();
+    }
+
+    private HashSet<int> GetVertexBSet(int vertex)
+    {
+        if (_bSets.TryGetValue(vertex, out HashSet<int> bSet))
+        {
+            return bSet;
         }
 
-        return false; 
-    } 
-    
+        _bSets.Add(vertex, new HashSet<int>());
+        return _bSets[vertex];
+    }
+
+    private bool findCyclesFromVertex(int startIndex, int vertexIndex, int parentIndex)
+    {
+        bool foundCycle = false;
+        _cycleStack.Push(vertexIndex);
+        _blocked.Add(vertexIndex);
+
+        List<int> connectedList = connectedListArray[vertexIndex];
+        if (connectedList.Count < 2)
+            return false;
+
+        foreach (int x in connectedList)
+        {
+            if (x == startIndex && x != parentIndex)
+            {
+                List<int> cycle = new List<int>(_cycleStack);
+                _cycles.Add(cycle);
+                foundCycle = true;
+            }
+            else if (!_blocked.Contains(x))
+            {
+                bool gotCycle = findCyclesFromVertex(startIndex, x, vertexIndex);
+                foundCycle = foundCycle || gotCycle;
+            }
+        }
+
+        if (foundCycle)
+        {
+            UnblockVertex(vertexIndex);
+        }
+        else
+        {
+            foreach (int x in connectedList)
+            {
+                GetVertexBSet(x).Add(vertexIndex);
+            }
+        }
+
+        _cycleStack.Pop();
+        return foundCycle;
+    }
+
     //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
     public List<List<int>> FindFaces()
     {
-        isCyclic();
         // Mark all the vertices as not visited 
         bool[] visitedVertices = new bool[numVertices];
         //whenever a face is found in the graph (4 points that connect to each other cyclically) it's added to the
@@ -197,23 +264,23 @@ public class Graph
         
         //we loop through all the vertices in the graph but thanks to the visitedVertices array and some other checks
         //we avoid making unnecessary trips along a vertex's connected vertices
-        for (int vertex = 0; vertex < numVertices; ++vertex)
-        {
-            if (!visitedVertices[vertex])
-            {
-                List<int> faceVertices = new List<int>(4);
-                //starting from vertex 0, find all faces in the graph through modified breadth first graph traversal
-                bool validFace = BFFaceFinder(vertex, visitedVertices, vertex, faceVertices);
-                int idSum = 0;
-                foreach (var faceVertex in faceVertices)
-                    idSum += faceVertex;
-                if (faceVertices.Count == 4 && validFace && !_createdFaceIds.Contains(idSum))
-                {
-                    _createdFaceIds.Add(idSum);
-                    validFaces.Add(faceVertices);
-                }
-            }
-        }
+        // for (int vertex = 0; vertex < numVertices; ++vertex)
+        // {
+        //     if (!visitedVertices[vertex])
+        //     {
+        //         List<int> faceVertices = new List<int>(4);
+        //         //starting from vertex 0, find all faces in the graph through modified breadth first graph traversal
+        //         bool validFace = BFFaceFinder(vertex, visitedVertices, vertex, faceVertices);
+        //         int idSum = 0;
+        //         foreach (var faceVertex in faceVertices)
+        //             idSum += faceVertex;
+        //         if (faceVertices.Count == 4 && validFace && !_createdFaceIds.Contains(idSum))
+        //         {
+        //             _createdFaceIds.Add(idSum);
+        //             validFaces.Add(faceVertices);
+        //         }
+        //     }
+        // }
 
         return validFaces;
     }
