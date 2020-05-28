@@ -196,98 +196,109 @@ public class EdgeManager : MonoBehaviour
         
         if (xAxisEdge)
         {
-            bool yGraphAddedEdge = _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
-            bool zGraphAddedEdge = _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
+            // bool yGraphAddedEdge = _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
+            // bool zGraphAddedEdge = _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
             
-            if (!yGraphAddedEdge || !zGraphAddedEdge)
-                return;
-
-            var yGraphFaces = _yGraphs[yGraphKey].FindFaces();
-            var zGraphFaces = _zGraphs[zGraphKey].FindFaces();
-
-            foreach (var faceVertices in yGraphFaces)
-            {
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
+            EdgeUtil(_yGraphs[yGraphKey], tp1, tp2, scaleAmount);
+            EdgeUtil(_zGraphs[zGraphKey], tp1, tp2, scaleAmount);
             
-            foreach (var faceVertices in zGraphFaces)
-            {
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
+            // if (!yGraphAddedEdge || !zGraphAddedEdge)
+            //     return;
+            //
+            // var yGraphFaces = _yGraphs[yGraphKey].FindFaces();
+            // var zGraphFaces = _zGraphs[zGraphKey].FindFaces();
+            //
+            // foreach (var faceVertices in yGraphFaces)
+            // {
+            //     List<Vector3> vertexVectors = new List<Vector3>(4);
+            //     foreach (var vertex in faceVertices)
+            //     {
+            //         vertexVectors.Add(_points[vertex]);
+            //     }
+            //     GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            // }
+            //
+            // foreach (var faceVertices in zGraphFaces)
+            // {
+            //     List<Vector3> vertexVectors = new List<Vector3>(4);
+            //     foreach (var vertex in faceVertices)
+            //     {
+            //         vertexVectors.Add(_points[vertex]);
+            //     }
+            //     GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            // }
         }
         else if (yAxisEdge)
         {
-            bool xAddedEdge = _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
-            bool zAddedEdge = _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
+            // bool xAddedEdge = _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
+            // bool zAddedEdge = _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
             
-            if (!xAddedEdge || !zAddedEdge)
-                return;
-
-            var xGraphFaces = _xGraphs[xGraphKey].FindFaces();
-            var zGraphFaces = _zGraphs[zGraphKey].FindFaces();
+            EdgeUtil(_xGraphs[xGraphKey], tp1, tp2, scaleAmount);
+            EdgeUtil(_zGraphs[zGraphKey], tp1, tp2, scaleAmount);
             
-            foreach (var faceVertices in xGraphFaces)
-            {
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
-            
-            foreach (var faceVertices in zGraphFaces)
-            {
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
+            // if (!xAddedEdge || !zAddedEdge)
+            //     return;
+            //
+            // var xGraphFaces = _xGraphs[xGraphKey].FindFaces();
+            // var zGraphFaces = _zGraphs[zGraphKey].FindFaces();
+            //
+            // foreach (var faceVertices in xGraphFaces)
+            // {
+            //     List<Vector3> vertexVectors = new List<Vector3>(4);
+            //     foreach (var vertex in faceVertices)
+            //     {
+            //         vertexVectors.Add(_points[vertex]);
+            //     }
+            //     GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            // }
+            //
+            // foreach (var faceVertices in zGraphFaces)
+            // {
+            //     List<Vector3> vertexVectors = new List<Vector3>(4);
+            //     foreach (var vertex in faceVertices)
+            //     {
+            //         vertexVectors.Add(_points[vertex]);
+            //     }
+            //     GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            // }
         }
         else if (zAxisEdge)
         {
-            bool xAddedEdge = _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
-            bool yAddedEdge = _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
+            // bool xAddedEdge = _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
+            // bool yAddedEdge = _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
             
-            if (!xAddedEdge || !yAddedEdge)
-                return;
-
-            var xGraphFaces = _xGraphs[xGraphKey].FindFaces();
-            var yGraphFaces = _yGraphs[yGraphKey].FindFaces();
+            EdgeUtil(_xGraphs[xGraphKey], tp1, tp2, scaleAmount);
+            EdgeUtil(_yGraphs[yGraphKey], tp1, tp2, scaleAmount);
             
-            foreach (var faceVertices in xGraphFaces)
-            {
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
-            
-            foreach (var faceVertices in yGraphFaces)
-            {
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
+            // if (!xAddedEdge || !yAddedEdge)
+            //     return;
+            //
+            // var xGraphFaces = _xGraphs[xGraphKey].FindFaces();
+            // var yGraphFaces = _yGraphs[yGraphKey].FindFaces();
+            //
+            // foreach (var faceVertices in xGraphFaces)
+            // {
+            //     List<Vector3> vertexVectors = new List<Vector3>(4);
+            //     foreach (var vertex in faceVertices)
+            //     {
+            //         vertexVectors.Add(_points[vertex]);
+            //     }
+            //     GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            // }
+            //
+            // foreach (var faceVertices in yGraphFaces)
+            // {
+            //     List<Vector3> vertexVectors = new List<Vector3>(4);
+            //     foreach (var vertex in faceVertices)
+            //     {
+            //         vertexVectors.Add(_points[vertex]);
+            //     }
+            //     GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            // }
         }
         
+        /*TODO: optimization idea; check overlap sphere for midpoint, if edge already present (e.g. larger overlapping edge)
+        or just the same edge, don't instantiate*/
         GameObject line =
             Instantiate(linePrefab, midPoint, Quaternion.Euler(xRot, yRot, 0));
         Transform lineTransform = line.transform;
@@ -297,6 +308,26 @@ public class EdgeManager : MonoBehaviour
         lineTransform.localScale = new Vector3(localScale.x, 
             localScale.y * scaleAmount, 
             localScale.z);
+    }
+
+    private void EdgeUtil(Graph graph, TestPoint tp1, TestPoint tp2, float scaleAmount)
+    {
+        var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
+        FormEdgesFromSubVerts(edgeSubVerts, graph);
+        
+        //TODO: figure out early exit for no edge being drawn
+        
+        var graphFaces = graph.FindFaces();
+
+        foreach (var faceVertices in graphFaces)
+        {
+            List<Vector3> vertexVectors = new List<Vector3>(4);
+            foreach (var vertex in faceVertices)
+            {
+                vertexVectors.Add(_points[vertex]);
+            }
+            GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+        }
     }
 
     private List<int> FindEdgeSubVertices(TestPoint p1, TestPoint p2, float scaleAmount)
@@ -327,6 +358,14 @@ public class EdgeManager : MonoBehaviour
         
         subEdgeVertices.Add(p2.listLoc);
         return subEdgeVertices;
+    }
+
+    private void FormEdgesFromSubVerts(List<int> subEdgeVertices, Graph graph)
+    {
+        for (int i = 0; i < subEdgeVertices.Count - 1; i++)
+        {
+            graph.addEdge(subEdgeVertices[i], subEdgeVertices[i + 1]);
+        }
     }
     
     private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = true)

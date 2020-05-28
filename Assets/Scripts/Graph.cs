@@ -2,21 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-
-public struct Vertex
-{
-    public Vertex(int id, float axis1Value, float axis2Value)
-    {
-        Id = id;
-        Axis1Value = axis1Value;
-        Axis2Value = axis2Value;
-    }
-    
-    public int Id { get; }
-    public float Axis1Value { get; }
-    public float Axis2Value { get; }
-}
-
+//TODO: once again have to handle repeat faces not being generated; prolly easy but i'm tired
+//TODO: not necessarily in this class, but we need to break down large edges into sub edges that bi-connect (1->2->3/3->2->1)
+//TODO: use vertex struct and pass in "x/y" values to do corner detection
+//TODO: consider overlapping edge/sub-edge possibility
 public class Graph
 {
     // A user define class to represent a graph. 
@@ -29,6 +18,7 @@ public class Graph
     //used to map pt ids to graph ids, specifically when generating an edge and pt ids are the only available id to pass into graph
     private Dictionary<int, int> _graphIdLookup;
     private List<int> _createdFaceIds;
+    private List<List<int>> _faces;
     
     //Data structures for Johnson's Algorithm Implement
     private Stack<int> _cycleStack;
@@ -48,6 +38,7 @@ public class Graph
         connectedListArray = new List<int>[numVertices];
 
         _createdFaceIds = new List<int>();
+        _faces = new List<List<int>>();
         
         _cycleStack = new Stack<int>();
         _blocked = new HashSet<int>();
@@ -90,16 +81,8 @@ public class Graph
         
         if (connectedListArray[convertedDest].Count > 2)
             findCycleUtil(convertedDest);
-
-        foreach (var cycle in _cycles)
-        {
-            string cycleString = "";
-            foreach (var vertex in cycle)
-            {
-                cycleString += vertex + " ";
-            }
-            Debug.Log(cycleString);
-        }
+        
+        DefineFaces();
         
         ClearState();
         
@@ -115,6 +98,18 @@ public class Graph
         }
         
         findCyclesFromVertex(startIndex, startIndex, -1);
+        
+        foreach (var cycle in _cycles)
+        {
+            string cycleString = "";
+            foreach (var vertex in cycle)
+            {
+                cycleString += vertex + " ";
+            }
+            Debug.Log(cycleString);
+        }
+        
+        
     }
 
     private void ClearState()
@@ -252,36 +247,75 @@ public class Graph
         _cycleStack.Pop();
         return foundCycle;
     }
+    
+    private void DefineFaces()
+    {
+        foreach (var cycle in _cycles)
+        {
+            List<int> face = new List<int>(4);
+            int idSum = 0;
+            foreach (var vertex in cycle)
+            {
+                face.Add(_pointIds[vertex]);
+                idSum += vertex;
+            }
+            if (_createdFaceIds.Contains(idSum))
+                continue;
+            _createdFaceIds.Add(idSum);
+            face.Sort();
+            _faces.Add(face);
+        }
+    }
 
-    //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
     public List<List<int>> FindFaces()
     {
-        // Mark all the vertices as not visited 
-        bool[] visitedVertices = new bool[numVertices];
-        //whenever a face is found in the graph (4 points that connect to each other cyclically) it's added to the
-        //faces list; face is a list on ints corresponding to vertex (point) ids
-        List<List<int>> validFaces = new List<List<int>>();
-        
-        //we loop through all the vertices in the graph but thanks to the visitedVertices array and some other checks
-        //we avoid making unnecessary trips along a vertex's connected vertices
-        // for (int vertex = 0; vertex < numVertices; ++vertex)
+        // foreach (var cycle in _cycles)
         // {
-        //     if (!visitedVertices[vertex])
+        //     List<int> face = new List<int>(4);
+        //     int idSum = 0;
+        //     foreach (var vertex in cycle)
         //     {
-        //         List<int> faceVertices = new List<int>(4);
-        //         //starting from vertex 0, find all faces in the graph through modified breadth first graph traversal
-        //         bool validFace = BFFaceFinder(vertex, visitedVertices, vertex, faceVertices);
-        //         int idSum = 0;
-        //         foreach (var faceVertex in faceVertices)
-        //             idSum += faceVertex;
-        //         if (faceVertices.Count == 4 && validFace && !_createdFaceIds.Contains(idSum))
-        //         {
-        //             _createdFaceIds.Add(idSum);
-        //             validFaces.Add(faceVertices);
-        //         }
+        //         face.Add(_pointIds[vertex]);
+        //         idSum += vertex;
         //     }
+        //     if (_createdFaceIds.Contains(idSum))
+        //         continue;
+        //     _createdFaceIds.Add(idSum);
+        //     _faces.Add(face);
         // }
-
-        return validFaces;
+        
+        return _faces;
     }
+
+    //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
+    // public List<List<int>> FindFaces()
+    // {
+    //     // Mark all the vertices as not visited 
+    //     bool[] visitedVertices = new bool[numVertices];
+    //     //whenever a face is found in the graph (4 points that connect to each other cyclically) it's added to the
+    //     //faces list; face is a list on ints corresponding to vertex (point) ids
+    //     List<List<int>> validFaces = new List<List<int>>();
+    //     
+    //     //we loop through all the vertices in the graph but thanks to the visitedVertices array and some other checks
+    //     //we avoid making unnecessary trips along a vertex's connected vertices
+    //     for (int vertex = 0; vertex < numVertices; ++vertex)
+    //     {
+    //         if (!visitedVertices[vertex])
+    //         {
+    //             List<int> faceVertices = new List<int>(4);
+    //             //starting from vertex 0, find all faces in the graph through modified breadth first graph traversal
+    //             bool validFace = BFFaceFinder(vertex, visitedVertices, vertex, faceVertices);
+    //             int idSum = 0;
+    //             foreach (var faceVertex in faceVertices)
+    //                 idSum += faceVertex;
+    //             if (faceVertices.Count == 4 && validFace && !_createdFaceIds.Contains(idSum))
+    //             {
+    //                 _createdFaceIds.Add(idSum);
+    //                 validFaces.Add(faceVertices);
+    //             }
+    //         }
+    //     }
+    //
+    //     return validFaces;
+    // }
 }
