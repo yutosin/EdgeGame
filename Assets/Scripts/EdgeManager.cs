@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TODO: refactor and refine this code, more cause you did some already
+//TODO: figure out render order of faces vs lines and sub-faces vs parent faces
+//TODO: handle points always appearing in front of faces and lines
+//TODO: MAJOR gotta add colliders to all these quads
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
@@ -313,7 +316,7 @@ public class EdgeManager : MonoBehaviour
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
         }
     }
-
+    
     private void SortVerticesForQuad(ref List<Vector3> vertices)
     {
         float centroidX = (vertices[0].x + vertices[1].x + vertices[2].x + vertices[3].x) / 4;
@@ -339,19 +342,19 @@ public class EdgeManager : MonoBehaviour
             angles[i] = angle;
         }
         
-        for (int i = 0; i < angles.Length - 1; i++)
+        for (int i = 0; i < angles.Length - 1; ++i)
         {
-            for (int j = 0; j < angles.Length - i - 1; j++)
+            for (int j = 0; j < angles.Length - i - 1; ++j)
             {
                 if (angles[j] < angles[j + 1])
                 {
                     Vector3 temp = vertices[j];
                     vertices[j] = vertices[j + 1];
                     vertices[j + 1] = temp;
-
-                    float angleTemp = angles[j];
+                    
+                    float tempAngle = angles[j];
                     angles[j] = angles[j + 1];
-                    angles[j + 1] = angleTemp;
+                    angles[j + 1] = tempAngle;
                 }
             }
         }
@@ -399,6 +402,10 @@ public class EdgeManager : MonoBehaviour
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
         
         meshFilter.mesh = mesh;
+        
+        //Might not even need colliders on these...but if we do probably should just use box collider
+        // MeshCollider collider = newQuad.AddComponent<MeshCollider>();
+        // collider.sharedMesh = mesh;
     }
 
     private void CombineCubesInLevel()
