@@ -262,7 +262,7 @@ public class Graph
             if (_createdFaceIds.Contains(idSum))
                 continue;
             _createdFaceIds.Add(idSum);
-            face.Sort();
+            //face.Sort(); //don't sort; need to maintain the path order to properly determine corner vertices
             _faces.Add(face);
         }
     }
@@ -283,8 +283,10 @@ public class Graph
         //     _createdFaceIds.Add(idSum);
         //     _faces.Add(face);
         // }
+        var faceCopy = new List<List<int>>(_faces);
+        _faces.Clear();
         
-        return _faces;
+        return faceCopy;
     }
 
     //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
