@@ -210,12 +210,15 @@ public class Graph
     private bool findCyclesFromVertex(int startIndex, int vertexIndex, int parentIndex)
     {
         bool foundCycle = false;
-        _cycleStack.Push(vertexIndex);
-        _blocked.Add(vertexIndex);
-
         List<int> connectedList = connectedListArray[vertexIndex];
         if (connectedList.Count < 2)
             return false;
+        _cycleStack.Push(vertexIndex);
+        _blocked.Add(vertexIndex);
+
+        // List<int> connectedList = connectedListArray[vertexIndex];
+        // if (connectedList.Count < 2)
+        //     return false;
 
         foreach (int x in connectedList)
         {
