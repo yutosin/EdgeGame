@@ -316,7 +316,7 @@ public class EdgeManager : MonoBehaviour
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
         }
     }
-
+    
     private void SortVerticesForQuad(ref List<Vector3> vertices)
     {
         float centroidX = (vertices[0].x + vertices[1].x + vertices[2].x + vertices[3].x) / 4;
@@ -342,15 +342,19 @@ public class EdgeManager : MonoBehaviour
             angles[i] = angle;
         }
         
-        for (int i = 0; i < angles.Length - 1; i++)
+        for (int i = 0; i < angles.Length - 1; ++i)
         {
-            for (int j = 0; j < angles.Length - i - 1; j++)
+            for (int j = 0; j < angles.Length - i - 1; ++j)
             {
                 if (angles[j] < angles[j + 1])
                 {
                     Vector3 temp = vertices[j];
                     vertices[j] = vertices[j + 1];
                     vertices[j + 1] = temp;
+                    
+                    float tempAngle = angles[j];
+                    angles[j] = angles[j + 1];
+                    angles[j + 1] = tempAngle;
                 }
             }
         }
