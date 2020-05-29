@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: refactor and refine this code
+//TODO: refactor and refine this code, more cause you did some already
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
@@ -145,10 +145,8 @@ public class EdgeManager : MonoBehaviour
 
         return true;
     }
-
-    /*TODO: Longer edges that overlap multiple points should also create smaller segments e.g. pt1->pt3 would also
-    create pt1->pt2 and pt->pt3*/
-    //TODO: properly use the addEdge function to make use of the bool and avoid creating edge game objec
+    
+    //TODO: properly use the addEdge function to make use of the bool and avoid creating edge game object
     public void GenerateEdge(TestPoint tp1, TestPoint tp2)
     {
         Vector3 p1 = tp1.transform.position;
@@ -235,8 +233,8 @@ public class EdgeManager : MonoBehaviour
     private void EdgeUtil(Graph graph, TestPoint tp1, TestPoint tp2, float scaleAmount)
     {
         var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
-        //FormEdgesFromSubVerts(edgeSubVerts, graph);
         
+        //FormEdgesFromSubVerts
         for (int i = 0; i < edgeSubVerts.Count - 1; i++)
         {
             graph.addEdge(edgeSubVerts[i], edgeSubVerts[i + 1]);
@@ -273,14 +271,6 @@ public class EdgeManager : MonoBehaviour
         
         subEdgeVertices.Add(p2.listLoc);
         return subEdgeVertices;
-    }
-
-    private void FormEdgesFromSubVerts(List<int> subEdgeVertices, Graph graph)
-    {
-        for (int i = 0; i < subEdgeVertices.Count - 1; i++)
-        {
-            graph.addEdge(subEdgeVertices[i], subEdgeVertices[i + 1]);
-        }
     }
 
     private void FaceGenUtil(Graph graph)
@@ -367,7 +357,7 @@ public class EdgeManager : MonoBehaviour
         }
     }
     
-    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = true)
+    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices)
     {
         GameObject newQuad = new GameObject();
         gameObject.transform.parent = gameObject.transform;
@@ -378,16 +368,7 @@ public class EdgeManager : MonoBehaviour
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
 
         Mesh mesh = new Mesh();
-
-        // if (flipFirstPair)
-        // {
-        //     //Vector3[] flipped = new[] {quadVertices[1], quadVertices[0], quadVertices[2], quadVertices[3]};
-        //     //TODO: figure out why this order works!! you flipped the first two then reversed the whole array..why?
-        //     Vector3[] flipped = new[] {quadVertices[3], quadVertices[2], quadVertices[0], quadVertices[1]};
-        //     mesh.vertices = flipped;
-        // }
-        // else
-        //     mesh.vertices = quadVertices;
+        
         mesh.vertices = quadVertices;
 
         Vector2[] uv = new Vector2[4]
