@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TODO: refactor and refine this code, more cause you did some already
+//TODO: figure out render order of faces vs lines and sub-faces vs parent faces
+//TODO: handle points always appearing in front of faces and lines
+//TODO: MAJOR gotta add colliders to all these quads
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
@@ -348,10 +351,6 @@ public class EdgeManager : MonoBehaviour
                     Vector3 temp = vertices[j];
                     vertices[j] = vertices[j + 1];
                     vertices[j + 1] = temp;
-
-                    float angleTemp = angles[j];
-                    angles[j] = angles[j + 1];
-                    angles[j + 1] = angleTemp;
                 }
             }
         }
@@ -399,6 +398,10 @@ public class EdgeManager : MonoBehaviour
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
         
         meshFilter.mesh = mesh;
+        
+        //Might not even need colliders on these...but if we do probably should just use box collider
+        // MeshCollider collider = newQuad.AddComponent<MeshCollider>();
+        // collider.sharedMesh = mesh;
     }
 
     private void CombineCubesInLevel()
