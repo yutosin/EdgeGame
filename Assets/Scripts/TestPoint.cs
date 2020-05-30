@@ -19,6 +19,8 @@ public class TestPoint : MonoBehaviour
     [SerializeField]private List<TestPoint> _adjacentZPoints;
 
     private bool _isActiveSelectable;
+    [SerializeField]private bool _onPoint;
+    private IEnumerator coroutine;
     
     private void Start()
     {
@@ -37,6 +39,7 @@ public class TestPoint : MonoBehaviour
         _rend.receiveShadows = false;
 
         _isActiveSelectable = false;
+        _onPoint = false;
 
         _adjacentXPoints = new List<TestPoint>();
         _adjacentYPoints = new List<TestPoint>();
@@ -102,23 +105,25 @@ public class TestPoint : MonoBehaviour
             hitCollider = Physics.OverlapSphere(overlapPos, .25f);
         }
     }
-
-    private void OnMouseEnter()
+    
+    private void OnMouseOver()
     {
         if (isActivePoint)
             return;
         if (_activePoint && !_isActiveSelectable)
             return;
         _rend.enabled = true;
+        _onPoint = true;
     }
     
     private void OnMouseExit()
     {
         if (isActivePoint)
             return;
-        if (_activePoint && _isActiveSelectable)
+        if (_activePoint && !_isActiveSelectable)
             return;
         _rend.enabled = false;
+        _onPoint = false;
     }
 
     private void OnMouseDown()
@@ -128,7 +133,10 @@ public class TestPoint : MonoBehaviour
         {
             isActivePoint = true;
             _activePoint = this;
-            ToggleSelectablePoints();
+            CleanAdjacentPointLists();
+            ToggleSelectablePoints(false);
+            coroutine = PreviewSelectablePoints();
+            StartCoroutine(coroutine);
             _rend.enabled = true;
         }
         else if (_isActiveSelectable)
@@ -136,35 +144,110 @@ public class TestPoint : MonoBehaviour
             GameManager.SharedInstance.edgeManager.GenerateEdge(_activePoint, this);
             _activePoint.isActivePoint = false;
             _activePoint._rend.enabled = false;
-            ToggleSelectablePoints();
+            StopCoroutine(_activePoint.coroutine);
+            ToggleSelectablePoints(true);
+            _activePoint._onPoint = false;
             _activePoint = null;
             _rend.enabled = true;
         }
     }
 
-    private void ToggleSelectablePoints()
+    private void CleanAdjacentPointLists()
+    {
+        _activePoint._adjacentXPoints.RemoveAll(i => !i);
+        _activePoint._adjacentYPoints.RemoveAll(i => !i);
+        _activePoint._adjacentZPoints.RemoveAll(i => !i);
+    }
+
+    private void ToggleSelectablePoints(bool disableRenderers)
     {
         foreach (var tp in _activePoint._adjacentXPoints)
         {
-            if (!tp)
-                continue;
-            tp._rend.enabled = !tp._rend.enabled;
             tp._isActiveSelectable = !tp._isActiveSelectable;
+            if (tp == this)
+                continue;
+            if (disableRenderers)
+                tp._rend.enabled = false;
         }
         foreach (var tp in _activePoint._adjacentYPoints)
         {
-            if (!tp)
-                continue;
-            tp._rend.enabled = !tp._rend.enabled;
             tp._isActiveSelectable = !tp._isActiveSelectable;
+            if (tp == this)
+                continue;
+            if (disableRenderers)
+                tp._rend.enabled = false;
         }
         foreach (var tp in _activePoint._adjacentZPoints)
         {
-            if (!tp)
-                continue;
-            tp._rend.enabled = !tp._rend.enabled;
             tp._isActiveSelectable = !tp._isActiveSelectable;
+            if (tp == this)
+                continue;
+            if (disableRenderers)
+                tp._rend.enabled = false;
         }
+    }
+
+    private IEnumerator PreviewSelectablePoints()
+    {
+        int xIndex = 0;
+        int yIndex = 0;
+        int zIndex = 0;
+
+        List<TestPoint> adjXPoints = _activePoint._adjacentXPoints;
+        List<TestPoint> adjYPoints = _activePoint._adjacentYPoints;
+        List<TestPoint> adjZPoints = _activePoint._adjacentZPoints;
+        
+        while (_activePoint)
+        {
+            yield return new WaitForSeconds(.4f);
+            if (!_activePoint)
+                break;
+            if (adjXPoints.Count > 0)
+            {
+                if (xIndex > 0 && !adjXPoints[xIndex - 1]._onPoint)
+                    adjXPoints[xIndex - 1]._rend.enabled = false;
+                else if (xIndex == 0 && !adjXPoints[adjXPoints.Count - 1]._onPoint)
+                    adjXPoints[adjXPoints.Count - 1]._rend.enabled = false;
+                adjXPoints[xIndex]._rend.enabled = true;
+                xIndex++;
+                xIndex %= adjXPoints.Count;
+            }
+
+            if (adjYPoints.Count > 0)
+            {
+                if (yIndex > 0 && !adjYPoints[yIndex - 1]._onPoint)
+                    adjYPoints[yIndex - 1]._rend.enabled = false;
+                else if (yIndex == 0 && !adjYPoints[adjYPoints.Count - 1]._onPoint)
+                    adjYPoints[adjYPoints.Count - 1]._rend.enabled = false;
+                adjYPoints[yIndex]._rend.enabled = true;
+                yIndex++;
+                yIndex %= adjYPoints.Count;
+            }
+
+            if (adjZPoints.Count > 0)
+            {
+                if (zIndex > 0 && !adjZPoints[zIndex - 1]._onPoint)
+                    adjZPoints[zIndex - 1]._rend.enabled = false;
+                else if (zIndex == 0 && !adjZPoints[adjZPoints.Count - 1]._onPoint)
+                    adjZPoints[adjZPoints.Count - 1]._rend.enabled = false;
+                adjZPoints[zIndex]._rend.enabled = true;
+                zIndex++;
+                zIndex %= adjZPoints.Count;
+            }
+        }
+        
+        // foreach (var tp in adjXPoints)
+        // {
+        //     tp._rend.enabled = false;
+        // }
+        // foreach (var tp in adjYPoints)
+        // {
+        //     tp._rend.enabled = false;
+        // }
+        // foreach (var tp in adjZPoints)
+        // {
+        //     tp._rend.enabled = false;
+        // }
     }
 
     private void Update()
