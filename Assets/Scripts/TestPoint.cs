@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class TestPoint : MonoBehaviour
@@ -12,10 +13,14 @@ public class TestPoint : MonoBehaviour
     public string ptID;
     public int listLoc;
     private static TestPoint _activePoint;
+    private bool _notDestroyed;
 
     private void Start()
     {
         _rend = GetComponent<Renderer>();
+        _rend.shadowCastingMode = ShadowCastingMode.Off;
+        _rend.receiveShadows = false;
+        _notDestroyed = false;
     }
 
     private void OnMouseEnter()
@@ -50,5 +55,21 @@ public class TestPoint : MonoBehaviour
 
         }
         _rend.enabled = true;
+    }
+
+    private void Update()
+    {
+        if (_notDestroyed)
+            return;
+        if (Physics.Linecast(GameManager.SharedInstance.MainCamera.transform.position,
+            transform.position, out RaycastHit hitInfo))
+        {
+            if (hitInfo.collider.gameObject.name != gameObject.name)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+            _notDestroyed = true;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 //TODO: figure out render order of faces vs lines and sub-faces vs parent faces
 //TODO: handle points always appearing in front of faces and lines
 //TODO: MAJOR gotta add colliders to all these quads
+//TODO: Point selection limit
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
@@ -442,6 +443,11 @@ public class EdgeManager : MonoBehaviour
         levelMeshFileter.mesh.RecalculateNormals();
         levelMeshFileter.mesh.Optimize();
         cubeHolder.SetActive(true);
+
+        MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
+        cubeColl.sharedMesh = levelMeshFileter.mesh;
+        // cubeColl.convex = true;
+        // cubeColl.isTrigger = true;
     }
     private string GenerateEdgeID(string pt1ID, string pt2ID)
     {
