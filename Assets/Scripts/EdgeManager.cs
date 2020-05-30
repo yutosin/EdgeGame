@@ -140,7 +140,7 @@ public class EdgeManager : MonoBehaviour
         rend.enabled = false;
         
         SphereCollider sphereCollider = edgePoint.AddComponent<SphereCollider>();
-        sphereCollider.radius = .65f;
+        sphereCollider.radius = .75f;
         
         edgePoint.transform.position = pos;
         edgePoint.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
