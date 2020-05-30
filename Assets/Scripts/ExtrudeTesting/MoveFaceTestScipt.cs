@@ -7,15 +7,26 @@ public class MoveFaceTestScipt : MonoBehaviour
 
     public ProceduralCube cube;
     public float moveSpeed = 1;
-    public float pos = 1;
+    public float pos1 = 1;
+    public float pos2 = -1;
 
     private void Update()
     {
-        if(pos < 5)
+        if(pos1 < 5)
         {
-            pos += moveSpeed * Time.deltaTime;
-            cube.MoveFace("z+", pos);
+            pos1 += moveSpeed * Time.deltaTime;
+            cube.MoveFace("z+", pos1);
+            cube.MakeCube();
+            cube.UpdateMesh();
+            
+        }
+        if (pos1 >= 5 && pos2 < 4)
+        {
+            pos2 += moveSpeed * Time.deltaTime;
+            cube.MoveFace("z-", pos2);
+            cube.MakeCube();
+            cube.UpdateMesh();
+
         }
     }
-
 }

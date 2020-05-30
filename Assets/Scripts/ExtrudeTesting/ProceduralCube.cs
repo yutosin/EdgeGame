@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class ProceduralCube : MonoBehaviour
 {
+    public CubeMeshData data = new CubeMeshData();
     Mesh mesh;
     List<Vector3> vertices;
     List<int> triangles;
+
 
     private void Awake()
     {
@@ -20,16 +22,15 @@ public class ProceduralCube : MonoBehaviour
         UpdateMesh();
     }
 
-    private void UpdateMesh()
+    public void UpdateMesh()
     {
         mesh.Clear();
-
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
     }
 
-    private void MakeCube()
+    public void MakeCube()
     {
         vertices = new List<Vector3>();
         triangles = new List<int>();
@@ -42,7 +43,7 @@ public class ProceduralCube : MonoBehaviour
 
     private void MakeFace(int dir)
     {
-        vertices.AddRange(CubeMeshData.faceVertices(dir));
+        vertices.AddRange(data.faceVertices(dir));
         int vCount = vertices.Count;
 
         triangles.Add(vCount - 4);
@@ -68,9 +69,9 @@ public class ProceduralCube : MonoBehaviour
 
                 for (int i = 0; i < arrayPos.Length; i++)
                 {
-                    currentVPos = vertices[arrayPos[i]];
+                    currentVPos = data.vertices[arrayPos[i]];
                     currentVPos.x = newPos;
-                    vertices[arrayPos[i]] = currentVPos;
+                    data.vertices[arrayPos[i]] = currentVPos;
                 }
 
                 break;
@@ -82,9 +83,9 @@ public class ProceduralCube : MonoBehaviour
 
                 for (int i = 0; i < arrayPos.Length; i++)
                 {
-                    currentVPos = vertices[arrayPos[i]];
+                    currentVPos = data.vertices[arrayPos[i]];
                     currentVPos.x = newPos;
-                    vertices[arrayPos[i]] = currentVPos;
+                    data.vertices[arrayPos[i]] = currentVPos;
                 }
                 break;
             case "z+":
@@ -95,9 +96,9 @@ public class ProceduralCube : MonoBehaviour
 
                 for (int i = 0; i < arrayPos.Length; i++)
                 {
-                    currentVPos = vertices[arrayPos[i]];
+                    currentVPos = data.vertices[arrayPos[i]];
                     currentVPos.z = newPos;
-                    vertices[arrayPos[i]] = currentVPos;
+                    data.vertices[arrayPos[i]] = currentVPos;
                 }
                 break;
             case "z-":
@@ -108,9 +109,9 @@ public class ProceduralCube : MonoBehaviour
 
                 for (int i = 0; i < arrayPos.Length; i++)
                 {
-                    currentVPos = vertices[arrayPos[i]];
+                    currentVPos = data.vertices[arrayPos[i]];
                     currentVPos.z = newPos;
-                    vertices[arrayPos[i]] = currentVPos;
+                    data.vertices[arrayPos[i]] = currentVPos;
                 }
                 break;
             case "y+":
@@ -121,9 +122,9 @@ public class ProceduralCube : MonoBehaviour
 
                 for (int i = 0; i < arrayPos.Length; i++)
                 {
-                    currentVPos = vertices[arrayPos[i]];
+                    currentVPos = data.vertices[arrayPos[i]];
                     currentVPos.y = newPos;
-                    vertices[arrayPos[i]] = currentVPos;
+                    data.vertices[arrayPos[i]] = currentVPos;
                 }
                 break;
             case "y-":
@@ -134,9 +135,9 @@ public class ProceduralCube : MonoBehaviour
 
                 for (int i = 0; i < arrayPos.Length; i++)
                 {
-                    currentVPos = vertices[arrayPos[i]];
+                    currentVPos = data.vertices[arrayPos[i]];
                     currentVPos.y = newPos;
-                    vertices[arrayPos[i]] = currentVPos;
+                    data.vertices[arrayPos[i]] = currentVPos;
                 }
                 break;
             default :

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CubeMeshData
+public class CubeMeshData
 {
     //holds sample vertices to make cubes with
-    public static Vector3[] vertices =
+    public Vector3[] vertices =
     {
         new Vector3(1, 1, 1),
         new Vector3(-1, 1, 1),
@@ -18,7 +18,7 @@ public static class CubeMeshData
     };
 
     //present triangles set up for making cube meshes
-    public static int[][] faceTriangles =
+    public int[][] faceTriangles =
     {
         new int[]{0, 1, 2, 3},
         new int[]{5, 0, 3, 6},
@@ -29,7 +29,7 @@ public static class CubeMeshData
     };
 
     //to get verticies from face triangles
-    public static Vector3[] faceVertices(int dir)
+    public Vector3[] faceVertices(int dir)
     {
         Vector3[] fv = new Vector3[4];
         for(int x = 0; x < fv.Length; x++)
