@@ -33,7 +33,7 @@ public class ProceduralCube : MonoBehaviour
         mesh.RecalculateNormals();
     }
 
-    public void MakeCube()
+    private void MakeCube()
     {
         vertices = new List<Vector3>();
         triangles = new List<int>();
@@ -81,8 +81,6 @@ public class ProceduralCube : MonoBehaviour
             currentVPos.x = newPos;
             data.vertices[faces["XPlus"][i]] = currentVPos;
         }
-        UpdateMesh();
-
     }
 
     public void MoveXMinusFace(float newPos)
@@ -95,8 +93,6 @@ public class ProceduralCube : MonoBehaviour
             currentVPos.x = newPos;
             data.vertices[faces["XMinus"][i]] = currentVPos;
         }
-        UpdateMesh();
-
     }
 
     public void MoveZPlusFace(float newPos)
@@ -109,8 +105,6 @@ public class ProceduralCube : MonoBehaviour
             currentVPos.x = newPos;
             data.vertices[faces["ZPlus"][i]] = currentVPos;
         }
-        UpdateMesh();
-
     }
 
     public void MoveZMinusFace(float newPos)
@@ -123,8 +117,6 @@ public class ProceduralCube : MonoBehaviour
             currentVPos.x = newPos;
             data.vertices[faces["ZMinus"][i]] = currentVPos;
         }
-        UpdateMesh();
-
     }
 
     public void MoveyYPlusFace(float newPos)
@@ -137,8 +129,6 @@ public class ProceduralCube : MonoBehaviour
             currentVPos.x = newPos;
             data.vertices[faces["YPlus"][i]] = currentVPos;
         }
-        UpdateMesh();
-
     }
 
     public void MoveYMinusFace(float newPos)
@@ -151,8 +141,6 @@ public class ProceduralCube : MonoBehaviour
             currentVPos.x = newPos;
             data.vertices[faces["YMinus"][i]] = currentVPos;
         }
-        UpdateMesh();
-
     }
 
     //A generalized version of the face move functions
