@@ -6,7 +6,7 @@ using UnityEngine;
 public class ProceduralCube : MonoBehaviour
 {
     public CubeMeshData data = new CubeMeshData();
-    Dictionary<string, int[]> faces;
+    Dictionary<string, int[]> faces = new Dictionary<string, int[]>();
     Mesh mesh;
     List<Vector3> vertices;
     List<int> triangles;
@@ -70,85 +70,12 @@ public class ProceduralCube : MonoBehaviour
 
     }
 
-    //These are to be shaved off if possible
-    public void MoveXPlusFace(float newPos)
-    {
-        Vector3 currentVPos;
-
-        for (int i = 0; i < faces["XPlus"].Length; i++)
-        {
-            currentVPos = data.vertices[faces["XPlus"][i]];
-            currentVPos.x = newPos;
-            data.vertices[faces["XPlus"][i]] = currentVPos;
-        }
-    }
-
-    public void MoveXMinusFace(float newPos)
-    {
-        Vector3 currentVPos;
-
-        for (int i = 0; i < faces["XMinus"].Length; i++)
-        {
-            currentVPos = data.vertices[faces["XMinus"][i]];
-            currentVPos.x = newPos;
-            data.vertices[faces["XMinus"][i]] = currentVPos;
-        }
-    }
-
-    public void MoveZPlusFace(float newPos)
-    {
-        Vector3 currentVPos;
-
-        for (int i = 0; i < faces["ZPlus"].Length; i++)
-        {
-            currentVPos = data.vertices[faces["ZPlus"][i]];
-            currentVPos.x = newPos;
-            data.vertices[faces["ZPlus"][i]] = currentVPos;
-        }
-    }
-
-    public void MoveZMinusFace(float newPos)
-    {
-        Vector3 currentVPos;
-
-        for (int i = 0; i < faces["ZMinus"].Length; i++)
-        {
-            currentVPos = data.vertices[faces["ZMinus"][i]];
-            currentVPos.x = newPos;
-            data.vertices[faces["ZMinus"][i]] = currentVPos;
-        }
-    }
-
-    public void MoveyYPlusFace(float newPos)
-    {
-        Vector3 currentVPos;
-
-        for (int i = 0; i < faces["YPlus"].Length; i++)
-        {
-            currentVPos = data.vertices[faces["YPlus"][i]];
-            currentVPos.x = newPos;
-            data.vertices[faces["YPlus"][i]] = currentVPos;
-        }
-    }
-
-    public void MoveYMinusFace(float newPos)
-    {
-        Vector3 currentVPos;
-
-        for (int i = 0; i < faces["YMinus"].Length; i++)
-        {
-            currentVPos = data.vertices[faces["YMinus"][i]];
-            currentVPos.x = newPos;
-            data.vertices[faces["YMinus"][i]] = currentVPos;
-        }
-    }
-
     //A generalized version of the face move functions
     public void MoveFace(string faceToMove, float newPos)
     {
-        if((faceToMove != "XPlus") || (faceToMove != "XMinus") || 
-            (faceToMove != "YPlus") || (faceToMove != "YMinus") || 
-            (faceToMove != "ZPlus") || (faceToMove != "ZMinus"))
+        if((faceToMove != "XPlus") && (faceToMove != "XMinus") && 
+            (faceToMove != "YPlus") && (faceToMove != "YMinus") && 
+            (faceToMove != "ZPlus") && (faceToMove != "ZMinus"))
         {
             Debug.LogError("Not a valid face");
         }
