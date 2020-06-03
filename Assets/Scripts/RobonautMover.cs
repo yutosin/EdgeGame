@@ -12,7 +12,6 @@ public class RobonautMover : MonoBehaviour
     //public Vector3 playerPosition;
     public Vector3 playerRotation;
     public float playerSpeed;
-    public float moveSpeed;
     public float rotateSpeed;
     public float targetLean;
 
@@ -87,11 +86,11 @@ public class RobonautMover : MonoBehaviour
             }
 
             //Player movement
-            if (Mathf.Abs(targetDirection - rotY) < 90)
+            if (Mathf.Abs(targetDirection - rotY) < 67.5f)
             {
                 if (posTicker > 0)
                 {
-                    if (moveSpeed <= 0)
+                    if (playerSpeed <= 0)
                     {
                         Debug.Log("Player movement speed must be greater than zero to work properly");
                         posTicker = 0;
@@ -101,9 +100,9 @@ public class RobonautMover : MonoBehaviour
                         posTicker++;
                         transform.position = new Vector3
                         (
-                             Mathf.Lerp(posX, setPosition.x, posTicker * (moveSpeed / 10000)),
+                             Mathf.Lerp(posX, setPosition.x, posTicker * (playerSpeed / 10000)),
                              0,
-                             Mathf.Lerp(posZ, setPosition.z, posTicker * (moveSpeed / 10000))
+                             Mathf.Lerp(posZ, setPosition.z, posTicker * (playerSpeed / 10000))
                         );
                     }
                 }
