@@ -15,17 +15,13 @@ public class MoveFaceTestScipt : MonoBehaviour
         if(pos1 < 5)
         {
             pos1 += moveSpeed * Time.deltaTime;
-            cube.MoveFace("z+", pos1);
-            cube.MakeCube();
-            cube.UpdateMesh();
+            //cube.MoveFace("XPlus", pos1);
             
         }
         if (pos1 >= 5 && pos2 < 4)
         {
             pos2 += moveSpeed * Time.deltaTime;
-            cube.MoveFace("z-", pos2);
-            cube.MakeCube();
-            cube.UpdateMesh();
+            //cube.MoveFace("XMinus", pos2);
 
         }
     }

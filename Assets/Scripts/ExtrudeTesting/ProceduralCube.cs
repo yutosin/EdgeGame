@@ -6,6 +6,7 @@ using UnityEngine;
 public class ProceduralCube : MonoBehaviour
 {
     public CubeMeshData data = new CubeMeshData();
+    Dictionary<string, int[]> faces;
     Mesh mesh;
     List<Vector3> vertices;
     List<int> triangles;
@@ -14,10 +15,12 @@ public class ProceduralCube : MonoBehaviour
     private void Awake()
     {
         mesh = GetComponent<MeshFilter>().mesh;
+        
     }
 
     private void Start()
     {
+        CreateFacesForMoving();
         MakeCube();
         UpdateMesh();
     }
@@ -54,98 +57,127 @@ public class ProceduralCube : MonoBehaviour
         triangles.Add(vCount - 4 + 3);
     }
 
-    //Trying to clean up these switches
-    public void MoveFace(string faceDir, float newPos)
+
+    //Create faces in dictionary
+    private void CreateFacesForMoving()
+    {
+        faces.Add("XPlus", new int[4] { 1, 2, 4, 7 });
+        faces.Add("XMinus", new int[4] { 0, 3, 5, 6 });
+        faces.Add("YPlus", new int[4] { 0, 1, 4, 5 });
+        faces.Add("YMinus", new int[4] { 2, 3, 6, 7 });
+        faces.Add("ZPlus", new int[4] { 0, 1, 2, 3 });
+        faces.Add("ZMinus", new int[4] { 4, 5, 6, 7 });
+
+    }
+
+    //These are to be shaved off if possible
+    public void MoveXPlusFace(float newPos)
     {
         Vector3 currentVPos;
-        int[] arrayPos = new int[4];
-        switch (faceDir)
+
+        for (int i = 0; i < faces["XPlus"].Length; i++)
         {
-            case "x+":
-                arrayPos[0] = 0;
-                arrayPos[1] = 3;
-                arrayPos[2] = 5;
-                arrayPos[3] = 6;
+            currentVPos = data.vertices[faces["XPlus"][i]];
+            currentVPos.x = newPos;
+            data.vertices[faces["XPlus"][i]] = currentVPos;
+        }
+        UpdateMesh();
 
-                for (int i = 0; i < arrayPos.Length; i++)
-                {
-                    currentVPos = data.vertices[arrayPos[i]];
-                    currentVPos.x = newPos;
-                    data.vertices[arrayPos[i]] = currentVPos;
-                }
+    }
 
-                break;
-            case "x-":
-                arrayPos[0] = 1;
-                arrayPos[1] = 2;
-                arrayPos[2] = 4;
-                arrayPos[3] = 7;
+    public void MoveXMinusFace(float newPos)
+    {
+        Vector3 currentVPos;
 
-                for (int i = 0; i < arrayPos.Length; i++)
-                {
-                    currentVPos = data.vertices[arrayPos[i]];
-                    currentVPos.x = newPos;
-                    data.vertices[arrayPos[i]] = currentVPos;
-                }
-                break;
-            case "z+":
-                arrayPos[0] = 0;
-                arrayPos[1] = 1;
-                arrayPos[2] = 2;
-                arrayPos[3] = 3;
+        for (int i = 0; i < faces["XMinus"].Length; i++)
+        {
+            currentVPos = data.vertices[faces["XMinus"][i]];
+            currentVPos.x = newPos;
+            data.vertices[faces["XMinus"][i]] = currentVPos;
+        }
+        UpdateMesh();
 
-                for (int i = 0; i < arrayPos.Length; i++)
-                {
-                    currentVPos = data.vertices[arrayPos[i]];
-                    currentVPos.z = newPos;
-                    data.vertices[arrayPos[i]] = currentVPos;
-                }
-                break;
-            case "z-":
-                arrayPos[0] = 4;
-                arrayPos[1] = 5;
-                arrayPos[2] = 6;
-                arrayPos[3] = 7;
+    }
 
-                for (int i = 0; i < arrayPos.Length; i++)
-                {
-                    currentVPos = data.vertices[arrayPos[i]];
-                    currentVPos.z = newPos;
-                    data.vertices[arrayPos[i]] = currentVPos;
-                }
-                break;
-            case "y+":
-                arrayPos[0] = 0;
-                arrayPos[1] = 1;
-                arrayPos[2] = 4;
-                arrayPos[3] = 5;
+    public void MoveZPlusFace(float newPos)
+    {
+        Vector3 currentVPos;
 
-                for (int i = 0; i < arrayPos.Length; i++)
-                {
-                    currentVPos = data.vertices[arrayPos[i]];
-                    currentVPos.y = newPos;
-                    data.vertices[arrayPos[i]] = currentVPos;
-                }
-                break;
-            case "y-":
-                arrayPos[0] = 2;
-                arrayPos[1] = 3;
-                arrayPos[2] = 6;
-                arrayPos[3] = 7;
+        for (int i = 0; i < faces["ZPlus"].Length; i++)
+        {
+            currentVPos = data.vertices[faces["ZPlus"][i]];
+            currentVPos.x = newPos;
+            data.vertices[faces["ZPlus"][i]] = currentVPos;
+        }
+        UpdateMesh();
 
-                for (int i = 0; i < arrayPos.Length; i++)
-                {
-                    currentVPos = data.vertices[arrayPos[i]];
-                    currentVPos.y = newPos;
-                    data.vertices[arrayPos[i]] = currentVPos;
-                }
-                break;
-            default :
-                Debug.Log("Invalid faceDir string");
-                break;
+    }
+
+    public void MoveZMinusFace(float newPos)
+    {
+        Vector3 currentVPos;
+
+        for (int i = 0; i < faces["ZMinus"].Length; i++)
+        {
+            currentVPos = data.vertices[faces["ZMinus"][i]];
+            currentVPos.x = newPos;
+            data.vertices[faces["ZMinus"][i]] = currentVPos;
+        }
+        UpdateMesh();
+
+    }
+
+    public void MoveyYPlusFace(float newPos)
+    {
+        Vector3 currentVPos;
+
+        for (int i = 0; i < faces["YPlus"].Length; i++)
+        {
+            currentVPos = data.vertices[faces["YPlus"][i]];
+            currentVPos.x = newPos;
+            data.vertices[faces["YPlus"][i]] = currentVPos;
+        }
+        UpdateMesh();
+
+    }
+
+    public void MoveYMinusFace(float newPos)
+    {
+        Vector3 currentVPos;
+
+        for (int i = 0; i < faces["YMinus"].Length; i++)
+        {
+            currentVPos = data.vertices[faces["YMinus"][i]];
+            currentVPos.x = newPos;
+            data.vertices[faces["YMinus"][i]] = currentVPos;
+        }
+        UpdateMesh();
+
+    }
+
+    //A generalized version of the face move functions
+    public void MoveFace(string faceToMove, float newPos)
+    {
+        if((faceToMove != "XPlus") || (faceToMove != "XMinus") || 
+            (faceToMove != "YPlus") || (faceToMove != "YMinus") || 
+            (faceToMove != "ZPlus") || (faceToMove != "ZMinus"))
+        {
+            Debug.LogError("Not a valid face");
         }
 
-        UpdateMesh();
+        else
+        {
+            Vector3 currentVPos;
+
+            for (int i = 0; i < faces[faceToMove].Length; i++)
+            {
+                currentVPos = data.vertices[faces[faceToMove][i]];
+                currentVPos.x = newPos;
+                data.vertices[faces[faceToMove][i]] = currentVPos;
+            }
+            MakeCube();
+            UpdateMesh();
+        }
 
     }
 
