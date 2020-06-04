@@ -7,14 +7,14 @@ public class CubeMeshData
     //holds sample vertices to make cubes with
     public Vector3[] vertices =
     {
-        new Vector3(1, 1, 1),
-        new Vector3(-1, 1, 1),
-        new Vector3(-1, -1, 1),
-        new Vector3(1, -1, 1),
-        new Vector3(-1, 1, -1),
-        new Vector3(1, 1, -1),
-        new Vector3(1, -1, -1),
-        new Vector3(-1, -1, -1)
+        new Vector3(.1f, .1f, .1f),
+        new Vector3(-.1f, .1f, .1f),
+        new Vector3(-.1f, -.1f, .1f),
+        new Vector3(.1f, -.1f, .1f),
+        new Vector3(-.1f, .1f, -.1f),
+        new Vector3(.1f, .1f, -.1f),
+        new Vector3(.1f, -.1f, -.1f),
+        new Vector3(-.1f, -.1f, -.1f)
     };
 
     //present triangles set up for making cube meshes
