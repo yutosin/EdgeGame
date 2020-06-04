@@ -73,9 +73,7 @@ public class ProceduralCube : MonoBehaviour
     //A generalized version of the face move functions
     public void MoveFace(string faceToMove, float newPos)
     {
-        if((faceToMove != "XPlus") && (faceToMove != "XMinus") && 
-            (faceToMove != "YPlus") && (faceToMove != "YMinus") && 
-            (faceToMove != "ZPlus") && (faceToMove != "ZMinus"))
+        if (!faces.ContainsKey(faceToMove))
         {
             Debug.LogError("Not a valid face");
         }
