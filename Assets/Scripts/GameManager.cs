@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     }
 
     public EdgeManager edgeManager;
+    public Camera MainCamera;
     
     // Start is called before the first frame update
     private void Awake()
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
         }
 		
         _sharedInstance = this;
+
+        MainCamera = Camera.main;
     }
 
     // Update is called once per frame

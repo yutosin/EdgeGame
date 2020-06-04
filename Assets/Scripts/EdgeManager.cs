@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: refactor and refine this code
+//TODO: refactor and refine this code, more cause you did some already
+//TODO: figure out render order of faces vs lines and sub-faces vs parent faces
+//TODO: handle points always appearing in front of faces and lines
+//TODO: MAJOR gotta add colliders to all these quads
+//TODO: Point selection limit
 public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
@@ -19,7 +23,7 @@ public class EdgeManager : MonoBehaviour
     
     private List<Vector3> _points;
 
-    private int nextPtID = 0;
+    private int _nextPtID;
 
     private void Start()
     {
@@ -32,10 +36,38 @@ public class EdgeManager : MonoBehaviour
             _cubeObjects.Add(renderer.gameObject);
         }
         
+        CreatePartitionsAndGraphRepresentations();
+        
+        if (combineCubes)
+            CombineCubesInLevel();
+    }
+
+    private void AddCubeVerticesToList(MeshRenderer renderer)
+    {
+        Bounds meshBounds = renderer.bounds;
+        Vector3[] cubeVertices = new Vector3[8];
+        cubeVertices[0] = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
+        cubeVertices[1] = new Vector3(meshBounds.min.x , meshBounds.max.y, meshBounds.max.z);
+        cubeVertices[2] = meshBounds.max;
+        cubeVertices[3] = new Vector3(meshBounds.max.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
+        cubeVertices[4] = new Vector3(cubeVertices[0].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[0].z);
+        cubeVertices[5] = new Vector3(cubeVertices[1].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[1].z);
+        cubeVertices[6] = new Vector3(cubeVertices[2].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[2].z);
+        cubeVertices[7] = new Vector3(cubeVertices[3].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[3].z);
+
+        foreach (Vector3 vertex in cubeVertices)
+        {
+            if(GenerateSelectableVertex(vertex))
+                _points.Add(vertex);
+        }
+    }
+
+    private void CreatePartitionsAndGraphRepresentations()
+    {
         Dictionary<string, List<int>> xAxisPartitions = new Dictionary<string, List<int>>();
         Dictionary<string, List<int>> yAxisPartitions = new Dictionary<string, List<int>>();
         Dictionary<string, List<int>> zAxisPartitions = new Dictionary<string, List<int>>();
-        
+
         for (int i = 0; i < _points.Count; i++)
         {
             Vector3 point = _points[i];
@@ -71,75 +103,44 @@ public class EdgeManager : MonoBehaviour
         _yGraphs = new Dictionary<string, Graph>(yAxisPartitions.Count);
         _zGraphs = new Dictionary<string, Graph>(zAxisPartitions.Count);
         
-        foreach (var xAxisPartition in xAxisPartitions)
-        {
-            List<int> partitionPoints = xAxisPartition.Value;
-            partitionPoints.Sort();
-            Graph xPartitionGraph = new Graph(xAxisPartition.Value.Count, partitionPoints);
-            _xGraphs[xAxisPartition.Key] = xPartitionGraph;
-            
-        }
-        
-        foreach (var yAxisPartition in yAxisPartitions)
-        {
-            List<int> partitionPoints = yAxisPartition.Value;
-            partitionPoints.Sort();
-            Graph yPartitionGraph = new Graph(yAxisPartition.Value.Count, partitionPoints);
-            _yGraphs[yAxisPartition.Key] = yPartitionGraph;
-        }
-        
-        foreach (var zAxisPartition in zAxisPartitions)
-        {
-            List<int> partitionPoints = zAxisPartition.Value;
-            partitionPoints.Sort();
-            Graph zPartitionGraph = new Graph(zAxisPartition.Value.Count, partitionPoints);
-            _zGraphs[zAxisPartition.Key] = zPartitionGraph;
-        }
-        
-        if (combineCubes)
-            CombineCubesInLevel();
+        ConvertPartitionsToGraphs(xAxisPartitions, _xGraphs);
+        ConvertPartitionsToGraphs(yAxisPartitions, _yGraphs);
+        ConvertPartitionsToGraphs(zAxisPartitions, _zGraphs);
     }
 
-    private void AddCubeVerticesToList(MeshRenderer renderer)
+    private void ConvertPartitionsToGraphs(Dictionary<string, List<int>> partitions, Dictionary<string, Graph> graphs)
     {
-        Bounds meshBounds = renderer.bounds;
-        Vector3[] cubeVertices = new Vector3[8];
-        cubeVertices[0] = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
-        cubeVertices[1] = new Vector3(meshBounds.min.x , meshBounds.max.y, meshBounds.max.z);
-        cubeVertices[2] = meshBounds.max;
-        cubeVertices[3] = new Vector3(meshBounds.max.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
-        cubeVertices[4] = new Vector3(cubeVertices[0].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[0].z);
-        cubeVertices[5] = new Vector3(cubeVertices[1].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[1].z);
-        cubeVertices[6] = new Vector3(cubeVertices[2].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[2].z);
-        cubeVertices[7] = new Vector3(cubeVertices[3].x, cubeVertices[0].y - (meshBounds.extents.z * 2), cubeVertices[3].z);
-
-        foreach (Vector3 vertex in cubeVertices)
+        foreach (var partition in partitions)
         {
-            if(GenerateEdgePoint(vertex))
-                _points.Add(vertex);
+            List<int> partitionPoints = partition.Value;
+            partitionPoints.Sort();
+            Graph zPartitionGraph = new Graph(partition.Value.Count, partitionPoints);
+            graphs[partition.Key] = zPartitionGraph;
         }
     }
     
-    public bool GenerateEdgePoint(Vector3 pos)
+    private bool GenerateSelectableVertex(Vector3 pos)
     {
-        foreach (var testPoint in _points)
+        foreach (var point in _points)
         {
-            if (testPoint == pos)
+            if (point == pos)
                 return false;
         }
         
         GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        Destroy(edgePoint.GetComponent<SphereCollider>());
         TestPoint tp = edgePoint.AddComponent<TestPoint>();
-        tp.ptID = "Pt" + nextPtID;
-        tp.listLoc = nextPtID;
-        nextPtID++;
+        tp.ptID = "Pt" + _nextPtID;
+        edgePoint.name = tp.ptID;
+        tp.listLoc = _nextPtID;
+        _nextPtID++;
 
         Renderer rend = edgePoint.GetComponent<Renderer>();
         //rend.material.shader = Shader.Find("Unlit/ColorZAlways");
         rend.enabled = false;
         
         SphereCollider sphereCollider = edgePoint.AddComponent<SphereCollider>();
-        sphereCollider.radius = .15f;
+        sphereCollider.radius = .75f;
         
         edgePoint.transform.position = pos;
         edgePoint.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
@@ -148,11 +149,15 @@ public class EdgeManager : MonoBehaviour
 
         return true;
     }
-
-    /*TODO: Longer edges that overlap multiple points should also create smaller segments e.g. pt1->pt3 would also
-    create pt1->pt2 and pt->pt3*/
-    public void GenerateEdge(Vector3 p1, Vector3 p2, int pt1ID, int pt2ID)
+    
+    //TODO: properly use the addEdge function to make use of the bool and avoid creating edge game object
+    public void GenerateEdge(TestPoint tp1, TestPoint tp2)
     {
+        Vector3 p1 = tp1.transform.position;
+        Vector3 p2 = tp2.transform.position;
+        int pt1ID = tp1.listLoc;
+        int pt2ID = tp2.listLoc;
+
         float xRot = 90;
         float yRot = 0;
         //use the mid point of the two points to position the prefab since the anchor is the center of the quad aka the
@@ -165,30 +170,59 @@ public class EdgeManager : MonoBehaviour
         //line is moving only along the x-axis it's y rot needs to be 90 and when a line is moving along the y-axis only
         //it's y-rot is 90 and it's x-rot is 180. These will be standard values since (for now) we're not rotating the
         //camera.
-        float xDistance = Mathf.Abs(p2.x - p1.x);
-        float yDistance = Mathf.Abs(p2.y - p1.y);
-        float zDistance = Mathf.Abs(p2.z - p1.z);
+        Vector3 distance = p2 - p1;
         float scaleAmount;
         bool xAxisEdge = false, yAxisEdge = false, zAxisEdge = false;
-        if (xDistance > 0)
+        if (Mathf.Abs(distance.x) > 0)
         {
             yRot = 90;
-            scaleAmount = xDistance;
+            scaleAmount = Mathf.Abs(distance.x);
             xAxisEdge = true;
         }
-        else if (yDistance > 0)
+        else if (Mathf.Abs(distance.y) > 0)
         {
             xRot = 180;
             yRot = 90;
-            scaleAmount = yDistance;
+            scaleAmount = Mathf.Abs(distance.y);
             yAxisEdge = true;
         }
         else
         {
-            scaleAmount = zDistance;
+            scaleAmount = Mathf.Abs(distance.z);
             zAxisEdge = true;
         }
 
+        string xGraphKey = p1.x.ToString();
+        string yGraphKey = p1.y.ToString();
+        string zGraphKey = p1.z.ToString();
+        
+        if (xAxisEdge)
+        {
+            EdgeUtil(_yGraphs[yGraphKey], tp1, tp2, scaleAmount);
+            EdgeUtil(_zGraphs[zGraphKey], tp1, tp2, scaleAmount);
+            
+            FaceGenUtil(_yGraphs[yGraphKey]);
+            FaceGenUtil(_zGraphs[zGraphKey]);
+        }
+        else if (yAxisEdge)
+        {
+            EdgeUtil(_xGraphs[xGraphKey], tp1, tp2, scaleAmount);
+            EdgeUtil(_zGraphs[zGraphKey], tp1, tp2, scaleAmount);
+            
+            FaceGenUtil(_xGraphs[xGraphKey]);
+            FaceGenUtil(_zGraphs[zGraphKey]);
+        }
+        else if (zAxisEdge)
+        {
+            EdgeUtil(_xGraphs[xGraphKey], tp1, tp2, scaleAmount);
+            EdgeUtil(_yGraphs[yGraphKey], tp1, tp2, scaleAmount);
+            
+            FaceGenUtil(_xGraphs[xGraphKey]);
+            FaceGenUtil(_yGraphs[yGraphKey]);
+        }
+        
+        /*TODO: optimization idea; check overlap sphere for midpoint, if edge already present (e.g. larger overlapping edge)
+        or just the same edge, don't instantiate*/
         GameObject line =
             Instantiate(linePrefab, midPoint, Quaternion.Euler(xRot, yRot, 0));
         Transform lineTransform = line.transform;
@@ -198,104 +232,136 @@ public class EdgeManager : MonoBehaviour
         lineTransform.localScale = new Vector3(localScale.x, 
             localScale.y * scaleAmount, 
             localScale.z);
+    }
 
-        string xGraphKey = p1.x.ToString();
-        string yGraphKey = p1.y.ToString();
-        string zGraphKey = p1.z.ToString();
+    private void EdgeUtil(Graph graph, TestPoint tp1, TestPoint tp2, float scaleAmount)
+    {
+        var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
         
-        if (xAxisEdge)
+        //FormEdgesFromSubVerts
+        for (int i = 0; i < edgeSubVerts.Count - 1; i++)
         {
-            _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
-            _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
+            graph.addEdge(edgeSubVerts[i], edgeSubVerts[i + 1]);
+        }
+        
+        //TODO: figure out early exit for no edge being drawn
+    }
 
-            var yConnectedComponents = _yGraphs[yGraphKey].connectedComponents();
-            var zConnectedComponents = _zGraphs[zGraphKey].connectedComponents();
+    private List<int> FindEdgeSubVertices(TestPoint p1, TestPoint p2, float scaleAmount)
+    {
+        List<int> subEdgeVertices = new List<int>();
+        subEdgeVertices.Add(p1.listLoc);
+        Vector3 pt1 = p1.transform.position;
+        Vector3 pt2 = p2.transform.position;
+        Vector3 distance = (pt2 - pt1).normalized;
 
-            foreach (var faceVertices in yConnectedComponents)
+        for (int i = 1; i < scaleAmount; i++)
+        {
+            Vector3 overlapPos = new Vector3(pt1.x + (1 * distance.x * i), 
+                pt1.y + (1 * distance.y * i), 
+                pt1.z + (1 * distance.z * i));
+
+            Collider[] hitCollider = Physics.OverlapSphere(overlapPos, .25f);
+            foreach (Collider collider in hitCollider)
             {
-                //Vector3[] vertexVectors = new Vector3[4];
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
+                TestPoint tp = collider.gameObject.GetComponent<TestPoint>();
+                if (tp)
                 {
-                    vertexVectors.Add(_points[vertex]);
+                    subEdgeVertices.Add(tp.listLoc);
+                    break;
                 }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
-            
-            foreach (var faceVertices in zConnectedComponents)
-            {
-                //Vector3[] vertexVectors = new Vector3[4];
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
             }
         }
-        else if (yAxisEdge)
+        
+        subEdgeVertices.Add(p2.listLoc);
+        return subEdgeVertices;
+    }
+
+    private void FaceGenUtil(Graph graph)
+    {
+        var graphFaces = graph.FindFaces();
+
+        foreach (var faceVertices in graphFaces)
         {
-            _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
-            _zGraphs[zGraphKey].addEdge(pt1ID, pt2ID);
-            
-            var xConnectedComponents = _xGraphs[xGraphKey].connectedComponents();
-            var zConnectedComponents = _zGraphs[zGraphKey].connectedComponents();
-            
-            foreach (var faceVertices in xConnectedComponents)
+            faceVertices.Add(faceVertices[0]);
+            List<Vector3> vertexVectors = new List<Vector3>(4);
+            List<int> vertexIds = new List<int>(4);
+            Vector3 startHeading = _points[faceVertices[1]] - _points[faceVertices[0]];
+            float startHeadingMagnitude = startHeading.magnitude;
+            Vector3 direction = startHeading / startHeadingMagnitude;
+            for (int i = 0; i < faceVertices.Count - 1; i++)
             {
-                //Vector3[] vertexVectors = new Vector3[4];
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
+                Vector3 heading = _points[faceVertices[i + 1]] - _points[faceVertices[i]];
+                float headingMagnitude = heading.magnitude;
+                Vector3 tempDirection = heading / headingMagnitude;
+
+                if (tempDirection != direction)
                 {
-                    vertexVectors.Add(_points[vertex]);
+                    vertexIds.Add(faceVertices[i]);
+                    direction = tempDirection;
                 }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+            }
+            faceVertices.RemoveAt(faceVertices.Count - 1);
+            if (vertexIds.Count == 3)
+                vertexIds.Insert(0, faceVertices[0]);
+            else if (vertexIds.Count > 4)
+                continue;
+
+            foreach (var vertexId in vertexIds)
+            {
+                vertexVectors.Add(_points[vertexId]);
             }
             
-            foreach (var faceVertices in zConnectedComponents)
-            {
-                //Vector3[] vertexVectors = new Vector3[4];
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
+            SortVerticesForQuad(ref vertexVectors);
+            
+            GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
         }
-        else if (zAxisEdge)
+    }
+    
+    private void SortVerticesForQuad(ref List<Vector3> vertices)
+    {
+        float centroidX = (vertices[0].x + vertices[1].x + vertices[2].x + vertices[3].x) / 4;
+        float centroidY = (vertices[0].y + vertices[1].y + vertices[2].y + vertices[3].y) / 4;
+        float centroidZ = (vertices[0].z + vertices[1].z + vertices[2].z + vertices[3].z) / 4;
+        Vector3 centroid = new Vector3(centroidX, centroidY, centroidZ);
+        
+        Vector3 axis = Vector3.zero;
+        
+        if (centroidX == vertices[0].x)
+            axis = Vector3.right;
+        else if (centroidY == vertices[0].y)
+            axis = Vector3.up;
+        else
+            axis = Vector3.forward;
+        
+        float[] angles = new float[4];
+
+        for (int i = 0; i < vertices.Count; i++)
         {
-            _xGraphs[xGraphKey].addEdge(pt1ID, pt2ID);
-            _yGraphs[yGraphKey].addEdge(pt1ID, pt2ID);
-            
-            var xConnectedComponents = _xGraphs[xGraphKey].connectedComponents();
-            var yConnectedComponents = _yGraphs[yGraphKey].connectedComponents();
-            
-            foreach (var faceVertices in xConnectedComponents)
+            Vector3 offset = vertices[i] - centroid;
+            float angle = Vector3.SignedAngle(centroid, offset, axis);
+            angles[i] = angle;
+        }
+        
+        for (int i = 0; i < angles.Length - 1; ++i)
+        {
+            for (int j = 0; j < angles.Length - i - 1; ++j)
             {
-                //Vector3[] vertexVectors = new Vector3[4];
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
+                if (angles[j] < angles[j + 1])
                 {
-                    vertexVectors.Add(_points[vertex]);
+                    Vector3 temp = vertices[j];
+                    vertices[j] = vertices[j + 1];
+                    vertices[j + 1] = temp;
+                    
+                    float tempAngle = angles[j];
+                    angles[j] = angles[j + 1];
+                    angles[j + 1] = tempAngle;
                 }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-            }
-            
-            foreach (var faceVertices in yConnectedComponents)
-            {
-                //Vector3[] vertexVectors = new Vector3[4];
-                List<Vector3> vertexVectors = new List<Vector3>(4);
-                foreach (var vertex in faceVertices)
-                {
-                    vertexVectors.Add(_points[vertex]);
-                }
-                GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
             }
         }
     }
     
-    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices, bool flipFirstPair = true)
+    private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices)
     {
         GameObject newQuad = new GameObject();
         gameObject.transform.parent = gameObject.transform;
@@ -306,16 +372,8 @@ public class EdgeManager : MonoBehaviour
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
 
         Mesh mesh = new Mesh();
-
-        if (flipFirstPair)
-        {
-            //Vector3[] flipped = new[] {quadVertices[1], quadVertices[0], quadVertices[2], quadVertices[3]};
-            //TODO: figure out why this order works!! you flipped the first two then reversed the whole array..why?
-            Vector3[] flipped = new[] {quadVertices[3], quadVertices[2], quadVertices[0], quadVertices[1]};
-            mesh.vertices = flipped;
-        }
-        else
-            mesh.vertices = quadVertices;
+        
+        mesh.vertices = quadVertices;
 
         Vector2[] uv = new Vector2[4]
         {
@@ -337,16 +395,18 @@ public class EdgeManager : MonoBehaviour
         newQuad.transform.parent = anchorPoint.transform;
         
         Vector3[] normals = mesh.normals;
-        //Vector3[] newNormals = new Vector3[4];
         if (normals[0] == Vector3.back)
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
         else if (normals[0] == Vector3.down)
             anchorPoint.transform.rotation = Quaternion.Euler(0, 0, 180);
         else if (normals[0] == Vector3.left)
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
-
-        //mesh.normals = newNormals;
+        
         meshFilter.mesh = mesh;
+        
+        //Might not even need colliders on these...but if we do probably should just use box collider
+        // MeshCollider collider = newQuad.AddComponent<MeshCollider>();
+        // collider.sharedMesh = mesh;
     }
 
     private void CombineCubesInLevel()
@@ -383,6 +443,11 @@ public class EdgeManager : MonoBehaviour
         levelMeshFileter.mesh.RecalculateNormals();
         levelMeshFileter.mesh.Optimize();
         cubeHolder.SetActive(true);
+
+        MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
+        cubeColl.sharedMesh = levelMeshFileter.mesh;
+        // cubeColl.convex = true;
+        // cubeColl.isTrigger = true;
     }
     private string GenerateEdgeID(string pt1ID, string pt2ID)
     {

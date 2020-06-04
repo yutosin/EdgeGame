@@ -2,176 +2,228 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-
+//TODO: once again have to handle repeat faces not being generated; prolly easy but i'm tired
+//To above: kinda handled this; now need to handle...breaking large face into subfaces and deleting the big face??
 public class Graph
 {
     // A user define class to represent a graph. 
-    // A graph is an array of adjacency lists. 
-    // Size of array will be V (number of vertices 
+    // A graph is an array of connected vertices lists. 
+    // Size of array will be numVertices (number of vertices 
     // in graph) 
-    int V;
-    List<int>[] adjListArray;
+    int numVertices;
+    List<int>[] connectedListArray;
     private List<int> _pointIds; //used to map graph ids to ids from points in world space
     //used to map pt ids to graph ids, specifically when generating an edge and pt ids are the only available id to pass into graph
     private Dictionary<int, int> _graphIdLookup;
-
-    // constructor 
-    public Graph(int V)
-    {
-        this.V = V;
-
-        // define the size of array as 
-        // number of vertices 
-        adjListArray = new List<int>[V];
-
-        // Create a new list for each vertex 
-        // such that adjacent nodes can be stored 
-
-        for (int i = 0; i < V; i++)
-        {
-            adjListArray[i] = new List<int>();
-        }
-    }
+    private List<int> _createdFaceIds;
+    private List<List<int>> _faces;
     
-    public Graph(int V, List<int> ids)
+    //Data structures for Johnson's Algorithm Implement
+    private Stack<int> _cycleStack;
+    private HashSet<int> _blocked;
+    private Dictionary<int, HashSet<int>> _bSets;
+    private List<List<int>> _cycles;
+    
+    // constructor 
+    public Graph(int numVertices, List<int> ids)
     {
-        this.V = V;
+        this.numVertices = numVertices;
         _graphIdLookup = new Dictionary<int, int>(ids.Count);
         _pointIds = ids;
 
         // define the size of array as 
         // number of vertices 
-        adjListArray = new List<int>[V];
+        connectedListArray = new List<int>[numVertices];
+
+        _createdFaceIds = new List<int>();
+        _faces = new List<List<int>>();
+        
+        _cycleStack = new Stack<int>();
+        _blocked = new HashSet<int>();
+        _bSets = new Dictionary<int, HashSet<int>>();
+        _cycles = new List<List<int>>();
 
         // Create a new list for each vertex 
-        // such that adjacent nodes can be stored 
-
-        for (int i = 0; i < V; i++)
+        // such that connected nodes can be stored 
+        for (int i = 0; i < numVertices; i++)
         {
-            adjListArray[i] = new List<int>();
+            //since ids are sorted before add them, we basically map the world space vertex id to the 0 based index graphs
+            //use so that all the operations are easier to deal with
+            connectedListArray[i] = new List<int>();
             _graphIdLookup[ids[i]] = i;
         }
     }
-
-    //TODO: don't add duplicate edges
+    
     // Adds an edge to an undirected graph 
-    public void addEdge(int src, int dest)
+    public bool addEdge(int src, int dest, bool isSubEdge = false)
     {
+        //pts in "world space" have no knowledge of a graphs internal vertex indexing system and pass in the world space
+        //ids; we need to convert those ids to graph ids with our lookup table
         int convertedSrc = _graphIdLookup[src];
         int convertedDest= _graphIdLookup[dest];
         
-        // Add an edge from src to dest. 
-        adjListArray[convertedSrc].Add(convertedDest);
+        var srcConnectedList = connectedListArray[convertedSrc];
+        var destConnectedList = connectedListArray[convertedDest];
+
+        if (srcConnectedList.Contains(convertedDest) || destConnectedList.Contains(convertedSrc)) //prevent duplicate edges
+            return false;
+        
+        // Add an edge from src to dest.
+        srcConnectedList.Add(convertedDest);
 
         // Since graph is undirected, add an edge from dest 
-        // to src also 
-        adjListArray[convertedDest].Add(convertedSrc);
+        // to src also
+        destConnectedList.Add(convertedSrc);
+
+        findCycleUtil(convertedSrc);
+        
+        if (connectedListArray[convertedDest].Count > 2)
+            findCycleUtil(convertedDest);
+        
+        DefineFaces();
+        
+        ClearState();
+        
+        return true;
     }
 
-    bool DFSUtil(int firstV, int v, bool[] visited, List<int> facePoints, bool validFace)
+    private void findCycleUtil(int startIndex)
     {
-        // Mark the current node as visited and print it 
-        visited[v] = true;
-        var vertexAdjList = adjListArray[v];
-        if (vertexAdjList.Count >= 2)
-            facePoints.Add(_pointIds[v]);
-        //Debug.Log(v + " | ");
-
-        // Recur for all the vertices 
-        // adjacent to this vertex 
-        foreach (int x in vertexAdjList)
+        foreach (var x in connectedListArray[startIndex])
         {
-            if (!visited[x])
-                DFSUtil(firstV,x, visited, facePoints, validFace);
-            if (facePoints.Count >= 4 && x == firstV)
-                validFace = true;
+            _blocked.Remove(x);
+            GetVertexBSet(x).Clear();
         }
-
-        return validFace;
+        
+        findCyclesFromVertex(startIndex, startIndex, -1);
+        
+        foreach (var cycle in _cycles)
+        {
+            string cycleString = "";
+            foreach (var vertex in cycle)
+            {
+                cycleString += vertex + " ";
+            }
+            Debug.Log(cycleString);
+        }
+        
+        
     }
 
-    private bool BFFaceFinder(int v, bool[] graphVisited, int firstV, List<int> facePoints, bool[] inFace)
+    private void ClearState()
     {
-        List<int> bfQueue = new List<int>(); //using as a queue
-
-        bfQueue.Add(v);
-        while (bfQueue.Count > 0)
-        {
-            int vertex = bfQueue[0];
-            bfQueue.RemoveAt(0);
-            var subVertexAdjList = adjListArray[vertex];
-            if (subVertexAdjList.Count < 2)
-            {
-                graphVisited[vertex] = true;
-                return false;
-            }
-            
-            if (subVertexAdjList.Count > 2)
-            {
-                facePoints.Add(_pointIds[vertex]);
-            }
-            else
-            {
-                graphVisited[vertex] = true;
-                facePoints.Add(_pointIds[vertex]);
-            }
-
-            foreach (int x in subVertexAdjList)
-            {
-                if (x == firstV)
-                    continue;
-                if (adjListArray[x].Count < 2)
-                {
-                    graphVisited[x] = true;
-                    continue;
-                }
-                if (graphVisited[x])
-                    continue;
-                
-                if (adjListArray[x].Count >= 2)
-                {
-                    if (bfQueue.Contains(x))
-                    {
-                        facePoints.Add(_pointIds[x]);
-                        graphVisited[x] = adjListArray[x].Count == 2;
-                        return true;
-                    }
-
-                    bfQueue.Add(x);
-                }
-
-                // if (graphVisited[x] && bfQueue.Contains(x))
-                // {
-                //     return true;
-                // }
-            }
-        }
-
-        return false;
+        _blocked.Clear();
+        _cycleStack.Clear();
+        _bSets.Clear();
+        _cycles.Clear();
     }
     
-    //TODO: Don't return duplicates or just dont generate faces w/same points, whichever is easier
-    public List<List<int>> connectedComponents()
+    private void UnblockVertex(int vertex)
     {
-        // Mark all the vertices as not visited 
-        bool[] visited = new bool[V];
-        bool[] inFace = new bool[V];
-        List<List<int>> validFaces = new List<List<int>>();
-        for (int v = 0; v < V; ++v)
+        _blocked.Remove(vertex);
+        var bSet = GetVertexBSet(vertex);
+        foreach (int blockedVert in bSet)
         {
-            if (!visited[v])
+            if (_blocked.Contains(blockedVert))
+                UnblockVertex(blockedVert);
+        }
+        bSet.Clear();
+    }
+
+    private HashSet<int> GetVertexBSet(int vertex)
+    {
+        if (_bSets.TryGetValue(vertex, out HashSet<int> bSet))
+        {
+            return bSet;
+        }
+
+        _bSets.Add(vertex, new HashSet<int>());
+        return _bSets[vertex];
+    }
+
+    private bool findCyclesFromVertex(int startIndex, int vertexIndex, int parentIndex)
+    {
+        bool foundCycle = false;
+        List<int> connectedList = connectedListArray[vertexIndex];
+        if (connectedList.Count < 2)
+            return false;
+        _cycleStack.Push(vertexIndex);
+        _blocked.Add(vertexIndex);
+
+        // List<int> connectedList = connectedListArray[vertexIndex];
+        // if (connectedList.Count < 2)
+        //     return false;
+
+        foreach (int x in connectedList)
+        {
+            if (x == startIndex && x != parentIndex)
             {
-                List<int> facePoints = new List<int>(4);
-                // print all reachable vertices 
-                // from v 
-                //DFSUtil(v, v, visited, facePoints, false);
-                bool validFace = BFFaceFinder(v, visited, v, facePoints, inFace);
-                //Debug.Log("");
-                if (facePoints.Count == 4 && validFace)
-                    validFaces.Add(facePoints);
+                List<int> cycle = new List<int>(_cycleStack);
+                _cycles.Add(cycle);
+                foundCycle = true;
+            }
+            else if (!_blocked.Contains(x))
+            {
+                bool gotCycle = findCyclesFromVertex(startIndex, x, vertexIndex);
+                foundCycle = foundCycle || gotCycle;
             }
         }
 
-        return validFaces;
+        if (foundCycle)
+        {
+            UnblockVertex(vertexIndex);
+        }
+        else
+        {
+            foreach (int x in connectedList)
+            {
+                GetVertexBSet(x).Add(vertexIndex);
+            }
+        }
+
+        _cycleStack.Pop();
+        return foundCycle;
+    }
+    
+    private void DefineFaces()
+    {
+        foreach (var cycle in _cycles)
+        {
+            List<int> face = new List<int>(4);
+            int idSum = 0;
+            foreach (var vertex in cycle)
+            {
+                face.Add(_pointIds[vertex]);
+                idSum += vertex;
+            }
+            if (_createdFaceIds.Contains(idSum))
+                continue;
+            _createdFaceIds.Add(idSum);
+            //face.Sort(); //don't sort; need to maintain the path order to properly determine corner vertices
+            _faces.Add(face);
+        }
+    }
+
+    public List<List<int>> FindFaces()
+    {
+        //Leving this around cause i might use the logic to handle sub-face vs large face issue
+        // foreach (var cycle in _cycles)
+        // {
+        //     List<int> face = new List<int>(4);
+        //     int idSum = 0;
+        //     foreach (var vertex in cycle)
+        //     {
+        //         face.Add(_pointIds[vertex]);
+        //         idSum += vertex;
+        //     }
+        //     if (_createdFaceIds.Contains(idSum))
+        //         continue;
+        //     _createdFaceIds.Add(idSum);
+        //     _faces.Add(face);
+        // }
+        var faceCopy = new List<List<int>>(_faces);
+        _faces.Clear();
+        
+        return faceCopy;
     }
 }
