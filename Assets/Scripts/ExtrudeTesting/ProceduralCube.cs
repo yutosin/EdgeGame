@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class ProceduralCube : MonoBehaviour
 {
+    [HideInInspector]
     public CubeMeshData data = new CubeMeshData();
     Dictionary<string, int[]> faces = new Dictionary<string, int[]>();
     Mesh mesh;
@@ -46,17 +47,17 @@ public class ProceduralCube : MonoBehaviour
         //This set of if statements is so that verts don't overlap and look uggo
         if ((coords[0].x == coords[1].x) && (coords[0].x == coords[2].x) && (coords[0].x == coords[3].x))
         {
-            adjust = coords[0].x + 0.1f;
+            adjust = coords[0].x + 0.01f;
             MoveFace("XPlus", adjust);
         }
         else if ((coords[0].y == coords[1].y) && (coords[0].y == coords[2].y) && (coords[0].y == coords[3].y))
         {
-            adjust = coords[0].z + 0.1f;
+            adjust = coords[0].z + 0.01f;
             MoveFace("ZPlus", adjust);
         }
         else
         {
-            adjust = coords[0].z + 0.1f;
+            adjust = coords[0].z + 0.01f;
             MoveFace("ZPlus", adjust);
         }
     }
