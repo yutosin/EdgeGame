@@ -4,6 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - defaultMaterial: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
   - cubePrefab: {fileID: 512152652540868823, guid: ea3412cd10f708948afcf35aa69fe2c1,
       type: 3}
   executionOrder: 0
