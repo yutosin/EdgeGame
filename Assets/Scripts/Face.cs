@@ -23,5 +23,6 @@ public class Face : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Face Id: " + FaceId);
+        GameManager.SharedInstance.CubeSpawnHolder.CreateACube(Vertices, null);
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     }
 
     public EdgeManager edgeManager;
+    public CubeSpawnHolder CubeSpawnHolder;
     public Camera MainCamera;
     
     // Start is called before the first frame update
