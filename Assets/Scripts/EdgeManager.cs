@@ -23,7 +23,8 @@ public class EdgeManager : MonoBehaviour
     
     private List<Vector3> _points;
 
-    private int _nextPtID;
+    private int _nextPtId;
+    private int _nextFaceId;
 
     private void Start()
     {
@@ -130,10 +131,10 @@ public class EdgeManager : MonoBehaviour
         GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Destroy(edgePoint.GetComponent<SphereCollider>());
         TestPoint tp = edgePoint.AddComponent<TestPoint>();
-        tp.ptID = "Pt" + _nextPtID;
+        tp.ptID = "Pt" + _nextPtId;
         edgePoint.name = tp.ptID;
-        tp.listLoc = _nextPtID;
-        _nextPtID++;
+        tp.listLoc = _nextPtId;
+        _nextPtId++;
 
         Renderer rend = edgePoint.GetComponent<Renderer>();
         //rend.material.shader = Shader.Find("Unlit/ColorZAlways");
@@ -364,6 +365,13 @@ public class EdgeManager : MonoBehaviour
     private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices)
     {
         GameObject newQuad = new GameObject();
+        Face face = newQuad.AddComponent<Face>();
+        face.Vertices = quadVertices;
+        face.FaceId = _nextFaceId;
+        newQuad.name = "Face " + _nextFaceId;
+        _nextFaceId++;
+        
+        
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -403,10 +411,9 @@ public class EdgeManager : MonoBehaviour
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
         
         meshFilter.mesh = mesh;
-        
+
         //Might not even need colliders on these...but if we do probably should just use box collider
-        // MeshCollider collider = newQuad.AddComponent<MeshCollider>();
-        // collider.sharedMesh = mesh;
+        BoxCollider collider = newQuad.AddComponent<BoxCollider>();
     }
 
     private void CombineCubesInLevel()
