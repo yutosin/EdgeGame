@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //TODO: refactor and refine this code, more cause you did some already
 //TODO: figure out render order of faces vs lines and sub-faces vs parent faces
@@ -12,6 +13,8 @@ public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject verticesHolder;
+    [SerializeField] private GameObject facesHolder;
+    [SerializeField] private GameObject combinedLevel;
     [SerializeField] private MeshRenderer[] cubeRenderers;
     [SerializeField] private bool combineCubes;
     
@@ -19,16 +22,21 @@ public class EdgeManager : MonoBehaviour
     private Dictionary<string, Graph> _yGraphs;
     private Dictionary<string, Graph> _zGraphs;
 
+    private NavMeshSurface _meshSurface;
+    private bool _navMeshBuilt = false;
+
     private List<GameObject> _cubeObjects;
     
     private List<Vector3> _points;
 
     private int _nextPtID;
+    private int _nextFaceId;
 
     private void Start()
     {
         _points = new List<Vector3>(cubeRenderers.Length * 8);
         _cubeObjects = new List<GameObject>(cubeRenderers.Length);
+        _meshSurface = facesHolder.GetComponent<NavMeshSurface>();
 
         foreach (var renderer in cubeRenderers)
         {
@@ -315,6 +323,14 @@ public class EdgeManager : MonoBehaviour
             SortVerticesForQuad(ref vertexVectors);
             
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+
+            if (!_navMeshBuilt)
+            {
+                _meshSurface.BuildNavMesh();
+                _navMeshBuilt = true;
+            }
+            else
+                _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
         }
     }
     
@@ -364,6 +380,10 @@ public class EdgeManager : MonoBehaviour
     private void GenerateQuadWithQuadMeshTop(Vector3[] quadVertices)
     {
         GameObject newQuad = new GameObject();
+        Face face = newQuad.AddComponent<Face>();
+        newQuad.name = "Face " + _nextFaceId;
+        _nextFaceId++;
+
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -393,6 +413,7 @@ public class EdgeManager : MonoBehaviour
         GameObject anchorPoint = new GameObject();
         anchorPoint.transform.position = mesh.bounds.center;
         newQuad.transform.parent = anchorPoint.transform;
+        anchorPoint.transform.parent = facesHolder.transform;
         
         Vector3[] normals = mesh.normals;
         if (normals[0] == Vector3.back)
@@ -405,8 +426,7 @@ public class EdgeManager : MonoBehaviour
         meshFilter.mesh = mesh;
         
         //Might not even need colliders on these...but if we do probably should just use box collider
-        // MeshCollider collider = newQuad.AddComponent<MeshCollider>();
-        // collider.sharedMesh = mesh;
+        BoxCollider collider = newQuad.AddComponent<BoxCollider>();
     }
 
     private void CombineCubesInLevel()
@@ -446,6 +466,11 @@ public class EdgeManager : MonoBehaviour
 
         MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
         cubeColl.sharedMesh = levelMeshFileter.mesh;
+
+        // NavMeshSurface surface = cubeHolder.AddComponent<NavMeshSurface>();
+        // surface.BuildNavMesh();
+        //
+        // combinedLevel = cubeHolder;
         // cubeColl.convex = true;
         // cubeColl.isTrigger = true;
     }
