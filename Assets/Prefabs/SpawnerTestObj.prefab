@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6155576191848113894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6155576191848113895}
+  - component: {fileID: 6155576191848113892}
+  m_Layer: 0
+  m_Name: SpawnerTestObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6155576191848113895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6155576191848113894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6155576191848113892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6155576191848113894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdee445926580f48ade72896646bd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cSpawn: {fileID: 0}
+  panelObj: {fileID: 0}
+  buttonSpacing: 20
+  buttonList:
+  - thisButtonObj: {fileID: 819187423129617764, guid: 9af7f6f2478c82d448f23141b3e31fdb,
+      type: 3}
+    material: {fileID: 2100000, guid: e809395bf9c25b7458e3f1734f88066a, type: 2}
+    uses: 1
+    useThisLevel: 1
+  - thisButtonObj: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
+      type: 3}
+    material: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
+    uses: 1
+    useThisLevel: 1
+  - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
+      type: 3}
+    material: {fileID: 2100000, guid: 817bc4fec698d8b42a82197be537c709, type: 2}
+    uses: 1
+    useThisLevel: 1
