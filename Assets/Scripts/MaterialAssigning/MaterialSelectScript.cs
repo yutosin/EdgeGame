@@ -130,7 +130,7 @@ public class MaterialSelectScript : MonoBehaviour
                 button.interactable = true;
                 button.onClick.AddListener(buttonList[i].CreateProceduralCube);
                 
-                Debug.Log("Xpos is " + buttonX.ToString() + " and YPos is " + buttonY.ToString());
+                //Debug.Log("Xpos is " + buttonX.ToString() + " and YPos is " + buttonY.ToString());
 
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, buttonY);
 

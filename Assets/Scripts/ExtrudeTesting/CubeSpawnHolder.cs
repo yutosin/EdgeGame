@@ -33,6 +33,7 @@ public class CubeSpawnHolder : MonoBehaviour
     private void Start()
     {
         //This was just to test out assigning of materials
+
         //CreateACube(initalPos, defaultMaterial);
     }
 
