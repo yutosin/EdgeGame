@@ -32,13 +32,6 @@ public class MaterialSelectScript : MonoBehaviour
 
             set { buttonText = value; }
         }
-        private int listPos;
-        public int ListPos
-        {
-            get { return (listPos); }
-
-            set { listPos = value; }
-        }
         private CubeSpawnHolder cSpawn;
         public CubeSpawnHolder CSpawn
         {
@@ -54,12 +47,6 @@ public class MaterialSelectScript : MonoBehaviour
             set { holdingPanel = value; }
         }
 
-        /// <WHYWONTYOUASSIGN>
-        /// 
-        /// For some reason this function is not attaching when spawning buttons don't know why
-        /// See last line in AssignUnSetVariables, that is prob issue
-        /// 
-        /// </WHYGODWHY>
         public void CreateProceduralCube()
         {
             this.uses--;
@@ -105,10 +92,8 @@ public class MaterialSelectScript : MonoBehaviour
             button.ThisButton = button.thisButtonObj.GetComponent<Button>();
             button.ButtonText = button.ThisButton.GetComponentInChildren<Text>();
             button.HoldingPanel = panelObj;
-            button.ListPos = i;
             button.CSpawn = cSpawn;
             button.ButtonText.text = button.uses.ToString();
-            button.ThisButton.onClick.AddListener(button.CreateProceduralCube);
         }
     }
 
@@ -136,9 +121,14 @@ public class MaterialSelectScript : MonoBehaviour
                     buttonPos.x = buttonSpacing * 2;
                     buttonPos.y -= buttonSpacing;
                 }
-                GameObject newButton = Instantiate(buttonList[i].thisButtonObj) as GameObject;
-                newButton.transform.SetParent(panelObj.transform, true);
-                newButton.transform.position = buttonPos;
+                GameObject buttonObj = Instantiate(buttonList[i].thisButtonObj) as GameObject;
+                buttonObj.transform.SetParent(panelSpace.transform, true);
+                Button button = buttonObj.GetComponent<Button>();
+                buttonList[i].ThisButton = button;
+                button.interactable = true;
+                button.onClick.AddListener(buttonList[i].CreateProceduralCube);
+                button.transform.position = buttonPos;
+
                 buttonPos.x += buttonSpacing;
             }
         }
