@@ -111,25 +111,30 @@ public class MaterialSelectScript : MonoBehaviour
         float buttonY = panelSpace.sizeDelta.y - buttonSpacing;
         float xMax = panelSpace.sizeDelta.x - buttonSpacing;
 
-        Vector3 buttonPos = new Vector3(buttonX, buttonY);
         for (int i = 0; i < buttonList.Count; i++)
         {
-            if (buttonList[i].useThisLevel)
+            if (buttonList[i].useThisLevel == true)
             {
-                if(buttonPos.x > xMax)
+                if(buttonX > xMax)
                 {
-                    buttonPos.x = buttonSpacing * 2;
-                    buttonPos.y -= buttonSpacing;
+                    buttonX = buttonSpacing;
+                    buttonY -= buttonSpacing;
+                    
                 }
                 GameObject buttonObj = Instantiate(buttonList[i].thisButtonObj) as GameObject;
                 buttonObj.transform.SetParent(panelSpace.transform, true);
+                buttonObj.transform.localPosition = Vector3.zero;
+
                 Button button = buttonObj.GetComponent<Button>();
                 buttonList[i].ThisButton = button;
                 button.interactable = true;
                 button.onClick.AddListener(buttonList[i].CreateProceduralCube);
-                button.transform.position = buttonPos;
+                
+                Debug.Log("Xpos is " + buttonX.ToString() + " and YPos is " + buttonY.ToString());
 
-                buttonPos.x += buttonSpacing;
+                button.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, buttonY);
+
+                buttonX += buttonSpacing;
             }
         }
 
