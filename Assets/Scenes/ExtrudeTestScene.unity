@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 217905723}
   - component: {fileID: 217905722}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: CubeSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,11 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39cfe4901e7fda44896146a77f6d989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
-  cubes: []
-  cScripts: []
+  whatMaterial: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
   cubePrefab: {fileID: 512152652540868823, guid: ea3412cd10f708948afcf35aa69fe2c1,
     type: 3}
+  cubes: []
+  cScripts: []
 --- !u!4 &217905723
 Transform:
   m_ObjectHideFlags: 0
@@ -552,17 +552,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdee445926580f48ade72896646bd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cSpawn: {fileID: 217905722}
   panelObj: {fileID: 1393746293}
-  panelSpace: {fileID: 1393746294}
+  buttonSpacing: 20
   buttonList:
-  - button: {fileID: 819187423129617762, guid: 9af7f6f2478c82d448f23141b3e31fdb, type: 3}
+  - thisButtonObj: {fileID: 819187423129617764, guid: 9af7f6f2478c82d448f23141b3e31fdb,
+      type: 3}
     material: {fileID: 2100000, guid: e809395bf9c25b7458e3f1734f88066a, type: 2}
-  - button: {fileID: 2614566209249075194, guid: 5eb20b41c2936b643a8f8093f206e118,
+    uses: 1
+    useThisLevel: 1
+  - thisButtonObj: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
       type: 3}
     material: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
-  - button: {fileID: 8935180680838505055, guid: 9e6b80664b040074ca4343ce3bbbee4a,
+    uses: 1
+    useThisLevel: 1
+  - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
       type: 3}
     material: {fileID: 2100000, guid: 817bc4fec698d8b42a82197be537c709, type: 2}
+    uses: 1
+    useThisLevel: 1
 --- !u!1 &1393746293
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,10 +603,10 @@ RectTransform:
   m_Father: {fileID: 1036045996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -400, y: -400}
+  m_SizeDelta: {x: 1520, y: 680}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393746295
 MonoBehaviour:
