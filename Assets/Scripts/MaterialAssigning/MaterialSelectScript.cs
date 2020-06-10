@@ -11,6 +11,7 @@ public class MaterialSelectScript : MonoBehaviour
     [System.Serializable]
     public class MaterialButtons
     {
+        //Methods are so that they do not serialize and take up unnecessary space in inspector
         public GameObject thisButtonObj;
         private Button thisButton;
         public Button ThisButton
@@ -47,6 +48,7 @@ public class MaterialSelectScript : MonoBehaviour
             set { holdingPanel = value; }
         }
 
+        //This get assigned to OnClick when buttons spawn, but the updating of text seems to not be working
         public void CreateProceduralCube()
         {
             this.uses--;
@@ -62,17 +64,17 @@ public class MaterialSelectScript : MonoBehaviour
 
     }
 
-    public CubeSpawnHolder cSpawn;
+    public CubeSpawnHolder cSpawn;//So buttons can spawn cubes
     public GameObject panelObj;
     private RectTransform panelSpace;
-    public float buttonSpacing;
-    public List<MaterialButtons> buttonList;
+    public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
+    public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
     
 
     private void Awake()
     {
-        panelSpace = panelObj.GetComponent<RectTransform>();
-        AssignUnSetVariables();
+        panelSpace = panelObj.GetComponent<RectTransform>();//I didn't like setting it manually in the inspector
+        AssignUnSetVariables();//Got to make sure variables reliant on other variables actually get set
         SetButtonPositions();
     }
 
@@ -88,19 +90,16 @@ public class MaterialSelectScript : MonoBehaviour
     {
         for (int i = 0; i < buttonList.Count; i++)
         {
-            MaterialButtons button = buttonList[i];
-            button.ThisButton = button.thisButtonObj.GetComponent<Button>();
+            MaterialButtons button = buttonList[i]; //making this iteration the button variable is just easier to read
+            button.ThisButton = button.thisButtonObj.GetComponent<Button>(); //gets the actual button component to set interactible
             button.ButtonText = button.ThisButton.GetComponentInChildren<Text>();
-            button.HoldingPanel = panelObj;
-            button.CSpawn = cSpawn;
+            button.HoldingPanel = panelObj;//this is needed so that the function can hide the panel the button is nested in
+            button.CSpawn = cSpawn;//this is so that the function can spawn cubes
             button.ButtonText.text = button.uses.ToString();
         }
     }
 
-    //Wanted to have a function to dynamically place and space buttons used in this level
-    //!!!!!!!!!!!
-    //For some reason transform is still not relative to panel, need to look into this
-    //!!!!!!!!!!!
+    //Sets positions dynamically
     private void SetButtonPositions()
     {
         //This accounts for the size of the buttons in case we adjust button sizes
@@ -113,31 +112,29 @@ public class MaterialSelectScript : MonoBehaviour
 
         for (int i = 0; i < buttonList.Count; i++)
         {
+            //So that only selected buttons are instantiated
             if (buttonList[i].useThisLevel == true)
             {
+                //When it runs out of horispace will reset and move down one
                 if(buttonX > xMax)
                 {
                     buttonX = buttonSpacing;
                     buttonY -= buttonSpacing;
-                    
                 }
                 GameObject buttonObj = Instantiate(buttonList[i].thisButtonObj) as GameObject;
                 buttonObj.transform.SetParent(panelSpace.transform, true);
-                buttonObj.transform.localPosition = Vector3.zero;
 
                 Button button = buttonObj.GetComponent<Button>();
+                //This is important, as it makes the class refer to the instantiated button rather than the prefab
                 buttonList[i].ThisButton = button;
                 button.interactable = true;
+                //This assigns the function for the associated class to OnClick()
                 button.onClick.AddListener(buttonList[i].CreateProceduralCube);
-                
-                //Debug.Log("Xpos is " + buttonX.ToString() + " and YPos is " + buttonY.ToString());
 
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, buttonY);
-
                 buttonX += buttonSpacing;
             }
         }
-
     }
 
 }

@@ -198,41 +198,29 @@ public class ProceduralCube : MonoBehaviour
 
         else
         {
-            Vector3 currentVPos;
 
             ////////////////
-            ///GLARING ISSUE, THIS IS UGLY AND I NEED TO CLEAN IT
-            ///GLARING ISSUE, THIS IS UGLY AND I NEED TO CLEAN IT
-            ///GLARING ISSUE, THIS IS UGLY AND I NEED TO CLEAN IT
+            ///More Clean, removed unneeded lines, but I would still love to eliminate these if statements
             ////////////////
             if ((faceToMove == "XPlus") || (faceToMove == "XMinus"))
             {
                 for (int i = 0; i < faces[faceToMove].Length; i++)
                 {
-                    currentVPos = data.vertices[faces[faceToMove][i]];
-                    //This little currentVpos.X punk is the reason I had to split this into 3 statements :/
-                    currentVPos.x = newPos;
-                    data.vertices[faces[faceToMove][i]] = currentVPos;
+                    data.vertices[faces[faceToMove][i]].x = newPos;
                 }
             }
             else if ((faceToMove == "YPlus") || (faceToMove == "YMinus"))
             {
                 for (int i = 0; i < faces[faceToMove].Length; i++)
                 {
-                    currentVPos = data.vertices[faces[faceToMove][i]];
-
-                    currentVPos.y = newPos;
-                    data.vertices[faces[faceToMove][i]] = currentVPos;
+                    data.vertices[faces[faceToMove][i]].y = newPos;
                 }
             }
             else
             {
                 for (int i = 0; i < faces[faceToMove].Length; i++)
                 {
-                    currentVPos = data.vertices[faces[faceToMove][i]];
-
-                    currentVPos.z = newPos;
-                    data.vertices[faces[faceToMove][i]] = currentVPos;
+                    data.vertices[faces[faceToMove][i]].z = newPos;
                 }
             }
 
