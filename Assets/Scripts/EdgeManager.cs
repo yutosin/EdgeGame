@@ -22,7 +22,7 @@ public class EdgeManager : MonoBehaviour
     private Dictionary<string, Graph> _yGraphs;
     private Dictionary<string, Graph> _zGraphs;
 
-    private NavMeshSurface _meshSurface;
+    public NavMeshSurface _meshSurface;
     private bool _navMeshBuilt = false;
 
     private List<GameObject> _cubeObjects;
@@ -32,11 +32,16 @@ public class EdgeManager : MonoBehaviour
     private int _nextPtID;
     private int _nextFaceId;
 
+    [SerializeField]private int[] _initTPLocs;
+    [SerializeField]private Dictionary<int, TestPoint> _initTPs;
+
     private void Start()
     {
         _points = new List<Vector3>(cubeRenderers.Length * 8);
         _cubeObjects = new List<GameObject>(cubeRenderers.Length);
         _meshSurface = facesHolder.GetComponent<NavMeshSurface>();
+        _initTPLocs = new[] {69, 67, 8, 54, 68, 65};
+        _initTPs = new Dictionary<int, TestPoint>();
 
         foreach (var renderer in cubeRenderers)
         {
@@ -48,6 +53,15 @@ public class EdgeManager : MonoBehaviour
         
         if (combineCubes)
             CombineCubesInLevel();
+        
+        GenerateEdge(_initTPs[68], _initTPs[54]);
+        GenerateEdge(_initTPs[54], _initTPs[8]);
+        GenerateEdge(_initTPs[8], _initTPs[65]);
+        GenerateEdge(_initTPs[65], _initTPs[67]);
+        GenerateEdge(_initTPs[67], _initTPs[69]);
+        GenerateEdge(_initTPs[68], _initTPs[65]);
+        GenerateEdge(_initTPs[69], _initTPs[68]);
+        
     }
 
     private void AddCubeVerticesToList(MeshRenderer renderer)
@@ -141,10 +155,15 @@ public class EdgeManager : MonoBehaviour
         tp.ptID = "Pt" + _nextPtID;
         edgePoint.name = tp.ptID;
         tp.listLoc = _nextPtID;
+        
+        if (Array.Exists(_initTPLocs, i => _nextPtID == i ))
+            _initTPs.Add(_nextPtID, tp);
+        
         _nextPtID++;
 
         Renderer rend = edgePoint.GetComponent<Renderer>();
-        //rend.material.shader = Shader.Find("Unlit/ColorZAlways");
+        rend.material.shader = Shader.Find("Unlit/ColorZAlways");
+        rend.material.renderQueue = 2350;
         rend.enabled = false;
         
         SphereCollider sphereCollider = edgePoint.AddComponent<SphereCollider>();

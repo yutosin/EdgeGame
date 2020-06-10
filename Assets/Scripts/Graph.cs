@@ -104,7 +104,7 @@ public class Graph
             {
                 cycleString += vertex + " ";
             }
-            Debug.Log(cycleString);
+            //Debug.Log(cycleString);
         }
         
         
