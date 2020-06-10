@@ -12,7 +12,7 @@ public class Face : MonoBehaviour
 
     private bool _activatedAbility;
     private Vector3 _target;
-    private Renderer _rend;
+    public Renderer _rend;
     private bool _selected;
     private static Face _selectedFace;
     private static Material _defaultMat;
@@ -20,6 +20,8 @@ public class Face : MonoBehaviour
     private static Material _abilityMat;
 
     public bool hasAbility;
+    public IBaseAbility Ability;
+    public Transform Parent;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class Face : MonoBehaviour
         _rend = GetComponent<Renderer>();
         _activatedAbility = false;
         hasAbility = false;
+        Parent = gameObject.transform.parent;
         
         _defaultMat = new Material(Shader.Find("Unlit/ColorZAlways"));
         _defaultMat.color = Color.gray;
@@ -55,7 +58,7 @@ public class Face : MonoBehaviour
     {
         if (GameManager.SharedInstance.PlayMode)
         {
-            if (!hasAbility)
+            if (Ability == null)
                 return;
             Vector3 facePoint = gameObject.transform.parent.position;
             Vector3 agentPoint = GameManager.SharedInstance.playerAgent.agent.destination;
@@ -65,34 +68,36 @@ public class Face : MonoBehaviour
                 Debug.Log("hit");
                 Debug.Log(facePoint);
                 Debug.Log(agentPoint);
-                _activatedAbility = true;
-                Vector3 target = new Vector3(facePoint.x, facePoint.y + 3, facePoint.z);
-                _target = target;
-                GameManager.SharedInstance.playerAgent.transform.parent = transform.parent;
-                GameManager.SharedInstance.playerAgent.agent.enabled = false;
+                // _activatedAbility = true;
+                // Vector3 target = new Vector3(facePoint.x, facePoint.y + 3, facePoint.z);
+                // _target = target;
+                // GameManager.SharedInstance.playerAgent.transform.parent = transform.parent;
+                // GameManager.SharedInstance.playerAgent.agent.enabled = false;
+                Ability.InitializeAbility(this);
             }
 
-            if (!_activatedAbility)
-                return;
-            float step = 3 * Time.deltaTime;
-            gameObject.transform.parent.position =
-                Vector3.MoveTowards(gameObject.transform.parent.position, _target, step);
-            GameManager.SharedInstance.playerAgent.agent.nextPosition = gameObject.transform.parent.position;
-            if (Vector3.Distance(gameObject.transform.parent.position, _target) < .001f)
-            {
-                _activatedAbility = false;
-                var meshSurface = GameManager.SharedInstance.edgeManager._meshSurface;
-                meshSurface.UpdateNavMesh(meshSurface.navMeshData);
-                StartCoroutine(SetAgentPosition());
-            }
+            // if (!_activatedAbility)
+            //     return;
+            // float step = 3 * Time.deltaTime;
+            // gameObject.transform.parent.position =
+            //     Vector3.MoveTowards(gameObject.transform.parent.position, _target, step);
+            // GameManager.SharedInstance.playerAgent.agent.nextPosition = gameObject.transform.parent.position;
+            // if (Vector3.Distance(gameObject.transform.parent.position, _target) < .001f)
+            // {
+            //     _activatedAbility = false;
+            //     var meshSurface = GameManager.SharedInstance.edgeManager._meshSurface;
+            //     meshSurface.UpdateNavMesh(meshSurface.navMeshData);
+            //     StartCoroutine(SetAgentPosition());
+            // }
         }
         else
         {
             if (_selectedFace == this && Input.GetKeyDown(KeyCode.E))
             {
-                hasAbility = true;
+                // hasAbility = true;
                 _selectedFace._rend.material = _abilityMat;
                 _selectedFace = null;
+                Ability = gameObject.AddComponent<ColorChangeAbility>();
             }
         }
     }
