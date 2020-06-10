@@ -121,54 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &217905721
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217905723}
-  - component: {fileID: 217905722}
-  m_Layer: 0
-  m_Name: Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &217905722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217905721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39cfe4901e7fda44896146a77f6d989, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
-  cubes: []
-  cScripts: []
-  cubePrefab: {fileID: 512152652540868823, guid: ea3412cd10f708948afcf35aa69fe2c1,
-    type: 3}
---- !u!4 &217905723
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217905721}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &737793025
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1036045992
 GameObject:
@@ -283,10 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -327,7 +279,7 @@ RectTransform:
   m_Children:
   - {fileID: 1393746294}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -553,16 +505,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelObj: {fileID: 1393746293}
-  panelSpace: {fileID: 1393746294}
+  buttonSpacing: 20
   buttonList:
-  - button: {fileID: 819187423129617762, guid: 9af7f6f2478c82d448f23141b3e31fdb, type: 3}
+  - thisButtonObj: {fileID: 819187423129617764, guid: 9af7f6f2478c82d448f23141b3e31fdb,
+      type: 3}
     material: {fileID: 2100000, guid: e809395bf9c25b7458e3f1734f88066a, type: 2}
-  - button: {fileID: 2614566209249075194, guid: 5eb20b41c2936b643a8f8093f206e118,
+    uses: 1
+    useThisLevel: 1
+  - thisButtonObj: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
       type: 3}
     material: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
-  - button: {fileID: 8935180680838505055, guid: 9e6b80664b040074ca4343ce3bbbee4a,
+    uses: 1
+    useThisLevel: 1
+  - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
       type: 3}
     material: {fileID: 2100000, guid: 817bc4fec698d8b42a82197be537c709, type: 2}
+    uses: 1
+    useThisLevel: 1
 --- !u!1 &1393746293
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,10 +554,10 @@ RectTransform:
   m_Father: {fileID: 1036045996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -400, y: -400}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -278, y: 110.3}
+  m_SizeDelta: {x: 963.93225, y: 459.3407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393746295
 MonoBehaviour:

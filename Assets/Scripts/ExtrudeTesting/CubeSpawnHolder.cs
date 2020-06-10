@@ -4,49 +4,34 @@ using UnityEngine;
 
 public class CubeSpawnHolder : MonoBehaviour
 {
-    //remove later, this is for testing
-    public Material defaultMaterial;
-
+    //The material is just a default
+    public Material whatMaterial;
+    public GameObject cubePrefab;
+    //Accessible lists by other scripts to keep track of cubes spawned
     [HideInInspector]
     public List<GameObject> cubes = new List<GameObject>();
     [HideInInspector]
     public List<ProceduralCube> cScripts = new List<ProceduralCube>();
+    //This is a default placeholder, can and should be changed before the cube is actually spawned in
+    [HideInInspector]
+    public Vector3[] initalPos = new Vector3[4]
+    { new Vector3 (1, 1, 1) , new Vector3 (1, -1, -1) ,
+        new Vector3 (1, 1, -1) , new Vector3 (1, 1, -1) };
 
-    public GameObject cubePrefab;
-
-    public void CreateACube(Vector3[] arrays, Material toSet)
+    public void CreateACube()
     {
         GameObject newCube = Instantiate(cubePrefab);
         ProceduralCube newScript = newCube.GetComponent<ProceduralCube>();
         cubes.Add(newCube);
         cScripts.Add(newScript);
-
-        newScript.SetInitialPos(arrays);
-        if (!toSet)
-        {
-            newScript.rend.material = defaultMaterial;
-            return;
-        }
-
-        newScript.rend.material = toSet;
-        //Debug.Log(toSet);
-
+        newScript.SetInitialPos(initalPos, whatMaterial);
+        newScript.rend.material = whatMaterial;
     }
-
-    /////////////////////////
-    ///Below is simply for testing, will be removed later
-    ///Below is simply for testing, will be removed later
-    ///Below is simply for testing, will be removed later
-    /////////////////////////
 
     private void Start()
     {
-        Vector3[] sample = new Vector3[4];
-        sample[0] = new Vector3 (1, 1, 1);
-        sample[1] = new Vector3(1, -1, -1);
-        sample[2] = new Vector3(1, 1, -1);
-        sample[3] = new Vector3(1, -1, 1);
-        CreateACube(sample, defaultMaterial);
-    }
+        //This was just to test out assigning of materials
+        //CreateACube(initalPos, defaultMaterial);
+    } 
 
 }

@@ -10,9 +10,10 @@ public class GameManager : MonoBehaviour
         get { return _sharedInstance; }
     }
 
-    public EdgeManager edgeManager;
-    public CubeSpawnHolder CubeSpawnHolder;
     public Camera MainCamera;
+    public EdgeManager edgeManager;
+    public DirectedAgent playerAgent;
+    public bool PlayMode;
     
     // Start is called before the first frame update
     private void Awake()
@@ -31,6 +32,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        
+        PlayMode = false;
     }
 }

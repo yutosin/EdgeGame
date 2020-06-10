@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //TODO: refactor and refine this code, more cause you did some already
 //TODO: figure out render order of faces vs lines and sub-faces vs parent faces
@@ -12,6 +13,8 @@ public class EdgeManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject verticesHolder;
+    [SerializeField] private GameObject facesHolder;
+    [SerializeField] private GameObject combinedLevel;
     [SerializeField] private MeshRenderer[] cubeRenderers;
     [SerializeField] private bool combineCubes;
     
@@ -19,17 +22,26 @@ public class EdgeManager : MonoBehaviour
     private Dictionary<string, Graph> _yGraphs;
     private Dictionary<string, Graph> _zGraphs;
 
+    public NavMeshSurface _meshSurface;
+    private bool _navMeshBuilt = false;
+
     private List<GameObject> _cubeObjects;
     
     private List<Vector3> _points;
 
-    private int _nextPtId;
+    private int _nextPtID;
     private int _nextFaceId;
+
+    [SerializeField]private int[] _initTPLocs;
+    [SerializeField]private Dictionary<int, TestPoint> _initTPs;
 
     private void Start()
     {
         _points = new List<Vector3>(cubeRenderers.Length * 8);
         _cubeObjects = new List<GameObject>(cubeRenderers.Length);
+        _meshSurface = facesHolder.GetComponent<NavMeshSurface>();
+        _initTPLocs = new[] {69, 67, 8, 54, 68, 65};
+        _initTPs = new Dictionary<int, TestPoint>();
 
         foreach (var renderer in cubeRenderers)
         {
@@ -41,6 +53,15 @@ public class EdgeManager : MonoBehaviour
         
         if (combineCubes)
             CombineCubesInLevel();
+        
+        GenerateEdge(_initTPs[68], _initTPs[54]);
+        GenerateEdge(_initTPs[54], _initTPs[8]);
+        GenerateEdge(_initTPs[8], _initTPs[65]);
+        GenerateEdge(_initTPs[65], _initTPs[67]);
+        GenerateEdge(_initTPs[67], _initTPs[69]);
+        GenerateEdge(_initTPs[68], _initTPs[65]);
+        GenerateEdge(_initTPs[69], _initTPs[68]);
+        
     }
 
     private void AddCubeVerticesToList(MeshRenderer renderer)
@@ -131,13 +152,18 @@ public class EdgeManager : MonoBehaviour
         GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Destroy(edgePoint.GetComponent<SphereCollider>());
         TestPoint tp = edgePoint.AddComponent<TestPoint>();
-        tp.ptID = "Pt" + _nextPtId;
+        tp.ptID = "Pt" + _nextPtID;
         edgePoint.name = tp.ptID;
-        tp.listLoc = _nextPtId;
-        _nextPtId++;
+        tp.listLoc = _nextPtID;
+        
+        if (Array.Exists(_initTPLocs, i => _nextPtID == i ))
+            _initTPs.Add(_nextPtID, tp);
+        
+        _nextPtID++;
 
         Renderer rend = edgePoint.GetComponent<Renderer>();
-        //rend.material.shader = Shader.Find("Unlit/ColorZAlways");
+        rend.material.shader = Shader.Find("Unlit/ColorZAlways");
+        rend.material.renderQueue = 2350;
         rend.enabled = false;
         
         SphereCollider sphereCollider = edgePoint.AddComponent<SphereCollider>();
@@ -316,6 +342,14 @@ public class EdgeManager : MonoBehaviour
             SortVerticesForQuad(ref vertexVectors);
             
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
+
+            if (!_navMeshBuilt)
+            {
+                _meshSurface.BuildNavMesh();
+                _navMeshBuilt = true;
+            }
+            else
+                _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
         }
     }
     
@@ -371,7 +405,6 @@ public class EdgeManager : MonoBehaviour
         newQuad.name = "Face " + _nextFaceId;
         _nextFaceId++;
         
-        
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -401,6 +434,7 @@ public class EdgeManager : MonoBehaviour
         GameObject anchorPoint = new GameObject();
         anchorPoint.transform.position = mesh.bounds.center;
         newQuad.transform.parent = anchorPoint.transform;
+        anchorPoint.transform.parent = facesHolder.transform;
         
         Vector3[] normals = mesh.normals;
         if (normals[0] == Vector3.back)
@@ -453,6 +487,11 @@ public class EdgeManager : MonoBehaviour
 
         MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
         cubeColl.sharedMesh = levelMeshFileter.mesh;
+
+        // NavMeshSurface surface = cubeHolder.AddComponent<NavMeshSurface>();
+        // surface.BuildNavMesh();
+        //
+        // combinedLevel = cubeHolder;
         // cubeColl.convex = true;
         // cubeColl.isTrigger = true;
     }
