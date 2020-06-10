@@ -25,20 +25,19 @@ public class MaterialSelectScript : MonoBehaviour
         public int uses = 1;
         public bool useThisLevel = true;
 
-        
+        private GameObject face;
+        public GameObject Face
+        {
+            get { return (face); }
+
+            set { face = value; }
+        }
         private Text buttonText;
         public Text ButtonText
         {
             get { return (buttonText); }
 
             set { buttonText = value; }
-        }
-        private CubeSpawnHolder cSpawn;
-        public CubeSpawnHolder CSpawn
-        {
-            get { return (cSpawn); }
-
-            set { cSpawn = value; }
         }
         private GameObject holdingPanel;
         public GameObject HoldingPanel
@@ -48,23 +47,22 @@ public class MaterialSelectScript : MonoBehaviour
             set { holdingPanel = value; }
         }
 
-        //This get assigned to OnClick when buttons spawn, but the updating of text seems to not be working
-        public void CreateProceduralCube()
+        public void AssignColorAndAbility()
         {
             this.uses--;
             this.ButtonText.text = this.uses.ToString();
-            this.CSpawn.whatMaterial = this.material;
-            this.CSpawn.CreateACube();
             if(this.uses <= 0)
             {
                 this.thisButton.interactable = false;
             }
+            //Attach a script to be made here to the face selected that will have the associated ability
+            face.GetComponent<Renderer>().material = material; //Change this later to work with attached face script
+
             this.holdingPanel.SetActive(false);
         }
 
     }
 
-    public CubeSpawnHolder cSpawn;//So buttons can spawn cubes
     public GameObject panelObj;
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
@@ -94,7 +92,6 @@ public class MaterialSelectScript : MonoBehaviour
             button.ThisButton = button.thisButtonObj.GetComponent<Button>(); //gets the actual button component to set interactible
             button.ButtonText = button.ThisButton.GetComponentInChildren<Text>();
             button.HoldingPanel = panelObj;//this is needed so that the function can hide the panel the button is nested in
-            button.CSpawn = cSpawn;//this is so that the function can spawn cubes
             button.ButtonText.text = button.uses.ToString();
         }
     }
@@ -129,7 +126,7 @@ public class MaterialSelectScript : MonoBehaviour
                 buttonList[i].ThisButton = button;
                 button.interactable = true;
                 //This assigns the function for the associated class to OnClick()
-                button.onClick.AddListener(buttonList[i].CreateProceduralCube);
+                button.onClick.AddListener(buttonList[i].AssignColorAndAbility);
 
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, buttonY);
                 buttonX += buttonSpacing;

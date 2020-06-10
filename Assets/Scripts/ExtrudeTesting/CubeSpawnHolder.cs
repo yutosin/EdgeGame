@@ -25,7 +25,7 @@ public class CubeSpawnHolder : MonoBehaviour
         cubes.Add(newCube);
         cScripts.Add(newScript);
 
-        newScript.SetInitialPos(initalPos);
+        newScript.SetInitialPos(initalPos, whatMaterial);
         newScript.rend.material = whatMaterial;
     }
 
@@ -33,6 +33,6 @@ public class CubeSpawnHolder : MonoBehaviour
     {
         //This was just to test out assigning of materials
         //CreateACube(initalPos, defaultMaterial);
-    }
+    } 
 
 }

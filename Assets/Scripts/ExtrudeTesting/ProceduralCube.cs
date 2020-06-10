@@ -32,8 +32,9 @@ public class ProceduralCube : MonoBehaviour
     }
 
     //This whole thing needs to be cleaned up, not nearly as neat as it was in my head
-    public void SetInitialPos(Vector3[] coords)
+    public void SetInitialPos(Vector3[] coords, Material mat)
     {
+        rend.material = mat;
         //Want to clear this method up, got to be a better way
         float[] minMaxX = minAndMaxX(coords);
         MoveFace("XMinus", minMaxX[0]);
