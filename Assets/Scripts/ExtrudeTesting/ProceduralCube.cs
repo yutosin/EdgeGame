@@ -10,8 +10,7 @@ public class ProceduralCube : MonoBehaviour
     Dictionary<string, int[]> faces = new Dictionary<string, int[]>();
 
     Mesh mesh;
-    [HideInInspector]
-    public MeshRenderer rend;
+    MeshRenderer rend;
 
     List<Vector3> vertices;
     List<int> triangles;

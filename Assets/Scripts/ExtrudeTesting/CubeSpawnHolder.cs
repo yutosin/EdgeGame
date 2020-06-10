@@ -26,7 +26,6 @@ public class CubeSpawnHolder : MonoBehaviour
         cScripts.Add(newScript);
 
         newScript.SetInitialPos(initalPos, whatMaterial);
-        newScript.rend.material = whatMaterial;
     }
 
     private void Start()
