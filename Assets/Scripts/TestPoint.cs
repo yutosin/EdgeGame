@@ -24,31 +24,34 @@ public class TestPoint : MonoBehaviour
     
     private void Start()
     {
-        if (Physics.Linecast(GameManager.SharedInstance.MainCamera.transform.position,
-            transform.position, out RaycastHit hitInfo))
-        {
-            if (hitInfo.collider.gameObject.name != gameObject.name 
-                && (hitInfo.collider.gameObject.CompareTag("LevelCube") || hitInfo.collider.GetComponent<TestPoint>()))
-            {
-                Destroy(gameObject);
-                return;
-            }
-        }
-        
-        _rend = GetComponent<Renderer>();
-        _rend.shadowCastingMode = ShadowCastingMode.Off;
-        _rend.receiveShadows = false;
-
-        _isActiveSelectable = false;
-        _onPoint = false;
-
-        _adjacentXPoints = new List<TestPoint>();
-        _adjacentYPoints = new List<TestPoint>();
-        _adjacentZPoints = new List<TestPoint>();
-
-        FillAdjacentList(_adjacentXPoints, Vector3.right);
-        FillAdjacentList(_adjacentYPoints, Vector3.up);
-        FillAdjacentList(_adjacentZPoints, Vector3.forward);
+        // Vector3 dir = transform.position - GameManager.SharedInstance.MainCamera.transform.position;
+        // if (Physics.Raycast(GameManager.SharedInstance.MainCamera.transform.position,
+        //     dir, out RaycastHit hitInfo))
+        // {
+        //     if (hitInfo.collider.gameObject.name != gameObject.name 
+        //         && (hitInfo.collider.gameObject.CompareTag("LevelCube") || hitInfo.collider.GetComponent<TestPoint>()))
+        //     {
+        //         Debug.Log("hit object: " + hitInfo.collider.gameObject.name);
+        //         Debug.Log("Delete point " + gameObject.name + " at position " + gameObject.transform.position);
+        //         Destroy(gameObject);
+        //         return;
+        //     }
+        // }
+        StartCoroutine(DelayedStart());
+        // _rend = GetComponent<Renderer>();
+        // _rend.shadowCastingMode = ShadowCastingMode.Off;
+        // _rend.receiveShadows = false;
+        //
+        // _isActiveSelectable = false;
+        // _onPoint = false;
+        //
+        // _adjacentXPoints = new List<TestPoint>();
+        // _adjacentYPoints = new List<TestPoint>();
+        // _adjacentZPoints = new List<TestPoint>();
+        //
+        // FillAdjacentList(_adjacentXPoints, Vector3.right);
+        // FillAdjacentList(_adjacentYPoints, Vector3.up);
+        // FillAdjacentList(_adjacentZPoints, Vector3.forward);
     }
 
     private void FillAdjacentList(List<TestPoint> adjacentList, Vector3 axis)
@@ -135,7 +138,7 @@ public class TestPoint : MonoBehaviour
     {
         if (GameManager.SharedInstance.PlayMode)
             return;
-        Debug.Log(ptID);
+        //Debug.Log(ptID);
         if (!_activePoint)
         {
             isActivePoint = true;
@@ -257,8 +260,44 @@ public class TestPoint : MonoBehaviour
         // }
     }
 
+    private IEnumerator DelayedStart()
+    {
+        // yield return new WaitForSeconds(.001f);
+        yield return new WaitForFixedUpdate();
+        Vector3 dir = transform.position - GameManager.SharedInstance.MainCamera.transform.position;
+        if (Physics.Raycast(GameManager.SharedInstance.MainCamera.transform.position,
+            dir, out RaycastHit hitInfo))
+        {
+            // if (hitInfo.collider.gameObject.name != gameObject.name 
+            //     && (hitInfo.collider.gameObject.CompareTag("LevelCube") || hitInfo.collider.GetComponent<TestPoint>()))
+            if (hitInfo.collider.gameObject.name != gameObject.name 
+                && (hitInfo.collider.gameObject.name == "LevelCombinedMesh" || hitInfo.collider.GetComponent<TestPoint>()))
+            {
+                Debug.Log("hit object: " + hitInfo.collider.gameObject.name);
+                Debug.Log("Delete point " + gameObject.name + " at position " + gameObject.transform.position);
+                Destroy(gameObject);
+                yield return null;
+            }
+        }
+        
+        _rend = GetComponent<Renderer>();
+        _rend.shadowCastingMode = ShadowCastingMode.Off;
+        _rend.receiveShadows = false;
+
+        _isActiveSelectable = false;
+        _onPoint = false;
+
+        _adjacentXPoints = new List<TestPoint>();
+        _adjacentYPoints = new List<TestPoint>();
+        _adjacentZPoints = new List<TestPoint>();
+
+        FillAdjacentList(_adjacentXPoints, Vector3.right);
+        FillAdjacentList(_adjacentYPoints, Vector3.up);
+        FillAdjacentList(_adjacentZPoints, Vector3.forward);
+    }
+
     private void Update()
     {
-
+        
     }
 }
