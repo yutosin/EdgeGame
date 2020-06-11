@@ -81,32 +81,7 @@ public class Face : MonoBehaviour
 
     private void PlayModeMouseDown()
     {
-        var ray = GameManager.SharedInstance.MainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
-            GameManager.SharedInstance.playerAgent.agent.destination = m_HitInfo.point;
-        if (gameObject.CompareTag("Finish"))
-            GameManager.SharedInstance.playerAgent.goalPoint = m_HitInfo.point;
-
-        if (NavMesh.CalculatePath(GameManager.SharedInstance.playerAgent.transform.position,
-            m_HitInfo.point,
-            NavMesh.AllAreas,
-            path))
-            Debug.Log("PATH!");
-
-        if (path.corners.Length < 2)
-            return;
-
-        List<Vector3> moverPoints = new List<Vector3>();
-        for (int i = 1; i < path.corners.Length; i++)
-        {
-            Vector3 moverPoint = new Vector3(path.corners[i].x,
-                GameManager.SharedInstance.playerAgent.transform.position.y,
-                path.corners[i].z);
-            moverPoints.Add(moverPoint);
-        }
-
-        // GameManager.SharedInstance.playerAgent.mover.setPositions = moverPoints;
-        // GameManager.SharedInstance.playerAgent.mover.commit = true;
+        GameManager.SharedInstance.playerAgent.HandleFacePointSelect();
     }
 
     private void DrawModeMouseDown()

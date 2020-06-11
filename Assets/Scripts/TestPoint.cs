@@ -273,8 +273,6 @@ public class TestPoint : MonoBehaviour
             if (hitInfo.collider.gameObject.name != gameObject.name 
                 && (hitInfo.collider.gameObject.name == "LevelCombinedMesh" || hitInfo.collider.GetComponent<TestPoint>()))
             {
-                Debug.Log("hit object: " + hitInfo.collider.gameObject.name);
-                Debug.Log("Delete point " + gameObject.name + " at position " + gameObject.transform.position);
                 Destroy(gameObject);
                 yield return null;
             }
