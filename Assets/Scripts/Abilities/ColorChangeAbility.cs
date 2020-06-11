@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorChangeAbility : MonoBehaviour, IBaseAbility
+public class ColorChangeAbility : MonoBehaviour, IFaceAbility
 {
     private Material _newMat;
     public void InitializeAbility(Face face)
@@ -11,10 +11,10 @@ public class ColorChangeAbility : MonoBehaviour, IBaseAbility
         _newMat = new Material(Shader.Find("Unlit/Color"));
         _newMat.color = Color.cyan;
         AbilityFace._rend.material = _newMat;
-        AbilityFace.hasAbility = true;
     }
 
     public Face AbilityFace { get; set; }
     public bool IsActing { get; set; }
     public bool IsInitialized { get; set; }
+    public int AbilityTimes { get; set; }
 }

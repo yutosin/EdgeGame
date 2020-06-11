@@ -400,9 +400,11 @@ public class EdgeManager : MonoBehaviour
     {
         GameObject newQuad = new GameObject();
         Face face = newQuad.AddComponent<Face>();
+        face.Vertices = quadVertices;
+        face.FaceId = _nextFaceId;
         newQuad.name = "Face " + _nextFaceId;
         _nextFaceId++;
-
+        
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -443,7 +445,7 @@ public class EdgeManager : MonoBehaviour
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
         
         meshFilter.mesh = mesh;
-        
+
         //Might not even need colliders on these...but if we do probably should just use box collider
         BoxCollider collider = newQuad.AddComponent<BoxCollider>();
     }

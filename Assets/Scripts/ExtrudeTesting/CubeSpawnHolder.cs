@@ -24,7 +24,6 @@ public class CubeSpawnHolder : MonoBehaviour
         ProceduralCube newScript = newCube.GetComponent<ProceduralCube>();
         cubes.Add(newCube);
         cScripts.Add(newScript);
-
         newScript.SetInitialPos(initalPos, whatMaterial);
     }
 

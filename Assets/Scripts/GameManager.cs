@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
         get { return _sharedInstance; }
     }
 
+    public Camera MainCamera;
     public EdgeManager edgeManager;
     public DirectedAgent playerAgent;
-    public Camera MainCamera;
     public bool PlayMode;
     
     // Start is called before the first frame update
