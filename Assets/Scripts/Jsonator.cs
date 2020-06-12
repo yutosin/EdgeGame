@@ -41,7 +41,13 @@ public class Jsonator : MonoBehaviour
     {
         if (commitSave)
         {
-            string tile = JsonUtility.ToJson(tileData);
+            //Create a TileDataHolder object and assign it the tileData array
+            TileDataHolder _tileDataHolder = new TileDataHolder();
+            _tileDataHolder.tileData = tileData;
+            
+            //Convert class to json; this will also serialize the class' properties, in this case the tileData array
+            //and since all the objects in the array are serializable there are also properly represented in json
+            string tile = JsonUtility.ToJson(_tileDataHolder);
             File.WriteAllText(path, tile);
             commitSave = false;
         }
@@ -123,4 +129,11 @@ public class Tile
 {
     public string d;
     public Vector3 p;
+}
+
+//Serializable class that will hold the tileData array that's created
+[System.Serializable]
+public class TileDataHolder
+{
+    public Tile[] tileData;
 }
