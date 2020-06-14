@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
     public GameObject InstructionsPanel;
+    public Button GamePlayModeButton;
+    public Button DrawModeButton;
     
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,12 @@ public class UIScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("PrototypingScene");
+        SceneManager.LoadScene("PrototypingScene_Restructure");
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ShowInstructionsPanel()
@@ -31,6 +39,20 @@ public class UIScript : MonoBehaviour
     public void BackToMain()
     {
         InstructionsPanel.SetActive(false);
+    }
+
+    public void SwitchToPlayMode()
+    {
+        GameManager.SharedInstance.PlayMode = true;
+        DrawModeButton.interactable = true;
+        GamePlayModeButton.interactable = false;
+    }
+
+    public void SwitchToDrawMode()
+    {
+        GameManager.SharedInstance.PlayMode = false;
+        DrawModeButton.interactable = false;
+        GamePlayModeButton.interactable = true;
     }
 
     // Update is called once per frame

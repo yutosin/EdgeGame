@@ -27,7 +27,8 @@ public class TestPoint : MonoBehaviour
         if (Physics.Linecast(GameManager.SharedInstance.MainCamera.transform.position,
             transform.position, out RaycastHit hitInfo))
         {
-            if (hitInfo.collider.gameObject.name != gameObject.name)
+            if (hitInfo.collider.gameObject.name != gameObject.name 
+                && (hitInfo.collider.gameObject.CompareTag("LevelCube") || hitInfo.collider.GetComponent<TestPoint>()))
             {
                 Destroy(gameObject);
                 return;
@@ -108,6 +109,8 @@ public class TestPoint : MonoBehaviour
     
     private void OnMouseOver()
     {
+        if (GameManager.SharedInstance.PlayMode)
+            return;
         if (isActivePoint)
             return;
         if (_activePoint && !_isActiveSelectable)
@@ -118,6 +121,8 @@ public class TestPoint : MonoBehaviour
     
     private void OnMouseExit()
     {
+        if (GameManager.SharedInstance.PlayMode)
+            return;
         if (isActivePoint)
             return;
         if (_activePoint && !_isActiveSelectable)
@@ -128,6 +133,8 @@ public class TestPoint : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (GameManager.SharedInstance.PlayMode)
+            return;
         Debug.Log(ptID);
         if (!_activePoint)
         {

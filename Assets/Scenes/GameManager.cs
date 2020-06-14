@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     }
 
     public EdgeManager edgeManager;
+    public DirectedAgent playerAgent;
     public Camera MainCamera;
+    public bool PlayMode;
     
     // Start is called before the first frame update
     private void Awake()
@@ -30,6 +32,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        
+        PlayMode = false;
     }
 }
