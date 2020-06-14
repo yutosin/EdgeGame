@@ -390,25 +390,6 @@ Transform:
   m_Father: {fileID: 5006512734989729406}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 35, y: -135, z: 0}
---- !u!114 &548456731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296172669001190509}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f90527c2813246863c8072ed60076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setPosition: {x: 0, y: 0, z: 0}
-  commit: 0
-  playerRotation: {x: 0, y: 0, z: 0}
-  playerSpeed: 2
-  rotateSpeed: 2
-  targetLean: 30
-  playerChild: {fileID: 0}
 --- !u!114 &548456733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,21 +399,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8296172669001190509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c8a68fa7a3d69349bc48dd03af8b271, type: 3}
+  m_Script: {fileID: 11500000, guid: a11d05e87b600a241b77e0490f3107d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerModel: {fileID: 5006512736525899035}
-  setPositionFeed: 0
-  startSpin: 180
-  height: 0
-  spinRate: 0.5
-  foreLean: 80
-  sideLean: 300
-  targetPosition: {x: 0, y: 0, z: 0}
-  oldPosition: {x: 0, y: 0, z: 0}
-  oldRotation: 0
-  eulerY: 0
-  velocity: 0
+  playerSpeed: 12
+  spinSpeed: 10
+  foreLean: 120
+  sideLean: 30
+  targetPath: []
+  commit: 0
 --- !u!1 &571990331
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,50 +725,6 @@ Transform:
   - {fileID: 396713665}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1855665290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1855665292}
-  - component: {fileID: 1855665291}
-  m_Layer: 0
-  m_Name: MoverTester
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1855665291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855665290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a0c08485647d448b9c5932b98ff84c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thing: {fileID: 5006512734989729406}
---- !u!4 &1855665292
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855665290}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.099695, y: 2.6093712, z: 5.6609907}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887372236
 GameObject:
@@ -1608,7 +1540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172669001190509}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495996399}
@@ -2033,7 +1965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006512736525899035}
   m_Layer: 0
-  m_Name: Robonaut
+  m_Name: RobonautModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2048,10 +1980,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5006512734989729406}
-  - component: {fileID: 548456731}
   - component: {fileID: 548456733}
   m_Layer: 0
-  m_Name: TempBody
+  m_Name: Robonaut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
