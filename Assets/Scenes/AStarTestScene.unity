@@ -2988,7 +2988,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
 --- !u!4 &1585458156
 Transform:
   m_ObjectHideFlags: 0
@@ -3018,7 +3018,7 @@ MonoBehaviour:
   version: 1
   uniqueID: 7051953752535536564
   generateOnPostScan: 1
-  linkPrefab: {fileID: 2767264222194858726, guid: 4de7008bcaf6e43dc81cec8f5bf872e7,
+  linkPrefab: {fileID: 1081936501326712439, guid: 4ee9f844d8be146e7be044e9ed7703a5,
     type: 3}
 --- !u!1 &1654539899
 GameObject:

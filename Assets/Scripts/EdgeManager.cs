@@ -343,13 +343,14 @@ public class EdgeManager : MonoBehaviour
             
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
 
-            if (!_navMeshBuilt)
-            {
-                _meshSurface.BuildNavMesh();
-                _navMeshBuilt = true;
-            }
-            else
-                _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
+            // if (!_navMeshBuilt)
+            // {
+            //     _meshSurface.BuildNavMesh();
+            //     _navMeshBuilt = true;
+            // }
+            // else
+            //     _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
+            AstarPath.active.Scan();
         }
     }
     
@@ -403,6 +404,7 @@ public class EdgeManager : MonoBehaviour
         face.Vertices = quadVertices;
         face.FaceId = _nextFaceId;
         newQuad.name = "Face " + _nextFaceId;
+        newQuad.layer = LayerMask.NameToLayer("LevelGeometry");
         _nextFaceId++;
         
         gameObject.transform.parent = gameObject.transform;
