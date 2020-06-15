@@ -10,6 +10,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
     public bool IsInitialized { get; set; }
     public int AbilityTimes { get; set; }
     private Vector3 _target;
+    private Vector3[] faceVertices;
 
     public void InitializeAbility(Face face)
     {

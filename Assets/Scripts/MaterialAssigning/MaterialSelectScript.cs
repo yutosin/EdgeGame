@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿///////////////////////////////////////////
+///Work to do list:
+///     Material and ability assigning seems to not be working, not sure why
+///     Making a system that will flexibly assign different abilities, want to avoid switch statements
+///////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,8 +31,8 @@ public class MaterialSelectScript : MonoBehaviour
         public int uses = 1;
         public bool useThisLevel = true;
 
-        private GameObject face;
-        public GameObject Face
+        private Face face;
+        public Face Face
         {
             get { return (face); }
 
@@ -46,6 +52,14 @@ public class MaterialSelectScript : MonoBehaviour
 
             set { holdingPanel = value; }
         }
+        //I hate having this here, but reference the comment above AssignAbility() to see why I have it here
+        private MaterialSelectScript _mScript;
+        public MaterialSelectScript MScript
+        {
+            get { return (_mScript); }
+
+            set { _mScript = value; }
+        }
 
         public void AssignColorAndAbility()
         {
@@ -56,7 +70,8 @@ public class MaterialSelectScript : MonoBehaviour
                 this.thisButton.interactable = false;
             }
             //Attach a script to be made here to the face selected that will have the associated ability
-            face.GetComponent<Renderer>().material = material; //Change this later to work with attached face script
+            face._rend.material = material; //Change this later to work with attached face script
+            MScript.AssignAbility();
 
             this.holdingPanel.SetActive(false);
         }
@@ -67,7 +82,21 @@ public class MaterialSelectScript : MonoBehaviour
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
     public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
-    
+
+    //Made this a method so that when the value is changed the buttons reference the right face
+    private Face _selectedFace;
+    public Face SelectedFace
+    {
+        get { return (_selectedFace); }
+        set
+        {
+            _selectedFace = value;
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                buttonList[i].Face = _selectedFace;
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -78,9 +107,9 @@ public class MaterialSelectScript : MonoBehaviour
 
     private void Start()
     {
-        //panelObj.SetActive(false);
+        panelObj.SetActive(false);
         //for testing, normally it would start disabled and only show up when you select a face
-        panelObj.SetActive(true);
+        //panelObj.SetActive(true);
     }
 
     //Had to make this because I could not in the class initialization itself
@@ -92,6 +121,7 @@ public class MaterialSelectScript : MonoBehaviour
             button.ThisButton = button.thisButtonObj.GetComponent<Button>(); //gets the actual button component to set interactible
             button.ButtonText = button.ThisButton.GetComponentInChildren<Text>();
             button.HoldingPanel = panelObj;//this is needed so that the function can hide the panel the button is nested in
+            button.MScript = this;
             button.ButtonText.text = button.uses.ToString();
         }
     }
@@ -132,6 +162,13 @@ public class MaterialSelectScript : MonoBehaviour
                 buttonX += buttonSpacing;
             }
         }
+    }
+
+    //This is just for testing, I want this handled within the MaterialButtons Class
+    //Also for some reason this does not work when placed in the MaterialButtons Class, need to find out why
+    private void AssignAbility()
+    {
+        _selectedFace.Ability = gameObject.AddComponent<ElevatorAbility>();
     }
 
 }

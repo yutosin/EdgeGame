@@ -23,6 +23,8 @@ public class Face : MonoBehaviour
     public Vector3[] Vertices;
     public int FaceId;
 
+    private MaterialSelectScript _mScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,8 @@ public class Face : MonoBehaviour
         else
             _abilityMat.color = Color.red;
         _abilityMat.renderQueue = 2005;
+
+        _mScript = GameObject.Find("GameManager").GetComponent<MaterialSelectScript>();
     }
 
     // Update is called once per frame
@@ -68,7 +72,10 @@ public class Face : MonoBehaviour
                 Ability.InitializeAbility(this);
             }
         }
-        else
+        // Alec M commented this out to transfer ability and material selection in the material selction script
+
+
+        /*else
         {
             if (_selectedFace == this && Input.GetKeyDown(KeyCode.E))
             {
@@ -76,7 +83,7 @@ public class Face : MonoBehaviour
                 _selectedFace = null;
                 Ability = gameObject.AddComponent<ElevatorAbility>();
             }
-        }
+        }*/
     }
 
     private void PlayModeMouseDown()
@@ -140,6 +147,8 @@ public class Face : MonoBehaviour
             face._rend.material = _selectedMat;
             lastFace = face;
             _selectedFace = face;
+            _mScript.SelectedFace = _selectedFace;
+            _mScript.panelObj.SetActive(true);
 
         }
     }
