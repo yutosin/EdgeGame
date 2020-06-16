@@ -59,14 +59,14 @@ public class Face : MonoBehaviour
             if (Ability == null)
                 return;
             Vector3 facePoint = gameObject.transform.parent.position;
-            Vector3 agentPoint = GameManager.SharedInstance.playerAgent.agent.destination;
-
-            if (Vector3.Distance(facePoint, agentPoint) <= 1.0f && Input.GetKeyDown(KeyCode.E))
-            {
-                if (Ability.AbilityTimes <= 0)
-                    return;
-                Ability.InitializeAbility(this);
-            }
+            // //Vector3 agentPoint = GameManager.SharedInstance.playerAgent.agent.destination;
+            //
+            // if (Vector3.Distance(facePoint, agentPoint) <= 1.0f && Input.GetKeyDown(KeyCode.E))
+            // {
+            //     if (Ability.AbilityTimes <= 0)
+            //         return;
+            //     Ability.InitializeAbility(this);
+            // }
         }
         else
         {

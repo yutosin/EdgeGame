@@ -18,7 +18,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         Vector3 target = new Vector3(facePoint.x, facePoint.y + 3, facePoint.z);
         _target = target;
         GameManager.SharedInstance.playerAgent.transform.parent = transform.parent;
-        GameManager.SharedInstance.playerAgent.agent.enabled = false;
+        //GameManager.SharedInstance.playerAgent.agent.enabled = false;
         IsActing = true;
     }
     
@@ -27,7 +27,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         yield return new WaitForSeconds(0.01f);
         var playerTransform = GameManager.SharedInstance.playerAgent.transform;
         playerTransform.parent = null;
-        GameManager.SharedInstance.playerAgent.agent.enabled = true;
+        //GameManager.SharedInstance.playerAgent.agent.enabled = true;
     }
 
     private void Start()
@@ -43,7 +43,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         float step = 3 * Time.deltaTime;
         AbilityFace.Parent.position =
             Vector3.MoveTowards(AbilityFace.Parent.position, _target, step);
-        GameManager.SharedInstance.playerAgent.agent.nextPosition = AbilityFace.Parent.position;
+        //GameManager.SharedInstance.playerAgent.agent.nextPosition = AbilityFace.Parent.position;
         if (Vector3.Distance(AbilityFace.Parent.position, _target) < .001f)
         {
             IsActing = false;
