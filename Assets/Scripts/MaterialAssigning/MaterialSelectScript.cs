@@ -63,17 +63,17 @@ public class MaterialSelectScript : MonoBehaviour
 
         public void AssignColorAndAbility()
         {
-            this.uses--;
-            this.ButtonText.text = this.uses.ToString();
-            if(this.uses <= 0)
+            uses--;
+            ButtonText.text = uses.ToString();
+            if(uses <= 0)
             {
-                this.thisButton.interactable = false;
+                thisButton.interactable = false;
             }
             //Attach a script to be made here to the face selected that will have the associated ability
             face._rend.material = material; //Change this later to work with attached face script
             MScript.AssignAbility();
 
-            this.holdingPanel.SetActive(false);
+            holdingPanel.SetActive(false);
         }
 
     }
@@ -95,6 +95,7 @@ public class MaterialSelectScript : MonoBehaviour
             {
                 buttonList[i].Face = _selectedFace;
             }
+            //Debug.Log("A face has been selected");
         }
     }
 
