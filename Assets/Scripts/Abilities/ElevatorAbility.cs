@@ -18,7 +18,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         Vector3 facePoint = AbilityFace.Parent.position;
         Vector3 target = new Vector3(facePoint.x, facePoint.y + 3, facePoint.z);
         _target = target;
-        GameManager.SharedInstance.playerAgent.transform.parent = transform.parent;
+        GameManager.SharedInstance.playerAgent.transform.parent = AbilityFace.transform;
         GameManager.SharedInstance.playerAgent.agent.enabled = false;
         IsActing = true;
     }
