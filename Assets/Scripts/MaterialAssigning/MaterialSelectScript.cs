@@ -1,7 +1,8 @@
 ﻿///////////////////////////////////////////
 ///Work to do list:
-///     Material and ability assigning seems to not be working, not sure why
 ///     Making a system that will flexibly assign different abilities, want to avoid switch statements
+///     Making Faces that are already assigned not be able to be selected again
+///     For some reason the selected materials are losing their colors if another face is selected
 ///////////////////////////////////////////
 
 using System.Collections;
@@ -63,6 +64,10 @@ public class MaterialSelectScript : MonoBehaviour
 
         public void AssignColorAndAbility()
         {
+            material = new Material(Shader.Find("Unlit/ColorZAlways"));
+            material.color = ThisButton.GetComponent<Image>().color;
+            material.renderQueue = 2005;
+
             uses--;
             ButtonText.text = uses.ToString();
             if(uses <= 0)
@@ -70,7 +75,7 @@ public class MaterialSelectScript : MonoBehaviour
                 thisButton.interactable = false;
             }
             //Attach a script to be made here to the face selected that will have the associated ability
-            face._rend.material = material; //Change this later to work with attached face script
+            face._rend.material = material;
             MScript.AssignAbility();
 
             holdingPanel.SetActive(false);
@@ -150,12 +155,14 @@ public class MaterialSelectScript : MonoBehaviour
                     buttonY -= buttonSpacing;
                 }
                 GameObject buttonObj = Instantiate(buttonList[i].thisButtonObj) as GameObject;
+                buttonList[i].thisButtonObj = buttonObj;
                 buttonObj.transform.SetParent(panelSpace.transform, true);
 
                 Button button = buttonObj.GetComponent<Button>();
                 //This is important, as it makes the class refer to the instantiated button rather than the prefab
                 buttonList[i].ThisButton = button;
                 button.interactable = true;
+                buttonList[i].ButtonText = buttonList[i].ThisButton.GetComponentInChildren<Text>(); //Had to move the text grabbing here
                 //This assigns the function for the associated class to OnClick()
                 button.onClick.AddListener(buttonList[i].AssignColorAndAbility);
 

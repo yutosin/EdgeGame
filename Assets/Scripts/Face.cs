@@ -142,8 +142,10 @@ public class Face : MonoBehaviour
                 lowestHitDistance = hitDistance;
             else if (hitDistance > lowestHitDistance)
                 continue;
+            if (lastFace && (lastFace.Ability != null))//Need to skip reassigning default materials
+                continue;
             if (lastFace)
-                lastFace._rend.material = _defaultMat;
+                lastFace._rend.material = _defaultMat; //This might be why selecting another face will have assigned materials unset
             face._rend.material = _selectedMat;
             lastFace = face;
             _selectedFace = face;
