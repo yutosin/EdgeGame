@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964124, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -794,8 +794,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rend: {fileID: 0}
-  hasAbility: 0
   Parent: {fileID: 0}
+  Vertices: []
+  FaceId: 0
 --- !u!65 &214917323
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2518,6 +2519,8 @@ MonoBehaviour:
   - {fileID: 1984774013}
   combineCubes: 1
   _meshSurface: {fileID: 0}
+  FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
+  WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _initTPLocs: 
 --- !u!1 &949180510
 GameObject:
@@ -4172,9 +4175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee371baeb3cee4db0bbba39dae11e1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 963194227}
   edgeManager: {fileID: 900765637}
   playerAgent: {fileID: 2075970408}
-  MainCamera: {fileID: 963194227}
   PlayMode: 0
 --- !u!114 &1699239243
 MonoBehaviour:
