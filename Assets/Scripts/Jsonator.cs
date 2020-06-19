@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
+/*
+TO DO:
+
+    - Create Material system: Player selects Material Mode and a material from drop down, left clicks on a tile to add material, right-clicks to clear it.
+    - Setup vector-nodes.
+    - Fix transform index out of bounds error.
+    - Fix lingering behind-tiles
+*/
+
 public class Jsonator : MonoBehaviour
 {
     [Header("Set Materials")]
@@ -45,7 +55,6 @@ public class Jsonator : MonoBehaviour
                     Tile inTile = new Tile();
                     inTile.d = cuberString;
                     tileData[c] = inTile;
-                    Debug.Log(tileData[c].d);
                 }
                 Cube inCube = new Cube();
                 inCube.position = cube.transform.position;
@@ -71,7 +80,7 @@ public class Jsonator : MonoBehaviour
             for (int l = 0; l < loadCount; l++)
             {
                 loadCube = gridLoad.cubeData[l];
-                Vector3 loadPos = loadCube.position;
+                Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
                 string[] toCuber = new string[3] { "", "", "" };
                 for (int c = 0; c < loadCube.tileData.Length; c++)
                 {
@@ -109,13 +118,21 @@ public class Jsonator : MonoBehaviour
                     {
                         //Define adjacent voxels to the one clicked on.
                         string side = "";
-                        if (hitRay.collider.name.Contains("Left")) { side = "Left"; }
-                        else if (hitRay.collider.name.Contains("Top")) { side = "Top"; }
-                        else if (hitRay.collider.name.Contains("Right")) { side = "Right"; }
-
-                        if (side == "Left") { rayPos.x += 1; }
-                        else if (side == "Top") { rayPos.y += 1; }
-                        else if (side == "Right") { rayPos.z += 1; }
+                        if (hitRay.collider.name.Contains("Left"))
+                        {
+                            side = "Left";
+                            rayPos.x++;
+                        }
+                        else if (hitRay.collider.name.Contains("Top"))
+                        {
+                            side = "Top";
+                            rayPos.y++;
+                        }
+                        else if (hitRay.collider.name.Contains("Right"))
+                        {
+                            side = "Right";
+                            rayPos.z++;
+                        }
 
                         for (int c = 0; c < transform.childCount; c++)
                         {
@@ -128,52 +145,52 @@ public class Jsonator : MonoBehaviour
                             if (cubeParse.position == new Vector3(rayPos.x, rayPos.y, rayPos.z + 1)) { cubeZPos = transform.GetChild(c); }
 
                             //Curate faces of newly adjoined or exposed faces.
+                            int tc = transform.GetChild(c).childCount;
                             if (side == "Right")
                             {
-                                for (int t = 0; t < transform.GetChild(c).childCount; t++)
+                                for (int t = 0; t < tc; t++)
                                 {
-                                    if (cubeXNeg != null)
+                                    if (CurateCube(cubeXNeg, "Left", t))
                                     {
-                                        if (cubeXNeg.GetChild(t).name.Contains("Left"))
-                                        {
-                                            Destroy(cubeXNeg.GetChild(t).gameObject);
-                                            break;
-                                        }
+                                        tc--;
+                                        if (t >= tc) { break; }
+                                    }
+                                    if (CurateCube(cubeYNeg, "Top", t))
+                                    {
+                                        tc--;
+                                        if (t >= tc) { break; }
                                     }
                                 }
                             }
                             else if (side == "Top")
                             {
-                                for (int t = 0; t < transform.GetChild(c).childCount; t++)
+                                for (int t = 0; t < tc; t++)
                                 {
-                                    if (cubeYNeg != null)
+                                    if (CurateCube(cubeXNeg, "Left", t))
                                     {
-                                        if (cubeYNeg.GetChild(t).name.Contains("Top"))
-                                        {
-                                            Destroy(cubeYNeg.GetChild(t).gameObject);
-                                            break;
-                                        }
+                                        tc--;
+                                        if (t >= tc) { break; }
                                     }
-                                    else if (cubeXNeg != null)
+                                    if (CurateCube(cubeZNeg, "Right", t))
                                     {
-                                        if (cubeXNeg.GetChild(t).name.Contains("Left"))
-                                        {
-                                            Destroy(cubeYNeg.GetChild(t).gameObject);
-                                        }
+                                        tc--;
+                                        if (t >= tc) { break; }
                                     }
                                 }
                             }
                             else if (side == "Left")
                             {
-                                for (int t = 0; t < transform.GetChild(c).childCount; t++)
+                                for (int t = 0; t < tc; t++)
                                 {
-                                    if (cubeZNeg != null)
+                                    if (CurateCube(cubeYNeg, "Top", t))
                                     {
-                                        if (cubeZNeg.GetChild(t).name.Contains("Right"))
-                                        {
-                                            Destroy(cubeZNeg.GetChild(t).gameObject);
-                                            break;
-                                        }
+                                        tc--;
+                                        if (t >= tc) { break; }
+                                    }
+                                    if (CurateCube(cubeZNeg, "Right", t)) { tc--; }
+                                    {
+                                        tc--;
+                                        if (t >= tc) { break; }
                                     }
                                 }
                             }
@@ -187,73 +204,13 @@ public class Jsonator : MonoBehaviour
                     //Right click, remove voxel.
                     else if (rightMouse)
                     {
-                        if (hitRay.collider.name.Contains("Left"))
+                        if (hitRay.collider.name.Contains("Left") || hitRay.collider.name.Contains("Top") || hitRay.collider.name.Contains("Right"))
                         {
                             Destroy(hitRay.transform.parent.gameObject);
                             for (int r = 0; r < transform.childCount; r++)
                             {
                                 cubeParse = transform.GetChild(r).transform;
-                                if (cubeParse.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
-                                {
-                                    cubeZPos = transform.GetChild(r);
-                                    Tiler("Left", cubeZPos, "Left");
-                                }
-                                if (cubeParse.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1))
-                                {
-                                    cubeZNeg = transform.GetChild(r);
-                                    Tiler("Right", cubeZNeg, "Right");
-                                }
-                                if (cubeParse.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z))
-                                {
-                                    cubeYPos = transform.GetChild(r);
-                                    Tiler("Top", cubeYPos, "Top");
-                                }
-                            }
-                        }
-                        else if (hitRay.collider.name.Contains("Right"))
-                        {
-                            Destroy(hitRay.transform.parent.gameObject);
-                            for (int r = 0; r < transform.childCount; r++)
-                            {
-                                cubeParse = transform.GetChild(r).transform;
-                                if (cubeParse.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1))
-                                {
-                                    cubeXPos = transform.GetChild(r);
-                                    Tiler("Right", cubeXPos, "Right");
-                                }
-                                if (cubeParse.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
-                                {
-                                    cubeXPos = transform.GetChild(r);
-                                    Tiler("Left", cubeXPos, "Left");
-                                }
-                                if (cubeParse.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z))
-                                {
-                                    cubeYPos = transform.GetChild(r);
-                                    Tiler("Top", cubeYPos, "Top");
-                                }
-                            }
-                        }
-                        else if (hitRay.collider.name.Contains("Top"))
-                        {
-                            Destroy(hitRay.transform.parent.gameObject);
-                            for (int r = 0; r < transform.childCount; r++)
-                            {
-                                cubeParse = transform.GetChild(r).transform;
-                                if (cubeParse.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1))
-                                {
-                                    cubeZPos = transform.GetChild(r);
-                                    Tiler("Right", cubeZPos, "Right");
-                                }
-                                if (cubeParse.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
-                                {
-                                    cubeXPos = transform.GetChild(r);
-                                    Tiler("Left", cubeXPos, "Left");
-                                }
-                                if (cubeParse.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z))
-                                {
-                                    cubeYPos = transform.GetChild(r);
-                                    Tiler("Top", cubeYPos, "Top");
-                                }
+                                DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, cubeParse.position, r);
                             }
                         }
                     }
@@ -266,7 +223,7 @@ public class Jsonator : MonoBehaviour
     {
         GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
         cube.transform.position = new Vector3(pos.x - 1, pos.y - 1, pos.z - 1);
-        cube.transform.SetParent(this.transform);
+        cube.transform.SetParent(transform);
         if (top != "") { Tiler("Top", cube.transform, "Top"); }
         if (rgt != "") { Tiler("Right", cube.transform, "Right"); }
         if (lft != "") { Tiler("Left", cube.transform, "Left"); }
@@ -347,6 +304,41 @@ public class Jsonator : MonoBehaviour
             tileF.mesh.normals = tileN;
             tileF.mesh.uv = tileUV;
             tileF.mesh.triangles = tileT;
+        }
+    }
+
+    bool CurateCube(Transform cube, string dim, int array)
+    {
+        if (cube != null)
+        {
+            if (cube.GetChild(array) != null)
+            {
+                if (cube.GetChild(array).name.Contains(dim))
+                {
+                    Destroy(cube.GetChild(array).gameObject);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    void DeleteCube(Transform x, Transform y, Transform z, Vector3 rayPos, Vector3 delPos, int array)
+    {
+        if (delPos == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
+        {
+            z = transform.GetChild(array);
+            Tiler("Left", z, "Left");
+        }
+        if (delPos == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z))
+        {
+            y = transform.GetChild(array);
+            Tiler("Top", y, "Top");
+        }
+        if (delPos == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1))
+        {
+            x = transform.GetChild(array);
+            Tiler("Right", x, "Right");
         }
     }
 }
