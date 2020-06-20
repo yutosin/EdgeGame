@@ -4007,17 +4007,17 @@ MonoBehaviour:
   buttonList:
   - thisButtonObj: {fileID: 819187423129617764, guid: 9af7f6f2478c82d448f23141b3e31fdb,
       type: 3}
-    material: {fileID: 2100000, guid: e809395bf9c25b7458e3f1734f88066a, type: 2}
+    Ability: Elevator
     uses: 2
     useThisLevel: 1
   - thisButtonObj: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
       type: 3}
-    material: {fileID: 2100000, guid: a2682c178834f4fe3b3b9a21064f369c, type: 2}
+    Ability: Teleport
     uses: 2
     useThisLevel: 1
   - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
       type: 3}
-    material: {fileID: 2100000, guid: 817bc4fec698d8b42a82197be537c709, type: 2}
+    Ability: 
     uses: 2
     useThisLevel: 1
 --- !u!1 &1549081932

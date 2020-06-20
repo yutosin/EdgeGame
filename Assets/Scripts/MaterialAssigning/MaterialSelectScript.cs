@@ -28,7 +28,9 @@ public class MaterialSelectScript : MonoBehaviour
             set { thisButton = value; }
         }
 
-        public Material material;
+        private Material material;
+
+        public string abilityName;
         public int uses = 1;
         public bool useThisLevel = true;
 
@@ -76,7 +78,7 @@ public class MaterialSelectScript : MonoBehaviour
             }
             //Attach a script to be made here to the face selected that will have the associated ability
             face._rend.material = material;
-            MScript.AssignAbility();
+            MScript.AssignAbility(abilityName);
 
             holdingPanel.SetActive(false);
         }
@@ -87,6 +89,8 @@ public class MaterialSelectScript : MonoBehaviour
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
     public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
+
+    private TeleportAbility[] tpFaces = new TeleportAbility[2];
 
     //Made this a method so that when the value is changed the buttons reference the right face
     private Face _selectedFace;
@@ -174,9 +178,39 @@ public class MaterialSelectScript : MonoBehaviour
 
     //This is just for testing, I want this handled within the MaterialButtons Class
     //Also for some reason this does not work when placed in the MaterialButtons Class, need to find out why
-    private void AssignAbility()
+    private void AssignAbility(string ability)
     {
-        _selectedFace.Ability = gameObject.AddComponent<ElevatorAbility>();
+        switch (ability) //Made this a switch statement for now, i don't like it though
+        {
+            case "Elevator":
+                _selectedFace.Ability = gameObject.AddComponent<ElevatorAbility>();
+                break;
+
+            case "Teleport": //this code is an atrocity and will be destroyed
+                _selectedFace.Ability = gameObject.AddComponent<TeleportAbility>();
+                TeleportAbility tp = _selectedFace.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
+                tp.thisPos = tp.FindCenter(tp.AbilityFace);
+
+                if (tpFaces[1] == null)
+                {
+                    tpFaces[1] = tp;
+                }
+                else if (tpFaces[2] == null)
+                {
+                    tpFaces[2] = tp;
+
+                    tpFaces[1].otherPos = tpFaces[2].thisPos;
+                    tpFaces[2].otherPos = tpFaces[1].thisPos;
+                }
+                break;
+
+            default:
+                Debug.LogError("That is not an ability");
+                break;
+        }
+
+
+        
     }
 
 }
