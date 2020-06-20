@@ -102,17 +102,7 @@
                 "y": 2.0,
                 "z": 0.0
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Left"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -144,17 +134,7 @@
                 "y": 0.0,
                 "z": 2.0
             },
-            "tileData": [
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                },
-                {
-                    "d": "Top"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -170,17 +150,7 @@
                 "y": 2.0,
                 "z": 2.0
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -196,17 +166,7 @@
                 "y": 2.0,
                 "z": 1.0
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Left"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -214,17 +174,7 @@
                 "y": 1.0,
                 "z": 1.0
             },
-            "tileData": [
-                {
-                    "d": "Left"
-                },
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -232,17 +182,7 @@
                 "y": 1.0,
                 "z": 2.0
             },
-            "tileData": [
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -250,17 +190,7 @@
                 "y": 1.0,
                 "z": 3.0
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -276,17 +206,7 @@
                 "y": 0.0,
                 "z": 3.0
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -294,17 +214,7 @@
                 "y": 0.0,
                 "z": 4.0
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
@@ -320,6 +230,70 @@
                 "y": 1.0,
                 "z": 0.0
             },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 4.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 3.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 3.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 3.0,
+                "z": 1.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 4.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 5.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+            },
             "tileData": [
                 {
                     "d": "Top"
@@ -334,7 +308,15 @@
         },
         {
             "position": {
-                "x": 3.0,
+                "x": 4.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 5.0,
                 "y": 0.0,
                 "z": 1.0
             },
@@ -354,7 +336,119 @@
             "position": {
                 "x": 4.0,
                 "y": 0.0,
+                "z": 2.0
+            },
+            "tileData": [
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                },
+                {
+                    "d": "Top"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 0.0,
+                "z": 2.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 4.0,
+                "y": 1.0,
                 "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 4.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 1.0,
+                "z": 2.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 0.0,
+                "z": 3.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 0.0,
+                "z": 3.0
             },
             "tileData": [
                 {
@@ -371,6 +465,294 @@
         {
             "position": {
                 "x": 1.0,
+                "y": 1.0,
+                "z": 3.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 3.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 4.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 0.0,
+                "z": 4.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 4.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 4.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 5.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 5.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 6.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 5.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 2.0,
+                "z": 4.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 2.0,
+                "z": 3.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 2.0,
+                "z": 3.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 1.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "tileData": [
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                },
+                {
+                    "d": "Top"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 2.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.0,
+                "y": 2.0,
+                "z": 1.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.0,
+                "y": 2.0,
+                "z": 0.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 3.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.0,
+                "y": 4.0,
+                "z": 0.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.0,
                 "y": 3.0,
                 "z": 0.0
             },
@@ -388,9 +770,27 @@
         },
         {
             "position": {
-                "x": 0.0,
+                "x": 2.0,
                 "y": 3.0,
-                "z": 0.0
+                "z": 1.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Left"
+                },
+                {
+                    "d": "Right"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 3.0,
+                "z": 1.0
             },
             "tileData": []
         },
@@ -398,6 +798,128 @@
             "position": {
                 "x": 0.0,
                 "y": 3.0,
+                "z": 2.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 3.0,
+                "z": 2.0
+            },
+            "tileData": [
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                },
+                {
+                    "d": "Top"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 3.0,
+                "z": 3.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 4.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 4.0,
+                "z": 1.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Left"
+                },
+                {
+                    "d": "Right"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 4.0,
+                "z": 1.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 4.0,
+                "z": 2.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 5.0,
+                "z": 0.0
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.0,
+                "y": 5.0,
+                "z": 0.0
+            },
+            "tileData": [
+                {
+                    "d": "Top"
+                },
+                {
+                    "d": "Right"
+                },
+                {
+                    "d": "Left"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.0,
+                "y": 5.0,
                 "z": 1.0
             },
             "tileData": [
@@ -415,7 +937,7 @@
         {
             "position": {
                 "x": 0.0,
-                "y": 4.0,
+                "y": 6.0,
                 "z": 0.0
             },
             "tileData": [

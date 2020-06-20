@@ -10,8 +10,6 @@ TO DO:
 
     - Create Material system: Player selects Material Mode and a material from drop down, left clicks on a tile to add material, right-clicks to clear it.
     - Setup vector-nodes.
-    - Fix transform index out of bounds error.
-    - Fix lingering behind-tiles
 */
 
 public class Jsonator : MonoBehaviour
@@ -26,77 +24,36 @@ public class Jsonator : MonoBehaviour
 
     [Header("Buttons")]
     public InputField saveName;
+    public RectTransform viewportContent;
+    public Button buttonTemplate;
     public Event saveButton;
 
     public bool commitLoad;
+    public bool commitGen;
 
-    private Button button;
-    private bool commitSave;
+    private Transform cubeXNeg;
+    private Transform cubeXPos;
+    private Transform cubeYNeg;
+    private Transform cubeYPos;
+    private Transform cubeZNeg;
+    private Transform cubeZPos;
 
     [SerializeField]
     private Cube[] cubeData;
     private Tile[] tileData;
 
+    private void Awake()
+    {
+        OnRefreshButton();
+    }
+
+
+
     void Update()
     {
-        if (commitSave)
+        if (commitGen)
         {
-            //Check and read all tiles in the field.
-            int saveCount = transform.childCount;
-            cubeData = new Cube[saveCount];
-            for (int s = 0; s < saveCount; s++)
-            {
-                Transform cube = transform.GetChild(s);
-                int tileCount = cube.childCount;
-                tileData = new Tile[tileCount];
-                for (int c = 0; c < tileCount; c++)
-                {
-                    string saveParse = cube.GetChild(c).name.Split('_')[1];
-                    string cuberString;
-                    if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left")
-                    {
-                        cuberString = saveParse;
-                    }
-                    else { cuberString = " "; }
-                    Tile inTile = new Tile();
-                    inTile.d = cuberString;
-                    tileData[c] = inTile;
-                }
-                Cube inCube = new Cube();
-                inCube.position = cube.transform.position;
-                inCube.tileData = tileData;
-                cubeData[s] = inCube;
-            }
-            
-            //Save the data into a json file.
-            Grid gridSave = new Grid();
-            gridSave.cubeData = cubeData;
-            string stringSave = JsonUtility.ToJson(gridSave, true);
-            File.WriteAllText(path + "/" + saveName.text + ".json", stringSave);
 
-            commitSave = false;
-        }
-
-        if (commitLoad)
-        {
-            string stringLoad = File.ReadAllText("./Resources/LevelTest.json");
-            Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
-            int loadCount = gridLoad.cubeData.Length;
-            Cube loadCube;
-            for (int l = 0; l < loadCount; l++)
-            {
-                loadCube = gridLoad.cubeData[l];
-                Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
-                string[] toCuber = new string[3] { "", "", "" };
-                for (int c = 0; c < loadCube.tileData.Length; c++)
-                {
-                    if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
-                    else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
-                    else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
-                }
-                Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
-            }
-            commitLoad = false;
         }
 
         //Handle Mouse-based block addition and removal.
@@ -111,99 +68,34 @@ public class Jsonator : MonoBehaviour
                 Vector3 rayPos = hitRay.transform.parent.gameObject.transform.position;
                 if (hitRay.collider != null)
                 {
-                    Transform cubeXNeg = null;
-                    Transform cubeXPos = null;
-                    Transform cubeYNeg = null;
-                    Transform cubeYPos = null;
-                    Transform cubeZPos = null;
-                    Transform cubeZNeg = null;
-                    Transform cubeParse;
+                    //CubeParse(false, null, new Vector3(0,0,0));
 
                     //Left click, build the voxel.
                     if (leftMouse)
                     {
                         //Define adjacent voxels to the one clicked on.
-                        string side = "";
-                        if (hitRay.collider.name.Contains("Left"))
-                        {
-                            side = "Left";
-                            rayPos.x++;
-                        }
-                        else if (hitRay.collider.name.Contains("Top"))
-                        {
-                            side = "Top";
-                            rayPos.y++;
-                        }
-                        else if (hitRay.collider.name.Contains("Right"))
-                        {
-                            side = "Right";
-                            rayPos.z++;
-                        }
+                        if (hitRay.collider.name.Contains("Left")) { rayPos.x++; }
+                        if (hitRay.collider.name.Contains("Top")) { rayPos.y++; }
+                        if (hitRay.collider.name.Contains("Right")) { rayPos.z++; }
 
+                        //Curate faces the newly created voxel will be adjacent to.
+                        bool[] backFace = new bool[3] { false, false, false };
                         for (int c = 0; c < transform.childCount; c++)
                         {
-                            cubeParse = transform.GetChild(c).transform;
-                            if (cubeParse.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z)) { cubeXNeg = transform.GetChild(c); }
-                            if (cubeParse.position == new Vector3(rayPos.x + 1, rayPos.y, rayPos.z)) { cubeXPos = transform.GetChild(c); }
-                            if (cubeParse.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z)) { cubeYNeg = transform.GetChild(c); }
-                            if (cubeParse.position == new Vector3(rayPos.x, rayPos.y + 1, rayPos.z)) { cubeYPos = transform.GetChild(c); }
-                            if (cubeParse.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1)) { cubeZNeg = transform.GetChild(c); }
-                            if (cubeParse.position == new Vector3(rayPos.x, rayPos.y, rayPos.z + 1)) { cubeZPos = transform.GetChild(c); }
-
-                            //Curate faces of newly adjoined or exposed faces.
+                            CubeParse(true, transform.GetChild(c).transform, rayPos, c);
+                            if (cubeXPos != null) { backFace[0] = true; }
+                            if (cubeYPos != null) { backFace[1] = true; }
+                            if (cubeZPos != null) { backFace[2] = true; }
                             int tc = transform.GetChild(c).childCount;
-                            if (side == "Right")
+                            for (int t = 0; t < tc; t++)
                             {
-                                for (int t = 0; t < tc; t++)
-                                {
-                                    if (CurateCube(cubeXNeg, "Left", t))
-                                    {
-                                        tc--;
-                                        if (t >= tc) { break; }
-                                    }
-                                    if (CurateCube(cubeYNeg, "Top", t))
-                                    {
-                                        tc--;
-                                        if (t >= tc) { break; }
-                                    }
-                                }
+                                if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) { tc--; }
                             }
-                            else if (side == "Top")
-                            {
-                                for (int t = 0; t < tc; t++)
-                                {
-                                    if (CurateCube(cubeXNeg, "Left", t))
-                                    {
-                                        tc--;
-                                        if (t >= tc) { break; }
-                                    }
-                                    if (CurateCube(cubeZNeg, "Right", t))
-                                    {
-                                        tc--;
-                                        if (t >= tc) { break; }
-                                    }
-                                }
-                            }
-                            else if (side == "Left")
-                            {
-                                for (int t = 0; t < tc; t++)
-                                {
-                                    if (CurateCube(cubeYNeg, "Top", t))
-                                    {
-                                        tc--;
-                                        if (t >= tc) { break; }
-                                    }
-                                    if (CurateCube(cubeZNeg, "Right", t)) { tc--; }
-                                    {
-                                        tc--;
-                                        if (t >= tc) { break; }
-                                    }
-                                }
-                            }
+                            CubeParse(false, null, new Vector3(0, 0, 0), 0);
                         }
 
-                        //Build the voxel.
-                        Cuber((cubeYPos != null) ? "" : "Top", (cubeZPos != null) ? "" : "Right", (cubeXPos != null) ? "" : "Left", new Vector3(rayPos.x + 1, rayPos.y + 1, rayPos.z + 1));
+                        //Build the new voxel.
+                        Cuber((backFace[1]) ? "" : "Top", (backFace[2]) ? "" : "Right", (backFace[0]) ? "" : "Left", new Vector3(rayPos.x + 1, rayPos.y + 1, rayPos.z + 1));
                         Destroy(hitRay.transform.gameObject);
                     }
 
@@ -215,8 +107,7 @@ public class Jsonator : MonoBehaviour
                             Destroy(hitRay.transform.parent.gameObject);
                             for (int r = 0; r < transform.childCount; r++)
                             {
-                                cubeParse = transform.GetChild(r).transform;
-                                DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, cubeParse.position, r);
+                                DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, transform.GetChild(r).transform.position, r);
                             }
                         }
                     }
@@ -316,7 +207,111 @@ public class Jsonator : MonoBehaviour
     //Buttons
     public void OnSaveButton()
     {
-        commitSave = true;
+        //Check and read all tiles in the field.
+        int saveCount = transform.childCount;
+        cubeData = new Cube[saveCount];
+        for (int s = 0; s < saveCount; s++)
+        {
+            Transform cube = transform.GetChild(s);
+            int tileCount = cube.childCount;
+            tileData = new Tile[tileCount];
+            for (int c = 0; c < tileCount; c++)
+            {
+                string saveParse = cube.GetChild(c).name.Split('_')[1];
+                string cuberString;
+                if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left")
+                {
+                    cuberString = saveParse;
+                }
+                else { cuberString = " "; }
+                Tile inTile = new Tile();
+                inTile.d = cuberString;
+                tileData[c] = inTile;
+            }
+            Cube inCube = new Cube();
+            inCube.position = cube.transform.position;
+            inCube.tileData = tileData;
+            cubeData[s] = inCube;
+        }
+
+        //Save the data into a json file.
+        Grid gridSave = new Grid();
+        gridSave.cubeData = cubeData;
+        string stringSave = JsonUtility.ToJson(gridSave, true);
+        File.WriteAllText(path + "/" + saveName.text + ".json", stringSave);
+    }
+
+    public void OnLoadButton(Button button)
+    {
+        //Clear out the old cubes.
+        for (int d = 0; d < transform.childCount; d++)
+        {
+            Destroy(transform.GetChild(d).gameObject);
+        }
+
+        //Read and interpret the save file.
+        string stringLoad = File.ReadAllText("./Resources/" + button.name + ".json");
+        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
+        int loadCount = gridLoad.cubeData.Length;
+        Cube loadCube;
+        for (int l = 0; l < loadCount; l++)
+        {
+            loadCube = gridLoad.cubeData[l];
+            Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
+            string[] toCuber = new string[3] { "", "", "" };
+            for (int c = 0; c < loadCube.tileData.Length; c++)
+            {
+                if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
+                else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
+                else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
+            }
+
+            //Build the new level.
+            Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
+        }
+    }
+
+    public void OnRefreshButton()
+    {
+        //Clear old buttons.
+        for (int d = 1; d < viewportContent.transform.childCount; d++)
+        {
+            Destroy(viewportContent.GetChild(d).gameObject);
+        }
+
+        //Build new buttons.
+        Button[] fileButton = new Button[Directory.GetFiles(path).Length];
+        viewportContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, buttonTemplate.GetComponent<RectTransform>().rect.height * fileButton.Length + (fileButton.Length * 10) + 10);
+        for (int r = 0; r < fileButton.Length; r++)
+        {
+            fileButton[r] = Instantiate(buttonTemplate, viewportContent);
+            fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -r * 50 - 30);
+            string file = Directory.GetFiles(path)[r].Replace("./Resources\\", "").Replace(".json", "");
+            fileButton[r].name = file;
+            fileButton[r].GetComponentInChildren<Text>().text = Directory.GetFiles(path)[r].Replace("./Resources\\", "").Replace(".json", "");
+        }
+    }
+
+    void CubeParse(bool mode, Transform target, Vector3 rayPos, int arrayIn)
+    {
+        if (mode)
+        {
+            if (target.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z)) { cubeXNeg = transform.GetChild(arrayIn); }
+            else if (target.position == new Vector3(rayPos.x + 1, rayPos.y, rayPos.z)) { cubeXPos = transform.GetChild(arrayIn); }
+            else if (target.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z)) { cubeYNeg = transform.GetChild(arrayIn); }
+            else if (target.position == new Vector3(rayPos.x, rayPos.y + 1, rayPos.z)) { cubeYPos = transform.GetChild(arrayIn); }
+            else if (target.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1)) { cubeZNeg = transform.GetChild(arrayIn); }
+            else if (target.position == new Vector3(rayPos.x, rayPos.y, rayPos.z + 1)) { cubeZPos = transform.GetChild(arrayIn); }
+        }
+        else
+        {
+            cubeXNeg = null;
+            cubeXPos = null;
+            cubeYNeg = null;
+            cubeYPos = null;
+            cubeZNeg = null;
+            cubeZPos = null;
+        }
     }
 
     bool CurateCube(Transform cube, string dim, int array)
