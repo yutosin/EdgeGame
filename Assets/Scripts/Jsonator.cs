@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 /*
@@ -24,8 +25,13 @@ public class Jsonator : MonoBehaviour
     public string path;
 
     [Header("Buttons")]
-    public bool commitSave;
+    public InputField saveName;
+    public Event saveButton;
+
     public bool commitLoad;
+
+    private Button button;
+    private bool commitSave;
 
     [SerializeField]
     private Cube[] cubeData;
@@ -66,14 +72,14 @@ public class Jsonator : MonoBehaviour
             Grid gridSave = new Grid();
             gridSave.cubeData = cubeData;
             string stringSave = JsonUtility.ToJson(gridSave, true);
-            File.WriteAllText(path, stringSave);
+            File.WriteAllText(path + "/" + saveName.text + ".json", stringSave);
 
             commitSave = false;
         }
 
         if (commitLoad)
         {
-            string stringLoad = File.ReadAllText(path);
+            string stringLoad = File.ReadAllText("./Resources/LevelTest.json");
             Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
             int loadCount = gridLoad.cubeData.Length;
             Cube loadCube;
@@ -305,6 +311,12 @@ public class Jsonator : MonoBehaviour
             tileF.mesh.uv = tileUV;
             tileF.mesh.triangles = tileT;
         }
+    }
+
+    //Buttons
+    public void OnSaveButton()
+    {
+        commitSave = true;
     }
 
     bool CurateCube(Transform cube, string dim, int array)
