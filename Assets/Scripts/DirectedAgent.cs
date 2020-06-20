@@ -14,13 +14,13 @@ public class DirectedAgent : MonoBehaviour
     private Vector3 _jumpPoint;
     private Seeker _seeker;
     
-    public RobonautHandler_Mod mover;
+    public RobonautHandeler2 mover;
     public Transform targetPosition;
 
     // Use this for initialization
     void Awake () 
     {
-        mover = GetComponent<RobonautHandler_Mod>();
+        mover = GetComponent<RobonautHandeler2>();
         _seeker = GetComponent<Seeker>();
         _hitInfo = new RaycastHit();
     }
