@@ -23,6 +23,10 @@ public class EdgeManager : MonoBehaviour
     private Dictionary<string, Graph> _zGraphs;
 
     public NavMeshSurface _meshSurface;
+
+    public Material FloorMat;  //floor material creation
+    public Material WallMat1;
+
     private bool _navMeshBuilt = false;
 
     private List<GameObject> _cubeObjects;
@@ -407,8 +411,8 @@ public class EdgeManager : MonoBehaviour
         
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
-        meshRenderer.sharedMaterial.color = Color.gray;
+        meshRenderer.sharedMaterial = WallMat1;
+        // meshRenderer.sharedMaterial.color = Color.gray;
 
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
 
