@@ -26,10 +26,6 @@ public class Jsonator : MonoBehaviour
     public InputField saveName;
     public RectTransform viewportContent;
     public Button buttonTemplate;
-    public Event saveButton;
-
-    public bool commitLoad;
-    public bool commitGen;
 
     private Transform cubeXNeg;
     private Transform cubeXPos;
@@ -51,11 +47,6 @@ public class Jsonator : MonoBehaviour
 
     void Update()
     {
-        if (commitGen)
-        {
-
-        }
-
         //Handle Mouse-based block addition and removal.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
@@ -95,7 +86,11 @@ public class Jsonator : MonoBehaviour
                         }
 
                         //Build the new voxel.
-                        Cuber((backFace[1]) ? "" : "Top", (backFace[2]) ? "" : "Right", (backFace[0]) ? "" : "Left", new Vector3(rayPos.x + 1, rayPos.y + 1, rayPos.z + 1));
+                        Cuber(
+                            backFace[1] ? "" : "Top",
+                            backFace[2] ? "" : "Right",
+                            backFace[0] ? "" : "Left",
+                            new Vector3Int(Mathf.RoundToInt(rayPos.x + 1), Mathf.RoundToInt(rayPos.y + 1), Mathf.RoundToInt(rayPos.z + 1)));
                         Destroy(hitRay.transform.gameObject);
                     }
 
@@ -116,11 +111,11 @@ public class Jsonator : MonoBehaviour
         }
     }
 
-    void Cuber(string top, string rgt, string lft, Vector3 pos)
+    void Cuber(string top, string rgt, string lft, Vector3Int pos)
     {
         GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
-        cube.transform.position = new Vector3(pos.x - 1, pos.y - 1, pos.z - 1);
         cube.transform.SetParent(transform);
+        cube.transform.position = new Vector3Int(pos.x - 1, pos.y - 1, pos.z - 1);
         if (top != "") { Tiler("Top", cube.transform, "Top"); }
         if (rgt != "") { Tiler("Right", cube.transform, "Right"); }
         if (lft != "") { Tiler("Left", cube.transform, "Left"); }
@@ -238,7 +233,7 @@ public class Jsonator : MonoBehaviour
         Grid gridSave = new Grid();
         gridSave.cubeData = cubeData;
         string stringSave = JsonUtility.ToJson(gridSave, true);
-        File.WriteAllText(path + "/" + saveName.text + ".json", stringSave);
+        File.WriteAllText(path + "\\"+ saveName.text + ".json", stringSave);
     }
 
     public void OnLoadButton(Button button)
@@ -250,7 +245,7 @@ public class Jsonator : MonoBehaviour
         }
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText("./Resources/" + button.name + ".json");
+        string stringLoad = File.ReadAllText(path + "\\" + button.name + ".json");
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
@@ -267,7 +262,7 @@ public class Jsonator : MonoBehaviour
             }
 
             //Build the new level.
-            Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
+            Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
         }
     }
 

@@ -340,13 +340,13 @@
             },
             "tileData": [
                 {
+                    "d": "Top"
+                },
+                {
                     "d": "Right"
                 },
                 {
                     "d": "Left"
-                },
-                {
-                    "d": "Top"
                 }
             ]
         },
@@ -670,13 +670,13 @@
             },
             "tileData": [
                 {
+                    "d": "Top"
+                },
+                {
                     "d": "Right"
                 },
                 {
                     "d": "Left"
-                },
-                {
-                    "d": "Top"
                 }
             ]
         },
@@ -779,10 +779,10 @@
                     "d": "Top"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left"
                 }
             ]
         },
@@ -810,13 +810,13 @@
             },
             "tileData": [
                 {
+                    "d": "Top"
+                },
+                {
                     "d": "Right"
                 },
                 {
                     "d": "Left"
-                },
-                {
-                    "d": "Top"
                 }
             ]
         },
@@ -857,10 +857,10 @@
                     "d": "Top"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left"
                 }
             ]
         },

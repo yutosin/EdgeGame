@@ -1839,10 +1839,10 @@
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top"
                 },
                 {
-                    "d": "Top"
+                    "d": "Right"
                 }
             ]
         },
@@ -2013,10 +2013,10 @@
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top"
                 },
                 {
-                    "d": "Top"
+                    "d": "Right"
                 }
             ]
         },

@@ -1428,7 +1428,7 @@ MonoBehaviour:
   leftTile: {fileID: 2100000, guid: 8e7bea41b62b87943ba614c0685eccc3, type: 2}
   rightTile: {fileID: 2100000, guid: 23f716eeb19fe554b908403cd89b7125, type: 2}
   topTile: {fileID: 2100000, guid: 9605cff6cd0ab6146903fa0a94ea27d5, type: 2}
-  path: ./Resources
+  path: ./Resources\
   saveName: {fileID: 426392386}
   viewportContent: {fileID: 396781885}
   buttonTemplate: {fileID: 1094371433}
@@ -1443,7 +1443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175074558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95321786, y: 1.9316084, z: -0.16552302}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1716,8 +1716,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 657039719}
   m_HandleRect: {fileID: 657039718}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9623999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

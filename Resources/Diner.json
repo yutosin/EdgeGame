@@ -52,10 +52,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Right"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left"
                 }
             ]
         },
@@ -87,10 +87,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Right"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left"
                 }
             ]
         },
@@ -420,10 +420,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Top"
                 },
                 {
-                    "d": "Top"
+                    "d": "Left"
                 }
             ]
         },
@@ -467,10 +467,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Right"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left"
                 }
             ]
         },
@@ -569,10 +569,10 @@
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top"
                 },
                 {
-                    "d": "Top"
+                    "d": "Right"
                 }
             ]
         },
@@ -584,10 +584,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Top"
                 },
                 {
-                    "d": "Top"
+                    "d": "Left"
                 }
             ]
         },
@@ -641,10 +641,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Right"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left"
                 }
             ]
         },
@@ -1166,10 +1166,10 @@
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Top"
                 },
                 {
-                    "d": "Top"
+                    "d": "Left"
                 }
             ]
         },
