@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 //Stick this guy onto an empty gameobject and it will let you assign buttons to go along with materials for use in the level
@@ -66,19 +67,67 @@ public class MaterialSelectScript : MonoBehaviour
 
         public void AssignColorAndAbility()
         {
+            switch (abilityName) //Made this a switch statement for now, I don't like it though
+            {
+                case "Elevator":
+                    _mScript.AssignElevatorAbility();
+                    SetMaterial();
+                    UpdateUses();
+                    break;
+
+                case "Teleport": //My soul is condemed the the fires of hell for this if statement in a switch statement
+                    if (!_mScript.CheckFlat())
+                    {
+                        break;
+                    }
+
+                    else
+                    {
+                        _mScript.AssignTPAbility();
+                        TeleportAbility tp = _mScript._selectedFace.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
+                        tp.thisPos = tp.FindCenter(tp.AbilityFace);//Says is not set to an instance of an object?
+
+                        if (_mScript.tpFaces[1] == null)
+                        {
+                            _mScript.tpFaces[1] = tp;
+                        }
+                        else if (_mScript.tpFaces[2] == null)
+                        {
+                            _mScript.tpFaces[2] = tp;
+
+                            _mScript.tpFaces[1].otherPos = _mScript.tpFaces[2].thisPos;
+                            _mScript.tpFaces[2].otherPos = _mScript.tpFaces[1].thisPos;
+                        }
+
+                        SetMaterial();
+                        UpdateUses();
+                        break;
+                    }
+
+                default:
+                    Debug.LogError("That is not an ability");
+                    break;
+            }
+
+        }
+
+        private void SetMaterial()
+        {
             material = new Material(Shader.Find("Unlit/ColorZAlways"));
             material.color = ThisButton.GetComponent<Image>().color;
             material.renderQueue = 2005;
 
+            face._rend.material = material;
+        }
+        
+        private void UpdateUses()
+        {
             uses--;
             ButtonText.text = uses.ToString();
-            if(uses <= 0)
+            if (uses <= 0)
             {
                 thisButton.interactable = false;
             }
-            //Attach a script to be made here to the face selected that will have the associated ability
-            face._rend.material = material;
-            MScript.AssignAbility(abilityName);
 
             holdingPanel.SetActive(false);
         }
@@ -90,7 +139,7 @@ public class MaterialSelectScript : MonoBehaviour
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
     public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
 
-    private TeleportAbility[] tpFaces = new TeleportAbility[2];
+    public TeleportAbility[] tpFaces = new TeleportAbility[2];
 
     //Made this a method so that when the value is changed the buttons reference the right face
     private Face _selectedFace;
@@ -177,40 +226,32 @@ public class MaterialSelectScript : MonoBehaviour
     }
 
     //This is just for testing, I want this handled within the MaterialButtons Class
-    //Also for some reason this does not work when placed in the MaterialButtons Class, need to find out why
-    private void AssignAbility(string ability)
+    //Also for some reason this does not work when placed in the MaterialButtons Class, need to find out why, cuz this is uggo and confusing
+    public void AssignElevatorAbility()
     {
-        switch (ability) //Made this a switch statement for now, i don't like it though
+        _selectedFace.Ability = gameObject.AddComponent<ElevatorAbility>();// god I hate this not being in the materialbuttons class
+        
+    }
+
+    public void AssignTPAbility()
+    {
+        _selectedFace.Ability = gameObject.AddComponent<TeleportAbility>();
+    }
+
+    public bool CheckFlat()
+    {
+        float yValue = _selectedFace.Vertices[0].y;
+        bool isFlat = true;
+        for (int i = 1; i < _selectedFace.Vertices.Length; i++)
         {
-            case "Elevator":
-                _selectedFace.Ability = gameObject.AddComponent<ElevatorAbility>();
+            if(yValue != _selectedFace.Vertices[i].y)
+            {
+                isFlat = false;
                 break;
-
-            case "Teleport": //this code is an atrocity and will be destroyed
-                _selectedFace.Ability = gameObject.AddComponent<TeleportAbility>();
-                TeleportAbility tp = _selectedFace.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
-                tp.thisPos = tp.FindCenter(tp.AbilityFace);
-
-                if (tpFaces[1] == null)
-                {
-                    tpFaces[1] = tp;
-                }
-                else if (tpFaces[2] == null)
-                {
-                    tpFaces[2] = tp;
-
-                    tpFaces[1].otherPos = tpFaces[2].thisPos;
-                    tpFaces[2].otherPos = tpFaces[1].thisPos;
-                }
-                break;
-
-            default:
-                Debug.LogError("That is not an ability");
-                break;
+            }
         }
 
-
-        
+        return (isFlat);
     }
 
 }

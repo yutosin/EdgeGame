@@ -4007,19 +4007,22 @@ MonoBehaviour:
   buttonList:
   - thisButtonObj: {fileID: 819187423129617764, guid: 9af7f6f2478c82d448f23141b3e31fdb,
       type: 3}
-    Ability: Elevator
+    abilityName: Elevator
     uses: 2
     useThisLevel: 1
   - thisButtonObj: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
       type: 3}
-    Ability: Teleport
+    abilityName: Teleport
     uses: 2
     useThisLevel: 1
   - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
       type: 3}
-    Ability: 
+    abilityName: 
     uses: 2
     useThisLevel: 1
+  tpFaces:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1549081932
 GameObject:
   m_ObjectHideFlags: 0
