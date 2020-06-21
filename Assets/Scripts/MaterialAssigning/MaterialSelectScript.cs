@@ -2,7 +2,11 @@
 ///Work to do list:
 ///     Making a system that will flexibly assign different abilities, want to avoid switch statements
 ///     Making Faces that are already assigned not be able to be selected again
-///     For some reason the selected materials are losing their colors if another face is selected
+///     Assigned abilities should not lose their color
+///     
+///     !!!!!!!
+///     Line 88 not working, says it is null, investigating why
+///     !!!!!!!
 ///////////////////////////////////////////
 
 using System.Collections;
