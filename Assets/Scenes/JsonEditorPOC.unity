@@ -530,7 +530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5.439995}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &411432945
@@ -1406,6 +1406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175074560}
   - component: {fileID: 1175074559}
+  - component: {fileID: 1175074561}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1428,12 +1429,10 @@ MonoBehaviour:
   leftTile: {fileID: 2100000, guid: 8e7bea41b62b87943ba614c0685eccc3, type: 2}
   rightTile: {fileID: 2100000, guid: 23f716eeb19fe554b908403cd89b7125, type: 2}
   topTile: {fileID: 2100000, guid: 9605cff6cd0ab6146903fa0a94ea27d5, type: 2}
-  path: ./Resources\
+  path: ./Resources
   saveName: {fileID: 426392386}
   viewportContent: {fileID: 396781885}
   buttonTemplate: {fileID: 1094371433}
-  commitLoad: 0
-  commitGen: 0
   cubeData: []
 --- !u!4 &1175074560
 Transform:
@@ -1449,6 +1448,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1175074561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175074558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee371baeb3cee4db0bbba39dae11e1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
+  edgeManager: {fileID: 0}
+  playerAgent: {fileID: 0}
+  PlayMode: 0
 --- !u!1 &1374411036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1732,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 657039718}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9456
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

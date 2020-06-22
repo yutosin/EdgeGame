@@ -21,6 +21,7 @@ public class Jsonator : MonoBehaviour
 
     [Header("General")]
     public string path;
+    public Transform startPont;
 
     [Header("Buttons")]
     public InputField saveName;
@@ -47,6 +48,8 @@ public class Jsonator : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.SharedInstance.InLevelEditor)
+            return;
         //Handle Mouse-based block addition and removal.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
@@ -205,9 +208,11 @@ public class Jsonator : MonoBehaviour
         //Check and read all tiles in the field.
         int saveCount = transform.childCount;
         cubeData = new Cube[saveCount];
+        List<Vector3Int> vertices = new List<Vector3Int>(saveCount * 4);
         for (int s = 0; s < saveCount; s++)
         {
             Transform cube = transform.GetChild(s);
+            AddTileVerticesToList(cube, vertices);
             int tileCount = cube.childCount;
             tileData = new Tile[tileCount];
             for (int c = 0; c < tileCount; c++)
@@ -232,6 +237,8 @@ public class Jsonator : MonoBehaviour
         //Save the data into a json file.
         Grid gridSave = new Grid();
         gridSave.cubeData = cubeData;
+        gridSave.vertices = vertices.ToArray();
+        gridSave.startPoint = Vector3Int.RoundToInt(startPont.position);
         string stringSave = JsonUtility.ToJson(gridSave, true);
         File.WriteAllText(path + "\\"+ saveName.text + ".json", stringSave);
     }
@@ -245,7 +252,7 @@ public class Jsonator : MonoBehaviour
         }
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(path + "\\" + button.name + ".json");
+        string stringLoad = File.ReadAllText(button.name + ".json");
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
@@ -343,6 +350,62 @@ public class Jsonator : MonoBehaviour
             Tiler("Right", x, "Right");
         }
     }
+
+    private void AddTileVerticesToList(Transform cube, List<Vector3Int> verticesList)
+    {
+        foreach (Transform tileTransform in cube)
+        {
+            MeshFilter tileMeshFilter = tileTransform.GetComponent<MeshFilter>();
+            if (!tileMeshFilter)
+                continue;
+            Mesh tileMesh = tileMeshFilter.mesh;
+            foreach (var meshVertex in tileMesh.vertices)
+            {
+                Vector3 worldSpaceVertex = tileTransform.TransformPoint(meshVertex);
+                Vector3Int meshVertexInt = Vector3Int.RoundToInt(worldSpaceVertex);
+                if (verticesList.Exists(v => v == meshVertexInt))
+                    continue;
+                Vector3 dir = GameManager.SharedInstance.MainCamera.transform.position - worldSpaceVertex;
+                if (Physics.Raycast(worldSpaceVertex, dir, out RaycastHit hitInfo))
+                {
+                    Debug.Log("hit object: " + hitInfo.collider.gameObject.name);
+                    continue;
+                }
+                verticesList.Add(meshVertexInt);
+            }
+        }
+    }
+    public Grid LoadLevel(string levelName)
+    {
+        //Clear out the old cubes.
+        for (int d = 0; d < transform.childCount; d++)
+        {
+            Destroy(transform.GetChild(d).gameObject);
+        }
+
+        //Read and interpret the save file.
+        string stringLoad = File.ReadAllText(path + "/" + levelName + ".json");
+        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
+        int loadCount = gridLoad.cubeData.Length;
+        Cube loadCube;
+        for (int l = 0; l < loadCount; l++)
+        {
+            loadCube = gridLoad.cubeData[l];
+            Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
+            string[] toCuber = new string[3] { "", "", "" };
+            for (int c = 0; c < loadCube.tileData.Length; c++)
+            {
+                if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
+                else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
+                else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
+            }
+
+            //Build the new level.
+            Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
+        }
+
+        return gridLoad;
+    }
 }
 
 [System.Serializable]
@@ -361,4 +424,6 @@ public class Cube
 public class Grid
 {
     public Cube[] cubeData;
+    public Vector3Int[] vertices;
+    public Vector3Int startPoint;
 }

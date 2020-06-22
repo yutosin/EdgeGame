@@ -20,10 +20,10 @@ public class DirectedAgent : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(agent.nextPosition, goalPoint) <= .6f)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        // if (Vector3.Distance(agent.nextPosition, goalPoint) <= .6f)
+        // {
+        //     SceneManager.LoadScene("MainMenu");
+        // }
         // if (agent.destination == goalPoint)
         // {
         //     SceneManager.LoadScene("MainMenu");

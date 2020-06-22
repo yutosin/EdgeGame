@@ -4,12 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//TODO: refactor and refine this code, more cause you did some already
-//TODO: figure out render order of faces vs lines and sub-faces vs parent faces
-//TODO: handle points always appearing in front of faces and lines
-//TODO: MAJOR gotta add colliders to all these quads
-//TODO: Point selection limit
-public class EdgeManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject verticesHolder;
@@ -36,57 +31,69 @@ public class EdgeManager : MonoBehaviour
     private int _nextPtID;
     private int _nextFaceId;
 
-    [SerializeField]private int[] _initTPLocs;
-    [SerializeField]private Dictionary<int, EdgeVertex> _initTPs;
+    [SerializeField]private Jsonator _levelLoader;
+
+    // [SerializeField]private int[] _initTPLocs;
+    // [SerializeField]private Dictionary<int, EdgeVertex> _initTPs;
 
     private void Start()
     {
         _points = new List<Vector3>(cubeRenderers.Length * 8);
-        _cubeObjects = new List<GameObject>(cubeRenderers.Length);
+        // _cubeObjects = new List<GameObject>(cubeRenderers.Length);
         _meshSurface = facesHolder.GetComponent<NavMeshSurface>();
-        _initTPLocs = new[] {69, 67, 8, 54, 68, 65};
-        _initTPs = new Dictionary<int, EdgeVertex>();
+        // _initTPLocs = new[] {69, 67, 8, 54, 68, 65};
+        // _initTPs = new Dictionary<int, EdgeVertex>();
 
-        foreach (var renderer in cubeRenderers)
+        // foreach (var renderer in cubeRenderers)
+        // {
+        //     //AddCubeVerticesToList(renderer);
+        //     _cubeObjects.Add(renderer.gameObject);
+        // }
+
+        Grid loadedLevel = _levelLoader.LoadLevel("castle");
+        if (loadedLevel.vertices == null)
+            return;
+        foreach (var vertex in loadedLevel.vertices)
         {
-            AddCubeVerticesToList(renderer);
-            _cubeObjects.Add(renderer.gameObject);
+            GenerateSelectableVertex(vertex);
         }
         
         CreatePartitionsAndGraphRepresentations();
-        
-        if (combineCubes)
-            CombineCubesInLevel();
-        
-        GenerateEdge(_initTPs[68], _initTPs[54]);
-        GenerateEdge(_initTPs[54], _initTPs[8]);
-        GenerateEdge(_initTPs[8], _initTPs[65]);
-        GenerateEdge(_initTPs[65], _initTPs[67]);
-        GenerateEdge(_initTPs[67], _initTPs[69]);
-        GenerateEdge(_initTPs[68], _initTPs[65]);
-        GenerateEdge(_initTPs[69], _initTPs[68]);
-        
+
+        GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
+
+        // if (combineCubes)
+        //     CombineCubesInLevel();
+
+        // GenerateEdge(_initTPs[68], _initTPs[54]);
+        // GenerateEdge(_initTPs[54], _initTPs[8]);
+        // GenerateEdge(_initTPs[8], _initTPs[65]);
+        // GenerateEdge(_initTPs[65], _initTPs[67]);
+        // GenerateEdge(_initTPs[67], _initTPs[69]);
+        // GenerateEdge(_initTPs[68], _initTPs[65]);
+        // GenerateEdge(_initTPs[69], _initTPs[68]);
+
     }
 
-    private void AddCubeVerticesToList(MeshRenderer renderer)
-    {
-        Bounds meshBounds = renderer.bounds;
-        Vector3[] cubeVertices = new Vector3[8];
-        cubeVertices[0] = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
-        cubeVertices[1] = new Vector3(meshBounds.min.x , meshBounds.max.y, meshBounds.max.z);
-        cubeVertices[2] = meshBounds.max;
-        cubeVertices[3] = new Vector3(meshBounds.max.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
-        cubeVertices[4] = new Vector3(cubeVertices[0].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[0].z);
-        cubeVertices[5] = new Vector3(cubeVertices[1].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[1].z);
-        cubeVertices[6] = new Vector3(cubeVertices[2].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[2].z);
-        cubeVertices[7] = new Vector3(cubeVertices[3].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[3].z);
-
-        foreach (Vector3 vertex in cubeVertices)
-        {
-            if(GenerateSelectableVertex(vertex))
-                _points.Add(vertex);
-        }
-    }
+    // private void AddCubeVerticesToList(MeshRenderer renderer)
+    // {
+    //     Bounds meshBounds = renderer.bounds;
+    //     Vector3[] cubeVertices = new Vector3[8];
+    //     cubeVertices[0] = new Vector3(meshBounds.min.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
+    //     cubeVertices[1] = new Vector3(meshBounds.min.x , meshBounds.max.y, meshBounds.max.z);
+    //     cubeVertices[2] = meshBounds.max;
+    //     cubeVertices[3] = new Vector3(meshBounds.max.x, meshBounds.max.y, meshBounds.max.z - (meshBounds.extents.z * 2));
+    //     cubeVertices[4] = new Vector3(cubeVertices[0].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[0].z);
+    //     cubeVertices[5] = new Vector3(cubeVertices[1].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[1].z);
+    //     cubeVertices[6] = new Vector3(cubeVertices[2].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[2].z);
+    //     cubeVertices[7] = new Vector3(cubeVertices[3].x, cubeVertices[0].y - (meshBounds.extents.y * 2), cubeVertices[3].z);
+    //
+    //     foreach (Vector3 vertex in cubeVertices)
+    //     {
+    //         if(GenerateSelectableVertex(vertex))
+    //             _points.Add(vertex);
+    //     }
+    // }
 
     private void CreatePartitionsAndGraphRepresentations()
     {
@@ -145,14 +152,8 @@ public class EdgeManager : MonoBehaviour
         }
     }
     
-    private bool GenerateSelectableVertex(Vector3 pos)
+    private void GenerateSelectableVertex(Vector3 pos)
     {
-        foreach (var point in _points)
-        {
-            if (point == pos)
-                return false;
-        }
-        
         GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Destroy(edgePoint.GetComponent<SphereCollider>());
         EdgeVertex tp = edgePoint.AddComponent<EdgeVertex>();
@@ -160,8 +161,8 @@ public class EdgeManager : MonoBehaviour
         edgePoint.name = tp.ptID;
         tp.listLoc = _nextPtID;
         
-        if (Array.Exists(_initTPLocs, i => _nextPtID == i ))
-            _initTPs.Add(_nextPtID, tp);
+        // if (Array.Exists(_initTPLocs, i => _nextPtID == i ))
+        //     _initTPs.Add(_nextPtID, tp);
         
         _nextPtID++;
 
@@ -178,7 +179,7 @@ public class EdgeManager : MonoBehaviour
         
         edgePoint.transform.parent = verticesHolder.transform;
 
-        return true;
+        _points.Add(pos);
     }
     
     //TODO: properly use the addEdge function to make use of the bool and avoid creating edge game object
@@ -454,55 +455,55 @@ public class EdgeManager : MonoBehaviour
         BoxCollider collider = newQuad.AddComponent<BoxCollider>();
     }
 
-    private void CombineCubesInLevel()
-    {
-        GameObject cubeHolder = new GameObject();
-        cubeHolder.name = "LevelCombinedMesh";
-        cubeHolder.transform.position = Vector3.zero;
-        MeshFilter levelMeshFileter = cubeHolder.transform.gameObject.AddComponent<MeshFilter>();
-        MeshRenderer meshRenderer = cubeHolder.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
-        meshRenderer.sharedMaterial.color = Color.black;
-        
-        List<CombineInstance> combines = new List<CombineInstance>(_cubeObjects.Count);
-        
-        foreach (var cube in _cubeObjects)
-        {
-            MeshFilter[] meshFilters = cube.GetComponents<MeshFilter>();
-
-            int i = 0;
-            while (i < meshFilters.Length)
-            {
-                CombineInstance cubeCombine = new CombineInstance();
-                cubeCombine.mesh = meshFilters[i].sharedMesh;
-                cubeCombine.transform = meshFilters[i].transform.localToWorldMatrix;
-                Destroy(meshFilters[i].gameObject);
-                combines.Add(cubeCombine);
-                i++;
-            }
-        }
-        
-        levelMeshFileter.mesh = new Mesh();
-        levelMeshFileter.mesh.CombineMeshes(combines.ToArray(), true,true);
-        levelMeshFileter.mesh.RecalculateBounds();
-        levelMeshFileter.mesh.RecalculateNormals();
-        levelMeshFileter.mesh.Optimize();
-        cubeHolder.SetActive(true);
-
-        MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
-        cubeColl.sharedMesh = levelMeshFileter.mesh;
-
-        // NavMeshSurface surface = cubeHolder.AddComponent<NavMeshSurface>();
-        // surface.BuildNavMesh();
-        //
-        // combinedLevel = cubeHolder;
-        // cubeColl.convex = true;
-        // cubeColl.isTrigger = true;
-    }
-    private string GenerateEdgeID(string pt1ID, string pt2ID)
-    {
-        int idCompare = string.Compare(pt1ID, pt2ID);
-        string edgeID = (idCompare < 0) ? pt1ID + pt2ID : pt2ID + pt1ID;
-        return edgeID;
-    }
+    // private void CombineCubesInLevel()
+    // {
+    //     GameObject cubeHolder = new GameObject();
+    //     cubeHolder.name = "LevelCombinedMesh";
+    //     cubeHolder.transform.position = Vector3.zero;
+    //     MeshFilter levelMeshFileter = cubeHolder.transform.gameObject.AddComponent<MeshFilter>();
+    //     MeshRenderer meshRenderer = cubeHolder.AddComponent<MeshRenderer>();
+    //     meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
+    //     meshRenderer.sharedMaterial.color = Color.black;
+    //     
+    //     List<CombineInstance> combines = new List<CombineInstance>(_cubeObjects.Count);
+    //     
+    //     foreach (var cube in _cubeObjects)
+    //     {
+    //         MeshFilter[] meshFilters = cube.GetComponents<MeshFilter>();
+    //
+    //         int i = 0;
+    //         while (i < meshFilters.Length)
+    //         {
+    //             CombineInstance cubeCombine = new CombineInstance();
+    //             cubeCombine.mesh = meshFilters[i].sharedMesh;
+    //             cubeCombine.transform = meshFilters[i].transform.localToWorldMatrix;
+    //             Destroy(meshFilters[i].gameObject);
+    //             combines.Add(cubeCombine);
+    //             i++;
+    //         }
+    //     }
+    //     
+    //     levelMeshFileter.mesh = new Mesh();
+    //     levelMeshFileter.mesh.CombineMeshes(combines.ToArray(), true,true);
+    //     levelMeshFileter.mesh.RecalculateBounds();
+    //     levelMeshFileter.mesh.RecalculateNormals();
+    //     levelMeshFileter.mesh.Optimize();
+    //     cubeHolder.SetActive(true);
+    //
+    //     MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
+    //     cubeColl.sharedMesh = levelMeshFileter.mesh;
+    //
+    //     // NavMeshSurface surface = cubeHolder.AddComponent<NavMeshSurface>();
+    //     // surface.BuildNavMesh();
+    //     //
+    //     // combinedLevel = cubeHolder;
+    //     // cubeColl.convex = true;
+    //     // cubeColl.isTrigger = true;
+    // }
+    // private string GenerateEdgeID(string pt1ID, string pt2ID)
+    // {
+    //     int idCompare = string.Compare(pt1ID, pt2ID);
+    //     string edgeID = (idCompare < 0) ? pt1ID + pt2ID : pt2ID + pt1ID;
+    //     return edgeID;
+    // }
 }
