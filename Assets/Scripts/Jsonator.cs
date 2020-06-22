@@ -15,18 +15,24 @@ TO DO:
 public class Jsonator : MonoBehaviour
 {
     [Header("Set Materials")]
-    public Material leftTile;
-    public Material rightTile;
-    public Material topTile;
+    public Material[] materials;
 
-    [Header("General")]
+    // Tiles that will show up if there is an error loading the set material.
+    public Material developerTop;
+    public Material developerRight;
+    public Material developerLeft;
+
+    [Header("Save Path")]
     public string path;
     public Transform startPont;
 
-    [Header("Buttons")]
+    [Header("UI Elements")]
     public InputField saveName;
-    public RectTransform viewportContent;
-    public Button buttonTemplate;
+    public RectTransform fileContent;
+    public RectTransform fileTemplate;
+    public RectTransform matContent;
+    public RectTransform matTemplate;
+    public RectTransform matView;
 
     private Transform cubeXNeg;
     private Transform cubeXPos;
@@ -34,17 +40,31 @@ public class Jsonator : MonoBehaviour
     private Transform cubeYPos;
     private Transform cubeZNeg;
     private Transform cubeZPos;
+    private bool paintMode;
+    private Material[] displayMaterials;
+    private Material selectedMaterial;
 
     [SerializeField]
     private Cube[] cubeData;
     private Tile[] tileData;
 
-    private void Awake()
+    void Awake()
     {
+        //Set up load and materials buttons.
         OnRefreshButton();
+        RectTransform[] matButton = new RectTransform[materials.Length];
+        matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
+        displayMaterials = new Material[materials.Length];
+        for (int m = 0; m < matButton.Length; m++)
+        {
+            displayMaterials[m] = new Material(materials[m]);
+            displayMaterials[m].shader = Shader.Find("UI/Default");
+            matButton[m] = Instantiate(matTemplate, matContent);
+            matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 110 + 60, 0);
+            matButton[m].GetComponent<Image>().material = displayMaterials[m];
+            matButton[m].name = m.ToString();
+        }
     }
-
-
 
     void Update()
     {
@@ -62,43 +82,48 @@ public class Jsonator : MonoBehaviour
                 Vector3 rayPos = hitRay.transform.parent.gameObject.transform.position;
                 if (hitRay.collider != null)
                 {
-                    //CubeParse(false, null, new Vector3(0,0,0));
-
                     //Left click, build the voxel.
-                    if (leftMouse)
+                    if (leftMouse)                     
                     {
-                        //Define adjacent voxels to the one clicked on.
-                        if (hitRay.collider.name.Contains("Left")) { rayPos.x++; }
-                        if (hitRay.collider.name.Contains("Top")) { rayPos.y++; }
-                        if (hitRay.collider.name.Contains("Right")) { rayPos.z++; }
-
-                        //Curate faces the newly created voxel will be adjacent to.
-                        bool[] backFace = new bool[3] { false, false, false };
-                        for (int c = 0; c < transform.childCount; c++)
+                        if (paintMode)
                         {
-                            CubeParse(true, transform.GetChild(c).transform, rayPos, c);
-                            if (cubeXPos != null) { backFace[0] = true; }
-                            if (cubeYPos != null) { backFace[1] = true; }
-                            if (cubeZPos != null) { backFace[2] = true; }
-                            int tc = transform.GetChild(c).childCount;
-                            for (int t = 0; t < tc; t++)
-                            {
-                                if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) { tc--; }
-                            }
-                            CubeParse(false, null, new Vector3(0, 0, 0), 0);
+                            hitRay.collider.GetComponentInParent<Renderer>().material = selectedMaterial;
                         }
+                        else
+                        {
+                            //Define adjacent voxels to the one clicked on.
+                            if (hitRay.collider.name.Contains("Left")) { rayPos.x++; }
+                            if (hitRay.collider.name.Contains("Top")) { rayPos.y++; }
+                            if (hitRay.collider.name.Contains("Right")) { rayPos.z++; }
 
-                        //Build the new voxel.
-                        Cuber(
-                            backFace[1] ? "" : "Top",
-                            backFace[2] ? "" : "Right",
-                            backFace[0] ? "" : "Left",
-                            new Vector3Int(Mathf.RoundToInt(rayPos.x + 1), Mathf.RoundToInt(rayPos.y + 1), Mathf.RoundToInt(rayPos.z + 1)));
-                        Destroy(hitRay.transform.gameObject);
+                            //Curate faces the newly created voxel will be adjacent to.
+                            bool[] backFace = new bool[3] { false, false, false };
+                            for (int c = 0; c < transform.childCount; c++)
+                            {
+                                CubeParse(true, transform.GetChild(c).transform, rayPos, c);
+                                if (cubeXPos != null) { backFace[0] = true; }
+                                if (cubeYPos != null) { backFace[1] = true; }
+                                if (cubeZPos != null) { backFace[2] = true; }
+                                int tc = transform.GetChild(c).childCount;
+                                for (int t = 0; t < tc; t++)
+                                {
+                                    if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) { tc--; }
+                                }
+                                CubeParse(false, null, new Vector3(0, 0, 0), 0);
+                            }
+
+                            //Build the new voxel.
+                            Cuber(
+                                backFace[1] ? "" : "Top", "",
+                                backFace[2] ? "" : "Right", "",
+                                backFace[0] ? "" : "Left", "",
+                                new Vector3(Mathf.RoundToInt(rayPos.x + 1), Mathf.RoundToInt(rayPos.y + 1), Mathf.RoundToInt(rayPos.z + 1)));
+                            Destroy(hitRay.transform.gameObject);
+                        }
                     }
 
                     //Right click, remove voxel.
-                    else if (rightMouse)
+                    else if (rightMouse && !paintMode)
                     {
                         if (hitRay.collider.name.Contains("Left") || hitRay.collider.name.Contains("Top") || hitRay.collider.name.Contains("Right"))
                         {
@@ -114,22 +139,22 @@ public class Jsonator : MonoBehaviour
         }
     }
 
-    void Cuber(string top, string rgt, string lft, Vector3Int pos)
+    void Cuber(string top, string topMat, string rgt, string rgtMat, string lft, string lftMat, Vector3 pos)
     {
         GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
         cube.transform.SetParent(transform);
-        cube.transform.position = new Vector3Int(pos.x - 1, pos.y - 1, pos.z - 1);
-        if (top != "") { Tiler("Top", cube.transform, "Top"); }
-        if (rgt != "") { Tiler("Right", cube.transform, "Right"); }
-        if (lft != "") { Tiler("Left", cube.transform, "Left"); }
+        cube.transform.position = new Vector3(pos.x - 1, pos.y - 1, pos.z - 1);
+        if (top != "") { Tiler("Top", cube.transform, "Top", topMat); }
+        if (rgt != "") { Tiler("Right", cube.transform, "Right", rgtMat); }
+        if (lft != "") { Tiler("Left", cube.transform, "Left", lftMat); }
     }
 
-    void Tiler(string dim, Transform par, string name)
+    void Tiler(string dim, Transform par, string name, string mat)
     {
         //Create the gameobject.
         GameObject tile = new GameObject("Tile_" + name);
         tile.transform.SetParent(par);
-        tile.transform.position = new Vector3(par.position.x - 1, par.position.y - 1, par.position.z - 1);
+        tile.transform.position = new Vector3(par.position.x - 0.5f, par.position.y - 0.5f, par.position.z - 0.5f);
         tile.AddComponent<MeshFilter>();
         MeshFilter tileF = tile.GetComponent<MeshFilter>();
         tile.AddComponent<MeshRenderer>();
@@ -138,6 +163,20 @@ public class Jsonator : MonoBehaviour
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
 
         //Define and populate the variables and vectors.
+        Material loadMat = null;
+        if (mat != "")
+        {
+            string matParse;
+            for (int m = 0; m < materials.Length; m++)
+            {
+                matParse = materials[m].name;
+                if (matParse.Contains(mat))
+                {
+                    loadMat = materials[m];
+                    break;
+                }
+            }
+        }
         Vector3[] tileV = new Vector3[4];
         Vector3[] tileN = new Vector3[4];
         Vector2[] tileUV = new Vector2[4];
@@ -159,7 +198,7 @@ public class Jsonator : MonoBehaviour
                 tileN[3] = Vector3.up;
                 tileC.size = new Vector3(1, 0, 1);
                 tileC.center = new Vector3(-0.5f, 0, -0.5f);
-                tileR.material = topTile;
+                tileR.material = (loadMat != null) ? loadMat : developerTop;
                 break;
             case ("Right"):
                 tileV[0] = new Vector3(0, -1, 0);
@@ -172,7 +211,7 @@ public class Jsonator : MonoBehaviour
                 tileN[3] = Vector3.forward;
                 tileC.size = new Vector3(1, 1, 0);
                 tileC.center = new Vector3(-0.5f, -0.5f, 0);
-                tileR.material = rightTile;
+                tileR.material = (loadMat != null) ? loadMat : developerRight;
                 break;
             case ("Left"):
                 tileV[0] = new Vector3(0, -1, -1);
@@ -185,7 +224,7 @@ public class Jsonator : MonoBehaviour
                 tileN[3] = Vector3.right;
                 tileC.size = new Vector3(0, 1, 1);
                 tileC.center = new Vector3(0, -0.5f, -0.5f);
-                tileR.material = leftTile;
+                tileR.material = (loadMat != null) ? loadMat : developerLeft;
                 break;
             default:
                 Debug.LogError("Tile " + name + " has failed to parse.");
@@ -226,6 +265,7 @@ public class Jsonator : MonoBehaviour
                 else { cuberString = " "; }
                 Tile inTile = new Tile();
                 inTile.d = cuberString;
+                inTile.m = cube.GetChild(c).GetComponent<Renderer>().material.name.Replace(" (instance)","");
                 tileData[c] = inTile;
             }
             Cube inCube = new Cube();
@@ -240,7 +280,7 @@ public class Jsonator : MonoBehaviour
         gridSave.vertices = vertices.ToArray();
         gridSave.startPoint = Vector3Int.RoundToInt(startPont.position);
         string stringSave = JsonUtility.ToJson(gridSave, true);
-        File.WriteAllText(path + "\\"+ saveName.text + ".json", stringSave);
+        File.WriteAllText(path + saveName.text + ".json", stringSave);
     }
 
     public void OnLoadButton(Button button)
@@ -252,7 +292,7 @@ public class Jsonator : MonoBehaviour
         }
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(button.name + ".json");
+        string stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
@@ -261,37 +301,74 @@ public class Jsonator : MonoBehaviour
             loadCube = gridLoad.cubeData[l];
             Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
             string[] toCuber = new string[3] { "", "", "" };
+            string[] toMatter = new string[3] { "", "", "" };
             for (int c = 0; c < loadCube.tileData.Length; c++)
             {
-                if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
-                else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
-                else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
+                string loadMat = loadCube.tileData[c].m;
+                if (loadCube.tileData[c].d == "Top")
+                {
+                    toCuber[0] = "Top";
+                    toMatter[0] = (loadMat == null) ? "developerTop" : loadMat;
+                }
+                else if (loadCube.tileData[c].d == "Right")
+                {
+                    toCuber[1] = "Right";
+                    toMatter[1] = (loadMat == null) ? "developerRight" : loadMat;
+                }
+                else if (loadCube.tileData[c].d == "Left")
+                {
+                    toCuber[2] = "Left";
+                    toMatter[2] = (loadMat == null) ? "developerLeft" : loadMat;
+
+                }
+
             }
 
             //Build the new level.
-            Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
+            Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
         }
     }
 
     public void OnRefreshButton()
     {
         //Clear old buttons.
-        for (int d = 1; d < viewportContent.transform.childCount; d++)
+        for (int d = 1; d < fileContent.transform.childCount; d++)
         {
-            Destroy(viewportContent.GetChild(d).gameObject);
+            Destroy(fileContent.GetChild(d).gameObject);
         }
 
         //Build new buttons.
-        Button[] fileButton = new Button[Directory.GetFiles(path).Length];
-        viewportContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, buttonTemplate.GetComponent<RectTransform>().rect.height * fileButton.Length + (fileButton.Length * 10) + 10);
+        RectTransform[] fileButton = new RectTransform[Directory.GetFiles(path).Length];
+        fileContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, fileTemplate.GetComponent<RectTransform>().rect.height * fileButton.Length + (fileButton.Length * 10) + 10);
         for (int r = 0; r < fileButton.Length; r++)
         {
-            fileButton[r] = Instantiate(buttonTemplate, viewportContent);
+            fileButton[r] = Instantiate(fileTemplate, fileContent);
             fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -r * 50 - 30);
-            string file = Directory.GetFiles(path)[r].Replace("./Resources\\", "").Replace(".json", "");
+            string[] fileParse = Directory.GetFiles(path)[r].Split('/', '\\');
+            string file = fileParse[fileParse.Length - 1].Replace(".json", "");
             fileButton[r].name = file;
-            fileButton[r].GetComponentInChildren<Text>().text = Directory.GetFiles(path)[r].Replace("./Resources\\", "").Replace(".json", "");
+            fileButton[r].GetComponentInChildren<Text>().text = file;
         }
+    }
+
+    public void OnMaterialButton(Button button)
+    {
+        paintMode = true;
+        int matNum = int.Parse(button.name);
+        matView.GetComponent<Image>().material = displayMaterials[matNum];
+        selectedMaterial = materials[matNum];
+    }
+
+    public void OnTileButton()
+    {
+        paintMode = false;
+        matView.GetComponent<Image>().material = null;
+    }
+
+    public void OnDeleteButton(Button button)
+    {
+        File.Delete(path + button.transform.parent.name + ".json");
+        OnRefreshButton();
     }
 
     void CubeParse(bool mode, Transform target, Vector3 rayPos, int arrayIn)
@@ -337,17 +414,17 @@ public class Jsonator : MonoBehaviour
         if (delPos == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
         {
             z = transform.GetChild(array);
-            Tiler("Left", z, "Left");
+            Tiler("Left", z, "Left", "");
         }
         if (delPos == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z))
         {
             y = transform.GetChild(array);
-            Tiler("Top", y, "Top");
+            Tiler("Top", y, "Top", "");
         }
         if (delPos == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1))
         {
             x = transform.GetChild(array);
-            Tiler("Right", x, "Right");
+            Tiler("Right", x, "Right", "");
         }
     }
 
@@ -375,6 +452,38 @@ public class Jsonator : MonoBehaviour
             }
         }
     }
+    // public Grid LoadLevel(string levelName)
+    // {
+    //     //Clear out the old cubes.
+    //     for (int d = 0; d < transform.childCount; d++)
+    //     {
+    //         Destroy(transform.GetChild(d).gameObject);
+    //     }
+    //
+    //     //Read and interpret the save file.
+    //     string stringLoad = File.ReadAllText(path + "/" + levelName + ".json");
+    //     Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
+    //     int loadCount = gridLoad.cubeData.Length;
+    //     Cube loadCube;
+    //     for (int l = 0; l < loadCount; l++)
+    //     {
+    //         loadCube = gridLoad.cubeData[l];
+    //         Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
+    //         string[] toCuber = new string[3] { "", "", "" };
+    //         for (int c = 0; c < loadCube.tileData.Length; c++)
+    //         {
+    //             if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
+    //             else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
+    //             else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
+    //         }
+    //
+    //         //Build the new level.
+    //         Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
+    //     }
+    //
+    //     return gridLoad;
+    // }
+
     public Grid LoadLevel(string levelName)
     {
         //Clear out the old cubes.
@@ -384,26 +493,44 @@ public class Jsonator : MonoBehaviour
         }
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(path + "/" + levelName + ".json");
+        string stringLoad = File.ReadAllText(path + levelName + ".json");
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)
         {
             loadCube = gridLoad.cubeData[l];
-            Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
-            string[] toCuber = new string[3] { "", "", "" };
+            Vector3Int loadPos = new Vector3Int((int) loadCube.position.x, (int) loadCube.position.y,
+                (int) loadCube.position.z);
+            string[] toCuber = new string[3] {"", "", ""};
+            string[] toMatter = new string[3] {"", "", ""};
             for (int c = 0; c < loadCube.tileData.Length; c++)
             {
-                if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
-                else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
-                else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
+                string loadMat = loadCube.tileData[c].m;
+                if (loadCube.tileData[c].d == "Top")
+                {
+                    toCuber[0] = "Top";
+                    toMatter[0] = (loadMat == null) ? "developerTop" : loadMat;
+                }
+                else if (loadCube.tileData[c].d == "Right")
+                {
+                    toCuber[1] = "Right";
+                    toMatter[1] = (loadMat == null) ? "developerRight" : loadMat;
+                }
+                else if (loadCube.tileData[c].d == "Left")
+                {
+                    toCuber[2] = "Left";
+                    toMatter[2] = (loadMat == null) ? "developerLeft" : loadMat;
+
+                }
+
             }
 
             //Build the new level.
-            Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
+            Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2],
+                new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1),
+                    Mathf.RoundToInt(loadPos.z + 1)));
         }
-
         return gridLoad;
     }
 }
@@ -412,6 +539,7 @@ public class Jsonator : MonoBehaviour
 public class Tile
 {
     public string d;
+    public string m;
 }
 
 [System.Serializable]
