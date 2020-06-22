@@ -74,7 +74,7 @@ public class MaterialSelectScript : MonoBehaviour
             switch (abilityName) //Made this a switch statement for now, I don't like it though
             {
                 case "Elevator":
-                    _mScript.AssignElevatorAbility();
+                    face.Ability = face.gameObject.AddComponent<ElevatorAbility>();
                     SetMaterial();
                     UpdateUses();
                     break;
@@ -87,20 +87,21 @@ public class MaterialSelectScript : MonoBehaviour
 
                     else
                     {
-                        _mScript.AssignTPAbility();
-                        TeleportAbility tp = _mScript._selectedFace.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
-                        tp.thisPos = tp.FindCenter(tp.AbilityFace);//Says is not set to an instance of an object?
+                        face.Ability = face.gameObject.AddComponent<TeleportAbility>();
 
-                        if (_mScript.tpFaces[1] == null)
+                        TeleportAbility tp = face.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
+                        tp.thisPos = tp.FindCenter(face);//Says is not set to an instance of an object?
+
+                        if (_mScript.tpFaces[0] == null)
+                        {
+                            _mScript.tpFaces[0] = tp;
+                        }
+                        else if (_mScript.tpFaces[1] == null)
                         {
                             _mScript.tpFaces[1] = tp;
-                        }
-                        else if (_mScript.tpFaces[2] == null)
-                        {
-                            _mScript.tpFaces[2] = tp;
 
-                            _mScript.tpFaces[1].otherPos = _mScript.tpFaces[2].thisPos;
-                            _mScript.tpFaces[2].otherPos = _mScript.tpFaces[1].thisPos;
+                            _mScript.tpFaces[0].otherPos = _mScript.tpFaces[1].thisPos;
+                            _mScript.tpFaces[1].otherPos = _mScript.tpFaces[0].thisPos;
                         }
 
                         SetMaterial();
@@ -229,19 +230,6 @@ public class MaterialSelectScript : MonoBehaviour
         }
     }
 
-    //This is just for testing, I want this handled within the MaterialButtons Class
-    //Also for some reason this does not work when placed in the MaterialButtons Class, need to find out why, cuz this is uggo and confusing
-    public void AssignElevatorAbility()
-    {
-        _selectedFace.Ability = gameObject.AddComponent<ElevatorAbility>();// god I hate this not being in the materialbuttons class
-        
-    }
-
-    public void AssignTPAbility()
-    {
-        _selectedFace.Ability = gameObject.AddComponent<TeleportAbility>();
-    }
-
     public bool CheckFlat()
     {
         float yValue = _selectedFace.Vertices[0].y;
@@ -254,7 +242,7 @@ public class MaterialSelectScript : MonoBehaviour
                 break;
             }
         }
-
+        Debug.Log(isFlat.ToString());
         return (isFlat);
     }
 

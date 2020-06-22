@@ -17,7 +17,7 @@ public class TeleportAbility : MonoBehaviour, IFaceAbility
 
     public Vector3 otherPos;
     public Vector3 thisPos;
-    private float playerHeightOffset;
+    private float playerHeightOffset = 1;
 
     public Vector3 FindCenter(Face face)
     {
@@ -35,8 +35,12 @@ public class TeleportAbility : MonoBehaviour, IFaceAbility
     private void SetAgentPosition()//this has been copied from the elevator ability, probably can do this another way since parenting is not needed
     {
         var playerTransform = GameManager.SharedInstance.playerAgent.transform;
-        GameManager.SharedInstance.playerAgent.agent.enabled = true;
         playerTransform.position = otherPos;
+    }
+
+    private void Start()
+    {
+        AbilityTimes = 1;
     }
 
 }
