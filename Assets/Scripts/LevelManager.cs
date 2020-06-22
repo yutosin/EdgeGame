@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
         //     _cubeObjects.Add(renderer.gameObject);
         // }
 
-        Grid loadedLevel = _levelLoader.LoadLevel("castle");
+        Grid loadedLevel = _levelLoader.LoadLevel("test");
         if (loadedLevel.vertices == null)
             return;
         foreach (var vertex in loadedLevel.vertices)

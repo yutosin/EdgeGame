@@ -278,7 +278,7 @@ public class Jsonator : MonoBehaviour
         Grid gridSave = new Grid();
         gridSave.cubeData = cubeData;
         gridSave.vertices = vertices.ToArray();
-        gridSave.startPoint = Vector3Int.RoundToInt(startPont.position);
+        gridSave.startPoint = startPont.position;
         string stringSave = JsonUtility.ToJson(gridSave, true);
         File.WriteAllText(path + saveName.text + ".json", stringSave);
     }
@@ -452,37 +452,6 @@ public class Jsonator : MonoBehaviour
             }
         }
     }
-    // public Grid LoadLevel(string levelName)
-    // {
-    //     //Clear out the old cubes.
-    //     for (int d = 0; d < transform.childCount; d++)
-    //     {
-    //         Destroy(transform.GetChild(d).gameObject);
-    //     }
-    //
-    //     //Read and interpret the save file.
-    //     string stringLoad = File.ReadAllText(path + "/" + levelName + ".json");
-    //     Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
-    //     int loadCount = gridLoad.cubeData.Length;
-    //     Cube loadCube;
-    //     for (int l = 0; l < loadCount; l++)
-    //     {
-    //         loadCube = gridLoad.cubeData[l];
-    //         Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
-    //         string[] toCuber = new string[3] { "", "", "" };
-    //         for (int c = 0; c < loadCube.tileData.Length; c++)
-    //         {
-    //             if (loadCube.tileData[c].d == "Top") { toCuber[0] = "Top"; }
-    //             else if (loadCube.tileData[c].d == "Right") { toCuber[1] = "Right"; }
-    //             else if (loadCube.tileData[c].d == "Left") { toCuber[2] = "Left"; }
-    //         }
-    //
-    //         //Build the new level.
-    //         Cuber(toCuber[0], toCuber[1], toCuber[2], new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1), Mathf.RoundToInt(loadPos.z + 1)));
-    //     }
-    //
-    //     return gridLoad;
-    // }
 
     public Grid LoadLevel(string levelName)
     {
@@ -553,5 +522,5 @@ public class Grid
 {
     public Cube[] cubeData;
     public Vector3Int[] vertices;
-    public Vector3Int startPoint;
+    public Vector3 startPoint;
 }

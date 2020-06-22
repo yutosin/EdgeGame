@@ -19,6 +19,7 @@ public class DirectedAgent : MonoBehaviour
         mover = GetComponent<RobonautHandler>();
         _seeker = GetComponent<Seeker>();
         _hitInfo = new RaycastHit();
+        _goalPoint = new Vector3(999, 999, 999);
     }
 
     public void OnPathComplete (Path p) {
