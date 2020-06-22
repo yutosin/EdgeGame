@@ -1,38 +1,51 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class DirectedAgent : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public RobonautMoverMod mover;
-    public Vector3 goalPoint;
+    private RaycastHit _hitInfo;
+    private Vector3 _goalPoint;
+    private Seeker _seeker;
+    
+    public RobonautHandler mover;
 
     // Use this for initialization
     void Awake () 
     {
-        agent = GetComponent<NavMeshAgent>();
-        mover = GetComponent<RobonautMoverMod>();
+        mover = GetComponent<RobonautHandler>();
+        _seeker = GetComponent<Seeker>();
+        _hitInfo = new RaycastHit();
+    }
+
+    public void OnPathComplete (Path p) {
+        Debug.Log("Yay, we got a path back. Did it have an error? " + p.error);
+        mover.targetPath = p.vectorPath.ToArray();
+        mover.commit = true;
     }
 
     private void Update()
     {
-        // if (Vector3.Distance(agent.nextPosition, goalPoint) <= .6f)
-        // {
-        //     SceneManager.LoadScene("MainMenu");
-        // }
-        // if (agent.destination == goalPoint)
-        // {
-        //     SceneManager.LoadScene("MainMenu");
-        // }
+        if (Vector3.Distance(transform.position, _goalPoint) <= .6f)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
-    public void MoveToLocation(Vector3 targetPoint)
+    public void HandleFacePointSelect()
     {
-        agent.destination = targetPoint;
-        agent.isStopped = false;
+        var ray = GameManager.SharedInstance.MainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray.origin, ray.direction, out _hitInfo))
+        {
+            var nearest = GameManager.SharedInstance.levelGraph.GetNearest(_hitInfo.point, NNConstraint.Default);
+            var nearestNodePos = nearest.clampedPosition;
+            _seeker.StartPath(transform.position, nearestNodePos, OnPathComplete);
+        }
+
+        if (_hitInfo.collider.gameObject.CompareTag("Finish"))
+            GameManager.SharedInstance.playerAgent._goalPoint = new Vector3(_hitInfo.point.x, _hitInfo.point.y + 0.5f, _hitInfo.point.z);
     }
 }

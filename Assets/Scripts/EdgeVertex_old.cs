@@ -273,8 +273,6 @@ public class EdgeVertex_old : MonoBehaviour
             if (hitInfo.collider.gameObject.name != gameObject.name 
                 && (hitInfo.collider.gameObject.name == "LevelCombinedMesh" || hitInfo.collider.GetComponent<EdgeVertex_old>()))
             {
-                Debug.Log("hit object: " + hitInfo.collider.gameObject.name);
-                Debug.Log("Delete point " + gameObject.name + " at position " + gameObject.transform.position);
                 Destroy(gameObject);
                 yield return null;
             }
