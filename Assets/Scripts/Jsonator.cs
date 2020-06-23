@@ -4,20 +4,16 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-/*
-TO DO:
-
-    - Create Material system: Player selects Material Mode and a material from drop down, left clicks on a tile to add material, right-clicks to clear it.
-    - Setup vector-nodes.
-*/
-
 public class Jsonator : MonoBehaviour
 {
-    [Header("Set Materials")]
+    [Header("Paint Materials")]
     public Material[] materials;
 
+    [Header("Silhouette Material")]
+    public Material silhouette;
+
     // Tiles that will show up if there is an error loading the set material.
+    [Header("Developer Materials")]
     public Material developerTop;
     public Material developerRight;
     public Material developerLeft;
@@ -30,6 +26,7 @@ public class Jsonator : MonoBehaviour
     public string path;
 
     [Header("UI Elements")]
+    public Scrollbar silhouetteSwitch;
     public InputField saveName;
     public RectTransform fileContent;
     public RectTransform fileTemplate;
@@ -46,6 +43,8 @@ public class Jsonator : MonoBehaviour
     private Transform startInd;
     private bool paintMode;
     private bool selectingStart;
+    private bool silhouetteMode;
+    private float silhouetteVal;
     private Material[] displayMaterials;
     private Material selectedMaterial;
     private Vector3 startPoint;
@@ -58,6 +57,8 @@ public class Jsonator : MonoBehaviour
     {
         //Set up load and materials buttons.
         selectingStart = false;
+        silhouetteMode = false;
+        silhouetteVal = 0;
         OnRefreshButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
@@ -75,8 +76,52 @@ public class Jsonator : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.SharedInstance.InLevelEditor)
-            return;
+        //Externally disable level editor mode via GameManager.
+        if (!GameManager.SharedInstance.InLevelEditor) { return; }
+
+        //Silhouette mode determination
+        if (silhouetteVal != silhouetteSwitch.value)
+        {
+            silhouetteMode = (silhouetteSwitch.value == 1) ? true : false;
+            if (silhouetteMode)
+            {
+                for (int l = 0; l < transform.childCount; l++)
+                {
+                    for (int c = 0; c < transform.GetChild(l).childCount; c++)
+                    {
+                        transform.GetChild(l).GetChild(c).GetComponent<Renderer>().material = silhouette;
+                    }
+                }
+            }
+            else
+            {
+                for (int l = 0; l < transform.childCount; l++)
+                {
+                    for (int c = 0; c < transform.GetChild(l).childCount; c++)
+                    {
+                        Transform tileToScrub = transform.GetChild(l).GetChild(c);
+                        string unsilMatParse = tileToScrub.name.Split('_')[2];
+                        if (unsilMatParse == developerLeft.name) { tileToScrub.GetComponent<Renderer>().material = developerLeft; }
+                        else if (unsilMatParse == developerTop.name) { tileToScrub.GetComponent<Renderer>().material = developerTop; }
+                        else if (unsilMatParse == developerRight.name) { tileToScrub.GetComponent<Renderer>().material = developerRight; }
+                        else
+                        {
+                            for (int m = 0; m < materials.Length; m++)
+                            {
+                                if (materials[m].name.Contains(unsilMatParse))
+                                {
+                                    tileToScrub.GetComponent<Renderer>().material = materials[m];
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            silhouetteVal = silhouetteSwitch.value;
+        }
+
         //Handle Mouse-based block addition and removal.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
@@ -90,11 +135,13 @@ public class Jsonator : MonoBehaviour
                 if (hitRay.collider != null)
                 {
                     //Left click, build the voxel.
-                    if (leftMouse)                     
+                    if (leftMouse)
                     {
-                        if (paintMode)
+                        if (paintMode && !silhouetteMode)
                         {
                             hitRay.collider.GetComponentInParent<Renderer>().material = selectedMaterial;
+                            string[] parseSplit = hitRay.collider.name.Split('_');
+                            hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + selectedMaterial.name.Replace(" (Instance)", "");
                         }
                         else if (selectingStart)
                         {
@@ -106,7 +153,7 @@ public class Jsonator : MonoBehaviour
                             startInd.transform.position = startPoint;
                             selectingStart = false;
                         }
-                        else
+                        else if (!paintMode)
                         {
                             //Define adjacent voxels to the one clicked on.
                             if (hitRay.collider.name.Contains("Left")) { rayPos.x++; }
@@ -139,15 +186,38 @@ public class Jsonator : MonoBehaviour
                         }
                     }
 
-                    //Right click, remove voxel.
-                    else if (rightMouse && !paintMode)
+                    //Right click.
+                    else if (rightMouse && !selectingStart && !silhouetteMode)
                     {
-                        if (hitRay.collider.name.Contains("Left") || hitRay.collider.name.Contains("Top") || hitRay.collider.name.Contains("Right"))
+                        if (paintMode)
                         {
-                            Destroy(hitRay.transform.parent.gameObject);
-                            for (int r = 0; r < transform.childCount; r++)
+                            string[] parseSplit = hitRay.collider.name.Split('_');
+                            if (hitRay.collider.name.Split('_')[1] == "Left")
                             {
-                                DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, transform.GetChild(r).transform.position, r);
+                                hitRay.collider.GetComponentInParent<Renderer>().material = developerLeft;
+                                hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + developerLeft.name;
+                            }
+                            else if (hitRay.transform.name.Split('_')[1] == "Top")
+                            {
+                                hitRay.collider.GetComponentInParent<Renderer>().material = developerTop;
+                                hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + developerTop.name;
+                            }
+                            else if (hitRay.transform.name.Split('_')[1] == "Right")
+                            {
+                                hitRay.collider.GetComponentInParent<Renderer>().material = developerRight;
+                                hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + developerRight.name;
+                            }
+                        }
+                        else
+                        {
+                            //Remove voxel.
+                            if (hitRay.collider.name.Contains("Left") || hitRay.collider.name.Contains("Top") || hitRay.collider.name.Contains("Right"))
+                            {
+                                Destroy(hitRay.transform.parent.gameObject);
+                                for (int r = 0; r < transform.childCount; r++)
+                                {
+                                    DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, transform.GetChild(r).transform.position, r);
+                                }
                             }
                         }
                     }
@@ -169,7 +239,7 @@ public class Jsonator : MonoBehaviour
     void Tiler(string dim, Transform par, string name, string mat)
     {
         //Create the gameobject.
-        GameObject tile = new GameObject("Tile_" + name);
+        GameObject tile = new GameObject();
         tile.transform.SetParent(par);
         tile.AddComponent<MeshFilter>();
         MeshFilter tileF = tile.GetComponent<MeshFilter>();
@@ -216,6 +286,7 @@ public class Jsonator : MonoBehaviour
                 tileC.size = new Vector3(1, 0, 1);
                 tileC.center = new Vector3(0, 0, 0);
                 tileR.material = (loadMat != null) ? loadMat : developerTop;
+                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
                 break;
             case ("Right"):
                 tile.transform.position = new Vector3(par.position.x, par.position.y, par.position.z + 0.5f);
@@ -230,6 +301,7 @@ public class Jsonator : MonoBehaviour
                 tileC.size = new Vector3(1, 1, 0);
                 tileC.center = new Vector3(0, 0, 0);
                 tileR.material = (loadMat != null) ? loadMat : developerRight;
+                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
                 break;
             case ("Left"):
                 tile.transform.position = new Vector3(par.position.x + 0.5f, par.position.y, par.position.z);
@@ -244,6 +316,7 @@ public class Jsonator : MonoBehaviour
                 tileC.size = new Vector3(0, 1, 1);
                 tileC.center = new Vector3(0, 0, 0);
                 tileR.material = (loadMat != null) ? loadMat : developerLeft;
+                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
                 break;
             default:
                 Debug.LogError("Tile " + name + " has failed to parse.");
@@ -253,6 +326,7 @@ public class Jsonator : MonoBehaviour
         //Build the mesh.
         if (dim == "Top" || dim == "Right" || dim == "Left")
         {
+            tileR.material = silhouetteMode ? silhouette : tileR.material;
             tileF.mesh.vertices = tileV;
             tileF.mesh.normals = tileN;
             tileF.mesh.uv = tileUV;
@@ -281,10 +355,10 @@ public class Jsonator : MonoBehaviour
                 {
                     cuberString = saveParse;
                 }
-                else { cuberString = " "; }
+                else { cuberString = ""; }
                 Tile inTile = new Tile();
                 inTile.d = cuberString;
-                inTile.m = cube.GetChild(c).GetComponent<Renderer>().material.name.Replace(" (Instance)","");
+                inTile.m = cube.GetChild(c).name.Split('_')[2];
                 tileData[c] = inTile;
             }
             Cube inCube = new Cube();
@@ -307,6 +381,7 @@ public class Jsonator : MonoBehaviour
         {
             Debug.Log("ERROR - player start position required.");
         }
+        OnRefreshButton();
     }
 
     public void OnLoadButton(Button button)
@@ -331,7 +406,7 @@ public class Jsonator : MonoBehaviour
         for (int l = 0; l < loadCount; l++)
         {
             loadCube = gridLoad.cubeData[l];
-            Vector3Int loadPos = new Vector3Int((int)loadCube.position.x, (int)loadCube.position.y, (int)loadCube.position.z);
+            Vector3 loadPos = new Vector3(loadCube.position.x - 0.5f, loadCube.position.y - 0.5f, loadCube.position.z - 0.5f);
             string[] toCuber = new string[3] { "", "", "" };
             string[] toMatter = new string[3] { "", "", "" };
             for (int c = 0; c < loadCube.tileData.Length; c++)
@@ -340,20 +415,18 @@ public class Jsonator : MonoBehaviour
                 if (loadCube.tileData[c].d == "Top")
                 {
                     toCuber[0] = "Top";
-                    toMatter[0] = (loadMat == null) ? "developerTop" : loadMat;
+                    toMatter[0] = loadCube.tileData[c].m;
                 }
                 else if (loadCube.tileData[c].d == "Right")
                 {
                     toCuber[1] = "Right";
-                    toMatter[1] = (loadMat == null) ? "developerRight" : loadMat;
+                    toMatter[1] = loadCube.tileData[c].m;
                 }
                 else if (loadCube.tileData[c].d == "Left")
                 {
                     toCuber[2] = "Left";
-                    toMatter[2] = (loadMat == null) ? "developerLeft" : loadMat;
-
+                    toMatter[2] = loadCube.tileData[c].m;
                 }
-
             }
 
             //Build the new level.
@@ -435,6 +508,7 @@ public class Jsonator : MonoBehaviour
         }
     }
 
+    //Manage cube adjacencies, delete faces that would be merged with another cube.
     bool CurateCube(Transform cube, string dim, int array)
     {
         if (cube != null)
@@ -451,6 +525,7 @@ public class Jsonator : MonoBehaviour
         return false;
     }
 
+    //Delte cube, fill holes in other adjacent cubes.
     void DeleteCube(Transform x, Transform y, Transform z, Vector3 rayPos, Vector3 delPos, int array)
     {
         if (delPos == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
@@ -470,6 +545,7 @@ public class Jsonator : MonoBehaviour
         }
     }
 
+    //Set up vertices for level.
     private void AddTileVerticesToList(Transform cube, List<Vector3Int> verticesList)
     {
         foreach (Transform tileTransform in cube)
@@ -494,13 +570,18 @@ public class Jsonator : MonoBehaviour
         }
     }
 
-    public Grid LoadLevel(string levelName)
+    //Load from .json as a playable level.
+    public Grid LoadLevel(string levelName, bool silhouetted)
     {
         //Clear out the old cubes.
         for (int d = 0; d < transform.childCount; d++)
         {
             Destroy(transform.GetChild(d).gameObject);
         }
+
+        //Check silhouetted and turn the mode on if true.
+        if (silhouetted) { silhouetteMode = true; }
+        else { silhouetteMode = false; }
 
         //Read and interpret the save file.
         string stringLoad = File.ReadAllText(path + levelName + ".json");
@@ -510,8 +591,7 @@ public class Jsonator : MonoBehaviour
         for (int l = 0; l < loadCount; l++)
         {
             loadCube = gridLoad.cubeData[l];
-            Vector3Int loadPos = new Vector3Int((int) loadCube.position.x, (int) loadCube.position.y,
-                (int) loadCube.position.z);
+            Vector3 loadPos = new Vector3(loadCube.position.x - 0.5f, loadCube.position.y -0.5f, loadCube.position.z -0.5f);
             string[] toCuber = new string[3] {"", "", ""};
             string[] toMatter = new string[3] {"", "", ""};
             for (int c = 0; c < loadCube.tileData.Length; c++)
@@ -531,15 +611,11 @@ public class Jsonator : MonoBehaviour
                 {
                     toCuber[2] = "Left";
                     toMatter[2] = (loadMat == null) ? "developerLeft" : loadMat;
-
                 }
-
             }
 
             //Build the new level.
-            Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2],
-                new Vector3Int(Mathf.RoundToInt(loadPos.x + 1), Mathf.RoundToInt(loadPos.y + 1),
-                    Mathf.RoundToInt(loadPos.z + 1)));
+            Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
         return gridLoad;
     }

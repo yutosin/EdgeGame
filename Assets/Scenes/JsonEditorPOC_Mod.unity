@@ -3769,11 +3769,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   - {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   - {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
+  silhouette: {fileID: 2100000, guid: 1ce7ed99999d146f9bfb124dc44d04bf, type: 2}
   developerTop: {fileID: 2100000, guid: 9605cff6cd0ab6146903fa0a94ea27d5, type: 2}
   developerRight: {fileID: 2100000, guid: 23f716eeb19fe554b908403cd89b7125, type: 2}
   developerLeft: {fileID: 2100000, guid: 8e7bea41b62b87943ba614c0685eccc3, type: 2}
   playerModel: {fileID: 0}
   path: ./Resources/
+  silhouetteSwitch: {fileID: 0}
   saveName: {fileID: 443849523}
   fileContent: {fileID: 1291576402}
   fileTemplate: {fileID: 260313291}

@@ -49,8 +49,9 @@ public class LevelManager : MonoBehaviour
         //     //AddCubeVerticesToList(renderer);
         //     _cubeObjects.Add(renderer.gameObject);
         // }
+        
+        Grid loadedLevel = _levelLoader.LoadLevel("Prototype4", true);
 
-        Grid loadedLevel = _levelLoader.LoadLevel("Prototype4");
         if (loadedLevel.vertices == null)
             return;
         foreach (var vertex in loadedLevel.vertices)
