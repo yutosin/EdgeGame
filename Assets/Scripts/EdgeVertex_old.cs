@@ -151,7 +151,7 @@ public class EdgeVertex_old : MonoBehaviour
         }
         else if (_isActiveSelectable)
         {
-            //GameManager.SharedInstance.edgeManager.GenerateEdge(_activePoint, this);
+            GameManager.SharedInstance.edgeManager.GenerateEdge(_activePoint, this);
             _activePoint.isActivePoint = false;
             _activePoint._rend.enabled = false;
             StopCoroutine(_activePoint.coroutine);
