@@ -48,6 +48,7 @@ public class Jsonator : MonoBehaviour
     private Material[] displayMaterials;
     private Material selectedMaterial;
     private Vector3 startPoint;
+    private string negDim;
 
     [SerializeField]
     private Cube[] cubeData;
@@ -59,6 +60,7 @@ public class Jsonator : MonoBehaviour
         selectingStart = false;
         silhouetteMode = false;
         silhouetteVal = 0;
+        negDim = "X";
         OnRefreshButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
@@ -122,6 +124,11 @@ public class Jsonator : MonoBehaviour
             silhouetteVal = silhouetteSwitch.value;
         }
 
+        //General keyboard shortcuts
+        if (Input.GetKeyDown(KeyCode.X)) OnDimensionButton("X");
+        if (Input.GetKeyDown(KeyCode.Y)) OnDimensionButton("Y");
+        if (Input.GetKeyDown(KeyCode.Z)) OnDimensionButton("Z");
+
         //Handle Mouse-based block addition and removal.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
@@ -155,34 +162,47 @@ public class Jsonator : MonoBehaviour
                         }
                         else if (!paintMode)
                         {
+                            bool ctrl = Input.GetKey(KeyCode.LeftControl);
                             //Define adjacent voxels to the one clicked on.
-                            if (hitRay.collider.name.Contains("Left")) { rayPos.x++; }
-                            if (hitRay.collider.name.Contains("Top")) { rayPos.y++; }
-                            if (hitRay.collider.name.Contains("Right")) { rayPos.z++; }
-
-                            //Curate faces the newly created voxel will be adjacent to.
-                            bool[] backFace = new bool[3] { false, false, false };
-                            for (int c = 0; c < transform.childCount; c++)
+                            if (ctrl)
                             {
-                                CubeParse(true, transform.GetChild(c).transform, rayPos, c);
-                                if (cubeXPos != null) { backFace[0] = true; }
-                                if (cubeYPos != null) { backFace[1] = true; }
-                                if (cubeZPos != null) { backFace[2] = true; }
-                                int tc = transform.GetChild(c).childCount;
-                                for (int t = 0; t < tc; t++)
-                                {
-                                    if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) { tc--; }
-                                }
-                                CubeParse(false, null, new Vector3(0, 0, 0), 0);
+                                if (negDim == "X") rayPos.x--;
+                                if (negDim == "Y") rayPos.y--;
+                                if (negDim == "Z") rayPos.z--;
+                            }
+                            else
+                            {
+                                if (hitRay.collider.name.Contains("Left")) rayPos.x++;
+                                if (hitRay.collider.name.Contains("Top")) rayPos.y++;
+                                if (hitRay.collider.name.Contains("Right")) rayPos.z++;
                             }
 
-                            //Build the new voxel.
-                            Cuber(
-                                backFace[1] ? "" : "Top", "",
-                                backFace[2] ? "" : "Right", "",
-                                backFace[0] ? "" : "Left", "",
-                                new Vector3(rayPos.x + 0.5f, rayPos.y + 0.5f, rayPos.z + 0.5f));
-                            Destroy(hitRay.transform.gameObject);
+                            if (rayPos.x >= 0 && rayPos.y >= 0 && rayPos.z >= 0)
+                            {
+                                //Curate faces the newly created voxel will be adjacent to.
+                                bool[] backFace = new bool[3] { false, false, false };
+                                for (int c = 0; c < transform.childCount; c++)
+                                {
+                                    CubeParse(true, transform.GetChild(c).transform, rayPos, c);
+                                    if (cubeXPos != null) backFace[0] = true;
+                                    if (cubeYPos != null) backFace[1] = true;
+                                    if (cubeZPos != null) backFace[2] = true;
+                                    int tc = transform.GetChild(c).childCount;
+                                    for (int t = 0; t < tc; t++)
+                                    {
+                                        if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) { tc--; }
+                                    }
+                                    CubeParse(false, null, new Vector3(0, 0, 0), 0);
+                                }
+
+                                //Build the new voxel.
+                                Cuber(
+                                    backFace[1] ? "" : "Top", "",
+                                    backFace[2] ? "" : "Right", "",
+                                    backFace[0] ? "" : "Left", "",
+                                    new Vector3(rayPos.x + 0.5f, rayPos.y + 0.5f, rayPos.z + 0.5f));
+                                if (!ctrl) Destroy(hitRay.transform.gameObject);
+                            }
                         }
                     }
 
@@ -231,9 +251,9 @@ public class Jsonator : MonoBehaviour
         GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
         cube.transform.SetParent(transform);
         cube.transform.position = new Vector3(pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f);
-        if (top != "") { Tiler("Top", cube.transform, "Top", topMat); }
-        if (rgt != "") { Tiler("Right", cube.transform, "Right", rgtMat); }
-        if (lft != "") { Tiler("Left", cube.transform, "Left", lftMat); }
+        if (top != "") Tiler("Top", cube.transform, "Top", topMat);
+        if (rgt != "") Tiler("Right", cube.transform, "Right", rgtMat);
+        if (lft != "") Tiler("Left", cube.transform, "Left", lftMat);
     }
 
     void Tiler(string dim, Transform par, string name, string mat)
@@ -364,11 +384,8 @@ public class Jsonator : MonoBehaviour
             {
                 string saveParse = cube.GetChild(c).name.Split('_')[1];
                 string cuberString;
-                if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left")
-                {
-                    cuberString = saveParse;
-                }
-                else { cuberString = ""; }
+                if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left") cuberString = saveParse;
+                else cuberString = "";
                 Tile inTile = new Tile();
                 inTile.d = cuberString;
                 inTile.m = cube.GetChild(c).name.Split('_')[2];
@@ -499,16 +516,22 @@ public class Jsonator : MonoBehaviour
         OnRefreshButton();
     }
 
+    public void OnDimensionButton(string button)
+    {
+        negDim = button;
+    }
+
+    //Cube Operations
     void CubeParse(bool mode, Transform target, Vector3 rayPos, int arrayIn)
     {
         if (mode)
         {
-            if (target.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z)) { cubeXNeg = transform.GetChild(arrayIn); }
-            else if (target.position == new Vector3(rayPos.x + 1, rayPos.y, rayPos.z)) { cubeXPos = transform.GetChild(arrayIn); }
-            else if (target.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z)) { cubeYNeg = transform.GetChild(arrayIn); }
-            else if (target.position == new Vector3(rayPos.x, rayPos.y + 1, rayPos.z)) { cubeYPos = transform.GetChild(arrayIn); }
-            else if (target.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1)) { cubeZNeg = transform.GetChild(arrayIn); }
-            else if (target.position == new Vector3(rayPos.x, rayPos.y, rayPos.z + 1)) { cubeZPos = transform.GetChild(arrayIn); }
+            if (target.position == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z)) cubeXNeg = transform.GetChild(arrayIn);
+            else if (target.position == new Vector3(rayPos.x + 1, rayPos.y, rayPos.z)) cubeXPos = transform.GetChild(arrayIn);
+            else if (target.position == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z)) cubeYNeg = transform.GetChild(arrayIn);
+            else if (target.position == new Vector3(rayPos.x, rayPos.y + 1, rayPos.z)) cubeYPos = transform.GetChild(arrayIn);
+            else if (target.position == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1)) cubeZNeg = transform.GetChild(arrayIn);
+            else if (target.position == new Vector3(rayPos.x, rayPos.y, rayPos.z + 1)) cubeZPos = transform.GetChild(arrayIn);
         }
         else
         {
