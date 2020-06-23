@@ -2,2595 +2,2743 @@
     "cubeData": [
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 1.5,
+                "y": 0.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 0.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 0.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 1.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 1.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 1.5,
+                "y": 1.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 4.0
+                "x": 1.5,
+                "y": 1.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 0.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 2.5,
+                "y": 1.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 2.0
+                "x": 3.5,
+                "y": 1.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 4.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 4.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 4.0
+                "x": 2.5,
+                "y": 1.5,
+                "z": 1.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 3.5,
+                "y": 1.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 4.0
+                "x": 0.5,
+                "y": 0.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 1.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 0.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 1.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 2.5,
+                "y": 1.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 2.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 3.5,
+                "y": 1.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 0.5,
+                "y": 0.5,
+                "z": 3.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 1.5,
+                "y": 0.5,
+                "z": 3.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 3.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 3.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 0.5,
+                "y": 1.5,
+                "z": 3.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 1.5,
+                "z": 3.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 1.5,
+                "z": 3.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 3.5,
+                "y": 1.5,
+                "z": 3.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 2.0
+                "x": 4.5,
+                "y": 1.5,
+                "z": 0.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 4.5,
+                "y": 1.5,
+                "z": 1.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 4.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 1.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 2.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 4.5,
+                "y": 1.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 3.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 0.5,
+                "y": 1.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 0.5,
+                "y": 0.5,
+                "z": 5.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 5.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 1.5,
+                "y": 1.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 1.5,
+                "y": 0.5,
+                "z": 5.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 4.5
             },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 1.5,
+                "z": 4.5
+            },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 6.0,
-                "y": 0.0,
-                "z": 7.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 5.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 1.0,
-                "z": 0.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 1.0,
-                "z": 1.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 5.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 0.0
-            },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 0.0
-            },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 2.0,
-                "y": 1.0,
-                "z": 0.0
-            },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 3.0,
-                "y": 1.0,
-                "z": 0.0
-            },
-            "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 1.0
+                "x": 4.5,
+                "y": 0.5,
+                "z": 4.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
+                "x": 4.5,
+                "y": 0.5,
+                "z": 5.5
             },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 2.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 1.0,
-                "z": 2.0
+                "x": 4.5,
+                "y": 1.5,
+                "z": 3.5
             },
             "tileData": [
                 {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 1.0,
-                "z": 1.0
+                "x": 4.5,
+                "y": 1.5,
+                "z": 4.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 1.0,
-                "z": 2.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 4.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 2.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 5.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 2.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 0.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 3.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 1.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 3.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 2.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 1.0,
-                "z": 3.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 3.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 1.0,
-                "z": 2.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 4.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 1.0,
-                "z": 3.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 5.5
             },
             "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 1.0,
-                "z": 3.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 6.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 4.0
+                "x": 0.5,
+                "y": 0.5,
+                "z": 7.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 4.0
+                "x": 1.5,
+                "y": 0.5,
+                "z": 7.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 1.0,
-                "z": 4.0
+                "x": 2.5,
+                "y": 0.5,
+                "z": 7.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 1.0,
-                "z": 4.0
+                "x": 3.5,
+                "y": 0.5,
+                "z": 7.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 2.0,
-                "z": 0.0
+                "x": 4.5,
+                "y": 0.5,
+                "z": 7.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 3.0,
-                "z": 0.0
+                "x": 5.5,
+                "y": 0.5,
+                "z": 7.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 2.0,
-                "z": 1.0
+                "x": 6.5,
+                "y": 0.5,
+                "z": 7.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 3.0,
-                "z": 1.0
+                "x": 7.5,
+                "y": 0.5,
+                "z": 7.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 2.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 2.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 3.0,
-                "z": 2.0
+                "x": 1.5,
+                "y": 2.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 2.0,
-                "z": 3.0
+                "x": 2.5,
+                "y": 2.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 3.0,
-                "z": 3.0
+                "x": 3.5,
+                "y": 2.5,
+                "z": 1.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 2.0,
-                "z": 4.0
+                "x": 2.5,
+                "y": 2.5,
+                "z": 0.5
             },
-            "tileData": [
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 3.0,
-                "z": 4.0
+                "x": 3.5,
+                "y": 2.5,
+                "z": 0.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 2.0,
-                "z": 3.0
+                "x": 4.5,
+                "y": 2.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 2.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 2.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 2.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 2.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 2.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 2.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 3.0,
-                "z": 0.0
+                "x": 1.5,
+                "y": 2.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 3.0,
-                "z": 1.0
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 3.0,
-                "z": 2.0
+                "x": 3.5,
+                "y": 2.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 3.0,
-                "z": 3.0
+                "x": 4.5,
+                "y": 2.5,
+                "z": 2.5
             },
             "tileData": [
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
                 {
-                    "d": "Top"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 3.0,
-                "z": 4.0
+                "x": 1.5,
+                "y": 2.5,
+                "z": 3.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 0.0
+                "x": 2.5,
+                "y": 2.5,
+                "z": 3.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 1.0
+                "x": 3.5,
+                "y": 2.5,
+                "z": 3.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 2.5,
+                "z": 3.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 4.0
+                "x": 0.5,
+                "y": 2.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 3.0
+                "x": 2.5,
+                "y": 2.5,
+                "z": 4.5
             },
-            "tileData": []
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 2.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
+                }
+            ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 3.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 3.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 3.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 3.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 3.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 3.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 3.0,
-                "z": 3.0
+                "x": 3.5,
+                "y": 3.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 3.0,
-                "z": 4.0
+                "x": 4.5,
+                "y": 3.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 2.0,
-                "z": 1.0
+                "x": 4.5,
+                "y": 3.5,
+                "z": 1.5
             },
             "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 3.0,
-                "z": 1.0
+                "x": 2.5,
+                "y": 3.5,
+                "z": 1.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 2.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 3.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 2.0,
-                "z": 0.0
+                "x": 1.5,
+                "y": 3.5,
+                "z": 1.5
             },
-            "tileData": [
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 3.0,
-                "z": 0.0
+                "x": 3.5,
+                "y": 3.5,
+                "z": 1.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 2.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 3.5,
+                "z": 2.5
+            },
+            "tileData": []
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 3.0,
-                "z": 0.0
+                "x": 3.5,
+                "y": 3.5,
+                "z": 2.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 3.0,
-                "z": 1.0
+                "x": 4.5,
+                "y": 3.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 2.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 3.5,
+                "z": 2.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 3.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 3.5,
+                "z": 3.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 2.0,
-                "z": 3.0
+                "x": 3.5,
+                "y": 3.5,
+                "z": 3.5
             },
             "tileData": [
-                {
-                    "d": "Right"
-                },
                 {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 3.0,
-                "z": 3.0
+                "x": 4.5,
+                "y": 3.5,
+                "z": 3.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 3.0,
-                "y": 3.0,
-                "z": 4.0
+                "x": 1.5,
+                "y": 3.5,
+                "z": 3.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 2.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 3.5,
+                "z": 3.5
             },
             "tileData": [
-                {
-                    "d": "Right"
-                },
                 {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 3.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 3.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 3.0,
-                "z": 3.0
+                "x": 1.5,
+                "y": 3.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 2.0,
-                "z": 4.0
+                "x": 2.5,
+                "y": 3.5,
+                "z": 4.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 3.0,
-                "z": 4.0
+                "x": 3.5,
+                "y": 3.5,
+                "z": 4.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 4.0,
-                "z": 0.0
-            },
-            "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 4.0,
-                "z": 0.0
+                "x": 4.5,
+                "y": 3.5,
+                "z": 4.5
             },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 2.0,
-                "y": 4.0,
-                "z": 0.0
-            },
             "tileData": [
                 {
-                    "d": "Left"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.0,
-                "y": 4.0,
-                "z": 1.0
-            },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 1.0,
-                "y": 4.0,
-                "z": 1.0
-            },
-            "tileData": []
-        },
-        {
-            "position": {
-                "x": 2.0,
-                "y": 4.0,
-                "z": 1.0
-            },
-            "tileData": [
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 4.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 4.5,
+                "z": 0.5
             },
-            "tileData": [
-                {
-                    "d": "Right"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 4.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 4.5,
+                "z": 0.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 4.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 5.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 5.0,
-                "z": 0.0
+                "x": 1.5,
+                "y": 4.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 6.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 5.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 5.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 5.5,
+                "z": 0.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 6.0,
-                "z": 1.0
+                "x": 0.5,
+                "y": 4.5,
+                "z": 1.5
             },
-            "tileData": [
-                {
-                    "d": "Top"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 5.0,
-                "z": 2.0
+                "x": 1.5,
+                "y": 4.5,
+                "z": 1.5
             },
-            "tileData": [
-                {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 6.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 4.5,
+                "z": 1.5
             },
             "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 5.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 5.5,
+                "z": 1.5
             },
             "tileData": []
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 5.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 5.5,
+                "z": 1.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 5.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 4.5,
+                "z": 2.5
             },
             "tileData": [
-                {
-                    "d": "Right"
-                },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 5.0,
-                "z": 2.0
+                "x": 1.5,
+                "y": 4.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 6.0,
-                "z": 0.0
+                "x": 2.5,
+                "y": 4.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 6.0,
-                "z": 1.0
+                "x": 0.5,
+                "y": 5.5,
+                "z": 2.5
             },
             "tileData": [
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
                 {
-                    "d": "Top"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.0,
-                "y": 6.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 5.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 6.0,
-                "z": 0.0
+                "x": 0.5,
+                "y": 6.5,
+                "z": 0.5
             },
-            "tileData": [
-                {
-                    "d": "Left"
-                }
-            ]
+            "tileData": []
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 6.0,
-                "z": 1.0
+                "x": 1.5,
+                "y": 6.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Top"
-                },
-                {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 6.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 6.5,
+                "z": 1.5
             },
             "tileData": [
-                {
-                    "d": "Right"
-                },
                 {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 7.0,
-                "z": 0.0
+                "x": 1.5,
+                "y": 6.5,
+                "z": 1.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.0,
-                "y": 7.0,
-                "z": 2.0
+                "x": 0.5,
+                "y": 6.5,
+                "z": 2.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
-                {
-                    "d": "Right"
-                },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 7.0,
-                "z": 0.0
+                "x": 1.5,
+                "y": 6.5,
+                "z": 2.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 2.0,
-                "y": 7.0,
-                "z": 2.0
+                "x": 2.5,
+                "y": 6.5,
+                "z": 0.5
             },
             "tileData": [
-                {
-                    "d": "Top"
-                },
                 {
-                    "d": "Right"
-                },
-                {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 4.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 2.5,
+                "y": 6.5,
+                "z": 1.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Right"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 0.0
+                "x": 2.5,
+                "y": 6.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 1.0
+                "x": 0.5,
+                "y": 7.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
-                {
-                    "d": "Left"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 2.0
-            },
-            "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 3.0
+                "x": 0.5,
+                "y": 7.5,
+                "z": 2.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
-                {
-                    "d": "Left"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 4.0
-            },
-            "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 5.0
+                "x": 2.5,
+                "y": 7.5,
+                "z": 0.5
             },
             "tileData": [
                 {
-                    "d": "Top"
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.0,
-                "y": 0.0,
-                "z": 6.0
+                "x": 2.5,
+                "y": 7.5,
+                "z": 2.5
             },
             "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
                 {
-                    "d": "Top"
+                    "d": "Right",
+                    "m": "RightTexMat"
                 },
                 {
-                    "d": "Left"
+                    "d": "Left",
+                    "m": "LeftTextMat"
                 }
             ]
         }
     ],
     "vertices": [
         {
-            "x": 4,
-            "y": -1,
-            "z": -2
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": -1
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": -2
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": -1
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": -2
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": -1
-        },
-        {
-            "x": 2,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": 1,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": -1,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": -1,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": -2,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": -2,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": -1,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": -2,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": 0,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": 0,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": 0,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": 1,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": 1,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": 2,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": 2,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": 4,
-            "y": -1,
+            "x": 6,
+            "y": 1,
             "z": 0
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 0
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": 0
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": 1
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 1
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": 1
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": 2
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 2
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": 2
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 3
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": 3
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 4
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": 3,
-            "y": -2,
-            "z": 4
-        },
-        {
-            "x": -1,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": -1,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": -2,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": -2,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": -1,
-            "y": -2,
-            "z": 6
-        },
-        {
-            "x": -2,
-            "y": -2,
-            "z": 6
-        },
-        {
-            "x": 0,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": 0,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": 0,
-            "y": -2,
-            "z": 6
-        },
-        {
-            "x": 2,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": 2,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": 1,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": 1,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": 2,
-            "y": -2,
-            "z": 6
-        },
-        {
-            "x": 1,
-            "y": -2,
-            "z": 6
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": 3,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": 3,
-            "y": -2,
-            "z": 6
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": 5
-        },
-        {
-            "x": 4,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": 4,
-            "y": -2,
-            "z": 6
         },
         {
             "x": 6,
-            "y": -1,
-            "z": 5
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 0
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 1
         },
         {
             "x": 6,
-            "y": -1,
+            "y": 0,
+            "z": 0
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 0
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 2
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 2
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 3
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 3
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 2,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 2,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 3,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 4,
+            "y": 0,
             "z": 6
         },
         {
             "x": 5,
-            "y": -1,
+            "y": 1,
             "z": 5
         },
         {
             "x": 5,
-            "y": -1,
-            "z": 6
-        },
-        {
-            "x": 6,
-            "y": -2,
+            "y": 1,
             "z": 6
         },
         {
             "x": 5,
-            "y": -2,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "y": 1,
             "z": 6
         },
         {
             "x": 6,
-            "y": -2,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 8,
+            "y": 1,
+            "z": 0
+        },
+        {
+            "x": 8,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 0
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 8,
+            "y": 0,
+            "z": 0
+        },
+        {
+            "x": 8,
+            "y": 0,
+            "z": 1
+        },
+        {
+            "x": 8,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 8,
+            "y": 0,
+            "z": 2
+        },
+        {
+            "x": 8,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 8,
+            "y": 0,
+            "z": 3
+        },
+        {
+            "x": 8,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 8,
+            "y": 0,
+            "z": 4
+        },
+        {
+            "x": 8,
+            "y": 1,
             "z": 5
         },
         {
-            "x": 3,
-            "y": 0,
-            "z": -2
+            "x": 7,
+            "y": 1,
+            "z": 5
         },
         {
-            "x": 3,
+            "x": 8,
             "y": 0,
-            "z": -1
+            "z": 5
         },
         {
-            "x": 3,
-            "y": 0,
-            "z": 0
+            "x": 8,
+            "y": 1,
+            "z": 6
         },
         {
-            "x": 3,
-            "y": 0,
-            "z": 1
+            "x": 7,
+            "y": 1,
+            "z": 6
         },
         {
-            "x": 3,
+            "x": 8,
             "y": 0,
-            "z": 2
+            "z": 6
         },
         {
-            "x": -1,
-            "y": 0,
-            "z": 3
+            "x": 8,
+            "y": 1,
+            "z": 7
         },
         {
-            "x": -2,
-            "y": 0,
-            "z": 3
+            "x": 7,
+            "y": 1,
+            "z": 7
         },
         {
-            "x": 0,
+            "x": 8,
             "y": 0,
-            "z": 3
+            "z": 7
         },
         {
             "x": 1,
-            "y": 0,
-            "z": 3
-        },
-        {
-            "x": 3,
-            "y": 0,
-            "z": 3
-        },
-        {
-            "x": 2,
-            "y": 0,
-            "z": 3
-        },
-        {
-            "x": -1,
-            "y": 2,
-            "z": 1
-        },
-        {
-            "x": -1,
-            "y": 2,
-            "z": 2
-        },
-        {
-            "x": -2,
-            "y": 2,
-            "z": 1
-        },
-        {
-            "x": -2,
-            "y": 2,
-            "z": 2
-        },
-        {
-            "x": -1,
             "y": 1,
-            "z": 3
+            "z": 7
         },
         {
-            "x": -2,
+            "x": 1,
             "y": 1,
-            "z": 3
-        },
-        {
-            "x": -1,
-            "y": 2,
-            "z": 3
-        },
-        {
-            "x": -2,
-            "y": 2,
-            "z": 3
-        },
-        {
-            "x": 0,
-            "y": 2,
-            "z": 1
-        },
-        {
-            "x": 0,
-            "y": 2,
-            "z": 2
-        },
-        {
-            "x": 0,
-            "y": 2,
-            "z": 3
+            "z": 8
         },
         {
             "x": 0,
             "y": 1,
-            "z": 3
+            "z": 7
         },
         {
-            "x": 1,
+            "x": 0,
             "y": 1,
-            "z": 3
+            "z": 8
         },
         {
             "x": 1,
-            "y": 2,
-            "z": 1
+            "y": 0,
+            "z": 8
         },
         {
-            "x": 1,
-            "y": 2,
-            "z": 2
-        },
-        {
-            "x": 1,
-            "y": 2,
-            "z": 3
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "z": -1
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "z": 0
-        },
-        {
-            "x": 1,
-            "y": 2,
-            "z": -1
-        },
-        {
-            "x": 1,
-            "y": 2,
-            "z": 0
-        },
-        {
-            "x": 3,
-            "y": 1,
-            "z": -1
-        },
-        {
-            "x": 3,
-            "y": 1,
-            "z": -2
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "z": -2
-        },
-        {
-            "x": 1,
-            "y": 2,
-            "z": -2
-        },
-        {
-            "x": 3,
-            "y": 2,
-            "z": -2
-        },
-        {
-            "x": 3,
-            "y": 2,
-            "z": -1
-        },
-        {
-            "x": 3,
-            "y": 2,
-            "z": 0
-        },
-        {
-            "x": 3,
-            "y": 1,
-            "z": 0
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "z": 1
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "z": 2
-        },
-        {
-            "x": 2,
-            "y": 2,
-            "z": 3
+            "x": 0,
+            "y": 0,
+            "z": 8
         },
         {
             "x": 2,
             "y": 1,
-            "z": 3
+            "z": 7
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 2,
+            "y": 0,
+            "z": 8
         },
         {
             "x": 3,
             "y": 1,
-            "z": 1
-        },
-        {
-            "x": 3,
-            "y": 2,
-            "z": 1
-        },
-        {
-            "x": 3,
-            "y": 2,
-            "z": 2
+            "z": 7
         },
         {
             "x": 3,
             "y": 1,
-            "z": 2
+            "z": 8
         },
         {
             "x": 3,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 4,
             "y": 1,
-            "z": 3
+            "z": 7
         },
         {
-            "x": 3,
-            "y": 2,
-            "z": 3
+            "x": 4,
+            "y": 1,
+            "z": 8
         },
         {
-            "x": 1,
-            "y": 3,
-            "z": -2
+            "x": 4,
+            "y": 0,
+            "z": 8
         },
         {
-            "x": 1,
-            "y": 3,
-            "z": -1
+            "x": 5,
+            "y": 1,
+            "z": 7
         },
         {
-            "x": 1,
-            "y": 3,
-            "z": 0
+            "x": 5,
+            "y": 1,
+            "z": 8
         },
         {
-            "x": -1,
+            "x": 5,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 7,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 8,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 8,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 5,
             "y": 3,
             "z": 1
         },
         {
-            "x": -2,
+            "x": 5,
             "y": 3,
-            "z": 1
+            "z": 0
         },
         {
-            "x": 0,
+            "x": 5,
             "y": 3,
-            "z": 1
-        },
-        {
-            "x": 1,
-            "y": 3,
-            "z": 1
-        },
-        {
-            "x": -1,
-            "y": 4,
-            "z": 1
-        },
-        {
-            "x": -2,
-            "y": 4,
-            "z": 1
-        },
-        {
-            "x": -1,
-            "y": 5,
-            "z": 1
-        },
-        {
-            "x": -2,
-            "y": 5,
-            "z": 1
-        },
-        {
-            "x": 1,
-            "y": 4,
-            "z": -1
-        },
-        {
-            "x": 1,
-            "y": 4,
-            "z": -2
-        },
-        {
-            "x": 1,
-            "y": 4,
-            "z": 1
-        },
-        {
-            "x": 0,
-            "y": 4,
-            "z": 1
-        },
-        {
-            "x": 1,
-            "y": 4,
-            "z": 0
-        },
-        {
-            "x": 0,
-            "y": 5,
-            "z": 1
-        },
-        {
-            "x": 1,
-            "y": 5,
-            "z": -2
-        },
-        {
-            "x": 1,
-            "y": 5,
-            "z": -1
-        },
-        {
-            "x": 1,
-            "y": 5,
-            "z": 0
-        },
-        {
-            "x": 1,
-            "y": 5,
-            "z": 1
-        },
-        {
-            "x": -1,
-            "y": 6,
-            "z": -2
-        },
-        {
-            "x": -1,
-            "y": 6,
-            "z": -1
-        },
-        {
-            "x": -2,
-            "y": 6,
-            "z": -2
-        },
-        {
-            "x": -2,
-            "y": 6,
-            "z": -1
-        },
-        {
-            "x": -1,
-            "y": 6,
-            "z": 0
-        },
-        {
-            "x": -1,
-            "y": 6,
-            "z": 1
-        },
-        {
-            "x": -2,
-            "y": 6,
-            "z": 0
-        },
-        {
-            "x": -2,
-            "y": 6,
-            "z": 1
-        },
-        {
-            "x": 1,
-            "y": 6,
-            "z": -2
-        },
-        {
-            "x": 1,
-            "y": 6,
-            "z": -1
-        },
-        {
-            "x": 0,
-            "y": 6,
-            "z": -2
-        },
-        {
-            "x": 0,
-            "y": 6,
-            "z": -1
-        },
-        {
-            "x": 1,
-            "y": 6,
-            "z": 0
-        },
-        {
-            "x": 1,
-            "y": 6,
-            "z": 1
-        },
-        {
-            "x": 0,
-            "y": 6,
-            "z": 0
-        },
-        {
-            "x": 0,
-            "y": 6,
-            "z": 1
-        },
-        {
-            "x": 6,
-            "y": -1,
-            "z": -2
-        },
-        {
-            "x": 6,
-            "y": -1,
-            "z": -1
-        },
-        {
-            "x": 5,
-            "y": -1,
-            "z": -2
-        },
-        {
-            "x": 5,
-            "y": -1,
-            "z": -1
-        },
-        {
-            "x": 6,
-            "y": -2,
-            "z": -2
-        },
-        {
-            "x": 6,
-            "y": -2,
-            "z": -1
-        },
-        {
-            "x": 6,
-            "y": -1,
-            "z": 0
-        },
-        {
-            "x": 5,
-            "y": -1,
-            "z": 0
-        },
-        {
-            "x": 6,
-            "y": -2,
-            "z": 0
-        },
-        {
-            "x": 6,
-            "y": -1,
-            "z": 1
-        },
-        {
-            "x": 5,
-            "y": -1,
-            "z": 1
-        },
-        {
-            "x": 6,
-            "y": -2,
-            "z": 1
-        },
-        {
-            "x": 6,
-            "y": -1,
-            "z": 2
-        },
-        {
-            "x": 5,
-            "y": -1,
-            "z": 2
-        },
-        {
-            "x": 6,
-            "y": -2,
-            "z": 2
-        },
-        {
-            "x": 6,
-            "y": -1,
             "z": 3
         },
         {
             "x": 5,
-            "y": -1,
+            "y": 3,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 2,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 3,
+            "z": 4
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 0
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 0
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 2
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 2
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "z": 2
+        },
+        {
+            "x": 4,
+            "y": 4,
             "z": 3
         },
         {
-            "x": 6,
-            "y": -2,
+            "x": 3,
+            "y": 4,
             "z": 3
         },
         {
-            "x": 6,
-            "y": -1,
+            "x": 5,
+            "y": 4,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 0,
+            "y": 4,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 3,
+            "y": 4,
             "z": 4
         },
         {
             "x": 5,
-            "y": -1,
+            "y": 4,
             "z": 4
         },
         {
-            "x": 6,
-            "y": -2,
+            "x": 2,
+            "y": 4,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 4,
             "z": 4
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 2,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 6,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 6,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 6,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 6,
+            "z": 3
+        },
+        {
+            "x": 3,
+            "y": 6,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 6,
+            "z": 3
+        },
+        {
+            "x": 3,
+            "y": 6,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 7,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 7,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 7,
+            "z": 3
+        },
+        {
+            "x": 3,
+            "y": 7,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 7,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 7,
+            "z": 2
+        },
+        {
+            "x": 3,
+            "y": 7,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "x": 1,
+            "y": 8,
+            "z": 1
+        },
+        {
+            "x": 0,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "x": 0,
+            "y": 8,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 8,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 8,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 8,
+            "z": 2
+        },
+        {
+            "x": 0,
+            "y": 8,
+            "z": 3
+        },
+        {
+            "x": 3,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 8,
+            "z": 1
+        },
+        {
+            "x": 2,
+            "y": 8,
+            "z": 0
+        },
+        {
+            "x": 2,
+            "y": 8,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 8,
+            "z": 2
+        },
+        {
+            "x": 3,
+            "y": 8,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 8,
+            "z": 2
+        },
+        {
+            "x": 2,
+            "y": 8,
+            "z": 3
         }
     ],
     "startPoint": {
-        "x": 7,
-        "y": 0,
-        "z": 0
+        "x": 7.5,
+        "y": 1.0,
+        "z": 0.5
     }
 }
