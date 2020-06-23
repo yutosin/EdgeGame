@@ -185,7 +185,7 @@ public class MaterialSelectScript : MonoBehaviour
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
     public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
-
+    [HideInInspector]
     public TeleportAbility[] tpFaces = new TeleportAbility[2];
 
     //Made this a method so that when the value is changed the buttons reference the right face
@@ -323,6 +323,28 @@ public class MaterialSelectScript : MonoBehaviour
         }
 
         return (assigned);
+    }
+
+    public void EnterPlayMode()
+    {
+        if(_lastFace != null)
+        {
+            if(_lastFace.Ability == null)
+            {
+                _lastFace._rend.material = _lastFace._defaultMat;
+            }
+            _lastFace = null;
+        }
+
+        if (_selectedFace != null)
+        {
+            if (_selectedFace.Ability == null)
+            {
+                _selectedFace._rend.material = _selectedFace._defaultMat;
+            }
+            _selectedFace = null;
+        }
+        panelObj.SetActive(false);
     }
 
 

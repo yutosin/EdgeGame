@@ -2581,6 +2581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rend: {fileID: 0}
+  _defaultMat: {fileID: 0}
+  _selectedMat: {fileID: 0}
   Parent: {fileID: 0}
   Vertices: []
   FaceId: 0
@@ -3986,6 +3988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InstructionsPanel: {fileID: 0}
+  mScript: {fileID: 1548718623}
   GamePlayModeButton: {fileID: 1641149468}
   DrawModeButton: {fileID: 1262888725}
 --- !u!114 &1548718621

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
     public GameObject InstructionsPanel;
+    public MaterialSelectScript mScript;
     public Button GamePlayModeButton;
     public Button DrawModeButton;
     
@@ -46,6 +47,7 @@ public class UIScript : MonoBehaviour
         GameManager.SharedInstance.PlayMode = true;
         DrawModeButton.interactable = true;
         GamePlayModeButton.interactable = false;
+        mScript.EnterPlayMode();
     }
 
     public void SwitchToDrawMode()
