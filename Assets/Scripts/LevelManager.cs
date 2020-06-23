@@ -349,13 +349,14 @@ public class LevelManager : MonoBehaviour
             
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
 
-            if (!_navMeshBuilt)
-            {
-                _meshSurface.BuildNavMesh();
-                _navMeshBuilt = true;
-            }
-            else
-                _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
+            // if (!_navMeshBuilt)
+            // {
+            //     _meshSurface.BuildNavMesh();
+            //     _navMeshBuilt = true;
+            // }
+            // else
+            //     _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
+            AstarPath.active.Scan();
         }
     }
     
@@ -414,8 +415,9 @@ public class LevelManager : MonoBehaviour
         
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = WallMat1;
-        // meshRenderer.sharedMaterial.color = Color.gray;
+        // meshRenderer.sharedMaterial = WallMat1;
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
+        meshRenderer.sharedMaterial.color = Color.gray;
 
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
 
