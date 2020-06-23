@@ -10,7 +10,6 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
     public bool IsInitialized { get; set; }
     public int AbilityTimes { get; set; }
     private Vector3 _target;
-    private Vector3[] faceVertices;
 
     public void InitializeAbility(Face face)
     {
@@ -18,8 +17,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         Vector3 facePoint = AbilityFace.Parent.position;
         Vector3 target = new Vector3(facePoint.x, facePoint.y + 3, facePoint.z);
         _target = target;
-        GameManager.SharedInstance.playerAgent.transform.parent = AbilityFace.transform;
-        GameManager.SharedInstance.playerAgent.agent.enabled = false;
+        GameManager.SharedInstance.playerAgent.transform.parent = transform;
         IsActing = true;
     }
     
@@ -28,7 +26,6 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         yield return new WaitForSeconds(0.01f);
         var playerTransform = GameManager.SharedInstance.playerAgent.transform;
         playerTransform.parent = null;
-        GameManager.SharedInstance.playerAgent.agent.enabled = true;
     }
 
     private void Start()
@@ -44,12 +41,10 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         float step = 3 * Time.deltaTime;
         AbilityFace.Parent.position =
             Vector3.MoveTowards(AbilityFace.Parent.position, _target, step);
-        GameManager.SharedInstance.playerAgent.agent.nextPosition = AbilityFace.Parent.position;
         if (Vector3.Distance(AbilityFace.Parent.position, _target) < .001f)
         {
             IsActing = false;
-            var meshSurface = GameManager.SharedInstance.edgeManager._meshSurface;
-            meshSurface.UpdateNavMesh(meshSurface.navMeshData);
+            AstarPath.active.Scan();
             StartCoroutine(SetAgentPosition());
             AbilityTimes--;
         }
