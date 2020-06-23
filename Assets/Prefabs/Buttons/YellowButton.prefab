@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2614566209249075195}
   - component: {fileID: 2614566209249075194}
   m_Layer: 5
-  m_Name: GroundButton
+  m_Name: YellowButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Color: {r: 0.9245283, g: 0.87904423, b: 0.3270737, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:

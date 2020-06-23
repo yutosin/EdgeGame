@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour
             var connections = new List<GraphNode>();
             gn.GetConnections(connections.Add);
             // Here is a node
-            Debug.Log("I found a node at position " + (Vector3)node.position);
-            Debug.Log(node.SurfaceArea());
+            //Debug.Log("I found a node at position " + (Vector3)node.position);
+            //Debug.Log(node.SurfaceArea());
         });
     }
 

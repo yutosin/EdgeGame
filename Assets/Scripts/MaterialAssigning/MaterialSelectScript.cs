@@ -1,12 +1,8 @@
 ﻿///////////////////////////////////////////
 ///Work to do list:
 ///     Making a system that will flexibly assign different abilities, want to avoid switch statements
-///     Making Faces that are already assigned not be able to be selected again
-///     Assigned abilities should not lose their color
+///     Adjacent abilities get activated
 ///     
-///     !!!!!!!
-///     Line 88 not working, says it is null, investigating why
-///     !!!!!!!
 ///////////////////////////////////////////
 
 using System.Collections;
@@ -71,49 +67,57 @@ public class MaterialSelectScript : MonoBehaviour
 
         public void AssignColorAndAbility()
         {
-            switch (abilityName) //Made this a switch statement for now, I don't like it though
+            if (IsSmallSquare())//This if statement and method can be removed if we don't want any large faces to have abilities
             {
-                case "Elevator":
-                    face.Ability = face.gameObject.AddComponent<ElevatorAbility>();
-                    SetMaterial();
-                    UpdateUses();
-                    break;
-
-                case "Teleport": //My soul is condemed the the fires of hell for this if statement in a switch statement
-                    if (!_mScript.CheckFlat())
-                    {
+                switch (abilityName) //Made this a switch statement for now, I don't like it though
+                {
+                    case "Elevator":
+                        AssignElevator();
                         break;
-                    }
 
-                    else
-                    {
-                        face.Ability = face.gameObject.AddComponent<TeleportAbility>();
-
-                        TeleportAbility tp = face.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
-                        tp.thisPos = tp.FindCenter(face);//Says is not set to an instance of an object?
-
-                        if (_mScript.tpFaces[0] == null)
+                    case "Teleport": //My soul is condemed the the fires of hell for this if statement in a switch statement
+                        if (IsFlatSurface())
                         {
-                            _mScript.tpFaces[0] = tp;
+                            AssignTP();
                         }
-                        else if (_mScript.tpFaces[1] == null)
-                        {
-                            _mScript.tpFaces[1] = tp;
-
-                            _mScript.tpFaces[0].otherPos = _mScript.tpFaces[1].thisPos;
-                            _mScript.tpFaces[1].otherPos = _mScript.tpFaces[0].thisPos;
-                        }
-
-                        SetMaterial();
-                        UpdateUses();
                         break;
-                    }
 
-                default:
-                    Debug.LogError("That is not an ability");
-                    break;
+                    default:
+                        Debug.LogError("That is not an ability");
+                        break;
+                }
             }
 
+        }
+
+        private void AssignElevator()
+        {
+            face.Ability = face.gameObject.AddComponent<ElevatorAbility>();
+            SetMaterial();
+            UpdateUses();
+        }
+
+        private void AssignTP()
+        {
+            face.Ability = face.gameObject.AddComponent<TeleportAbility>();
+
+            TeleportAbility tp = face.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
+            tp.thisPos = tp.FindCenter(face);//Says is not set to an instance of an object?
+
+            if (_mScript.tpFaces[0] == null)
+            {
+                _mScript.tpFaces[0] = tp;
+            }
+            else if (_mScript.tpFaces[1] == null)
+            {
+                _mScript.tpFaces[1] = tp;
+
+                _mScript.tpFaces[0].OtherPos = _mScript.tpFaces[1].thisPos;
+                _mScript.tpFaces[1].OtherPos = _mScript.tpFaces[0].thisPos;
+            }
+
+            SetMaterial();
+            UpdateUses();
         }
 
         private void SetMaterial()
@@ -133,8 +137,46 @@ public class MaterialSelectScript : MonoBehaviour
             {
                 thisButton.interactable = false;
             }
-
             holdingPanel.SetActive(false);
+        }
+
+        private bool IsFlatSurface()
+        {
+            bool isFlat = true;
+            float yValue = face.Vertices[0].y;
+            
+            for (int i = 1; i < face.Vertices.Length; i++)
+            {
+                if (yValue != face.Vertices[i].y)
+                {
+                    isFlat = false;
+                    break;
+                }
+            }
+            return (isFlat);
+        }
+
+        private bool IsSmallSquare()//this is expensive, should prob change
+        {
+            bool isSquare = true;
+            float xValue = face.Vertices[0].x;
+            float yValue = face.Vertices[0].y;
+            float zValue = face.Vertices[0].z;
+            float maxDistance = 1;
+
+            for (int i = 1; i < face.Vertices.Length; i++)
+            {
+                float xGap = Mathf.Abs(xValue - face.Vertices[i].x);
+                float yGap = Mathf.Abs(yValue - face.Vertices[i].y);
+                float zGap = Mathf.Abs(zValue - face.Vertices[i].z);
+                if((xGap > maxDistance) || (yGap > maxDistance) || (zGap > maxDistance))
+                {
+                    isSquare = false;
+                    break;
+                }
+            }
+
+            return (isSquare);
         }
 
     }
@@ -147,18 +189,32 @@ public class MaterialSelectScript : MonoBehaviour
     public TeleportAbility[] tpFaces = new TeleportAbility[2];
 
     //Made this a method so that when the value is changed the buttons reference the right face
-    private Face _selectedFace;
+    private Face _selectedFace, _lastFace;
     public Face SelectedFace
     {
         get { return (_selectedFace); }
+
         set
         {
-            _selectedFace = value;
-            for (int i = 0; i < buttonList.Count; i++)
+            if (IsSmallSquare(value) && !IsAbilityAssigned(value))
             {
-                buttonList[i].Face = _selectedFace;
+                panelObj.SetActive(true);
+                if((_selectedFace != null))
+                {
+                    _lastFace = _selectedFace;
+                    if (!IsAbilityAssigned(_lastFace))
+                    {
+                        _lastFace._rend.material = value._defaultMat;
+                    }
+                }
+
+                _selectedFace = value;
+                _selectedFace._rend.material = value._selectedMat;
+                for (int i = 0; i < buttonList.Count; i++)
+                {
+                    buttonList[i].Face = _selectedFace;
+                }
             }
-            //Debug.Log("A face has been selected");
         }
     }
 
@@ -230,20 +286,44 @@ public class MaterialSelectScript : MonoBehaviour
         }
     }
 
-    public bool CheckFlat()
+    /// <DUPLICATE>
+    /// This is only here because I don't know if we only ever want abilities to be placed on single squares period
+    /// If so, this outside bool check is what we want and we can eliminate the one in the MaterialButtons class
+    /// If not, delete this one to check when the button is pressed as we don't need to check when selecting a face
+    /// </DUPLICATE>
+    private bool IsSmallSquare(Face face)
     {
-        float yValue = _selectedFace.Vertices[0].y;
-        bool isFlat = true;
-        for (int i = 1; i < _selectedFace.Vertices.Length; i++)
+        bool isSquare = true;
+        float xValue = face.Vertices[0].x;
+        float yValue = face.Vertices[0].y;
+        float zValue = face.Vertices[0].z;
+        float maxDistance = 1;
+
+        for (int i = 1; i < face.Vertices.Length; i++)
         {
-            if(yValue != _selectedFace.Vertices[i].y)
+            float xGap = Mathf.Abs(xValue - face.Vertices[i].x);
+            float yGap = Mathf.Abs(yValue - face.Vertices[i].y);
+            float zGap = Mathf.Abs(zValue - face.Vertices[i].z);
+            if ((xGap > maxDistance) || (yGap > maxDistance) || (zGap > maxDistance))
             {
-                isFlat = false;
+                isSquare = false;
                 break;
             }
         }
-        Debug.Log(isFlat.ToString());
-        return (isFlat);
+
+        return (isSquare);
     }
+
+    private bool IsAbilityAssigned(Face face)
+    {
+        bool assigned = false;
+        if(face.Ability != null)
+        {
+            assigned = true;
+        }
+
+        return (assigned);
+    }
+
 
 }

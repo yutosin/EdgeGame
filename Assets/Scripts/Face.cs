@@ -1,4 +1,11 @@
-﻿using System;
+﻿/////////////////////////
+///Note to Nas from Alec
+///     I have commented out materials assigining steps in onmouse down, moved that functionality to Material select script
+///     I would have commented most out the sections where materials settings are set under the Start Function as that was also moved there
+///     Also I made your default and selected mat public and not static, forgive me brother
+/////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +21,8 @@ public class Face : MonoBehaviour
     public Renderer _rend;
     private bool _selected;
     private static Face _selectedFace;
-    private static Material _defaultMat;
-    private static Material _selectedMat;
+    public Material _defaultMat;
+    public Material _selectedMat;
     private static Material _abilityMat;
     
     public IFaceAbility Ability;
@@ -31,11 +38,11 @@ public class Face : MonoBehaviour
         path = new NavMeshPath();
         _rend = GetComponent<Renderer>();
         Parent = gameObject.transform.parent;
-        
+
         _defaultMat = new Material(Shader.Find("Unlit/ColorZAlways"));
         _defaultMat.color = Color.gray;
         _defaultMat.renderQueue = 2001;
-        
+
         _selectedMat = new Material(Shader.Find("Unlit/ColorZAlways"));
         Color selectColor = new Color();
         if (ColorUtility.TryParseHtmlString("#0979AD", out selectColor))
@@ -43,14 +50,14 @@ public class Face : MonoBehaviour
         else
             _selectedMat.color = Color.blue;
         _selectedMat.renderQueue = 2005;
-        
-        _abilityMat = new Material(Shader.Find("Unlit/ColorZAlways"));
+
+        /*_abilityMat = new Material(Shader.Find("Unlit/ColorZAlways"));
         Color abilityColor = new Color();
         if (ColorUtility.TryParseHtmlString("#AD3911", out abilityColor))
             _abilityMat.color = abilityColor;
         else
             _abilityMat.color = Color.red;
-        _abilityMat.renderQueue = 2005;
+        _abilityMat.renderQueue = 2005;*/
 
         _mScript = GameObject.Find("GameManager").GetComponent<MaterialSelectScript>();
     }
@@ -95,11 +102,11 @@ public class Face : MonoBehaviour
     {
         if (_selectedFace && Ability == null)
         {
-            _selectedFace._rend.material = _defaultMat;
+            //_selectedFace._rend.material = _defaultMat;
         }
         else if (_selectedFace && Ability != null)
         {
-            _selectedFace._rend.material = _abilityMat;
+            //_selectedFace._rend.material = _abilityMat;
         }
         var ray = GameManager.SharedInstance.MainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits;
@@ -117,16 +124,15 @@ public class Face : MonoBehaviour
                 lowestHitDistance = hitDistance;
             else if (hitDistance > lowestHitDistance)
                 continue;
-            if (lastFace && (lastFace.Ability != null))//Need to skip reassigning default materials
+            if (lastFace && (lastFace.Ability != null))
                 continue;
-            if (lastFace)
-                lastFace._rend.material = _defaultMat; //This might be why selecting another face will have assigned materials unset
-            face._rend.material = _selectedMat;
+            // Alec commented this out to handle selection of color in material select script
+            /*if (lastFace)
+                lastFace._rend.material = _defaultMat;
+            face._rend.material = _selectedMat;*/
             lastFace = face;
             _selectedFace = face;
             _mScript.SelectedFace = _selectedFace;
-            _mScript.panelObj.SetActive(true);
-
         }
     }
 
