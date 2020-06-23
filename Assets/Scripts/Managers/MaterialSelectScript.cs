@@ -1,12 +1,12 @@
 ﻿///////////////////////////////////////////
 ///Work to do list:
 ///     Making a system that will flexibly assign different abilities, want to avoid switch statements
-///     Adjacent abilities get activated
 ///     
 ///////////////////////////////////////////
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -67,25 +67,45 @@ public class MaterialSelectScript : MonoBehaviour
 
         public void AssignColorAndAbility()
         {
-            if (IsSmallSquare())//This if statement and method can be removed if we don't want any large faces to have abilities
+            string needsFlatFeedback = "This ability cannot be placed on a wall";
+            switch (abilityName) //Made this a switch statement for now, I don't like it though
             {
-                switch (abilityName) //Made this a switch statement for now, I don't like it though
-                {
-                    case "Elevator":
+                case "Elevator":
+                    if (IsFlatSurface())
+                    {
                         AssignElevator();
-                        break;
+                    }
+                    else
+                    {
+                        _mScript.GiveFeedback(needsFlatFeedback);
+                    }
+                    break;
 
-                    case "Teleport": //My soul is condemed the the fires of hell for this if statement in a switch statement
-                        if (IsFlatSurface())
-                        {
-                            AssignTP();
-                        }
-                        break;
+                case "Teleport": //My soul is condemed the the fires of hell for this if statement in a switch statement
+                    if (IsFlatSurface())
+                    {
+                        AssignTP();
+                    }
+                    else
+                    {
+                        _mScript.GiveFeedback(needsFlatFeedback);
+                    }
+                    break;
 
-                    default:
-                        Debug.LogError("That is not an ability");
-                        break;
-                }
+                case "XMoving":
+                    if (IsFlatSurface())
+                    {
+                        AssignXMoving();
+                    }
+                    else
+                    {
+                        _mScript.GiveFeedback(needsFlatFeedback);
+                    }
+                    break;
+
+                default:
+                    Debug.LogError("That is not an ability");
+                    break;
             }
 
         }
@@ -101,8 +121,8 @@ public class MaterialSelectScript : MonoBehaviour
         {
             face.Ability = face.gameObject.AddComponent<TeleportAbility>();
 
-            TeleportAbility tp = face.GetComponent<TeleportAbility>();//not sure why this line is needed to access variables in script
-            tp.thisPos = tp.FindCenter(face);//Says is not set to an instance of an object?
+            TeleportAbility tp = face.GetComponent<TeleportAbility>();
+            tp.thisPos = tp.FindCenter(face);
 
             if (_mScript.tpFaces[0] == null)
             {
@@ -120,6 +140,17 @@ public class MaterialSelectScript : MonoBehaviour
             UpdateUses();
         }
 
+        private void AssignXMoving()
+        {
+            face.Ability = face.gameObject.AddComponent<XMovingAbility>();
+
+            XMovingAbility XMove = face.GetComponent<XMovingAbility>();
+            XMove.SetStartingConditions(face);
+
+            SetMaterial();
+            UpdateUses();
+        }
+
         private void SetMaterial()
         {
             material = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -128,7 +159,7 @@ public class MaterialSelectScript : MonoBehaviour
 
             face._rend.material = material;
         }
-        
+
         private void UpdateUses()
         {
             uses--;
@@ -156,31 +187,9 @@ public class MaterialSelectScript : MonoBehaviour
             return (isFlat);
         }
 
-        private bool IsSmallSquare()//this is expensive, should prob change
-        {
-            bool isSquare = true;
-            float xValue = face.Vertices[0].x;
-            float yValue = face.Vertices[0].y;
-            float zValue = face.Vertices[0].z;
-            float maxDistance = 1;
-
-            for (int i = 1; i < face.Vertices.Length; i++)
-            {
-                float xGap = Mathf.Abs(xValue - face.Vertices[i].x);
-                float yGap = Mathf.Abs(yValue - face.Vertices[i].y);
-                float zGap = Mathf.Abs(zValue - face.Vertices[i].z);
-                if((xGap > maxDistance) || (yGap > maxDistance) || (zGap > maxDistance))
-                {
-                    isSquare = false;
-                    break;
-                }
-            }
-
-            return (isSquare);
-        }
-
     }
 
+    public UIScript uiScript;
     public GameObject panelObj;
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
@@ -190,14 +199,25 @@ public class MaterialSelectScript : MonoBehaviour
 
     //Made this a method so that when the value is changed the buttons reference the right face
     private Face _selectedFace, _lastFace;
+    //This is a large method as it also handles what happens when trying to change the selected face
+    //If this is bad coding practice let me know
     public Face SelectedFace
     {
         get { return (_selectedFace); }
 
         set
         {
-            if (IsSmallSquare(value) && !IsAbilityAssigned(value))
+            bool goodSize = IsSmallSquare(value);
+            //I put this in front because for some reason it is able to select a new face and say it did not
+            //This is likely due to overlapping faces, so we don't want an Else If statment after
+            if (!goodSize)
             {
+                string feedback = "You can only select faces that are 1x1 squares";
+                GiveFeedback(feedback);
+            }
+            if (goodSize && !IsAbilityAssigned(value))
+            {
+                PutAwayFeedback();
                 panelObj.SetActive(true);
                 if((_selectedFace != null))
                 {
@@ -286,11 +306,6 @@ public class MaterialSelectScript : MonoBehaviour
         }
     }
 
-    /// <DUPLICATE>
-    /// This is only here because I don't know if we only ever want abilities to be placed on single squares period
-    /// If so, this outside bool check is what we want and we can eliminate the one in the MaterialButtons class
-    /// If not, delete this one to check when the button is pressed as we don't need to check when selecting a face
-    /// </DUPLICATE>
     private bool IsSmallSquare(Face face)
     {
         bool isSquare = true;
@@ -345,6 +360,20 @@ public class MaterialSelectScript : MonoBehaviour
             _selectedFace = null;
         }
         panelObj.SetActive(false);
+    }
+
+    private void GiveFeedback(string feedback)
+    {
+        uiScript.FeedbackPanel.SetActive(true);
+        uiScript.FeedackText.text = feedback;
+        CancelInvoke("PutAwayFeedback");
+        Invoke("PutAwayFeedback", 2.0f);
+    }
+
+    private void PutAwayFeedback()
+    {
+        uiScript.FeedackText.text = "";
+        uiScript.FeedbackPanel.SetActive(false);
     }
 
 }

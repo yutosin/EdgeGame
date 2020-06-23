@@ -23,7 +23,6 @@ public class Face : MonoBehaviour
     private static Face _selectedFace;
     public Material _defaultMat;
     public Material _selectedMat;
-    private static Material _abilityMat;
     
     public IFaceAbility Ability;
     public Transform Parent;
@@ -51,14 +50,6 @@ public class Face : MonoBehaviour
             _selectedMat.color = Color.blue;
         _selectedMat.renderQueue = 2005;
 
-        /*_abilityMat = new Material(Shader.Find("Unlit/ColorZAlways"));
-        Color abilityColor = new Color();
-        if (ColorUtility.TryParseHtmlString("#AD3911", out abilityColor))
-            _abilityMat.color = abilityColor;
-        else
-            _abilityMat.color = Color.red;
-        _abilityMat.renderQueue = 2005;*/
-
         _mScript = GameObject.Find("GameManager").GetComponent<MaterialSelectScript>();
     }
 
@@ -72,25 +63,13 @@ public class Face : MonoBehaviour
             Vector3 facePoint = gameObject.transform.parent.position;
             Vector3 agentPoint = GameManager.SharedInstance.playerAgent.transform.position;
             
-            if (Vector3.Distance(facePoint, agentPoint) <= 1.0f && Input.GetKeyDown(KeyCode.E))
+            if (Vector3.Distance(facePoint, agentPoint) <= 0.5f && Input.GetKeyDown(KeyCode.E))
             {
                 if (Ability.AbilityTimes <= 0)
                     return;
                 Ability.InitializeAbility(this);
             }
         }
-        // Alec M commented this out to transfer ability and material selection in the material selction script
-
-
-        /*else
-        {
-            if (_selectedFace == this && Input.GetKeyDown(KeyCode.E))
-            {
-                _rend.material = _abilityMat;
-                _selectedFace = null;
-                Ability = gameObject.AddComponent<ElevatorAbility>();
-            }
-        }*/
     }
 
     private void PlayModeMouseDown()
@@ -100,14 +79,6 @@ public class Face : MonoBehaviour
 
     private void DrawModeMouseDown()
     {
-        if (_selectedFace && Ability == null)
-        {
-            //_selectedFace._rend.material = _defaultMat;
-        }
-        else if (_selectedFace && Ability != null)
-        {
-            //_selectedFace._rend.material = _abilityMat;
-        }
         var ray = GameManager.SharedInstance.MainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits;
         hits = Physics.RaycastAll(ray.origin, ray.direction);
@@ -126,10 +97,6 @@ public class Face : MonoBehaviour
                 continue;
             if (lastFace && (lastFace.Ability != null))
                 continue;
-            // Alec commented this out to handle selection of color in material select script
-            /*if (lastFace)
-                lastFace._rend.material = _defaultMat;
-            face._rend.material = _selectedMat;*/
             lastFace = face;
             _selectedFace = face;
             _mScript.SelectedFace = _selectedFace;
