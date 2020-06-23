@@ -2519,7 +2519,7 @@ MonoBehaviour:
   - {fileID: 1984774013}
   combineCubes: 1
   _meshSurface: {fileID: 0}
-  FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
+  FloorMat: {fileID: 2100000, guid: 4b8499c8e85b34440b32b14bc0dc269d, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _initTPLocs: 
 --- !u!1 &949180510

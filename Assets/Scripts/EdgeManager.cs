@@ -411,7 +411,7 @@ public class EdgeManager : MonoBehaviour
         
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = WallMat1;
+        meshRenderer.sharedMaterial = FloorMat;
         // meshRenderer.sharedMaterial.color = Color.gray;
 
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
