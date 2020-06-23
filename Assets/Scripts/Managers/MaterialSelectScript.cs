@@ -325,7 +325,7 @@ public class MaterialSelectScript : MonoBehaviour
         return (assigned);
     }
 
-    public void EnterPlayMode()
+    public void DeselectFaces()
     {
         if(_lastFace != null)
         {
@@ -346,6 +346,5 @@ public class MaterialSelectScript : MonoBehaviour
         }
         panelObj.SetActive(false);
     }
-
 
 }

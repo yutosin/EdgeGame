@@ -47,7 +47,7 @@ public class UIScript : MonoBehaviour
         GameManager.SharedInstance.PlayMode = true;
         DrawModeButton.interactable = true;
         GamePlayModeButton.interactable = false;
-        mScript.EnterPlayMode();
+        mScript.DeselectFaces();
     }
 
     public void SwitchToDrawMode()
