@@ -335,6 +335,19 @@ public class Jsonator : MonoBehaviour
     }
 
     //Buttons
+    public void OnNewButton()
+    {
+        //Clear out the old cubes.
+        for (int d = 0; d < transform.childCount; d++)
+        {
+            Destroy(transform.GetChild(d).gameObject);
+            if (startInd != null) { Destroy(startInd.gameObject); }
+        }
+
+        //Build a single cube at 1, 1, 1
+        Cuber("Top", developerTop.name, "Right", developerRight.name, "Left", developerLeft.name, new Vector3(1, 1, 1));
+    }
+
     public void OnSaveButton()
     {
         //Check and read all tiles in the field.
@@ -390,7 +403,7 @@ public class Jsonator : MonoBehaviour
         for (int d = 0; d < transform.childCount; d++)
         {
             Destroy(transform.GetChild(d).gameObject);
-            Destroy(startInd.gameObject);
+            if (startInd != null) { Destroy(startInd.gameObject); }
         }
 
         //Read and interpret the save file.
