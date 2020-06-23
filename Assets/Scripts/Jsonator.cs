@@ -43,11 +43,13 @@ public class Jsonator : MonoBehaviour
     private Transform startInd;
     private bool paintMode;
     private bool selectingStart;
+    private bool selectingGoal;
     private bool silhouetteMode;
     private float silhouetteVal;
     private Material[] displayMaterials;
     private Material selectedMaterial;
     private Vector3 startPoint;
+    private Vector3 goalPoint;
     private string negDim;
 
     [SerializeField]
@@ -160,6 +162,12 @@ public class Jsonator : MonoBehaviour
                             startInd.transform.position = startPoint;
                             selectingStart = false;
                         }
+                        else if (selectingGoal)
+                        {
+                            matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
+                            goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
+                            selectingGoal = false;
+                        }
                         else if (!paintMode)
                         {
                             bool ctrl = Input.GetKey(KeyCode.LeftControl);
@@ -267,6 +275,8 @@ public class Jsonator : MonoBehaviour
         MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
         tile.AddComponent<BoxCollider>();
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
+        if (!GameManager.SharedInstance.InLevelEditor)
+            tileC.enabled = false;
 
         //Define and populate the variables and vectors.
         Material loadMat = null;
@@ -404,6 +414,7 @@ public class Jsonator : MonoBehaviour
         if (startPoint != null)
         {
             gridSave.startPoint = startPoint;
+            gridSave.goalPoint = goalPoint;
             string stringSave = JsonUtility.ToJson(gridSave, true);
             File.WriteAllText(path + saveName.text + ".json", stringSave);
         }
@@ -499,12 +510,23 @@ public class Jsonator : MonoBehaviour
     {
         paintMode = false;
         selectingStart = false;
+        selectingGoal = false;
         matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
         matView.GetComponent<Image>().material = null;
     }
 
     public void OnStartpointButton()
     {
+        if (selectingStart)
+        {
+            selectingStart = false;
+            selectingGoal = true;
+            matView.GetComponentInChildren<Text>().text = "SETTING\nGOAL";
+            matView.GetComponent<Image>().material = null;
+            return;
+        }
+        
+        selectingGoal = false;
         selectingStart = true;
         matView.GetComponentInChildren<Text>().text = "SETTING\nSTART";
         matView.GetComponent<Image>().material = null;
@@ -676,4 +698,5 @@ public class Grid
     public Cube[] cubeData;
     public Vector3Int[] vertices;
     public Vector3 startPoint;
+    public Vector3 goalPoint;
 }

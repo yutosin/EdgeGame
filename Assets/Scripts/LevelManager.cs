@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
         CreatePartitionsAndGraphRepresentations();
 
         GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
+        GameManager.SharedInstance.playerAgent.goalPoint = loadedLevel.goalPoint;
 
         // if (combineCubes)
         //     CombineCubesInLevel();

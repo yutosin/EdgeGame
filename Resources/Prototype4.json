@@ -52,7 +52,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -65,7 +65,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -82,7 +82,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -98,12 +98,12 @@
                     "m": "TopTexMat"
                 },
                 {
-                    "d": "Left",
-                    "m": "LeftTextMat"
-                },
-                {
                     "d": "Right",
                     "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -174,7 +174,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -208,7 +208,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -268,7 +268,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -285,7 +285,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -298,7 +298,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -315,7 +315,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -332,7 +332,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -353,7 +353,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -426,7 +426,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -447,7 +447,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         }
@@ -783,5 +783,10 @@
         "x": 7.5,
         "y": 2.0,
         "z": 0.5
+    },
+    "goalPoint": {
+        "x": 4.5,
+        "y": 1.0,
+        "z": 3.5
     }
 }
