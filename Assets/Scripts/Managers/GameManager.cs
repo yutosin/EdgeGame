@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public EdgeManager edgeManager;
     public DirectedAgent playerAgent;
     public GridGraph levelGraph;
+    public MaterialSelectScript matSelect;
     public bool PlayMode;
     
     // Start is called before the first frame update

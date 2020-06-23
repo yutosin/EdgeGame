@@ -145,10 +145,10 @@ public class MaterialSelectScript : MonoBehaviour
             face.Ability = face.gameObject.AddComponent<XMovingAbility>();
 
             XMovingAbility XMove = face.GetComponent<XMovingAbility>();
-            XMove.SetStartingConditions(face);
 
             SetMaterial();
             UpdateUses();
+            XMove.SetStartingConditions(face);
         }
 
         private void SetMaterial()
@@ -189,6 +189,7 @@ public class MaterialSelectScript : MonoBehaviour
 
     }
 
+    public GameObject cubePrefab;
     public UIScript uiScript;
     public GameObject panelObj;
     private RectTransform panelSpace;

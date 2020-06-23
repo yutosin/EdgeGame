@@ -4086,6 +4086,7 @@ MonoBehaviour:
   MainCamera: {fileID: 1310582620}
   edgeManager: {fileID: 486951527}
   playerAgent: {fileID: 1430689010}
+  matSelect: {fileID: 1548718623}
   PlayMode: 0
 --- !u!4 &1548718622
 Transform:
@@ -4113,6 +4114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdee445926580f48ade72896646bd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 512152652540868823, guid: ea3412cd10f708948afcf35aa69fe2c1,
+    type: 3}
   uiScript: {fileID: 1548718620}
   panelObj: {fileID: 478685895}
   buttonSpacing: 20

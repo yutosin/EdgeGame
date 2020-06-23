@@ -28,23 +28,24 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
         if (conditionsSet)
             return;
 
+        cubePrefab = GameManager.SharedInstance.matSelect.cubePrefab;
+
         AbilityFace = face;
 
         AbilityTimes = 1;
 
-        targetHeight.y = AbilityFace.Parent.position.y + 1;
+        targetHeight = AbilityFace.Parent.position;
+        targetHeight.y += 1;
         returnPos = targetHeight;
         targetSideMotion = returnPos;
         targetSideMotion.x += 3;
 
-        cubeChild = Instantiate(cubeChild);
-        cubeChild.transform.parent.SetParent(AbilityFace.transform);
-        cubeChild.transform.localPosition = Vector3.zero;
+        cubeChild = Instantiate(cubePrefab);
         cScript = cubeChild.GetComponent<ProceduralCube>();
 
-
         cScript.SetInitialPos(AbilityFace.Vertices, AbilityFace._rend.material);
-        IsActing = true;
+        
+        //IsActing = true;
         conditionsSet = true;
     }
 
@@ -69,6 +70,7 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
         if (Vector3.Distance(AbilityFace.Parent.position, targetHeight) < .005f)
         {
             heightSet = true;
+            cubeChild.transform.SetParent(AbilityFace.transform);
             AbilityFace.Parent.position = targetHeight;
             AstarPath.active.Scan();
         }
