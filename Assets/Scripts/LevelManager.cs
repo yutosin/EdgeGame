@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
         //     _cubeObjects.Add(renderer.gameObject);
         // }
 
-        Grid loadedLevel = _levelLoader.LoadLevel("Prototype");
+        Grid loadedLevel = _levelLoader.LoadLevel("Prototype4");
         if (loadedLevel.vertices == null)
             return;
         foreach (var vertex in loadedLevel.vertices)
@@ -408,6 +408,7 @@ public class LevelManager : MonoBehaviour
         face.Vertices = quadVertices;
         face.FaceId = _nextFaceId;
         newQuad.name = "Face " + _nextFaceId;
+        newQuad.layer = LayerMask.NameToLayer("LevelGeometry");
         _nextFaceId++;
         
         gameObject.transform.parent = gameObject.transform;
