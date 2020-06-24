@@ -95,7 +95,18 @@ public class MaterialSelectScript : MonoBehaviour
                 case "XMoving":
                     if (IsFlatSurface())
                     {
-                        AssignXMoving();
+                        AssignMoving(true);
+                    }
+                    else
+                    {
+                        _mScript.GiveFeedback(needsFlatFeedback);
+                    }
+                    break;
+
+                case "ZMoving":
+                    if (IsFlatSurface())
+                    {
+                        AssignMoving(false);
                     }
                     else
                     {
@@ -140,15 +151,15 @@ public class MaterialSelectScript : MonoBehaviour
             UpdateUses();
         }
 
-        private void AssignXMoving()
+        private void AssignMoving(bool isMotionX)
         {
-            face.Ability = face.gameObject.AddComponent<XMovingAbility>();
+            face.Ability = face.gameObject.AddComponent<LateralMovingAbility>();
 
-            XMovingAbility XMove = face.GetComponent<XMovingAbility>();
+            LateralMovingAbility XMove = face.GetComponent<LateralMovingAbility>();
 
             SetMaterial();
             UpdateUses();
-            XMove.SetStartingConditions(face);
+            XMove.SetStartingConditions(face, isMotionX);
         }
 
         private void SetMaterial()

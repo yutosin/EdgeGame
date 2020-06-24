@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class XMovingAbility : MonoBehaviour, IFaceAbility
+public class LateralMovingAbility : MonoBehaviour, IFaceAbility
 {
     public void InitializeAbility(Face face)
     {
@@ -23,7 +23,7 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
     private Vector3 targetHeight, targetSideMotion, returnPos;
     private bool moved, heightSet, conditionsSet = false;
 
-    public void SetStartingConditions(Face face)
+    public void SetStartingConditions(Face face, bool isMotionX)
     {
         if (conditionsSet)
             return;
@@ -38,7 +38,15 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
         targetHeight.y += 1;
         returnPos = targetHeight;
         targetSideMotion = returnPos;
-        targetSideMotion.x += 3;
+        if (isMotionX)
+        {
+            targetSideMotion.x += 3;
+        }
+        else
+        {
+            targetSideMotion.z += 3;
+        }
+        
 
         cubeChild = Instantiate(cubePrefab);
         cScript = cubeChild.GetComponent<ProceduralCube>();
@@ -78,7 +86,7 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
 
     private void LateralMotion()
     {
-        Vector3 target = Vector3.zero;
+        Vector3 target;
         if (!moved)
         { target = targetSideMotion; }
         else
