@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour
     }
 
     public Camera MainCamera;
-    public EdgeManager edgeManager;
     public LevelManager levelManager;
+    public EdgeManager edgeManager;
     public DirectedAgent playerAgent;
     public GridGraph levelGraph;
+    public MaterialSelectScript matSelect;
     public bool PlayMode;
     public bool InLevelEditor;
     
@@ -48,8 +49,8 @@ public class GameManager : MonoBehaviour
             var connections = new List<GraphNode>();
             gn.GetConnections(connections.Add);
             // Here is a node
-            Debug.Log("I found a node at position " + (Vector3)node.position);
-            Debug.Log(node.SurfaceArea());
+            //Debug.Log("I found a node at position " + (Vector3)node.position);
+            //Debug.Log(node.SurfaceArea());
         });
     }
 

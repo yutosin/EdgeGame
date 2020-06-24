@@ -113,7 +113,7 @@ public class RobonautHandler : MonoBehaviour
             eulerX = vel * foreLean;
             eulerZ = sideLean * deltaAngle * vel * 0.1f;
             playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
-            Debug.Log(deltaAngle);
+            //Debug.Log(deltaAngle);
         }
     }
 }

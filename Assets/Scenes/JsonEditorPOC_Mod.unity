@@ -3469,8 +3469,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1284671208}
-  - component: {fileID: 1284671207}
   - component: {fileID: 1284671206}
+  - component: {fileID: 1284671207}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3715,6 +3715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57b619e8c0f84fe5b056ec41cbf72f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalPoint: {x: 0, y: 0, z: 0}
   mover: {fileID: 0}
 --- !u!4 &1444456281
 Transform:

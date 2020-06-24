@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 566969184}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.0030210004
+  m_Size: 0.0024415
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3318,50 +3318,58 @@ MonoBehaviour:
 
     <size=20><b>General Panel</b></size>
 
-    <size=16>The silhouette switch changes the editor view between material mode (left)
-    and silhouette mode (right). With silhouette mode on, you will not be able to
-    apply materials, but you will still be able to add and remove voxels.</size>
+    <size=16>The
+    silhouette switch changes the editor view between material mode (left) and silhouette
+    mode (right). With silhouette mode on, you will not be able to apply materials,
+    but you will still be able to add and remove voxels.</size>
 
 
-    <size=20><b>Save Panel</b></size>
+    <size=20><b>Save
+    Panel</b></size>
 
-    <size=16>To use the save panel, enter a name for your creation and click save.
-    Be careful not to override an existing save by checking the load panel to the
-    right. Player start position must be added for save to function.</size>
-
-
-    <size=20><b>Load Panel</b></size>
-
-    <size=16>All creations in the repository can be seen here. A creation can be loaded
-    by clicking on the correspondingly named button in the list, or deleted by clicking
-    the red button to its right. If your creation is not there, try clicking the refresh
-    button.</size>
+    <size=16>To use the save panel, enter a name for your creation
+    and click save. Be careful not to override an existing save by checking the load
+    panel to the right. Player start position must be added for save to function.</size>
 
 
-    <size=20><b>Attributes Panel</b></size>
+    <size=20><b>Load
+    Panel</b></size>
 
-    <size=16>The square in the lower-left of this panel is an indicator to tell you
-    what will happen the next time you click on a tile in the creation. To change
-    to tile editing mode, click Tile.
+    <size=16>All creations in the repository can be seen here.
+    A creation can be loaded by clicking on the correspondingly named button in the
+    list, or deleted by clicking the red button to its right. If your creation is
+    not there, try clicking the refresh button.</size>
 
-    To select a player start position, click Start (once chosen, the editor will automatically
-    return to tile mode).
 
-    To paint a material, select one of the tiles seen in the scrollfield on the right.
-    The indicator will show your selected material, indicating what will be painted
-    onto the editor. Materials won''t be painted in silhouette mode.</size>
+    <size=20><b>Attributes
+    Panel</b></size>
+
+    <size=16>The square in the lower-left of this panel is
+    an indicator to tell you what will happen the next time you click on a tile in
+    the creation. To change to tile editing mode, click Tile.
+
+    To select a player
+    start position, click Start (once chosen, the editor will automatically return
+    to tile mode).
+
+    To paint a material, select one of the tiles seen in the
+    scrollfield on the right. The indicator will show your selected material, indicating
+    what will be painted onto the editor. Materials won''t be painted in silhouette
+    mode.</size>
 
 
     <size=20><b>Controls</b></size>
 
-    <size=16>TILE MODE - Left click to place a cube, right click to remove a cube.
+    <size=16>TILE MODE -
+    Left click to place a cube, right click to remove a cube.
 
-    MATERIAL MODE - Left click paints the selected material onto a tile, right click
-    clears that material leaving the default developer material (Material painting
-    turns off while silhouette mode is on).
+    MATERIAL MODE
+    - Left click paints the selected material onto a tile, right click clears that
+    material leaving the default developer material (Material painting turns off
+    while silhouette mode is on).
 
-    SELECTING START POSITION - Left click to place your player''s start position.
-    Start position is required for save to work.</size>'
+    SELECTING START POSITION - Left click to place
+    your player''s start position. Start position is required for save to work.</size>'
 --- !u!222 &958940741
 CanvasRenderer:
   m_ObjectHideFlags: 0

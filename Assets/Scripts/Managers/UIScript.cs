@@ -7,13 +7,17 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
     public GameObject InstructionsPanel;
+    public GameObject FeedbackPanel;
+    public Text FeedackText;
+    public MaterialSelectScript mScript;
     public Button GamePlayModeButton;
     public Button DrawModeButton;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        FeedackText.text = "";
+        FeedbackPanel.SetActive(false);
     }
 
     public void StartGame()
@@ -46,6 +50,7 @@ public class UIScript : MonoBehaviour
         GameManager.SharedInstance.PlayMode = true;
         DrawModeButton.interactable = true;
         GamePlayModeButton.interactable = false;
+        mScript.DeselectFaces();
     }
 
     public void SwitchToDrawMode()
