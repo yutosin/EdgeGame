@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject combinedLevel;
     [SerializeField] private MeshRenderer[] cubeRenderers;
     [SerializeField] private bool combineCubes;
+    [SerializeField] private GameObject fakeGoalFace;
+    [SerializeField] private GameObject fakeStartFace;
     
     private Dictionary<string, Graph> _xGraphs;
     private Dictionary<string, Graph> _yGraphs;
@@ -33,6 +36,9 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]private Jsonator _levelLoader;
 
+    [SerializeField] private string[] _levelNames;
+    private int currentLevel = -1;
+
     // [SerializeField]private int[] _initTPLocs;
     // [SerializeField]private Dictionary<int, EdgeVertex> _initTPs;
 
@@ -50,19 +56,23 @@ public class LevelManager : MonoBehaviour
         //     _cubeObjects.Add(renderer.gameObject);
         // }
         
-        Grid loadedLevel = _levelLoader.LoadLevel("Prototype4", true);
-
-        if (loadedLevel.vertices == null)
-            return;
-        foreach (var vertex in loadedLevel.vertices)
-        {
-            GenerateSelectableVertex(vertex);
-        }
+        LoadLevel();
         
-        CreatePartitionsAndGraphRepresentations();
-
-        GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
-        GameManager.SharedInstance.playerAgent.goalPoint = loadedLevel.goalPoint;
+        // Grid loadedLevel = _levelLoader.LoadLevel(_levelNames[0], true);
+        //
+        // if (loadedLevel.vertices == null)
+        //     return;
+        // foreach (var vertex in loadedLevel.vertices)
+        // {
+        //     GenerateSelectableVertex(vertex);
+        // }
+        //
+        // CreatePartitionsAndGraphRepresentations();
+        //
+        // GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
+        // GameManager.SharedInstance.playerAgent.goalPoint = loadedLevel.goalPoint;
+        // fakeStartFace.transform.position = loadedLevel.startPoint;
+        // fakeGoalFace.transform.position = loadedLevel.goalPoint;
 
         // if (combineCubes)
         //     CombineCubesInLevel();
@@ -458,6 +468,63 @@ public class LevelManager : MonoBehaviour
 
         //Might not even need colliders on these...but if we do probably should just use box collider
         BoxCollider collider = newQuad.AddComponent<BoxCollider>();
+    }
+
+    public void LoadLevel()
+    {
+        currentLevel++;
+        if (currentLevel >= _levelNames.Length)
+        {
+            SceneManager.LoadScene("MainMenu");
+            return;
+        }
+
+        foreach (Transform child in facesHolder.transform)
+        {
+            foreach (Transform face in child.transform)
+            {
+                Destroy(face.gameObject);
+            }
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Transform vertex in verticesHolder.transform)
+        {
+            Destroy(vertex.gameObject);
+        }
+        
+        _points.Clear();
+        _nextPtID = 0;
+        _nextFaceId = 0;
+        if (_xGraphs != null)
+        {
+            _xGraphs.Clear();
+            _yGraphs.Clear();
+            _zGraphs.Clear();
+        }
+
+        Grid loadedLevel = _levelLoader.LoadLevel(_levelNames[currentLevel], true);
+
+        if (loadedLevel.vertices == null)
+            return;
+        foreach (var vertex in loadedLevel.vertices)
+        {
+            GenerateSelectableVertex(vertex);
+        }
+        
+        CreatePartitionsAndGraphRepresentations();
+
+        GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
+        GameManager.SharedInstance.playerAgent.goalPoint = loadedLevel.goalPoint;
+        fakeStartFace.transform.position = loadedLevel.startPoint;
+        fakeGoalFace.transform.position = loadedLevel.goalPoint;
+        
+        AstarPath.active.Scan();
+        //GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
     }
 
     // private void CombineCubesInLevel()

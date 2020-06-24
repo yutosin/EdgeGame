@@ -8,6 +8,7 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
     {
         AbilityFace = face;
         GameManager.SharedInstance.playerAgent.transform.parent = transform;
+        GameManager.SharedInstance.playerAgent.OnActiveAbility = true;
         IsActing = true;
     }
 
@@ -38,7 +39,7 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
         targetHeight.y += 1;
         returnPos = targetHeight;
         targetSideMotion = returnPos;
-        targetSideMotion.x += 3;
+        targetSideMotion.x -= 3;
 
         cubeChild = Instantiate(cubePrefab);
         cScript = cubeChild.GetComponent<ProceduralCube>();
@@ -51,12 +52,14 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
 
     private void Update()
     {
-        if (!heightSet)
-        {
-            RaiseFace();
-        }
         if (!IsActing)
             return;
+        //Temporarily changed behavior so that cube raises and moves on interact as opposed to raising on ability creation
+        if (IsActing && !heightSet)
+        {
+            RaiseFace();
+            return;
+        }
         LateralMotion();
 
     }
@@ -89,7 +92,8 @@ public class XMovingAbility : MonoBehaviour, IFaceAbility
             Vector3.MoveTowards(AbilityFace.Parent.position, target, step);
         if (Vector3.Distance(AbilityFace.Parent.position, target) < .001f)
         {
-            IsActing = true;
+            IsActing = false;
+            GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
             AstarPath.active.Scan();
             StartCoroutine(SetAgentPosition());
             //Don't know if we want to limit this ability uses yet

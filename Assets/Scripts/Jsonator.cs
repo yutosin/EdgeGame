@@ -621,7 +621,8 @@ public class Jsonator : MonoBehaviour
                 Vector3 dir = GameManager.SharedInstance.MainCamera.transform.position - worldSpaceVertex;
                 if (Physics.Raycast(worldSpaceVertex, dir, out RaycastHit hitInfo))
                 {
-                    continue;
+                    if (hitInfo.transform.parent != tileTransform.parent)
+                        continue;
                 }
                 verticesList.Add(meshVertexInt);
             }
@@ -642,8 +643,9 @@ public class Jsonator : MonoBehaviour
         else { silhouetteMode = false; }
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(path + levelName + ".json");
-        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
+        //string stringLoad = File.ReadAllText(path + levelName + ".json");
+        TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
+        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad.text);
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)

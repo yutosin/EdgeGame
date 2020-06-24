@@ -3,8 +3,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Pathfinding;
-using UnityEditor.SceneManagement;
 #if UNITY_EDITOR
+using UnityEditor.SceneManagement;
 using UnityEditor;
 #endif
 
@@ -56,6 +56,8 @@ namespace NavmeshLinksGenerator
                 {
                     GridNode subNode = levelGraph.GetNode(x, z) as GridNode;
                     if (subNode == null)
+                        continue;
+                    if (!subNode.Walkable)
                         continue;
                     if (Mathf.Abs(gridNode.position.y - subNode.position.y) == 1000)
                     {

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
     public GameObject InstructionsPanel;
+    public GameObject FaceAbilitiesPanel;
     public GameObject FeedbackPanel;
     public Text FeedackText;
     public MaterialSelectScript mScript;
@@ -22,7 +23,7 @@ public class UIScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("PrototypingScene_Restructure");
+        SceneManager.LoadScene("MainGameScene");
     }
 
     public void ReturnToMainMenu()
@@ -32,7 +33,16 @@ public class UIScript : MonoBehaviour
 
     public void ShowInstructionsPanel()
     {
+        if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
+            FaceAbilitiesPanel.SetActive(false);
         InstructionsPanel.SetActive(true);
+    }
+    
+    public void ShowFaceAbilitiesPanel()
+    {
+        if (InstructionsPanel && InstructionsPanel.activeInHierarchy)
+            InstructionsPanel.SetActive(false);
+        FaceAbilitiesPanel.SetActive(true);
     }
 
     public void QuitGame()
@@ -42,7 +52,10 @@ public class UIScript : MonoBehaviour
 
     public void BackToMain()
     {
-        InstructionsPanel.SetActive(false);
+        if (InstructionsPanel && InstructionsPanel.activeInHierarchy)
+            InstructionsPanel.SetActive(false);
+        if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
+            InstructionsPanel.SetActive(false);
     }
 
     public void SwitchToPlayMode()

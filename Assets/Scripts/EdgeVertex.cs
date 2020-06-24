@@ -24,20 +24,21 @@ public class EdgeVertex : MonoBehaviour
     
     private void Start()
     {
-        _rend = GetComponent<Renderer>();
-        _rend.shadowCastingMode = ShadowCastingMode.Off;
-        _rend.receiveShadows = false;
-
-        _isActiveSelectable = false;
-        _onPoint = false;
-
-        _adjacentXPoints = new List<EdgeVertex>();
-        _adjacentYPoints = new List<EdgeVertex>();
-        _adjacentZPoints = new List<EdgeVertex>();
-
-        FillAdjacentList(_adjacentXPoints, Vector3.right);
-        FillAdjacentList(_adjacentYPoints, Vector3.up);
-        FillAdjacentList(_adjacentZPoints, Vector3.forward);
+        // _rend = GetComponent<Renderer>();
+        // _rend.shadowCastingMode = ShadowCastingMode.Off;
+        // _rend.receiveShadows = false;
+        //
+        // _isActiveSelectable = false;
+        // _onPoint = false;
+        //
+        // _adjacentXPoints = new List<EdgeVertex>();
+        // _adjacentYPoints = new List<EdgeVertex>();
+        // _adjacentZPoints = new List<EdgeVertex>();
+        //
+        // FillAdjacentList(_adjacentXPoints, Vector3.right);
+        // FillAdjacentList(_adjacentYPoints, Vector3.up);
+        // FillAdjacentList(_adjacentZPoints, Vector3.forward);
+        StartCoroutine(DelayedStart());
     }
 
     private void FillAdjacentList(List<EdgeVertex> adjacentList, Vector3 axis)
@@ -244,6 +245,25 @@ public class EdgeVertex : MonoBehaviour
         // {
         //     tp._rend.enabled = false;
         // }
+    }
+
+    IEnumerator DelayedStart()
+    {
+        yield return new WaitForFixedUpdate();
+        _rend = GetComponent<Renderer>();
+        _rend.shadowCastingMode = ShadowCastingMode.Off;
+        _rend.receiveShadows = false;
+
+        _isActiveSelectable = false;
+        _onPoint = false;
+
+        _adjacentXPoints = new List<EdgeVertex>();
+        _adjacentYPoints = new List<EdgeVertex>();
+        _adjacentZPoints = new List<EdgeVertex>();
+
+        FillAdjacentList(_adjacentXPoints, Vector3.right);
+        FillAdjacentList(_adjacentYPoints, Vector3.up);
+        FillAdjacentList(_adjacentZPoints, Vector3.forward);
     }
 
     private void Update()

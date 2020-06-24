@@ -86,7 +86,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -103,7 +103,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -120,7 +120,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -137,7 +137,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -154,7 +154,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -170,12 +170,12 @@
                     "m": "TopTexMat"
                 },
                 {
-                    "d": "Left",
-                    "m": "LeftTextMat"
-                },
-                {
                     "d": "Right",
                     "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -321,7 +321,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -338,7 +338,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -377,7 +377,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -394,7 +394,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -408,6 +408,10 @@
                 {
                     "d": "Right",
                     "m": "RightTexMat"
+                },
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
@@ -420,7 +424,11 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
+                },
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
                 }
             ]
         },
@@ -437,62 +445,11 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.5,
-                "y": 4.5,
-                "z": 4.5
-            },
-            "tileData": [
+                    "m": "LeftTexMat"
+                },
                 {
                     "d": "Top",
                     "m": "TopTexMat"
-                },
-                {
-                    "d": "Right",
-                    "m": "RightTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 1.5,
-                "y": 4.5,
-                "z": 4.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTextMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 1.5,
-                "y": 4.5,
-                "z": 5.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Right",
-                    "m": "RightTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTextMat"
                 }
             ]
         }
@@ -759,63 +716,43 @@
             "z": 6
         },
         {
-            "x": 2,
-            "y": 4,
-            "z": 4
-        },
-        {
-            "x": 2,
-            "y": 4,
-            "z": 5
-        },
-        {
-            "x": 2,
-            "y": 4,
-            "z": 6
-        },
-        {
             "x": 1,
             "y": 4,
-            "z": 6
-        },
-        {
-            "x": 1,
-            "y": 5,
-            "z": 4
-        },
-        {
-            "x": 1,
-            "y": 5,
             "z": 5
         },
         {
             "x": 0,
-            "y": 5,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 4,
             "z": 4
         },
         {
             "x": 0,
-            "y": 5,
-            "z": 5
-        },
-        {
-            "x": 2,
-            "y": 5,
+            "y": 4,
             "z": 4
         },
         {
             "x": 2,
-            "y": 5,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 2,
+            "y": 4,
             "z": 5
         },
         {
             "x": 2,
-            "y": 5,
+            "y": 4,
             "z": 6
         },
         {
             "x": 1,
-            "y": 5,
+            "y": 4,
             "z": 6
         }
     ],
@@ -823,5 +760,10 @@
         "x": 6.5,
         "y": 1.0,
         "z": 0.5
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 4.0,
+        "z": 4.5
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,7 +53,7 @@ public class RobonautHandler : MonoBehaviour
         oldPos = pos;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (commit)
         {
@@ -64,6 +65,19 @@ public class RobonautHandler : MonoBehaviour
 
         if (stageOn)
         {
+            if (GameManager.SharedInstance.playerAgent.OnActiveAbility)
+            {
+                stageOn = false;
+                return;
+            }
+            
+            if (GameManager.SharedInstance.playerAgent.LevelLoading)
+            {
+                stageOn = false;
+                GameManager.SharedInstance.playerAgent.LevelLoading = false;
+                return;
+            }
+
             //Locomotion
             oldPos = pos;
             int clampedStage = Mathf.Clamp(stage, 0, targetPath.Length - 1);
@@ -115,5 +129,83 @@ public class RobonautHandler : MonoBehaviour
             playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
             //Debug.Log(deltaAngle);
         }
+    }
+
+    private void Update()
+    {
+        // if (commit)
+        // {
+        //     stage = 0;
+        //     basePos = transform.position;
+        //     stageOn = true;
+        //     commit = false;
+        // }
+        //
+        // if (stageOn)
+        // {
+        //     if (GameManager.SharedInstance.playerAgent.OnActiveAbility)
+        //     {
+        //         stageOn = false;
+        //         return;
+        //     }
+        //     
+        //     if (GameManager.SharedInstance.playerAgent.LevelLoading)
+        //     {
+        //         stageOn = false;
+        //         GameManager.SharedInstance.playerAgent.LevelLoading = false;
+        //         return;
+        //     }
+        //
+        //     //Locomotion
+        //     oldPos = pos;
+        //     int clampedStage = Mathf.Clamp(stage, 0, targetPath.Length - 1);
+        //     dist = Mathf.Sqrt(Mathf.Pow(targetPath[clampedStage].z - pos.z, 2) + Mathf.Pow(targetPath[clampedStage].x - pos.x, 2)); ;
+        //     baseDist = Mathf.Sqrt(Mathf.Pow(targetPath[clampedStage].z - basePos.z, 2) + Mathf.Pow(targetPath[clampedStage].x - basePos.x, 2));
+        //     angle = -Mathf.Atan2(targetPath[clampedStage].z - basePos.z, targetPath[clampedStage].x - basePos.x) * (180 / Mathf.PI) / 360 + 0.5f;
+        //     dynPos = new Vector3(
+        //         (-Mathf.Cos(angle * 2 * Mathf.PI)) * Mathf.Clamp(baseDist, 0, (playerSpeed / 100)),
+        //         0,
+        //         Mathf.Sin(angle * Mathf.PI * 2) * Mathf.Clamp(baseDist, 0, (playerSpeed / 100))
+        //     );
+        //     basePos += dynPos;
+        //     pos = new Vector3(
+        //         Mathf.LerpUnclamped(transform.position.x, basePos.x, playerSpeed / 200),
+        //         Mathf.Lerp(transform.position.y, targetPath[clampedStage].y, 0.05f),
+        //         Mathf.LerpUnclamped(transform.position.z, basePos.z, playerSpeed / 200)
+        //     );
+        //     transform.position = pos;
+        //     vel = Mathf.Sqrt(Mathf.Pow(oldPos.z - pos.z, 2) + Mathf.Pow(oldPos.x - pos.x, 2));
+        //     if (baseDist < playerSpeed / 2000 && baseDist > -(playerSpeed / 2000))
+        //     {
+        //         stage++;
+        //         if (stage >= targetPath.Length)
+        //         {
+        //             if (dist < playerSpeed / 8000 && dist > -(playerSpeed / 8000))
+        //             {
+        //                 stageOn = false;
+        //                 transform.position = targetPath[targetPath.Length - 1];
+        //             }
+        //         }
+        //     }
+        //
+        //     //Rotation
+        //     eulerY = (Mathf.Atan2(oldPos.x - pos.x, oldPos.z - pos.z) * 180 / Mathf.PI) + 180;
+        //     oldAngle = playerModel.eulerAngles.y;
+        //     deltaAngle = oldAngle - eulerY;
+        //     if (deltaAngle > 180)
+        //     {
+        //         eulerY += 360;
+        //         deltaAngle -= 360;
+        //     }
+        //     else if (deltaAngle < -180)
+        //     {
+        //         eulerY -= 360;
+        //         deltaAngle += 360;
+        //     }
+        //     eulerX = vel * foreLean;
+        //     eulerZ = sideLean * deltaAngle * vel * 0.1f;
+        //     playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
+        //     //Debug.Log(deltaAngle);
+        // }
     }
 }

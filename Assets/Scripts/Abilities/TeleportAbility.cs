@@ -13,6 +13,7 @@ public class TeleportAbility : MonoBehaviour, IFaceAbility
     public void InitializeAbility(Face face)
     {
         AbilityFace = face;
+        GameManager.SharedInstance.playerAgent.OnActiveAbility = true;
         SetAgentPosition();
     }
 
@@ -51,6 +52,7 @@ public class TeleportAbility : MonoBehaviour, IFaceAbility
     {
         if (otherSet)
         {
+            GameManager.SharedInstance.playerAgent.OnActiveAbility = true;
             Invoke("Teleport", .1f);
             AbilityTimes--;
         }
@@ -63,6 +65,7 @@ public class TeleportAbility : MonoBehaviour, IFaceAbility
         Vector3 tpPos = otherPos;
         tpPos.y = playerTransform.position.y + otherPos.y;
         playerTransform.position = otherPos;
+        GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
     }
 
     private void Start()
