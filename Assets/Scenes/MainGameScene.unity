@@ -4679,14 +4679,19 @@ MonoBehaviour:
     abilityName: Elevator
     uses: 2
     useThisLevel: 1
+  - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
+      type: 3}
+    abilityName: Teleport
+    uses: 2
+    useThisLevel: 1
   - thisButtonObj: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
       type: 3}
     abilityName: XMoving
     uses: 2
     useThisLevel: 1
-  - thisButtonObj: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
+  - thisButtonObj: {fileID: 2385756730385554849, guid: 5f2febf9416c4f44d9414e881adb73dd,
       type: 3}
-    abilityName: Teleport
+    abilityName: ZMoving
     uses: 2
     useThisLevel: 1
   tpFaces:
