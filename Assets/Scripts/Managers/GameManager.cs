@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     }
 
     public Camera MainCamera;
+    public LevelManager levelManager;
     public EdgeManager edgeManager;
     public DirectedAgent playerAgent;
     public GridGraph levelGraph;
     public MaterialSelectScript matSelect;
     public bool PlayMode;
+    public bool InLevelEditor;
     
     // Start is called before the first frame update
     private void Awake()

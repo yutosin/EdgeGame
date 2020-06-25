@@ -1178,6 +1178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InstructionsPanel: {fileID: 1931949864}
+  FaceAbilitiesPanel: {fileID: 0}
+  FeedbackPanel: {fileID: 0}
+  FeedackText: {fileID: 0}
+  mScript: {fileID: 0}
   GamePlayModeButton: {fileID: 0}
   DrawModeButton: {fileID: 0}
 --- !u!1 &1475834501
@@ -1253,8 +1257,7 @@ MonoBehaviour:
 
 
     When
-    on a face with the assigned elevator ability (orange face) press "E" to activate
-    it.'
+    on a face with an assigned ability (colored face) press "E" to activate it.'
 --- !u!222 &1475834504
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1667,8 +1670,9 @@ MonoBehaviour:
 
 
     Click
-    a face and press the "E" key to assign the face an elevator ability activated
-    in play mode. YOU MAY ONLY DO THIS ONCE SO CHOOSE WISELY WITH THE GOAL IN MIND!!'
+    a 1x1 face and select an ability from the pop-up menu to assign an ability that
+    can be activated in play mode. Numbers on the button indicate how many abilities
+    you have.'
 --- !u!222 &1988561234
 CanvasRenderer:
   m_ObjectHideFlags: 0

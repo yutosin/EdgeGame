@@ -18,6 +18,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         Vector3 target = new Vector3(facePoint.x, facePoint.y + 3, facePoint.z);
         _target = target;
         GameManager.SharedInstance.playerAgent.transform.parent = transform;
+        GameManager.SharedInstance.playerAgent.OnActiveAbility = true;
         IsActing = true;
     }
     
@@ -44,6 +45,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         if (Vector3.Distance(AbilityFace.Parent.position, _target) < .001f)
         {
             IsActing = false;
+            GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
             AstarPath.active.Scan();
             StartCoroutine(SetAgentPosition());
             AbilityTimes--;

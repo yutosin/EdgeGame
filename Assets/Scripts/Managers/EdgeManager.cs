@@ -23,6 +23,10 @@ public class EdgeManager : MonoBehaviour
     private Dictionary<string, Graph> _zGraphs;
 
     public NavMeshSurface _meshSurface;
+
+    public Material FloorMat;  //floor material creation
+    public Material WallMat1;
+
     private bool _navMeshBuilt = false;
 
     private List<GameObject> _cubeObjects;
@@ -33,7 +37,7 @@ public class EdgeManager : MonoBehaviour
     private int _nextFaceId;
 
     [SerializeField]private int[] _initTPLocs;
-    [SerializeField]private Dictionary<int, TestPoint> _initTPs;
+    [SerializeField]private Dictionary<int, EdgeVertex_old> _initTPs;
 
     private void Start()
     {
@@ -41,7 +45,7 @@ public class EdgeManager : MonoBehaviour
         _cubeObjects = new List<GameObject>(cubeRenderers.Length);
         _meshSurface = facesHolder.GetComponent<NavMeshSurface>();
         _initTPLocs = new[] {69, 67, 8, 54, 68, 65};
-        _initTPs = new Dictionary<int, TestPoint>();
+        _initTPs = new Dictionary<int, EdgeVertex_old>();
 
         foreach (var renderer in cubeRenderers)
         {
@@ -151,7 +155,7 @@ public class EdgeManager : MonoBehaviour
         
         GameObject edgePoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Destroy(edgePoint.GetComponent<SphereCollider>());
-        TestPoint tp = edgePoint.AddComponent<TestPoint>();
+        EdgeVertex_old tp = edgePoint.AddComponent<EdgeVertex_old>();
         tp.ptID = "Pt" + _nextPtID;
         edgePoint.name = tp.ptID;
         tp.listLoc = _nextPtID;
@@ -178,7 +182,7 @@ public class EdgeManager : MonoBehaviour
     }
     
     //TODO: properly use the addEdge function to make use of the bool and avoid creating edge game object
-    public void GenerateEdge(TestPoint tp1, TestPoint tp2)
+    public void GenerateEdge(EdgeVertex_old tp1, EdgeVertex_old tp2)
     {
         Vector3 p1 = tp1.transform.position;
         Vector3 p2 = tp2.transform.position;
@@ -261,7 +265,7 @@ public class EdgeManager : MonoBehaviour
             localScale.z);
     }
 
-    private void EdgeUtil(Graph graph, TestPoint tp1, TestPoint tp2, float scaleAmount)
+    private void EdgeUtil(Graph graph, EdgeVertex_old tp1, EdgeVertex_old tp2, float scaleAmount)
     {
         var edgeSubVerts = FindEdgeSubVertices(tp1, tp2, scaleAmount);
         
@@ -274,7 +278,7 @@ public class EdgeManager : MonoBehaviour
         //TODO: figure out early exit for no edge being drawn
     }
 
-    private List<int> FindEdgeSubVertices(TestPoint p1, TestPoint p2, float scaleAmount)
+    private List<int> FindEdgeSubVertices(EdgeVertex_old p1, EdgeVertex_old p2, float scaleAmount)
     {
         List<int> subEdgeVertices = new List<int>();
         subEdgeVertices.Add(p1.listLoc);
@@ -291,7 +295,7 @@ public class EdgeManager : MonoBehaviour
             Collider[] hitCollider = Physics.OverlapSphere(overlapPos, .25f);
             foreach (Collider collider in hitCollider)
             {
-                TestPoint tp = collider.gameObject.GetComponent<TestPoint>();
+                EdgeVertex_old tp = collider.gameObject.GetComponent<EdgeVertex_old>();
                 if (tp)
                 {
                     subEdgeVertices.Add(tp.listLoc);
@@ -409,8 +413,8 @@ public class EdgeManager : MonoBehaviour
         
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
-        meshRenderer.sharedMaterial.color = Color.gray;
+        meshRenderer.sharedMaterial = WallMat1;
+        // meshRenderer.sharedMaterial.color = Color.gray;
 
         MeshFilter meshFilter = newQuad.AddComponent<MeshFilter>();
 

@@ -3117,13 +3117,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1699239240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee371baeb3cee4db0bbba39dae11e1fe, type: 3}
+  m_Script: {fileID: 11500000, guid: c709ef0e355654304bc79683cd25a617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 963194227}
   edgeManager: {fileID: 0}
+  levelManager: {fileID: 0}
   playerAgent: {fileID: 0}
   PlayMode: 0
+  InLevelEditor: 0
 --- !u!114 &1699239243
 MonoBehaviour:
   m_ObjectHideFlags: 0

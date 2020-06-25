@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class TestPoint : MonoBehaviour
+public class EdgeVertex_old : MonoBehaviour
 {
     private Renderer _rend;
     
     public bool isActivePoint;
     public string ptID;
     public int listLoc;
-    private static TestPoint _activePoint;
+    private static EdgeVertex_old _activePoint;
 
-    [SerializeField]private List<TestPoint> _adjacentXPoints;
-    [SerializeField]private List<TestPoint> _adjacentYPoints;
-    [SerializeField]private List<TestPoint> _adjacentZPoints;
+    [SerializeField]private List<EdgeVertex_old> _adjacentXPoints;
+    [SerializeField]private List<EdgeVertex_old> _adjacentYPoints;
+    [SerializeField]private List<EdgeVertex_old> _adjacentZPoints;
 
     private bool _isActiveSelectable;
     [SerializeField]private bool _onPoint;
@@ -54,7 +54,7 @@ public class TestPoint : MonoBehaviour
         // FillAdjacentList(_adjacentZPoints, Vector3.forward);
     }
 
-    private void FillAdjacentList(List<TestPoint> adjacentList, Vector3 axis)
+    private void FillAdjacentList(List<EdgeVertex_old> adjacentList, Vector3 axis)
     {
         Vector3 tpPos = transform.position;
         //Check for adjacent points in positive axis dir
@@ -66,7 +66,7 @@ public class TestPoint : MonoBehaviour
             bool foundTp = false;
             foreach (Collider collider in hitCollider)
             {
-                TestPoint tp = collider.gameObject.GetComponent<TestPoint>();
+                EdgeVertex_old tp = collider.gameObject.GetComponent<EdgeVertex_old>();
                 if (tp)
                 {
                     adjacentList.Add(tp);
@@ -92,7 +92,7 @@ public class TestPoint : MonoBehaviour
             bool foundTp = false;
             foreach (Collider collider in hitCollider)
             {
-                TestPoint tp = collider.gameObject.GetComponent<TestPoint>();
+                EdgeVertex_old tp = collider.gameObject.GetComponent<EdgeVertex_old>();
                 if (tp)
                 {
                     adjacentList.Add(tp);
@@ -203,9 +203,9 @@ public class TestPoint : MonoBehaviour
         int yIndex = 0;
         int zIndex = 0;
 
-        List<TestPoint> adjXPoints = _activePoint._adjacentXPoints;
-        List<TestPoint> adjYPoints = _activePoint._adjacentYPoints;
-        List<TestPoint> adjZPoints = _activePoint._adjacentZPoints;
+        List<EdgeVertex_old> adjXPoints = _activePoint._adjacentXPoints;
+        List<EdgeVertex_old> adjYPoints = _activePoint._adjacentYPoints;
+        List<EdgeVertex_old> adjZPoints = _activePoint._adjacentZPoints;
         
         while (_activePoint)
         {
@@ -271,7 +271,7 @@ public class TestPoint : MonoBehaviour
             // if (hitInfo.collider.gameObject.name != gameObject.name 
             //     && (hitInfo.collider.gameObject.CompareTag("LevelCube") || hitInfo.collider.GetComponent<TestPoint>()))
             if (hitInfo.collider.gameObject.name != gameObject.name 
-                && (hitInfo.collider.gameObject.name == "LevelCombinedMesh" || hitInfo.collider.GetComponent<TestPoint>()))
+                && (hitInfo.collider.gameObject.name == "LevelCombinedMesh" || hitInfo.collider.GetComponent<EdgeVertex_old>()))
             {
                 Destroy(gameObject);
                 yield return null;
@@ -285,9 +285,9 @@ public class TestPoint : MonoBehaviour
         _isActiveSelectable = false;
         _onPoint = false;
 
-        _adjacentXPoints = new List<TestPoint>();
-        _adjacentYPoints = new List<TestPoint>();
-        _adjacentZPoints = new List<TestPoint>();
+        _adjacentXPoints = new List<EdgeVertex_old>();
+        _adjacentYPoints = new List<EdgeVertex_old>();
+        _adjacentZPoints = new List<EdgeVertex_old>();
 
         FillAdjacentList(_adjacentXPoints, Vector3.right);
         FillAdjacentList(_adjacentYPoints, Vector3.up);
