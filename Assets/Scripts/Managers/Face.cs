@@ -1,11 +1,4 @@
-﻿/////////////////////////
-///Note to Nas from Alec
-///     I have commented out materials assigining steps in onmouse down, moved that functionality to Material select script
-///     I would have commented most out the sections where materials settings are set under the Start Function as that was also moved there
-///     Also I made your default and selected mat public and not static, forgive me brother
-/////////////////////////
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
