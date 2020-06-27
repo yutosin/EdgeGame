@@ -17,7 +17,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -47,7 +47,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -94,7 +94,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -115,7 +115,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         }
@@ -221,5 +221,10 @@
         "x": 1.5,
         "y": 2.0,
         "z": 1.5
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 2.0,
+        "z": 0.5
     }
 }

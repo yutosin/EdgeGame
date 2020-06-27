@@ -2401,12 +2401,12 @@
             },
             "tileData": [
                 {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                },
-                {
                     "d": "Top",
                     "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -3847,5 +3847,10 @@
         "x": 7.5,
         "y": 2.0,
         "z": 0.5
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 8.0,
+        "z": 4.5
     }
 }

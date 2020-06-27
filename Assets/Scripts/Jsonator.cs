@@ -21,9 +21,14 @@ public class Jsonator : MonoBehaviour
     // Model for displaying where the start position in the editor is.
     [Header("Player Model")]
     public Transform playerModel;
+    public Transform endModel;
 
     [Header("Save Path")]
     public string path;
+
+    [Header("GUI Models")]
+    public Transform negativeGrid;
+    public Transform negativeCube;
 
     [Header("UI Elements")]
     public Scrollbar silhouetteSwitch;
@@ -41,9 +46,9 @@ public class Jsonator : MonoBehaviour
     private Transform cubeZNeg;
     private Transform cubeZPos;
     private Transform startInd;
+    private Transform finInd;
     private bool paintMode;
     private bool selectingStart;
-    private bool selectingGoal;
     private bool silhouetteMode;
     private float silhouetteVal;
     private Material[] displayMaterials;
@@ -81,7 +86,7 @@ public class Jsonator : MonoBehaviour
     void Update()
     {
         //Externally disable level editor mode via GameManager.
-        if (!GameManager.SharedInstance.InLevelEditor) { return; }
+        if (!GameManager.SharedInstance.InLevelEditor) return;
 
         //Silhouette mode determination
         if (silhouetteVal != silhouetteSwitch.value)
@@ -126,14 +131,14 @@ public class Jsonator : MonoBehaviour
             silhouetteVal = silhouetteSwitch.value;
         }
 
-        //General keyboard shortcuts
-        if (Input.GetKeyDown(KeyCode.X)) OnDimensionButton("X");
-        if (Input.GetKeyDown(KeyCode.Y)) OnDimensionButton("Y");
-        if (Input.GetKeyDown(KeyCode.Z)) OnDimensionButton("Z");
-
         //Handle Mouse-based block addition and removal.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
+        bool ctrl = Input.GetKey(KeyCode.LeftControl);
+
+        if (ctrl) negativeGrid.gameObject.SetActive(true);
+        else negativeGrid.gameObject.SetActive(false);
+
         if (leftMouse || rightMouse)
         {
             RaycastHit hitRay;
@@ -162,15 +167,8 @@ public class Jsonator : MonoBehaviour
                             startInd.transform.position = startPoint;
                             selectingStart = false;
                         }
-                        else if (selectingGoal)
-                        {
-                            matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
-                            goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
-                            selectingGoal = false;
-                        }
                         else if (!paintMode)
                         {
-                            bool ctrl = Input.GetKey(KeyCode.LeftControl);
                             //Define adjacent voxels to the one clicked on.
                             if (ctrl)
                             {
@@ -215,9 +213,19 @@ public class Jsonator : MonoBehaviour
                     }
 
                     //Right click.
-                    else if (rightMouse && !selectingStart && !silhouetteMode)
+                    else if (rightMouse)
                     {
-                        if (paintMode)
+                        if (selectingStart)
+                        {
+                            matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
+                            Destroy(finInd.gameObject);
+                            goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
+                            finInd = Instantiate(endModel);
+                            finInd.transform.position = goalPoint;
+                            finInd.name = "GoalIndicator";
+                            selectingStart = false;
+                        }
+                        else if (paintMode && !silhouetteMode)
                         {
                             string[] parseSplit = hitRay.collider.name.Split('_');
                             if (hitRay.collider.name.Split('_')[1] == "Left")
@@ -259,6 +267,7 @@ public class Jsonator : MonoBehaviour
         GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
         cube.transform.SetParent(transform);
         cube.transform.position = new Vector3(pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f);
+        cube.AddComponent<BoxCollider>().transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         if (top != "") Tiler("Top", cube.transform, "Top", topMat);
         if (rgt != "") Tiler("Right", cube.transform, "Right", rgtMat);
         if (lft != "") Tiler("Left", cube.transform, "Left", lftMat);
@@ -431,7 +440,8 @@ public class Jsonator : MonoBehaviour
         for (int d = 0; d < transform.childCount; d++)
         {
             Destroy(transform.GetChild(d).gameObject);
-            if (startInd != null) { Destroy(startInd.gameObject); }
+            if (startInd != null) Destroy(startInd.gameObject);
+            if (finInd != null) Destroy(finInd.gameObject);
         }
 
         //Read and interpret the save file.
@@ -441,6 +451,10 @@ public class Jsonator : MonoBehaviour
         startInd = Instantiate(playerModel);
         startInd.position = startPoint;
         startInd.gameObject.name = "PlayerIndicator";
+        goalPoint = gridLoad.goalPoint;
+        finInd = Instantiate(endModel);
+        finInd.position = goalPoint;
+        finInd.gameObject.name = "GoalIndicator";
         saveName.text = button.transform.parent.name;
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
@@ -452,7 +466,6 @@ public class Jsonator : MonoBehaviour
             string[] toMatter = new string[3] { "", "", "" };
             for (int c = 0; c < loadCube.tileData.Length; c++)
             {
-                string loadMat = loadCube.tileData[c].m;
                 if (loadCube.tileData[c].d == "Top")
                 {
                     toCuber[0] = "Top";
@@ -469,9 +482,23 @@ public class Jsonator : MonoBehaviour
                     toMatter[2] = loadCube.tileData[c].m;
                 }
             }
-
             //Build the new level.
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
+        }
+
+        //Set up the negative-selection cubes
+        Debug.Log(negativeGrid.childCount);
+        for (int n = 0; n < negativeGrid.childCount; n++)
+        {
+            Destroy(negativeGrid.GetChild(n).gameObject);
+        }
+        Transform negParse;
+        for (int c = 0; c < transform.childCount; c++)
+        {
+            negParse = transform.GetChild(c);
+            NegativeCube(new Vector3(negParse.position.x - 1, negParse.position.y, negParse.position.z), negParse, "Top", "Right");
+            NegativeCube(new Vector3(negParse.position.x, negParse.position.y - 1, negParse.position.z), negParse, "Left", "Right");
+            NegativeCube(new Vector3(negParse.position.x, negParse.position.y, negParse.position.z - 1), negParse, "Left", "Top");
         }
     }
 
@@ -510,7 +537,6 @@ public class Jsonator : MonoBehaviour
     {
         paintMode = false;
         selectingStart = false;
-        selectingGoal = false;
         matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
         matView.GetComponent<Image>().material = null;
     }
@@ -520,13 +546,10 @@ public class Jsonator : MonoBehaviour
         if (selectingStart)
         {
             selectingStart = false;
-            selectingGoal = true;
             matView.GetComponentInChildren<Text>().text = "SETTING\nGOAL";
             matView.GetComponent<Image>().material = null;
             return;
         }
-        
-        selectingGoal = false;
         selectingStart = true;
         matView.GetComponentInChildren<Text>().text = "SETTING\nSTART";
         matView.GetComponent<Image>().material = null;
@@ -581,6 +604,27 @@ public class Jsonator : MonoBehaviour
             }
         }
         return false;
+    }
+
+    //Function for creating and recreating negative UI cubes for use in negative-dimension building.
+    void NegativeCube(Vector3 neg, Transform negParse, string face1, string face2)
+    {
+        Collider[] negCheck = Physics.OverlapBox(neg, new Vector3(0.3f, 0.3f, 0.3f));
+        if (negCheck.Length == 0)
+        {
+            for (int n = 0; n < negParse.childCount; n++)
+            {
+                if (negParse.GetChild(n).name.Contains(face1) || negParse.GetChild(n).name.Contains(face2))
+                {
+                    if (neg.x >= 0 && neg.y >= 0 && neg.z >= 0)
+                    {
+                        Transform negCube = Instantiate(negativeCube, negativeGrid.transform);
+                        negCube.transform.position = neg;
+                        negCube.name = "NegativeUICube";
+                    }
+                }
+            }
+        }
     }
 
     //Delte cube, fill holes in other adjacent cubes.
