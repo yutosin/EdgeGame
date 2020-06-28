@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public DirectedAgent playerAgent;
     public GridGraph levelGraph;
     public MaterialSelectScript matSelect;
+    public UIScript uiManager;
     public bool PlayMode;
     public bool InLevelEditor;
     

@@ -45,7 +45,7 @@ public class DirectedAgent : MonoBehaviour
         {
             //SceneManager.LoadScene("MainMenu");
             LevelLoading = true;
-            GameManager.SharedInstance.levelManager.LoadLevel();
+            GameManager.SharedInstance.levelManager.NextLevel();
         }
     }
 

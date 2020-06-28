@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]private Jsonator _levelLoader;
 
     [SerializeField] private string[] _levelNames;
-    private int currentLevel = -1;
+    private int currentLevel = 0;
 
     // [SerializeField]private int[] _initTPLocs;
     // [SerializeField]private Dictionary<int, EdgeVertex> _initTPs;
@@ -465,14 +465,19 @@ public class LevelManager : MonoBehaviour
             anchorPoint.transform.rotation = Quaternion.Euler(0, 180, 0);
         
         meshFilter.mesh = mesh;
-
-        //Might not even need colliders on these...but if we do probably should just use box collider
+        
         BoxCollider collider = newQuad.AddComponent<BoxCollider>();
+    }
+
+    public void NextLevel()
+    {
+        currentLevel++;
+        LoadLevel();
     }
 
     public void LoadLevel()
     {
-        currentLevel++;
+        //currentLevel++;
         if (currentLevel >= _levelNames.Length)
         {
             SceneManager.LoadScene("MainMenu");
@@ -517,14 +522,22 @@ public class LevelManager : MonoBehaviour
         }
         
         CreatePartitionsAndGraphRepresentations();
+        
+        GameManager.SharedInstance.uiManager.SwitchToDrawMode();
 
         GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
         GameManager.SharedInstance.playerAgent.goalPoint = loadedLevel.goalPoint;
         fakeStartFace.transform.position = loadedLevel.startPoint;
         fakeGoalFace.transform.position = loadedLevel.goalPoint;
-        
+
+        StartCoroutine(DelayedScan());
+        //AstarPath.active.Scan();
+    }
+
+    IEnumerator DelayedScan()
+    {
+        yield return new WaitForFixedUpdate();
         AstarPath.active.Scan();
-        //GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
     }
 
     // private void CombineCubesInLevel()

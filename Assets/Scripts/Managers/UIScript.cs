@@ -55,7 +55,7 @@ public class UIScript : MonoBehaviour
         if (InstructionsPanel && InstructionsPanel.activeInHierarchy)
             InstructionsPanel.SetActive(false);
         if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
-            InstructionsPanel.SetActive(false);
+            FaceAbilitiesPanel.SetActive(false);
     }
 
     public void SwitchToPlayMode()
@@ -71,6 +71,11 @@ public class UIScript : MonoBehaviour
         GameManager.SharedInstance.PlayMode = false;
         DrawModeButton.interactable = false;
         GamePlayModeButton.interactable = true;
+    }
+
+    public void ReloadLevel()
+    {
+        GameManager.SharedInstance.levelManager.LoadLevel();
     }
 
     // Update is called once per frame
