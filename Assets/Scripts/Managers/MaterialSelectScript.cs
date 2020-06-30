@@ -226,6 +226,7 @@ public class MaterialSelectScript : MonoBehaviour
     public GameObject cubePrefab;
     public UIScript uiScript;
     public GameObject panelObj;
+    public Button xButtonObj;
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
     public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
@@ -306,10 +307,12 @@ public class MaterialSelectScript : MonoBehaviour
     {
         //This accounts for the size of the buttons in case we adjust button sizes
         RectTransform buttonDimensions = buttonList[0].ThisButton.GetComponent<RectTransform>();
+        RectTransform xButtonDimensions = xButtonObj.GetComponent<RectTransform>();
+
         buttonSpacing += buttonDimensions.sizeDelta.x;
 
         float buttonX = buttonSpacing;
-        float buttonY = panelSpace.sizeDelta.y - buttonSpacing;
+        float buttonY = panelSpace.sizeDelta.y - buttonSpacing - xButtonDimensions.sizeDelta.y;
         float xMax = panelSpace.sizeDelta.x - buttonSpacing;
 
         for (int i = 0; i < buttonList.Count; i++)
