@@ -114,6 +114,18 @@ public class MaterialSelectScript : MonoBehaviour
                     }
                     break;
 
+                case "Extrude":
+                    if (!IsFlatSurface())
+                    {
+                        AssignExtrude();
+                    }
+                    else
+                    {
+                        string needsWallFeedback = "This ability must be placed on a wall";
+                        _mScript.GiveFeedback(needsWallFeedback);
+                    }
+                    break;
+
                 default:
                     Debug.LogError("That is not an ability");
                     break;
@@ -160,6 +172,17 @@ public class MaterialSelectScript : MonoBehaviour
             SetMaterial();
             UpdateUses();
             XMove.SetStartingConditions(face, isMotionX);
+        }
+
+        private void AssignExtrude()
+        {
+            face.Ability = face.gameObject.AddComponent<ExtrudeFaceAbility>();
+
+            ExtrudeFaceAbility extrude = face.GetComponent<ExtrudeFaceAbility>();
+
+            SetMaterial();
+            UpdateUses();
+            extrude.SetStartingConditions(face);
         }
 
         private void SetMaterial()
@@ -291,6 +314,8 @@ public class MaterialSelectScript : MonoBehaviour
 
         for (int i = 0; i < buttonList.Count; i++)
         {
+            GameObject buttonObj = buttonList[i].thisButtonObj;
+            buttonObj.transform.SetParent(panelSpace.transform, true);
             //So that only selected buttons are instantiated
             if (buttonList[i].useThisLevel == true)
             {
@@ -300,9 +325,6 @@ public class MaterialSelectScript : MonoBehaviour
                     buttonX = buttonSpacing;
                     buttonY -= buttonSpacing;
                 }
-                GameObject buttonObj = Instantiate(buttonList[i].thisButtonObj) as GameObject;
-                buttonList[i].thisButtonObj = buttonObj;
-                buttonObj.transform.SetParent(panelSpace.transform, true);
 
                 Button button = buttonObj.GetComponent<Button>();
                 //This is important, as it makes the class refer to the instantiated button rather than the prefab
@@ -314,6 +336,10 @@ public class MaterialSelectScript : MonoBehaviour
 
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, buttonY);
                 buttonX += buttonSpacing;
+            }
+            else
+            {
+                buttonObj.transform.position = new Vector2(10000f, 10000f);
             }
         }
     }
