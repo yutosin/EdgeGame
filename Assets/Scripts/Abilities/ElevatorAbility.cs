@@ -62,6 +62,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
             Vector3.MoveTowards(AbilityFace.Parent.position, _target, step);
         if (Vector3.Distance(AbilityFace.Parent.position, _target) < .001f)
         {
+            cubeChild.transform.SetParent(AbilityFace.transform);
             IsActing = false;
             GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
             AstarPath.active.Scan();
