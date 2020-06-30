@@ -11,6 +11,10 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
     public int AbilityTimes { get; set; }
     private Vector3 _target;
 
+    public GameObject cubePrefab;
+    private GameObject cubeChild;
+    private ProceduralCube cScript;
+
     public void InitializeAbility(Face face)
     {
         AbilityFace = face;
@@ -27,6 +31,20 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         yield return new WaitForSeconds(0.01f);
         var playerTransform = GameManager.SharedInstance.playerAgent.transform;
         playerTransform.parent = null;
+    }
+
+    private void CubeSpawn()
+    {
+        cubePrefab = GameManager.SharedInstance.matSelect.cubePrefab;
+
+        cubeChild = Instantiate(cubePrefab);
+        cScript = cubeChild.GetComponent<ProceduralCube>();
+        cScript.SetInitialPos(AbilityFace.Vertices, AbilityFace._rend.material);
+    }
+
+    private void RaiseCube()
+    {
+        cScript.MoveFace("YPlus", AbilityFace.Parent.position.y);
     }
 
     private void Start()
@@ -50,5 +68,10 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
             StartCoroutine(SetAgentPosition());
             AbilityTimes--;
         }
+        if(cubeChild == null)
+        {
+            CubeSpawn();
+        }
+        RaiseCube();
     }
 }
