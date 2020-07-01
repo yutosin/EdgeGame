@@ -6,9 +6,17 @@ using UnityEngine.UI;
 
 public class Jsonator : MonoBehaviour
 {
+    //Set the maximum allowed size of the grid.
+    [Header("General Editor Settings")]
+    public Vector3 gridSize;
+    public float selectorCubeSize;
+    public float selectorCubeDistance;
+
+    //The general list of materials to be added with the inspector.
     [Header("Paint Materials")]
     public Material[] materials;
 
+    //Switch to this material in Silhouette Mode.
     [Header("Silhouette Material")]
     public Material silhouette;
 
@@ -20,15 +28,12 @@ public class Jsonator : MonoBehaviour
 
     // Model for displaying where the start position in the editor is.
     [Header("Player Model")]
+    public Transform selectCubeModel;
     public Transform playerModel;
     public Transform endModel;
 
     [Header("Save Path")]
     public string path;
-
-    [Header("GUI Models")]
-    public Transform negativeGrid;
-    public Transform negativeCube;
 
     [Header("UI Elements")]
     public Scrollbar silhouetteSwitch;
@@ -55,7 +60,7 @@ public class Jsonator : MonoBehaviour
     private Material selectedMaterial;
     private Vector3 startPoint;
     private Vector3 goalPoint;
-    private string negDim;
+    private Vector3 selectCube;
 
     [SerializeField]
     private Cube[] cubeData;
@@ -67,7 +72,6 @@ public class Jsonator : MonoBehaviour
         selectingStart = false;
         silhouetteMode = false;
         silhouetteVal = 0;
-        negDim = "X";
         OnRefreshButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
@@ -81,6 +85,7 @@ public class Jsonator : MonoBehaviour
             matButton[m].GetComponent<Image>().material = displayMaterials[m];
             matButton[m].name = m.ToString();
         }
+        selectCube = new Vector3(1, 1, 1);
     }
 
     void Update()
@@ -134,10 +139,6 @@ public class Jsonator : MonoBehaviour
         //Handle Mouse-based block addition and removal.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
-        bool ctrl = Input.GetKey(KeyCode.LeftControl);
-
-        if (ctrl) negativeGrid.gameObject.SetActive(true);
-        else negativeGrid.gameObject.SetActive(false);
 
         if (leftMouse || rightMouse)
         {
@@ -169,46 +170,41 @@ public class Jsonator : MonoBehaviour
                         }
                         else if (!paintMode)
                         {
-                            //Define adjacent voxels to the one clicked on.
-                            if (ctrl)
+                            if (hitRay.transform.parent.position + new Vector3(0.5f, 0.5f, 0.5f) == selectCube && hitRay.transform.name.Contains("Select"))
                             {
-                                if (negDim == "X") rayPos.x--;
-                                if (negDim == "Y") rayPos.y--;
-                                if (negDim == "Z") rayPos.z--;
-                            }
-                            else
-                            {
-                                if (hitRay.collider.name.Contains("Left")) rayPos.x++;
-                                if (hitRay.collider.name.Contains("Top")) rayPos.y++;
-                                if (hitRay.collider.name.Contains("Right")) rayPos.z++;
-                            }
-
-                            if (rayPos.x >= 0 && rayPos.y >= 0 && rayPos.z >= 0)
-                            {
-                                //Curate faces the newly created voxel will be adjacent to.
-                                bool[] backFace = new bool[3] { false, false, false };
-                                for (int c = 0; c < transform.childCount; c++)
+                                //Define adjacent voxels to the one clicked on.
+                                if (hitRay.collider.name.Contains("LeftPositive")) rayPos.x++;
+                                else if (hitRay.collider.name.Contains("LeftNegative")) rayPos.x--;
+                                else if (hitRay.collider.name.Contains("TopPositive")) rayPos.y++;
+                                else if (hitRay.collider.name.Contains("TopNegative")) rayPos.y--;
+                                else if (hitRay.collider.name.Contains("RightPositive")) rayPos.z++;
+                                else if (hitRay.collider.name.Contains("RightNegative")) rayPos.z--;
+                                if (rayPos.x >= 0 && rayPos.y >= 0 && rayPos.z >= 0)
                                 {
-                                    CubeParse(true, transform.GetChild(c).transform, rayPos, c);
-                                    if (cubeXPos != null) backFace[0] = true;
-                                    if (cubeYPos != null) backFace[1] = true;
-                                    if (cubeZPos != null) backFace[2] = true;
-                                    int tc = transform.GetChild(c).childCount;
-                                    for (int t = 0; t < tc; t++)
+                                    //Curate faces the newly created voxel will be adjacent to.
+                                    bool[] backFace = new bool[3] { false, false, false };
+                                    for (int c = 0; c < transform.childCount; c++)
                                     {
-                                        if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) { tc--; }
+                                        CubeParse(true, transform.GetChild(c).transform, rayPos, c);
+                                        if (cubeXPos != null) backFace[0] = true;
+                                        if (cubeYPos != null) backFace[1] = true;
+                                        if (cubeZPos != null) backFace[2] = true;
+                                        int tc = transform.GetChild(c).childCount;
+                                        for (int t = 0; t < tc; t++) if (CurateCube(cubeXNeg, "Left", t) || CurateCube(cubeYNeg, "Top", t) || CurateCube(cubeZNeg, "Right", t)) tc--;
+                                        CubeParse(false, null, new Vector3(0, 0, 0), 0);
                                     }
-                                    CubeParse(false, null, new Vector3(0, 0, 0), 0);
-                                }
 
-                                //Build the new voxel.
-                                Cuber(
-                                    backFace[1] ? "" : "Top", "",
-                                    backFace[2] ? "" : "Right", "",
-                                    backFace[0] ? "" : "Left", "",
-                                    new Vector3(rayPos.x + 0.5f, rayPos.y + 0.5f, rayPos.z + 0.5f));
-                                if (!ctrl) Destroy(hitRay.transform.gameObject);
+                                    //Build the new voxel.
+                                    Transform newCube = Cuber(
+                                        backFace[1] ? "" : "Top", "",
+                                        backFace[2] ? "" : "Right", "",
+                                        backFace[0] ? "" : "Left", "",
+                                        new Vector3(rayPos.x + 0.5f, rayPos.y + 0.5f, rayPos.z + 0.5f)
+                                    );
+                                    selectCube = Selector(newCube, rayPos, selectorCubeSize, selectorCubeDistance);
+                                }
                             }
+                            else selectCube = Selector(hitRay.transform.parent, rayPos, selectorCubeSize, selectorCubeDistance);
                         }
                     }
 
@@ -259,117 +255,6 @@ public class Jsonator : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    void Cuber(string top, string topMat, string rgt, string rgtMat, string lft, string lftMat, Vector3 pos)
-    {
-        GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
-        cube.transform.SetParent(transform);
-        cube.transform.position = new Vector3(pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f);
-        cube.AddComponent<BoxCollider>().transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        if (top != "") Tiler("Top", cube.transform, "Top", topMat);
-        if (rgt != "") Tiler("Right", cube.transform, "Right", rgtMat);
-        if (lft != "") Tiler("Left", cube.transform, "Left", lftMat);
-    }
-
-    void Tiler(string dim, Transform par, string name, string mat)
-    {
-        //Create the gameobject.
-        GameObject tile = new GameObject();
-        tile.transform.SetParent(par);
-        tile.AddComponent<MeshFilter>();
-        MeshFilter tileF = tile.GetComponent<MeshFilter>();
-        tile.AddComponent<MeshRenderer>();
-        MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
-        tile.AddComponent<BoxCollider>();
-        BoxCollider tileC = tile.GetComponent<BoxCollider>();
-        if (!GameManager.SharedInstance.InLevelEditor)
-            tileC.enabled = false;
-
-        //Define and populate the variables and vectors.
-        Material loadMat = null;
-        if (mat != "")
-        {
-            string matParse;
-            for (int m = 0; m < materials.Length; m++)
-            {
-                matParse = materials[m].name;
-                if (matParse.Contains(mat))
-                {
-                    loadMat = materials[m];
-                    break;
-                }
-            }
-        }
-        Vector3[] tileV = new Vector3[4];
-        Vector3[] tileN = new Vector3[4];
-        Vector2[] tileUV = new Vector2[4];
-        int[] tileT = new int[6] { 0, 2, 1, 2, 3, 1 };
-        tileUV[0] = new Vector2(0, 0);
-        tileUV[1] = new Vector2(1, 0);
-        tileUV[2] = new Vector2(0, 1);
-        tileUV[3] = new Vector2(1, 1);
-        switch (dim)
-        {
-            case ("Top"):
-                tile.transform.position = new Vector3(par.position.x, par.position.y + 0.5f, par.position.z);
-                tileV[0] = new Vector3(0.5f, 0, -0.5f);
-                tileV[1] = new Vector3(0.5f, 0, 0.5f);
-                tileV[2] = new Vector3(-0.5f, 0, -0.5f);
-                tileV[3] = new Vector3(-0.5f, 0, 0.5f);
-                tileN[0] = Vector3.up;
-                tileN[1] = Vector3.up;
-                tileN[2] = Vector3.up;
-                tileN[3] = Vector3.up;
-                tileC.size = new Vector3(1, 0, 1);
-                tileC.center = new Vector3(0, 0, 0);
-                tileR.material = (loadMat != null) ? loadMat : developerTop;
-                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
-                break;
-            case ("Right"):
-                tile.transform.position = new Vector3(par.position.x, par.position.y, par.position.z + 0.5f);
-                tileV[0] = new Vector3(0.5f, -0.5f, 0);
-                tileV[1] = new Vector3(-0.5f, -0.5f, 0);
-                tileV[2] = new Vector3(0.5f, 0.5f, 0);
-                tileV[3] = new Vector3(-0.5f, 0.5f, 0);
-                tileN[0] = Vector3.forward;
-                tileN[1] = Vector3.forward;
-                tileN[2] = Vector3.forward;
-                tileN[3] = Vector3.forward;
-                tileC.size = new Vector3(1, 1, 0);
-                tileC.center = new Vector3(0, 0, 0);
-                tileR.material = (loadMat != null) ? loadMat : developerRight;
-                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
-                break;
-            case ("Left"):
-                tile.transform.position = new Vector3(par.position.x + 0.5f, par.position.y, par.position.z);
-                tileV[0] = new Vector3(0, -0.5f, -0.5f);
-                tileV[1] = new Vector3(0, -0.5f, 0.5f);
-                tileV[2] = new Vector3(0, 0.5f, -0.5f);
-                tileV[3] = new Vector3(0, 0.5f, 0.5f);
-                tileN[0] = Vector3.right;
-                tileN[1] = Vector3.right;
-                tileN[2] = Vector3.right;
-                tileN[3] = Vector3.right;
-                tileC.size = new Vector3(0, 1, 1);
-                tileC.center = new Vector3(0, 0, 0);
-                tileR.material = (loadMat != null) ? loadMat : developerLeft;
-                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
-                break;
-            default:
-                Debug.LogError("Tile " + name + " has failed to parse.");
-                break;
-        }
-
-        //Build the mesh.
-        if (dim == "Top" || dim == "Right" || dim == "Left")
-        {
-            tileR.material = silhouetteMode ? silhouette : tileR.material;
-            tileF.mesh.vertices = tileV;
-            tileF.mesh.normals = tileN;
-            tileF.mesh.uv = tileUV;
-            tileF.mesh.triangles = tileT;
         }
     }
 
@@ -485,21 +370,6 @@ public class Jsonator : MonoBehaviour
             //Build the new level.
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
-
-        //Set up the negative-selection cubes
-        Debug.Log(negativeGrid.childCount);
-        for (int n = 0; n < negativeGrid.childCount; n++)
-        {
-            Destroy(negativeGrid.GetChild(n).gameObject);
-        }
-        Transform negParse;
-        for (int c = 0; c < transform.childCount; c++)
-        {
-            negParse = transform.GetChild(c);
-            NegativeCube(new Vector3(negParse.position.x - 1, negParse.position.y, negParse.position.z), negParse, "Top", "Right");
-            NegativeCube(new Vector3(negParse.position.x, negParse.position.y - 1, negParse.position.z), negParse, "Left", "Right");
-            NegativeCube(new Vector3(negParse.position.x, negParse.position.y, negParse.position.z - 1), negParse, "Left", "Top");
-        }
     }
 
     public void OnRefreshButton()
@@ -561,9 +431,145 @@ public class Jsonator : MonoBehaviour
         OnRefreshButton();
     }
 
-    public void OnDimensionButton(string button)
+    //Build a cube on the grid.
+    Transform Cuber(string top, string topMat, string rgt, string rgtMat, string lft, string lftMat, Vector3 pos)
     {
-        negDim = button;
+        GameObject cube = new GameObject("Cube " + pos.x + " - " + pos.y + " - " + pos.z);
+        cube.transform.SetParent(transform);
+        cube.transform.position = new Vector3(pos.x - 0.5f, pos.y - 0.5f, pos.z - 0.5f);
+        cube.AddComponent<BoxCollider>().transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        if (top != "") Tiler("Top", cube.transform, "Top", topMat);
+        if (rgt != "") Tiler("Right", cube.transform, "Right", rgtMat);
+        if (lft != "") Tiler("Left", cube.transform, "Left", lftMat);
+        return cube.transform;
+    }
+
+    //Add a tile to a cube.
+    void Tiler(string dim, Transform par, string name, string mat)
+    {
+        //Create the gameobject.
+        GameObject tile = new GameObject();
+        tile.transform.SetParent(par);
+        tile.AddComponent<MeshFilter>();
+        MeshFilter tileF = tile.GetComponent<MeshFilter>();
+        tile.AddComponent<MeshRenderer>();
+        MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
+        tile.AddComponent<BoxCollider>();
+        BoxCollider tileC = tile.GetComponent<BoxCollider>();
+        if (!GameManager.SharedInstance.InLevelEditor)
+            tileC.enabled = false;
+
+        //Define and populate the variables and vectors.
+        Material loadMat = null;
+        if (mat != "")
+        {
+            string matParse;
+            for (int m = 0; m < materials.Length; m++)
+            {
+                matParse = materials[m].name;
+                if (matParse.Contains(mat))
+                {
+                    loadMat = materials[m];
+                    break;
+                }
+            }
+        }
+        Vector3[] tileV = new Vector3[4];
+        Vector3[] tileN = new Vector3[4];
+        Vector2[] tileUV = new Vector2[4];
+        int[] tileT = new int[6] { 0, 2, 1, 2, 3, 1 };
+        tileUV[0] = new Vector2(0, 0);
+        tileUV[1] = new Vector2(1, 0);
+        tileUV[2] = new Vector2(0, 1);
+        tileUV[3] = new Vector2(1, 1);
+        switch (dim)
+        {
+            case ("Top"):
+                tile.transform.position = new Vector3(par.position.x, par.position.y + 0.5f, par.position.z);
+                tileV[0] = new Vector3(0.5f, 0, -0.5f);
+                tileV[1] = new Vector3(0.5f, 0, 0.5f);
+                tileV[2] = new Vector3(-0.5f, 0, -0.5f);
+                tileV[3] = new Vector3(-0.5f, 0, 0.5f);
+                tileN[0] = Vector3.up;
+                tileN[1] = Vector3.up;
+                tileN[2] = Vector3.up;
+                tileN[3] = Vector3.up;
+                tileC.size = new Vector3(1, 0, 1);
+                tileC.center = new Vector3(0, 0, 0);
+                tileR.material = (loadMat != null) ? loadMat : developerTop;
+                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
+                break;
+            case ("Right"):
+                tile.transform.position = new Vector3(par.position.x, par.position.y, par.position.z + 0.5f);
+                tileV[0] = new Vector3(0.5f, -0.5f, 0);
+                tileV[1] = new Vector3(-0.5f, -0.5f, 0);
+                tileV[2] = new Vector3(0.5f, 0.5f, 0);
+                tileV[3] = new Vector3(-0.5f, 0.5f, 0);
+                tileN[0] = Vector3.forward;
+                tileN[1] = Vector3.forward;
+                tileN[2] = Vector3.forward;
+                tileN[3] = Vector3.forward;
+                tileC.size = new Vector3(1, 1, 0);
+                tileC.center = new Vector3(0, 0, 0);
+                tileR.material = (loadMat != null) ? loadMat : developerRight;
+                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
+                break;
+            case ("Left"):
+                tile.transform.position = new Vector3(par.position.x + 0.5f, par.position.y, par.position.z);
+                tileV[0] = new Vector3(0, -0.5f, -0.5f);
+                tileV[1] = new Vector3(0, -0.5f, 0.5f);
+                tileV[2] = new Vector3(0, 0.5f, -0.5f);
+                tileV[3] = new Vector3(0, 0.5f, 0.5f);
+                tileN[0] = Vector3.right;
+                tileN[1] = Vector3.right;
+                tileN[2] = Vector3.right;
+                tileN[3] = Vector3.right;
+                tileC.size = new Vector3(0, 1, 1);
+                tileC.center = new Vector3(0, 0, 0);
+                tileR.material = (loadMat != null) ? loadMat : developerLeft;
+                tile.name = "Tile_" + name + "_" + tileR.material.name.Replace(" (Instance)", "");
+                break;
+            default:
+                Debug.LogError("Tile " + name + " has failed to parse.");
+                break;
+        }
+
+        //Build the mesh.
+        if (dim == "Top" || dim == "Right" || dim == "Left")
+        {
+            tileR.material = silhouetteMode ? silhouette : tileR.material;
+            tileF.mesh.vertices = tileV;
+            tileF.mesh.normals = tileN;
+            tileF.mesh.uv = tileUV;
+            tileF.mesh.triangles = tileT;
+        }
+    }
+
+    //Set up selection array.
+    Vector3 Selector(Transform parent, Vector3 selPos, float size, float dist)
+    {
+        Collider[] clearOldSelect = Physics.OverlapBox(selectCube, new Vector3(1.5f, 1.5f, 1.5f));
+        for (int c = 0; c < clearOldSelect.Length; c++)
+        {
+            if (clearOldSelect[c].name.Contains("Select")) Destroy(clearOldSelect[c].gameObject);
+        }
+        SelectBuilder("Select_LeftPositive", selectCubeModel, parent, new Vector3(selPos.x + dist, selPos.y, selPos.z), size);
+        if (parent.position.x > 1) SelectBuilder("Select_LeftNegative", selectCubeModel, parent, new Vector3(selPos.x - dist, selPos.y, selPos.z), size);
+        SelectBuilder("Select_TopPositive", selectCubeModel, parent, new Vector3(selPos.x, selPos.y + dist, selPos.z), size);
+        if (parent.position.y > 1) SelectBuilder("Select_TopNegative", selectCubeModel, parent, new Vector3(selPos.x, selPos.y - dist, selPos.z), size);
+        SelectBuilder("Select_RightPositive", selectCubeModel, parent, new Vector3(selPos.x, selPos.y, selPos.z + dist), size);
+        if (parent.position.z > 1) SelectBuilder("Select_RightNegative", selectCubeModel, parent, new Vector3(selPos.x, selPos.y, selPos.z - dist), size);
+        return selPos + new Vector3(0.5f, 0.5f, 0.5f);
+
+
+    }
+
+    //Build a selector cube at a specified position.
+    void SelectBuilder(string name, Transform transform, Transform parent, Vector3 pos, float size)
+    {
+        Transform buildSelect = Instantiate(transform, pos, Quaternion.identity, parent);
+        buildSelect.localScale = new Vector3(size * 2, size * 2, size * 2);
+        buildSelect.name = name;
     }
 
     //Cube Operations
@@ -604,27 +610,6 @@ public class Jsonator : MonoBehaviour
             }
         }
         return false;
-    }
-
-    //Function for creating and recreating negative UI cubes for use in negative-dimension building.
-    void NegativeCube(Vector3 neg, Transform negParse, string face1, string face2)
-    {
-        Collider[] negCheck = Physics.OverlapBox(neg, new Vector3(0.3f, 0.3f, 0.3f));
-        if (negCheck.Length == 0)
-        {
-            for (int n = 0; n < negParse.childCount; n++)
-            {
-                if (negParse.GetChild(n).name.Contains(face1) || negParse.GetChild(n).name.Contains(face2))
-                {
-                    if (neg.x >= 0 && neg.y >= 0 && neg.z >= 0)
-                    {
-                        Transform negCube = Instantiate(negativeCube, negativeGrid.transform);
-                        negCube.transform.position = neg;
-                        negCube.name = "NegativeUICube";
-                    }
-                }
-            }
-        }
     }
 
     //Delte cube, fill holes in other adjacent cubes.
