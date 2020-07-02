@@ -10,13 +10,18 @@ public class Jsonator : MonoBehaviour
     public Camera mainCamera;
 
     //Set the maximum allowed size of the grid.
-    [Header("General Editor Settings")]
+    [Header("General Editor")]
     public Vector3 gridSize;
+    public Transform backgroundGenerator;
 
     public Transform selectCubeModel;
     public float selectorCubeSize;
     public float selectorCubeDistance;
     public Color selectorCubeColor;
+
+    public Transform startModel;
+    public float startModelSize;
+    public Color startModelColor;
 
     public Transform goalModel;
     public float goalModelSize;
@@ -38,7 +43,6 @@ public class Jsonator : MonoBehaviour
 
     // Model for displaying where the start position in the editor is.
     [Header("Player Model")]
-    public Transform playerModel;
 
     [Header("Save Path")]
     public string path;
@@ -69,6 +73,7 @@ public class Jsonator : MonoBehaviour
     private Transform cubeZPos;
     private Transform startInd;
     private Transform goalInd;
+    private Transform background;
     private bool paintMode;
     private bool selectingStart;
     private bool silhouetteMode;
@@ -77,38 +82,51 @@ public class Jsonator : MonoBehaviour
     private float HSVVal;
     private Material[] displayMaterials;
     private Material selectedMaterial;
+    private Vector3 camPos;
     private Vector3 startPoint;
     private Vector3 goalPoint;
     private Vector3 selectCube;
     private Color backgroundColor;
     private Color silhouetteColor;
+    private BackgroundGenerator genRef;
 
     [SerializeField]
     private Cube[] cubeData;
     private Tile[] tileData;
 
-    void Awake()
+    void Start()
     {
+        Transform background = backgroundGenerator;
+        background.position = new Vector3(-100, -150, -100);
+        genRef = background.GetComponent<BackgroundGenerator>();
+        genRef.mode = 1;
+        genRef.direction = 1;
+        Instantiate(background);
+
         //Set up load and materials buttons.
         selectingStart = false;
         silhouetteMode = false;
         HSVMode = false;
         silhouetteVal = 0;
         HSVVal = 0;
+        SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
+        SetColor(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
         OnRefreshButton();
+        OnNewButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
         displayMaterials = new Material[materials.Length];
         for (int m = 0; m < matButton.Length; m++)
         {
             displayMaterials[m] = new Material(materials[m]);
-            displayMaterials[m].shader = Shader.Find("UI/Default");
+            displayMaterials[m].shader = Shader.Find("UI/Unlit/Detail");
             matButton[m] = Instantiate(matTemplate, matContent);
             matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 110 + 60, 0);
             matButton[m].GetComponent<Image>().material = displayMaterials[m];
             matButton[m].name = m.ToString();
         }
         selectCube = new Vector3(1, 1, 1);
+        camPos = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -142,6 +160,8 @@ public class Jsonator : MonoBehaviour
             backgroundColor = new Color(BGColorR.value, BGColorG.value, BGColorB.value, 1);
             silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
         }
+
+        //Apply colors.
         BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
         SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
         mainCamera.backgroundColor = backgroundColor;
@@ -193,11 +213,22 @@ public class Jsonator : MonoBehaviour
             silhouetteVal = silhouetteSwitch.value;
         }
 
-        //Handle Mouse-based block addition and removal.
+        //Handle all operations with mouse.
         bool leftMouse = Input.GetMouseButtonDown(0);
         bool rightMouse = Input.GetMouseButtonDown(1);
 
-        if (leftMouse || rightMouse)
+        //Pan and zoom.
+        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + Input.mouseScrollDelta.y,5,20);
+        if (Input.GetMouseButton(2) || (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButton(0)))
+        {
+            float mX = Input.mousePosition.x * 0.02f;
+            float mY = Input.mousePosition.y * 0.02f;
+            if (Input.GetMouseButtonDown(2) || (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))) camPos = new Vector3(mainCamera.transform.position.x - (mX + mY), mainCamera.transform.position.y, mainCamera.transform.position.z - (mY - mX));
+            mainCamera.transform.position = new Vector3(Mathf.Clamp(mX + camPos.x + mY, 15, 25 + gridSize.x), camPos.y, Mathf.Clamp(mY + camPos.z - mX, 15, 25 + gridSize.z));
+        }
+
+        //Do things with tiles and UI.
+        else if (leftMouse || rightMouse)
         {
             RaycastHit hitRay;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -209,21 +240,24 @@ public class Jsonator : MonoBehaviour
                     //Left click, build the voxel.
                     if (leftMouse)
                     {
-                        if (paintMode && !silhouetteMode)
+                        if (selectingStart)
                         {
-                            hitRay.collider.GetComponentInParent<Renderer>().material = selectedMaterial;
-                            string[] parseSplit = hitRay.collider.name.Split('_');
-                            hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + selectedMaterial.name.Replace(" (Instance)", "");
-                        }
-                        else if (selectingStart)
-                        {
-                            matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
-                            Destroy(startInd.gameObject);
-                            startInd.gameObject.name = "PlayerIndicator";
+                            if (startInd != null) Destroy(startInd.gameObject);
                             startPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
-                            startInd = Instantiate(playerModel);
+                            startInd = Instantiate(startModel);
                             startInd.transform.position = startPoint;
-                            selectingStart = false;
+                            startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
+                            startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
+                            startInd.name = "StartIndicator";
+                        }
+                        else if (paintMode && !silhouetteMode)
+                        {
+                            if (hitRay.collider.name.Contains("Tile"))
+                            {
+                                hitRay.collider.GetComponentInParent<Renderer>().material = selectedMaterial;
+                                string[] parseSplit = hitRay.collider.name.Split('_');
+                                hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + selectedMaterial.name.Replace(" (Instance)", "");
+                            }
                         }
                         else if (!paintMode)
                         {
@@ -270,15 +304,13 @@ public class Jsonator : MonoBehaviour
                     {
                         if (selectingStart)
                         {
-                            matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
-                            Destroy(goalInd.gameObject);
+                            if (goalInd != null) Destroy(goalInd.gameObject);
                             goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
                             goalInd = Instantiate(goalModel);
                             goalInd.transform.position = goalPoint;
                             goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
-                            goalInd.GetComponent<Renderer>().material.SetColor("_Color",goalModelColor);
+                            goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
                             goalInd.name = "GoalIndicator";
-                            selectingStart = false;
                         }
                         else if (paintMode && !silhouetteMode)
                         {
@@ -310,6 +342,7 @@ public class Jsonator : MonoBehaviour
                                     DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, transform.GetChild(r).transform.position, r);
                                 }
                             }
+                            else if (hitRay.collider == null) SelectDeleter(selectCube);
                         }
                     }
                 }
@@ -327,12 +360,18 @@ public class Jsonator : MonoBehaviour
             if (startInd != null) { Destroy(startInd.gameObject); }
         }
 
+        //Reset colors.
+        SetColor(new Color(0.5f, 0.55f, 0.6f, 1), BGColorR, BGColorG, BGColorB);
+        SetColor(new Color(0, 0, 0, 1), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+
         //Build a single cube at 1, 1, 1
         Cuber("Top", developerTop.name, "Right", developerRight.name, "Left", developerLeft.name, new Vector3(1, 1, 1));
     }
 
     public void OnSaveButton()
     {
+        SelectDeleter(selectCube);
+
         //Check and read all tiles in the field.
         int saveCount = transform.childCount;
         cubeData = new Cube[saveCount];
@@ -351,7 +390,7 @@ public class Jsonator : MonoBehaviour
                 else cuberString = "";
                 Tile inTile = new Tile();
                 inTile.d = cuberString;
-                inTile.m = cube.GetChild(c).name.Split('_')[2];
+                if (cube.GetChild(c).name.Contains("Tile")) inTile.m = cube.GetChild(c).name.Split('_')[2];
                 tileData[c] = inTile;
             }
             Cube inCube = new Cube();
@@ -389,14 +428,18 @@ public class Jsonator : MonoBehaviour
             if (startInd != null) Destroy(startInd.gameObject);
             if (goalInd != null) Destroy(goalInd.gameObject);
         }
+        SelectDeleter(selectCube);
+        selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
         string stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
-        startInd = Instantiate(playerModel);
-        startInd.position = startPoint;
-        startInd.gameObject.name = "PlayerIndicator";
+        startInd = Instantiate(startModel);
+        startInd.transform.position = startPoint;
+        startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
+        startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
+        startInd.name = "StartIndicator";
         goalPoint = gridLoad.goalPoint;
         goalInd = Instantiate(goalModel);
         goalInd.position = goalPoint;
@@ -475,10 +518,12 @@ public class Jsonator : MonoBehaviour
 
     public void OnMaterialButton(Button button)
     {
+        SelectDeleter(selectCube);
         paintMode = true;
+        selectingStart = false;
         int matNum = int.Parse(button.name);
         matView.GetComponentInChildren<Text>().text = "";
-        matView.GetComponent<Image>().material = displayMaterials[matNum];
+        matView.GetComponent<Image>().material.SetTexture("_MainTex", displayMaterials[matNum].mainTexture);
         selectedMaterial = materials[matNum];
     }
 
@@ -492,15 +537,9 @@ public class Jsonator : MonoBehaviour
 
     public void OnStartpointButton()
     {
-        if (selectingStart)
-        {
-            selectingStart = false;
-            matView.GetComponentInChildren<Text>().text = "SETTING\nGOAL";
-            matView.GetComponent<Image>().material = null;
-            return;
-        }
+        SelectDeleter(selectCube);
         selectingStart = true;
-        matView.GetComponentInChildren<Text>().text = "SETTING\nSTART";
+        matView.GetComponentInChildren<Text>().text = "SETTING\nSTART & GOAL";
         matView.GetComponent<Image>().material = null;
     }
 
@@ -535,8 +574,7 @@ public class Jsonator : MonoBehaviour
         MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
         tile.AddComponent<BoxCollider>();
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
-        if (!GameManager.SharedInstance.InLevelEditor)
-            tileC.enabled = false;
+        if (!GameManager.SharedInstance.InLevelEditor) tileC.enabled = false;
 
         //Define and populate the variables and vectors.
         Material loadMat = null;
@@ -627,16 +665,12 @@ public class Jsonator : MonoBehaviour
     //Set up selection array.
     Vector3 Selector(Transform parent, Vector3 selPos, float size, float dist)
     {
-        Collider[] clearOldSelect = Physics.OverlapBox(selectCube, new Vector3(1.5f, 1.5f, 1.5f));
-        for (int c = 0; c < clearOldSelect.Length; c++)
-        {
-            if (clearOldSelect[c].name.Contains("Select")) Destroy(clearOldSelect[c].gameObject);
-        }
-        SelectBuilder("Select_LeftPositive", selectCubeModel, parent, new Vector3(selPos.x + dist, selPos.y, selPos.z), size);
+        SelectDeleter(selectCube);
+        if (parent.position.x < gridSize.x) SelectBuilder("Select_LeftPositive", selectCubeModel, parent, new Vector3(selPos.x + dist, selPos.y, selPos.z), size);
         if (parent.position.x > 1) SelectBuilder("Select_LeftNegative", selectCubeModel, parent, new Vector3(selPos.x - dist, selPos.y, selPos.z), size);
-        SelectBuilder("Select_TopPositive", selectCubeModel, parent, new Vector3(selPos.x, selPos.y + dist, selPos.z), size);
+        if (parent.position.y < gridSize.y) SelectBuilder("Select_TopPositive", selectCubeModel, parent, new Vector3(selPos.x, selPos.y + dist, selPos.z), size);
         if (parent.position.y > 1) SelectBuilder("Select_TopNegative", selectCubeModel, parent, new Vector3(selPos.x, selPos.y - dist, selPos.z), size);
-        SelectBuilder("Select_RightPositive", selectCubeModel, parent, new Vector3(selPos.x, selPos.y, selPos.z + dist), size);
+        if (parent.position.z < gridSize.z) SelectBuilder("Select_RightPositive", selectCubeModel, parent, new Vector3(selPos.x, selPos.y, selPos.z + dist), size);
         if (parent.position.z > 1) SelectBuilder("Select_RightNegative", selectCubeModel, parent, new Vector3(selPos.x, selPos.y, selPos.z - dist), size);
         return selPos + new Vector3(0.5f, 0.5f, 0.5f);
 
@@ -650,6 +684,17 @@ public class Jsonator : MonoBehaviour
         buildSelect.localScale = new Vector3(size * 2, size * 2, size * 2);
         buildSelect.GetComponent<Renderer>().material.SetColor("_Color",selectorCubeColor);
         buildSelect.name = name;
+    }
+
+    //Delete the selection array.
+    void SelectDeleter(Vector3 selPos)
+    {
+        Collider[] clearOldSelect = Physics.OverlapBox(selPos, new Vector3(1.5f, 1.5f, 1.5f));
+        for (int c = 0; c < clearOldSelect.Length; c++)
+        {
+            if (clearOldSelect[c].name.Contains("Select")) Destroy(clearOldSelect[c].gameObject);
+        }
+        selectCube = new Vector3(0, 0, 0);
     }
 
     //Cube Operations
@@ -806,6 +851,14 @@ public class Jsonator : MonoBehaviour
         R.value = color.r;
         G.value = color.g;
         B.value = color.b;
+    }
+
+    //Set a given color to a set of sliders.
+    void SetColor(Color color, Slider r, Slider g, Slider b)
+    {
+        r.value = color.r;
+        g.value = color.g;
+        b.value = color.b;
     }
 }
 

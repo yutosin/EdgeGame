@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7598756081563469832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3987312, y: 1.6678945, z: 9.192411}
+  m_LocalPosition: {x: -100, y: -150, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,4 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7dd9b0cd3975d44dbecd3d55ad4cb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
+  cube: {fileID: 6984385890063189296, guid: f38596ab9e6a8d94d8700db4f50c9c56, type: 3}
+  cubeMat: {fileID: 2100000, guid: fbb086bce83c7514182379a07ce2c354, type: 2}
+  cubeCol: {r: 1, g: 1, b: 1, a: 0.6392157}
+  cloudMin: {x: 0.5, y: 0.5, z: 0.5}
+  cloudMax: {x: 5, y: 1, z: 5}
+  speed: 1
+  direction: 1

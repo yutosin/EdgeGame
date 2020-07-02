@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 6984385890063189296}
   - component: {fileID: 6984385890063189297}
   - component: {fileID: 6984385890063189298}
-  - component: {fileID: 6984385890063189299}
   m_Layer: 0
-  m_Name: SelectCube
+  m_Name: cloudCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 98d7b13f76f5b1f47a59c9467fdd8fa9, type: 2}
+  - {fileID: 2100000, guid: fbb086bce83c7514182379a07ce2c354, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,16 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6984385890063189299
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984385890063189300}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
