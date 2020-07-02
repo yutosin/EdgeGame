@@ -6,11 +6,21 @@ using UnityEngine.UI;
 
 public class Jsonator : MonoBehaviour
 {
+    [Header("MainCamera")]
+    public Camera mainCamera;
+
     //Set the maximum allowed size of the grid.
     [Header("General Editor Settings")]
     public Vector3 gridSize;
+
+    public Transform selectCubeModel;
     public float selectorCubeSize;
     public float selectorCubeDistance;
+    public Color selectorCubeColor;
+
+    public Transform goalModel;
+    public float goalModelSize;
+    public Color goalModelColor;
 
     //The general list of materials to be added with the inspector.
     [Header("Paint Materials")]
@@ -28,9 +38,7 @@ public class Jsonator : MonoBehaviour
 
     // Model for displaying where the start position in the editor is.
     [Header("Player Model")]
-    public Transform selectCubeModel;
     public Transform playerModel;
-    public Transform endModel;
 
     [Header("Save Path")]
     public string path;
@@ -43,6 +51,15 @@ public class Jsonator : MonoBehaviour
     public RectTransform matContent;
     public RectTransform matTemplate;
     public RectTransform matView;
+    public RectTransform BackgroundColorDisplay;
+    public RectTransform SilhouetteColorDisplay;
+    public Slider BGColorR;
+    public Slider BGColorG;
+    public Slider BGColorB;
+    public Slider SilhouetteColorR;
+    public Slider SilhouetteColorG;
+    public Slider SilhouetteColorB;
+    public Scrollbar HSVSwitch;
 
     private Transform cubeXNeg;
     private Transform cubeXPos;
@@ -51,16 +68,20 @@ public class Jsonator : MonoBehaviour
     private Transform cubeZNeg;
     private Transform cubeZPos;
     private Transform startInd;
-    private Transform finInd;
+    private Transform goalInd;
     private bool paintMode;
     private bool selectingStart;
     private bool silhouetteMode;
+    private bool HSVMode;
     private float silhouetteVal;
+    private float HSVVal;
     private Material[] displayMaterials;
     private Material selectedMaterial;
     private Vector3 startPoint;
     private Vector3 goalPoint;
     private Vector3 selectCube;
+    private Color backgroundColor;
+    private Color silhouetteColor;
 
     [SerializeField]
     private Cube[] cubeData;
@@ -71,7 +92,9 @@ public class Jsonator : MonoBehaviour
         //Set up load and materials buttons.
         selectingStart = false;
         silhouetteMode = false;
+        HSVMode = false;
         silhouetteVal = 0;
+        HSVVal = 0;
         OnRefreshButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
@@ -93,6 +116,37 @@ public class Jsonator : MonoBehaviour
         //Externally disable level editor mode via GameManager.
         if (!GameManager.SharedInstance.InLevelEditor) return;
 
+        //Manage transition between RGB and HSV color modes.
+        if (HSVVal != HSVSwitch.value)
+        {
+            HSVMode = (HSVSwitch.value == 1) ? true : false;
+            HSVVal = (HSVVal == 1) ? 0 : 1;
+            if (HSVMode)
+            {
+                RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
+                RGBToHSV(silhouetteColor, SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+            }
+            else
+            {
+                HSVToRGB(BGColorR, BGColorG, BGColorB);
+                HSVToRGB(SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+            }
+        }
+        if (HSVMode)
+        {
+            backgroundColor = Color.HSVToRGB(BGColorR.value, BGColorG.value, BGColorB.value);
+            silhouetteColor = Color.HSVToRGB(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value);
+        }
+        else
+        {
+            backgroundColor = new Color(BGColorR.value, BGColorG.value, BGColorB.value, 1);
+            silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
+        }
+        BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
+        SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
+        mainCamera.backgroundColor = backgroundColor;
+        silhouette.color = silhouetteColor;
+
         //Silhouette mode determination
         if (silhouetteVal != silhouetteSwitch.value)
         {
@@ -103,7 +157,8 @@ public class Jsonator : MonoBehaviour
                 {
                     for (int c = 0; c < transform.GetChild(l).childCount; c++)
                     {
-                        transform.GetChild(l).GetChild(c).GetComponent<Renderer>().material = silhouette;
+                        Transform child = transform.GetChild(l).GetChild(c);
+                        if (child.name.Contains("Tile")) child.GetComponent<Renderer>().material = silhouette;
                     }
                 }
             }
@@ -114,20 +169,22 @@ public class Jsonator : MonoBehaviour
                     for (int c = 0; c < transform.GetChild(l).childCount; c++)
                     {
                         Transform tileToScrub = transform.GetChild(l).GetChild(c);
-                        string unsilMatParse = tileToScrub.name.Split('_')[2];
-                        if (unsilMatParse == developerLeft.name) { tileToScrub.GetComponent<Renderer>().material = developerLeft; }
-                        else if (unsilMatParse == developerTop.name) { tileToScrub.GetComponent<Renderer>().material = developerTop; }
-                        else if (unsilMatParse == developerRight.name) { tileToScrub.GetComponent<Renderer>().material = developerRight; }
-                        else
+                        string[] unsilMatParse = tileToScrub.name.Split('_');
+                        if (unsilMatParse[0] == "Tile")
                         {
-                            for (int m = 0; m < materials.Length; m++)
+                            if (unsilMatParse[2] == developerLeft.name) tileToScrub.GetComponent<Renderer>().material = developerLeft;
+                            else if (unsilMatParse[2] == developerTop.name) tileToScrub.GetComponent<Renderer>().material = developerTop;
+                            else if (unsilMatParse[2] == developerRight.name) tileToScrub.GetComponent<Renderer>().material = developerRight;
+                            else
                             {
-                                if (materials[m].name.Contains(unsilMatParse))
+                                for (int m = 0; m < materials.Length; m++)
                                 {
-                                    tileToScrub.GetComponent<Renderer>().material = materials[m];
-                                    break;
+                                    if (materials[m].name.Contains(unsilMatParse[2]))
+                                    {
+                                        tileToScrub.GetComponent<Renderer>().material = materials[m];
+                                        break;
+                                    }
                                 }
-
                             }
                         }
                     }
@@ -214,11 +271,13 @@ public class Jsonator : MonoBehaviour
                         if (selectingStart)
                         {
                             matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
-                            Destroy(finInd.gameObject);
+                            Destroy(goalInd.gameObject);
                             goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
-                            finInd = Instantiate(endModel);
-                            finInd.transform.position = goalPoint;
-                            finInd.name = "GoalIndicator";
+                            goalInd = Instantiate(goalModel);
+                            goalInd.transform.position = goalPoint;
+                            goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
+                            goalInd.GetComponent<Renderer>().material.SetColor("_Color",goalModelColor);
+                            goalInd.name = "GoalIndicator";
                             selectingStart = false;
                         }
                         else if (paintMode && !silhouetteMode)
@@ -305,6 +364,8 @@ public class Jsonator : MonoBehaviour
         Grid gridSave = new Grid();
         gridSave.cubeData = cubeData;
         gridSave.vertices = vertices.ToArray();
+        gridSave.backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b);
+        gridSave.silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b);
         if (startPoint != null)
         {
             gridSave.startPoint = startPoint;
@@ -326,7 +387,7 @@ public class Jsonator : MonoBehaviour
         {
             Destroy(transform.GetChild(d).gameObject);
             if (startInd != null) Destroy(startInd.gameObject);
-            if (finInd != null) Destroy(finInd.gameObject);
+            if (goalInd != null) Destroy(goalInd.gameObject);
         }
 
         //Read and interpret the save file.
@@ -337,9 +398,27 @@ public class Jsonator : MonoBehaviour
         startInd.position = startPoint;
         startInd.gameObject.name = "PlayerIndicator";
         goalPoint = gridLoad.goalPoint;
-        finInd = Instantiate(endModel);
-        finInd.position = goalPoint;
-        finInd.gameObject.name = "GoalIndicator";
+        goalInd = Instantiate(goalModel);
+        goalInd.position = goalPoint;
+        goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
+        goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
+        goalInd.gameObject.name = "GoalIndicator";
+        backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z, 1);
+        silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z, 1);
+        if (HSVMode)
+        {
+            RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
+            RGBToHSV(silhouetteColor, SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+        }
+        else
+        {
+            BGColorR.value = backgroundColor.r;
+            BGColorG.value = backgroundColor.g;
+            BGColorB.value = backgroundColor.b;
+            SilhouetteColorR.value = silhouetteColor.r;
+            SilhouetteColorG.value = silhouetteColor.g;
+            SilhouetteColorB.value = silhouetteColor.b;
+        }
         saveName.text = button.transform.parent.name;
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
@@ -569,6 +648,7 @@ public class Jsonator : MonoBehaviour
     {
         Transform buildSelect = Instantiate(transform, pos, Quaternion.identity, parent);
         buildSelect.localScale = new Vector3(size * 2, size * 2, size * 2);
+        buildSelect.GetComponent<Renderer>().material.SetColor("_Color",selectorCubeColor);
         buildSelect.name = name;
     }
 
@@ -613,22 +693,22 @@ public class Jsonator : MonoBehaviour
     }
 
     //Delte cube, fill holes in other adjacent cubes.
-    void DeleteCube(Transform x, Transform y, Transform z, Vector3 rayPos, Vector3 delPos, int array)
+    void DeleteCube(Transform tx, Transform ty, Transform tz, Vector3 rayPos, Vector3 delPos, int array)
     {
         if (delPos == new Vector3(rayPos.x - 1, rayPos.y, rayPos.z))
         {
-            z = transform.GetChild(array);
-            Tiler("Left", z, "Left", "");
+            tz = transform.GetChild(array);
+            Tiler("Left", tz, "Left", "");
         }
         if (delPos == new Vector3(rayPos.x, rayPos.y - 1, rayPos.z))
         {
-            y = transform.GetChild(array);
-            Tiler("Top", y, "Top", "");
+            ty = transform.GetChild(array);
+            Tiler("Top", ty, "Top", "");
         }
         if (delPos == new Vector3(rayPos.x, rayPos.y, rayPos.z - 1))
         {
-            x = transform.GetChild(array);
-            Tiler("Right", x, "Right", "");
+            tx = transform.GetChild(array);
+            Tiler("Right", tx, "Right", "");
         }
     }
 
@@ -708,6 +788,25 @@ public class Jsonator : MonoBehaviour
         }
         return gridLoad;
     }
+
+    //Convert from RGB to HSV
+    void RGBToHSV(Color color, Slider R, Slider G, Slider B)
+    {
+        float H, S, V;
+        Color.RGBToHSV(color, out H, out S, out V);
+        R.value = H;
+        G.value = S;
+        B.value = V;
+    }
+
+    //Convert from HSV to RGB
+    void HSVToRGB(Slider R, Slider G, Slider B)
+    {
+        Color color = Color.HSVToRGB(R.value, G.value, B.value);
+        R.value = color.r;
+        G.value = color.g;
+        B.value = color.b;
+    }
 }
 
 [System.Serializable]
@@ -730,4 +829,6 @@ public class Grid
     public Vector3Int[] vertices;
     public Vector3 startPoint;
     public Vector3 goalPoint;
+    public Vector3 backgroundColor;
+    public Vector3 silhouetteColor;
 }
