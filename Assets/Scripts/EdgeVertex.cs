@@ -128,6 +128,8 @@ public class EdgeVertex : MonoBehaviour
         //Debug.Log(ptID);
         if (!_activePoint)
         {
+            GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", true);
+
             isActivePoint = true;
             _activePoint = this;
             CleanAdjacentPointLists();
@@ -138,6 +140,8 @@ public class EdgeVertex : MonoBehaviour
         }
         else if (_isActiveSelectable)
         {
+            GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", false);
+
             GameManager.SharedInstance.levelManager.GenerateEdge(_activePoint, this);
             _activePoint.isActivePoint = false;
             _activePoint._rend.enabled = false;
