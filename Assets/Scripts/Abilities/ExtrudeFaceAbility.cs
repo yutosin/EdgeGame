@@ -59,7 +59,10 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
 
     private void MoveOutByOne()
     {
-        cubeChild.transform.parent = null;
+        if(cubeChild.transform.parent != null)
+        {
+            cubeChild.transform.parent = null;
+        }
         if (xMove)
         {
             targetPos.x += 1;
