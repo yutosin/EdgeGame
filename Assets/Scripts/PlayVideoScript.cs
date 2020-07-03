@@ -7,12 +7,12 @@ using UnityEngine.Video;
 public class PlayVideoScript : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    public GameObject mainMenuCanvasObj;
+    public GameObject canvasObj;
     private bool mainMenu;
 
     private void Awake()
     {
-        if (mainMenuCanvasObj == null)
+        if (canvasObj == null)
         {
             mainMenu = false;
         }
@@ -52,7 +52,7 @@ public class PlayVideoScript : MonoBehaviour
     {
         if (mainMenu)
         {
-            mainMenuCanvasObj.SetActive(false);
+            canvasObj.SetActive(false);
         }
         else
         {
@@ -64,7 +64,7 @@ public class PlayVideoScript : MonoBehaviour
     {
         if (mainMenu)
         {
-            mainMenuCanvasObj.SetActive(true);
+            canvasObj.SetActive(true);
         }
         else
         {

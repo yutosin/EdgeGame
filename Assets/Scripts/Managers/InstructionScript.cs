@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuUIScript : MonoBehaviour
+public class InstructionScript : MonoBehaviour
 {
     public GameObject uiPanel;
     public GameObject previousButtonObj;
@@ -55,6 +55,16 @@ public class MainMenuUIScript : MonoBehaviour
             panels[i].SetActive(false);
         }
         panels[pagePos].SetActive(true);
+    }
+
+    public void PullUpInstructions()
+    {
+        uiPanel.SetActive(true);
+    }
+
+    public void ReturnToGame()
+    {
+        uiPanel.SetActive(false);
     }
 
 }

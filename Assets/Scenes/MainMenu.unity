@@ -713,7 +713,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 386269544}
   canvasObj: {fileID: 1416168808}
-  uiManager: {fileID: 1931949868}
 --- !u!328 &386269544
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -877,7 +876,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 549867702}
   canvasObj: {fileID: 1416168808}
-  uiManager: {fileID: 1931949868}
 --- !u!328 &549867702
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -2530,7 +2528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 1070810573}
   canvasObj: {fileID: 1416168808}
-  uiManager: {fileID: 1931949868}
 --- !u!328 &1070810573
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -2616,7 +2613,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 1101860263}
   canvasObj: {fileID: 1416168808}
-  uiManager: {fileID: 1931949868}
 --- !u!328 &1101860263
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -4166,7 +4162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 1866521643}
   canvasObj: {fileID: 1416168808}
-  uiManager: {fileID: 1931949868}
 --- !u!328 &1866521643
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -4252,7 +4247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 1907101586}
   canvasObj: {fileID: 1416168808}
-  uiManager: {fileID: 1931949868}
 --- !u!328 &1907101586
 VideoPlayer:
   m_ObjectHideFlags: 0
