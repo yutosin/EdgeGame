@@ -2623,6 +2623,16 @@
         {
             "x": 1,
             "y": 7,
+            "z": 0
+        },
+        {
+            "x": 0,
+            "y": 7,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 7,
             "z": 3
         },
         {
@@ -2755,5 +2765,10 @@
         "x": 0.35933855175971987,
         "y": 0.482861191034317,
         "z": 0.0
-    }
+    },
+    "abilityElevator": 0,
+    "abilityTeleport": 1,
+    "abilityMoveX": 2,
+    "abilityMoveZ": 3,
+    "abilityExtrude": 4
 }

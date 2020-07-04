@@ -49,6 +49,12 @@ public class Jsonator : MonoBehaviour
 
     [Header("UI Elements")]
     public Scrollbar silhouetteSwitch;
+    public Scrollbar HSVSwitch;
+    public Scrollbar abilityElevator;
+    public Scrollbar abilityTeleport;
+    public Scrollbar abilityMoveX;
+    public Scrollbar abilityMoveZ;
+    public Scrollbar abilityExtrude;
     public InputField saveName;
     public RectTransform fileContent;
     public RectTransform fileTemplate;
@@ -63,7 +69,6 @@ public class Jsonator : MonoBehaviour
     public Slider SilhouetteColorR;
     public Slider SilhouetteColorG;
     public Slider SilhouetteColorB;
-    public Scrollbar HSVSwitch;
 
     private Transform cubeXNeg;
     private Transform cubeXPos;
@@ -80,6 +85,11 @@ public class Jsonator : MonoBehaviour
     private bool HSVMode;
     private float silhouetteVal;
     private float HSVVal;
+    private float abElevVal;
+    private float abTeleVal;
+    private float abMovXVal;
+    private float abMovZVal;
+    private float abExtrVal;
     private Material[] displayMaterials;
     private Material selectedMaterial;
     private Vector3 camPos;
@@ -102,8 +112,6 @@ public class Jsonator : MonoBehaviour
         genRef.mode = 1;
         genRef.direction = 1;
         Instantiate(background);
-
-        //Set up load and materials buttons.
         selectingStart = false;
         silhouetteMode = false;
         HSVMode = false;
@@ -127,6 +135,16 @@ public class Jsonator : MonoBehaviour
         }
         selectCube = new Vector3(1, 1, 1);
         camPos = new Vector3(0, 0, 0);
+        abElevVal = 0;
+        abilityElevator.value = 0;
+        abTeleVal = 0;
+        abilityTeleport.value = 0;
+        abMovXVal = 0;
+        abilityMoveX.value = 0;
+        abMovZVal = 0;
+        abilityMoveZ.value = 0;
+        abExtrVal = 0;
+        abilityExtrude.value = 0;
     }
 
     void Update()
@@ -160,6 +178,13 @@ public class Jsonator : MonoBehaviour
             backgroundColor = new Color(BGColorR.value, BGColorG.value, BGColorB.value, 1);
             silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
         }
+
+        //Manage ability settings
+        abElevVal = AbilityCheck(abElevVal, abilityElevator);
+        abTeleVal = AbilityCheck(abTeleVal, abilityTeleport);
+        abMovXVal = AbilityCheck(abMovXVal, abilityMoveX);
+        abMovZVal = AbilityCheck(abMovZVal, abilityMoveZ);
+        abExtrVal = AbilityCheck(abExtrVal, abilityExtrude);
 
         //Apply colors.
         BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
@@ -218,7 +243,7 @@ public class Jsonator : MonoBehaviour
         bool rightMouse = Input.GetMouseButtonDown(1);
 
         //Pan and zoom.
-        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + Input.mouseScrollDelta.y,5,20);
+        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + -Input.mouseScrollDelta.y,3,22);
         if (Input.GetMouseButton(2) || (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButton(0)))
         {
             float mX = Input.mousePosition.x * 0.02f;
@@ -405,7 +430,12 @@ public class Jsonator : MonoBehaviour
         gridSave.vertices = vertices.ToArray();
         gridSave.backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b);
         gridSave.silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b);
-        if (startPoint != null)
+        gridSave.abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1));
+        gridSave.abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1));
+        gridSave.abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1));
+        gridSave.abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1));
+        gridSave.abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1));
+        if (startPoint != null && goalPoint != null)
         {
             gridSave.startPoint = startPoint;
             gridSave.goalPoint = goalPoint;
@@ -414,7 +444,8 @@ public class Jsonator : MonoBehaviour
         }
         else
         {
-            Debug.Log("ERROR - player start position required.");
+            if (startPoint == null ) Debug.Log("ERROR - player start position required.");
+            if (goalPoint == null) Debug.Log("ERROR - goal position required.");
         }
         OnRefreshButton();
     }
@@ -448,6 +479,16 @@ public class Jsonator : MonoBehaviour
         goalInd.gameObject.name = "GoalIndicator";
         backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z, 1);
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z, 1);
+        abilityElevator.value = (float)gridLoad.abilityElevator / (abilityElevator.numberOfSteps - 1);
+        abilityElevator.GetComponentInChildren<Text>().text = abilityElevator.value.ToString();
+        abilityTeleport.value = (float)gridLoad.abilityTeleport / (abilityTeleport.numberOfSteps - 1);
+        abilityTeleport.GetComponentInChildren<Text>().text = abilityTeleport.value.ToString();
+        abilityMoveX.value = (float)gridLoad.abilityMoveX / (abilityMoveX.numberOfSteps - 1);
+        abilityMoveX.GetComponentInChildren<Text>().text = abilityMoveX.value.ToString();
+        abilityMoveZ.value = (float)gridLoad.abilityMoveZ / (abilityMoveZ.numberOfSteps - 1);
+        abilityMoveZ.GetComponentInChildren<Text>().text = abilityMoveZ.value.ToString();
+        abilityExtrude.value = (float)gridLoad.abilityExtrude / (abilityExtrude.numberOfSteps - 1);
+        abilityExtrude.GetComponentInChildren<Text>().text = abilityExtrude.value.ToString();
         if (HSVMode)
         {
             RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
@@ -860,6 +901,18 @@ public class Jsonator : MonoBehaviour
         g.value = color.g;
         b.value = color.b;
     }
+
+    //Checks and applies ability settings.
+    float AbilityCheck(float abilityVal, Scrollbar ability)
+    {
+        if (abilityVal != ability.value)
+        {
+            float abMult = ability.value * (ability.numberOfSteps - 1);
+            ability.GetComponentInChildren<Text>().text = abMult.ToString();
+            return abMult;
+        }
+        return abilityVal;
+    }
 }
 
 [System.Serializable]
@@ -884,4 +937,9 @@ public class Grid
     public Vector3 goalPoint;
     public Vector3 backgroundColor;
     public Vector3 silhouetteColor;
+    public int abilityElevator;
+    public int abilityTeleport;
+    public int abilityMoveX;
+    public int abilityMoveZ;
+    public int abilityExtrude;
 }
