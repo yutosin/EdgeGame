@@ -122,8 +122,10 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
     private void SpawnFace()
     {
         GameObject newFace = Instantiate(GameManager.SharedInstance.levelManager.facePrefab, cubeChild.transform);
-        MeshRenderer rend = cubeChild.GetComponent<MeshRenderer>();
-        Vector3 pos = rend.bounds.center;
+        MeshRenderer cubeRend = cubeChild.GetComponent<MeshRenderer>();
+        MeshRenderer faceRend = newFace.GetComponent<MeshRenderer>();
+        faceRend.material = cubeChild.GetComponent<MeshRenderer>().material;
+        Vector3 pos = cubeRend.bounds.center;
         pos.y += .5f;
 
         newFace.transform.position = pos;

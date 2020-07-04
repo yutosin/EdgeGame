@@ -44,10 +44,10 @@ public class Face : MonoBehaviour
         _selectedMat.renderQueue = 2005;
 
         _mScript = GameObject.Find("GameManager").GetComponent<MaterialSelectScript>();
-        if(Vertices.Length == 0)
+        /*if(Vertices.Length == 0)
         {
             FillEmptyVerts();
-        }
+        }*/
     }
 
     private void FillEmptyVerts()
