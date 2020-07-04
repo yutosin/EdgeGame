@@ -827,7 +827,7 @@ PrefabInstance:
     - target: {fileID: 2461851277314827388, guid: ae0d863c2f1849f49bc50746c6991981,
         type: 3}
       propertyPath: m_Name
-      value: GreenButton
+      value: ExtrudeButton
       objectReference: {fileID: 0}
     - target: {fileID: 2461851277314827389, guid: ae0d863c2f1849f49bc50746c6991981,
         type: 3}
@@ -3203,7 +3203,7 @@ PrefabInstance:
     - target: {fileID: 2614566209249075196, guid: 5eb20b41c2936b643a8f8093f206e118,
         type: 3}
       propertyPath: m_Name
-      value: YellowButton
+      value: XMovingButton
       objectReference: {fileID: 0}
     - target: {fileID: 2614566209249075197, guid: 5eb20b41c2936b643a8f8093f206e118,
         type: 3}
@@ -5670,7 +5670,6 @@ GameObject:
   - component: {fileID: 1101079003}
   - component: {fileID: 1101079002}
   - component: {fileID: 1101079001}
-  - component: {fileID: 1101079005}
   m_Layer: 5
   m_Name: GameCanvas
   m_TagString: Untagged
@@ -5758,23 +5757,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1101079005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101079000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d1a33574382124bac20bab18a28cb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiPanel: {fileID: 0}
-  previousButtonObj: {fileID: 0}
-  nextButtonObj: {fileID: 0}
-  panels: []
-  pagePos: 0
 --- !u!1 &1109124936
 GameObject:
   m_ObjectHideFlags: 0
@@ -6783,25 +6765,29 @@ MonoBehaviour:
   panelObj: {fileID: 691913175}
   xButtonObj: {fileID: 1467454530}
   buttonSpacing: 20
-  buttonList:
-  - thisButtonObj: {fileID: 1620560543}
+  elevator:
+    thisButtonObj: {fileID: 1620560543}
     abilityName: Elevator
     uses: 1
     useThisLevel: 1
-  - thisButtonObj: {fileID: 1678227768}
-    abilityName: Teleport
-    uses: 2
+  extrudeFace:
+    thisButtonObj: {fileID: 154881919}
+    abilityName: Extrude
+    uses: 1
     useThisLevel: 1
-  - thisButtonObj: {fileID: 647233817}
+  xMoving:
+    thisButtonObj: {fileID: 647233817}
     abilityName: XMoving
     uses: 1
     useThisLevel: 1
-  - thisButtonObj: {fileID: 1365482911}
+  zMoving:
+    thisButtonObj: {fileID: 1365482911}
     abilityName: ZMoving
     uses: 1
     useThisLevel: 1
-  - thisButtonObj: {fileID: 154881919}
-    abilityName: Extrude
+  teleport:
+    thisButtonObj: {fileID: 1678227768}
+    abilityName: Teleport
     uses: 1
     useThisLevel: 1
   tpFaces:
@@ -7122,7 +7108,7 @@ PrefabInstance:
     - target: {fileID: 2385756730385554849, guid: 5f2febf9416c4f44d9414e881adb73dd,
         type: 3}
       propertyPath: m_Name
-      value: PurpleButton
+      value: ZMovingButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f2febf9416c4f44d9414e881adb73dd, type: 3}
@@ -8129,7 +8115,7 @@ PrefabInstance:
     - target: {fileID: 819187423129617764, guid: 9af7f6f2478c82d448f23141b3e31fdb,
         type: 3}
       propertyPath: m_Name
-      value: BlueButton
+      value: ElevatorButton
       objectReference: {fileID: 0}
     - target: {fileID: 819187423129617765, guid: 9af7f6f2478c82d448f23141b3e31fdb,
         type: 3}
@@ -8901,7 +8887,7 @@ PrefabInstance:
     - target: {fileID: 7847212549831156972, guid: 9e6b80664b040074ca4343ce3bbbee4a,
         type: 3}
       propertyPath: m_Name
-      value: RedButton
+      value: TeleportButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e6b80664b040074ca4343ce3bbbee4a, type: 3}
