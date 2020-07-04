@@ -59,7 +59,13 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
 
     private void MoveOutByOne()
     {
-        if(cubeChild.transform.parent != null)
+        if (cubeChild == null)
+        {
+            cubeChild = Instantiate(cubePrefab);
+            cScript = cubeChild.GetComponent<ProceduralCube>();
+            cScript.SetInitialPos(AbilityFace.Vertices, AbilityFace._rend.material);
+        }
+        if (cubeChild.transform.parent != null)
         {
             cubeChild.transform.parent = null;
         }
@@ -77,13 +83,6 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
 
     private void ExtrudeFace()
     {
-        if (cubeChild == null)
-        {
-            cubeChild = Instantiate(cubePrefab);
-            cScript = cubeChild.GetComponent<ProceduralCube>();
-            cScript.SetInitialPos(AbilityFace.Vertices, AbilityFace._rend.material);
-        }
-
         float step = 4 * Time.deltaTime;
         AbilityFace.Parent.position =
             Vector3.MoveTowards(AbilityFace.Parent.position, targetPos, step);
