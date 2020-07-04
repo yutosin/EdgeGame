@@ -11271,6 +11271,8 @@ MonoBehaviour:
     type: 3}
   verticesHolder: {fileID: 783559824}
   facesHolder: {fileID: 332189099}
+  facePrefab: {fileID: 7335715969426630298, guid: b037397fc02473a4faa1c42f12d7c19d,
+    type: 3}
   combinedLevel: {fileID: 0}
   cubeRenderers: []
   combineCubes: 0

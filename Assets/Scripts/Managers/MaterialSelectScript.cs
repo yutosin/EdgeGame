@@ -208,11 +208,11 @@ public class MaterialSelectScript : MonoBehaviour
         private bool IsFlatSurface()
         {
             bool isFlat = true;
-            float yValue = face.Vertices[0].y;
+            float yValue = Mathf.Round(face.Vertices[0].y);
             
             for (int i = 1; i < face.Vertices.Length; i++)
             {
-                if (yValue != face.Vertices[i].y)
+                if (yValue != Mathf.Round(face.Vertices[i].y))
                 {
                     isFlat = false;
                     break;
@@ -357,9 +357,9 @@ public class MaterialSelectScript : MonoBehaviour
 
         for (int i = 1; i < face.Vertices.Length; i++)
         {
-            float xGap = Mathf.Abs(xValue - face.Vertices[i].x);
-            float yGap = Mathf.Abs(yValue - face.Vertices[i].y);
-            float zGap = Mathf.Abs(zValue - face.Vertices[i].z);
+            float xGap = Mathf.Round(Mathf.Abs(xValue - face.Vertices[i].x));
+            float yGap = Mathf.Round(Mathf.Abs(yValue - face.Vertices[i].y));
+            float zGap = Mathf.Round(Mathf.Abs(zValue - face.Vertices[i].z));
             if ((xGap > maxDistance) || (yGap > maxDistance) || (zGap > maxDistance))
             {
                 isSquare = false;

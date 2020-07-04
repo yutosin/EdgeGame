@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject verticesHolder;
     [SerializeField] private GameObject facesHolder;
+    public GameObject facePrefab;
     [SerializeField] private GameObject combinedLevel;
     [SerializeField] private MeshRenderer[] cubeRenderers;
     [SerializeField] private bool combineCubes;

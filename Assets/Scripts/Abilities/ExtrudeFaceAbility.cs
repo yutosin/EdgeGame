@@ -99,10 +99,17 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
         {
             cubeChild.transform.SetParent(AbilityFace.transform);
             AbilityFace.Parent.position = targetPos;
+            SpawnFace();
             IsActing = false;
-            AstarPath.active.Scan();
+            StartCoroutine(DelayedScan());
         }
 
+    }
+
+    private IEnumerator DelayedScan()
+    {
+        yield return new WaitForFixedUpdate();
+        AstarPath.active.Scan();
     }
 
     private void Update()
@@ -110,6 +117,16 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
         if (!IsActing)
             return;
         ExtrudeFace();
+    }
+
+    private void SpawnFace()
+    {
+        GameObject newFace = Instantiate(GameManager.SharedInstance.levelManager.facePrefab, cubeChild.transform);
+        MeshRenderer rend = cubeChild.GetComponent<MeshRenderer>();
+        Vector3 pos = rend.bounds.center;
+        pos.y += .5f;
+
+        newFace.transform.position = pos;
     }
 
 }
