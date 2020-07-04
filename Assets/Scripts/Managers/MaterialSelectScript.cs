@@ -229,8 +229,8 @@ public class MaterialSelectScript : MonoBehaviour
     public Button xButtonObj;
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
-    public MaterialButtons elevator, extrudeFace, xMoving, zMoving, teleport;
-    private List<MaterialButtons> buttonList = new List<MaterialButtons>();//Also set in inspector for prefab and in scene if you want different setups for levels
+    public MaterialButtons elevator, extrudeFace, xMoving, zMoving, teleport; //This is set in inspector
+    private List<MaterialButtons> buttonList = new List<MaterialButtons>();
     [HideInInspector]
     public TeleportAbility[] tpFaces = new TeleportAbility[2];
 
