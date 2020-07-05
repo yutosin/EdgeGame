@@ -50,6 +50,7 @@ public class Jsonator : MonoBehaviour
     [Header("UI Elements")]
     public Scrollbar silhouetteSwitch;
     public Scrollbar HSVSwitch;
+    public Scrollbar modeSet;
     public Scrollbar abilityElevator;
     public Scrollbar abilityTeleport;
     public Scrollbar abilityMoveX;
@@ -62,14 +63,19 @@ public class Jsonator : MonoBehaviour
     public RectTransform matTemplate;
     public RectTransform matView;
     public RectTransform BackgroundColorDisplay;
+    public RectTransform cloudColorDisplay;
     public RectTransform SilhouetteColorDisplay;
     public Slider BGColorR;
     public Slider BGColorG;
     public Slider BGColorB;
+    public Slider CloudColorR;
+    public Slider CloudColorG;
+    public Slider CloudColorB;
     public Slider SilhouetteColorR;
     public Slider SilhouetteColorG;
     public Slider SilhouetteColorB;
 
+    private Transform backgroundInstance;
     private Transform cubeXNeg;
     private Transform cubeXPos;
     private Transform cubeYNeg;
@@ -78,11 +84,12 @@ public class Jsonator : MonoBehaviour
     private Transform cubeZPos;
     private Transform startInd;
     private Transform goalInd;
-    private Transform background;
     private bool paintMode;
     private bool selectingStart;
     private bool silhouetteMode;
     private bool HSVMode;
+    private bool checkColor;
+    private float modeCheck;
     private float silhouetteVal;
     private float HSVVal;
     private float abElevVal;
@@ -97,8 +104,8 @@ public class Jsonator : MonoBehaviour
     private Vector3 goalPoint;
     private Vector3 selectCube;
     private Color backgroundColor;
+    private Color cloudColor;
     private Color silhouetteColor;
-    private BackgroundGenerator genRef;
 
     [SerializeField]
     private Cube[] cubeData;
@@ -106,15 +113,13 @@ public class Jsonator : MonoBehaviour
 
     void Start()
     {
-        Transform background = backgroundGenerator;
-        background.position = new Vector3(-100, -150, -100);
-        genRef = background.GetComponent<BackgroundGenerator>();
-        genRef.mode = 1;
-        genRef.direction = 1;
-        Instantiate(background);
+        //General Setup
         selectingStart = false;
         silhouetteMode = false;
         HSVMode = false;
+        checkColor = false;
+        BackgroundBuilder(0);
+
         silhouetteVal = 0;
         HSVVal = 0;
         SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
@@ -135,6 +140,8 @@ public class Jsonator : MonoBehaviour
         }
         selectCube = new Vector3(1, 1, 1);
         camPos = new Vector3(0, 0, 0);
+        modeCheck = 0;
+        modeSet.value = 0;
         abElevVal = 0;
         abilityElevator.value = 0;
         abTeleVal = 0;
@@ -152,6 +159,16 @@ public class Jsonator : MonoBehaviour
         //Externally disable level editor mode via GameManager.
         if (!GameManager.SharedInstance.InLevelEditor) return;
 
+        //Manage background settings
+        int modeParse = (int)ScrollParse(modeCheck, modeSet);
+        if (modeParse != modeCheck)
+        {
+            if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
+            modeCheck = modeParse;
+            BackgroundBuilder(modeCheck);
+            CloudColorer(backgroundInstance, cloudColor);
+        }
+
         //Manage transition between RGB and HSV color modes.
         if (HSVVal != HSVSwitch.value)
         {
@@ -160,37 +177,47 @@ public class Jsonator : MonoBehaviour
             if (HSVMode)
             {
                 RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
+                RGBToHSV(cloudColor, CloudColorR, CloudColorG, CloudColorB);
                 RGBToHSV(silhouetteColor, SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
             }
             else
             {
                 HSVToRGB(BGColorR, BGColorG, BGColorB);
+                HSVToRGB(CloudColorR, CloudColorG, CloudColorB);
                 HSVToRGB(SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
             }
         }
-        if (HSVMode)
+
+        //Apply colors
+        if (checkColor)
         {
-            backgroundColor = Color.HSVToRGB(BGColorR.value, BGColorG.value, BGColorB.value);
-            silhouetteColor = Color.HSVToRGB(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value);
-        }
-        else
-        {
-            backgroundColor = new Color(BGColorR.value, BGColorG.value, BGColorB.value, 1);
-            silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
+            if (HSVMode)
+            {
+                backgroundColor = Color.HSVToRGB(BGColorR.value, BGColorG.value, BGColorB.value);
+                cloudColor = Color.HSVToRGB(CloudColorR.value, CloudColorG.value, CloudColorB.value);
+                silhouetteColor = Color.HSVToRGB(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value);
+            }
+            else
+            {
+                backgroundColor = new Color(BGColorR.value, BGColorG.value, BGColorB.value, 1);
+                cloudColor = new Color(CloudColorR.value, CloudColorG.value, CloudColorB.value, 1);
+                silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
+            }
+            BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
+            cloudColorDisplay.GetComponent<Image>().color = cloudColor;
+            SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
+            mainCamera.backgroundColor = backgroundColor;
+            if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
+            silhouette.color = silhouetteColor;
+            checkColor = false;
         }
 
         //Manage ability settings
-        abElevVal = AbilityCheck(abElevVal, abilityElevator);
-        abTeleVal = AbilityCheck(abTeleVal, abilityTeleport);
-        abMovXVal = AbilityCheck(abMovXVal, abilityMoveX);
-        abMovZVal = AbilityCheck(abMovZVal, abilityMoveZ);
-        abExtrVal = AbilityCheck(abExtrVal, abilityExtrude);
-
-        //Apply colors.
-        BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
-        SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
-        mainCamera.backgroundColor = backgroundColor;
-        silhouette.color = silhouetteColor;
+        abElevVal = ScrollParse(abElevVal, abilityElevator);
+        abTeleVal = ScrollParse(abTeleVal, abilityTeleport);
+        abMovXVal = ScrollParse(abMovXVal, abilityMoveX);
+        abMovZVal = ScrollParse(abMovZVal, abilityMoveZ);
+        abExtrVal = ScrollParse(abExtrVal, abilityExtrude);
 
         //Silhouette mode determination
         if (silhouetteVal != silhouetteSwitch.value)
@@ -386,8 +413,21 @@ public class Jsonator : MonoBehaviour
         }
 
         //Reset colors.
-        SetColor(new Color(0.5f, 0.55f, 0.6f, 1), BGColorR, BGColorG, BGColorB);
-        SetColor(new Color(0, 0, 0, 1), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+        if (HSVMode)
+        {
+            RGBToHSV(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
+            RGBToHSV(new Color(0, 0, 0), CloudColorR, CloudColorG, CloudColorB);
+            RGBToHSV(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+        }
+        else
+        {
+            SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
+            SetColor(new Color(0, 0, 0), CloudColorR, CloudColorG, CloudColorB);
+            SetColor(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+        }
+
+        //Reset background mode.
+        modeSet.value = 0;
 
         //Build a single cube at 1, 1, 1
         Cuber("Top", developerTop.name, "Right", developerRight.name, "Left", developerLeft.name, new Vector3(1, 1, 1));
@@ -425,16 +465,20 @@ public class Jsonator : MonoBehaviour
         }
 
         //Save the data into a json file.
-        Grid gridSave = new Grid();
-        gridSave.cubeData = cubeData;
-        gridSave.vertices = vertices.ToArray();
-        gridSave.backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b);
-        gridSave.silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b);
-        gridSave.abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1));
-        gridSave.abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1));
-        gridSave.abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1));
-        gridSave.abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1));
-        gridSave.abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1));
+        Grid gridSave = new Grid
+        {
+            cubeData = cubeData,
+            vertices = vertices.ToArray(),
+            backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b),
+            cloudColor = new Vector3(cloudColor.r, cloudColor.g, cloudColor.b),
+            silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b),
+            backgroundMode = (int)(modeSet.value * (modeSet.numberOfSteps - 1)),
+            abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1)),
+            abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1)),
+            abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1)),
+            abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1)),
+            abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1))
+        };
         if (startPoint != null && goalPoint != null)
         {
             gridSave.startPoint = startPoint;
@@ -477,8 +521,10 @@ public class Jsonator : MonoBehaviour
         goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
         goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
         goalInd.gameObject.name = "GoalIndicator";
-        backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z, 1);
-        silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z, 1);
+        backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
+        cloudColor = new Color(gridLoad.cloudColor.x, gridLoad.cloudColor.y, gridLoad.cloudColor.z);
+        silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
+        modeSet.value = (float)gridLoad.backgroundMode / (modeSet.numberOfSteps - 1);
         abilityElevator.value = (float)gridLoad.abilityElevator / (abilityElevator.numberOfSteps - 1);
         abilityElevator.GetComponentInChildren<Text>().text = abilityElevator.value.ToString();
         abilityTeleport.value = (float)gridLoad.abilityTeleport / (abilityTeleport.numberOfSteps - 1);
@@ -492,6 +538,7 @@ public class Jsonator : MonoBehaviour
         if (HSVMode)
         {
             RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
+            RGBToHSV(cloudColor, CloudColorR, CloudColorG, CloudColorB);
             RGBToHSV(silhouetteColor, SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
         }
         else
@@ -499,6 +546,9 @@ public class Jsonator : MonoBehaviour
             BGColorR.value = backgroundColor.r;
             BGColorG.value = backgroundColor.g;
             BGColorB.value = backgroundColor.b;
+            CloudColorR.value = cloudColor.r;
+            CloudColorG.value = cloudColor.g;
+            CloudColorB.value = cloudColor.b;
             SilhouetteColorR.value = silhouetteColor.r;
             SilhouetteColorG.value = silhouetteColor.g;
             SilhouetteColorB.value = silhouetteColor.b;
@@ -588,6 +638,11 @@ public class Jsonator : MonoBehaviour
     {
         File.Delete(path + button.transform.parent.name + ".json");
         OnRefreshButton();
+    }
+
+    public void ValueChecker()
+    {
+        checkColor = true;
     }
 
     //Build a cube on the grid.
@@ -902,8 +957,20 @@ public class Jsonator : MonoBehaviour
         b.value = color.b;
     }
 
+    //Color the clouds.
+    void CloudColorer(Transform gen, Color color)
+    {
+        for (int c = 0; c < gen.childCount; c++)
+        {
+            for (int p = 0; p < gen.GetChild(c).childCount; p++)
+            {
+                gen.GetChild(c).GetChild(p).GetComponent<Renderer>().material.color = new Color(color.r, color.g, color.b, 0.2f);
+            }
+        }
+    }
+
     //Checks and applies ability settings.
-    float AbilityCheck(float abilityVal, Scrollbar ability)
+    float ScrollParse(float abilityVal, Scrollbar ability)
     {
         if (abilityVal != ability.value)
         {
@@ -912,6 +979,15 @@ public class Jsonator : MonoBehaviour
             return abMult;
         }
         return abilityVal;
+    }
+
+    //Set up the background.
+    void BackgroundBuilder(float mode)
+    {
+        backgroundInstance = backgroundGenerator;
+        backgroundInstance.position = new Vector3(-100, -150, -100);
+        backgroundInstance.GetComponent<BackgroundGenerator>().mode = (int)mode;
+        backgroundInstance = Instantiate(backgroundInstance);
     }
 }
 
@@ -936,7 +1012,9 @@ public class Grid
     public Vector3 startPoint;
     public Vector3 goalPoint;
     public Vector3 backgroundColor;
+    public Vector3 cloudColor;
     public Vector3 silhouetteColor;
+    public int backgroundMode;
     public int abilityElevator;
     public int abilityTeleport;
     public int abilityMoveX;

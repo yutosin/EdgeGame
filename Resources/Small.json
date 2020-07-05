@@ -123,6 +123,16 @@
     "vertices": [
         {
             "x": 2,
+            "y": 0,
+            "z": 0
+        },
+        {
+            "x": 2,
+            "y": 0,
+            "z": 1
+        },
+        {
+            "x": 2,
             "y": 1,
             "z": 0
         },
@@ -130,6 +140,11 @@
             "x": 2,
             "y": 1,
             "z": 1
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 2
         },
         {
             "x": 0,
@@ -217,9 +232,20 @@
         "y": 0.0,
         "z": 0.0
     },
+    "cloudColor": {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0
+    },
     "silhouetteColor": {
         "x": 1.0,
         "y": 0.0,
         "z": 0.0
-    }
+    },
+    "backgroundMode": 2,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

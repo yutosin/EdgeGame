@@ -13,7 +13,6 @@ public class BackgroundGenerator : MonoBehaviour
     public Vector3 cloudMin;
     public Vector3 cloudMax;
     public float speed;
-    public int direction;
 
     private Transform subject;
     private int lockMode;
@@ -23,8 +22,21 @@ public class BackgroundGenerator : MonoBehaviour
     {
         lockMode = mode;
         time = 0;
-        if (lockMode == 1)
+        if (lockMode == 0)
         {
+            Destroy(gameObject);
+        }
+        else if (lockMode == 1)
+        {
+            name = "Background_CloudsX";
+            for (int c = 0; c < 40; c++)
+            {
+                Cloudmaker(cube, transform.position + new Vector3(Random.Range(-40, 40), 0, Random.Range(-40, 60)));
+            }
+        }
+        else if (lockMode == 2)
+        {
+            name = "Background_CloudsY";
             for (int c = 0; c < 40; c++)
             {
                 Cloudmaker(cube, transform.position + new Vector3(Random.Range(-40, 40), 0, Random.Range(-40, 60)));
@@ -35,17 +47,34 @@ public class BackgroundGenerator : MonoBehaviour
     void FixedUpdate()
     {
         time += Time.fixedDeltaTime;
-        if (lockMode == 1)
+        if (lockMode == 0)
+        {
+        }
+        else if (lockMode == 1)
         {
             for (int c = 0; c < transform.childCount; c++)
             {
                 subject = transform.GetChild(c);
-                subject.position -= new Vector3((direction == 0) ? speed * 0.1f / subject.childCount: 0, 0, (direction == 1) ? speed * 0.1f / subject.childCount: 0);
+                subject.position -= new Vector3(speed * 0.1f / subject.childCount, 0, 0);
                 if (subject.transform.position.x < transform.position.x - 40 || subject.transform.position.z < transform.position.z - 40) Destroy(subject.gameObject);
             }
             if (time >= 3)
             {
-                Cloudmaker(cube, transform.position + new Vector3((direction == 1) ? Random.Range(-40, 60) : 60, 0, (direction == 0) ? Random.Range(-40, 60) : 60));
+                Cloudmaker(cube, transform.position + new Vector3(60, 0, Random.Range(-40, 60)));
+                time = 0;
+            }
+        }
+        else if (lockMode == 2)
+        {
+            for (int c = 0; c < transform.childCount; c++)
+            {
+                subject = transform.GetChild(c);
+                subject.position -= new Vector3(0, 0, speed * 0.1f / subject.childCount);
+                if (subject.transform.position.x < transform.position.x - 40 || subject.transform.position.z < transform.position.z - 40) Destroy(subject.gameObject);
+            }
+            if (time >= 3)
+            {
+                Cloudmaker(cube, transform.position + new Vector3(Random.Range(-40, 60), 0, 60));
                 time = 0;
             }
         }
@@ -63,6 +92,7 @@ public class BackgroundGenerator : MonoBehaviour
             piece.localScale = new Vector3(Random.Range(cloudMin.x, cloudMax.x), Random.Range(cloudMin.y, cloudMax.y), Random.Range(cloudMin.z, cloudMax.z));
             piece.localPosition = new Vector3(Random.Range(cloudMin.x, cloudMax.x), Random.Range(cloudMin.y, cloudMax.y), Random.Range(cloudMin.z, cloudMax.z));
             piece.GetComponent<Renderer>().material.color = new Color(0.8f, 0.8f, 0.8f, 0.4f);
+            piece.GetComponent<Renderer>().material.shader = Shader.Find("Unlit/Transparent Colored");
         }
     }
 }
