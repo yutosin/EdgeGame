@@ -3133,6 +3133,7 @@ MonoBehaviour:
   Parent: {fileID: 0}
   Vertices: []
   FaceId: 0
+  Tiles: []
 --- !u!64 &838939944
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4728,6 +4729,8 @@ MonoBehaviour:
   edgeManager: {fileID: 0}
   playerAgent: {fileID: 1444456280}
   matSelect: {fileID: 1284671207}
+  uiManager: {fileID: 1284671206}
+  LevelLoader: {fileID: 1485480330}
   PlayMode: 0
   InLevelEditor: 0
 --- !u!1 &1291576401
@@ -5062,12 +5065,12 @@ MonoBehaviour:
   playerModel: {fileID: 0}
   path: ./Assets/Resources/
   silhouetteSwitch: {fileID: 0}
-  saveName: {fileID: 443849523}
-  fileContent: {fileID: 1291576402}
-  fileTemplate: {fileID: 260313291}
-  matContent: {fileID: 1922625004}
-  matTemplate: {fileID: 1785875912}
-  matView: {fileID: 304534670}
+  saveName: {fileID: 0}
+  fileContent: {fileID: 0}
+  fileTemplate: {fileID: 0}
+  matContent: {fileID: 0}
+  matTemplate: {fileID: 0}
+  matView: {fileID: 0}
   cubeData: []
 --- !u!4 &1485480331
 Transform:
@@ -7478,6 +7481,7 @@ MonoBehaviour:
   Parent: {fileID: 0}
   Vertices: []
   FaceId: 0
+  Tiles: []
 --- !u!1 &2098383335
 GameObject:
   m_ObjectHideFlags: 0
@@ -7795,7 +7799,6 @@ MonoBehaviour:
   _meshSurface: {fileID: 0}
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
-  _levelLoader: {fileID: 1485480330}
   _levelNames:
   - Level_1
   - Level_2

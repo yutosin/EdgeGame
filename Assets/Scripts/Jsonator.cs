@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -63,6 +64,8 @@ public class Jsonator : MonoBehaviour
         silhouetteMode = false;
         silhouetteVal = 0;
         negDim = "X";
+        if (!GameManager.SharedInstance.InLevelEditor)
+            return;
         OnRefreshButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
@@ -138,7 +141,7 @@ public class Jsonator : MonoBehaviour
         {
             RaycastHit hitRay;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitRay))
+            if (Physics.Raycast(ray, out hitRay, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
             {
                 Vector3 rayPos = hitRay.transform.parent.gameObject.transform.position;
                 if (hitRay.collider != null)
@@ -269,14 +272,20 @@ public class Jsonator : MonoBehaviour
         //Create the gameobject.
         GameObject tile = new GameObject();
         tile.transform.SetParent(par);
+        tile.layer = LayerMask.NameToLayer("Tile");
         tile.AddComponent<MeshFilter>();
         MeshFilter tileF = tile.GetComponent<MeshFilter>();
         tile.AddComponent<MeshRenderer>();
         MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
         tile.AddComponent<BoxCollider>();
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
+        tileC.isTrigger = true;
         if (!GameManager.SharedInstance.InLevelEditor)
-            tileC.enabled = false;
+        {
+            TileComponent tc = tile.AddComponent<TileComponent>();
+            tc.orientation = dim;
+            tc.matName = mat;
+        }
 
         //Define and populate the variables and vectors.
         Material loadMat = null;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -34,10 +35,10 @@ public class LevelManager : MonoBehaviour
     private int _nextPtID;
     private int _nextFaceId;
 
-    [SerializeField]private Jsonator _levelLoader;
-
     [SerializeField] private string[] _levelNames;
     private int currentLevel = 0;
+    private Grid _loadedLevel;
+    private int _tileLayerMask;
 
     // [SerializeField]private int[] _initTPLocs;
     // [SerializeField]private Dictionary<int, EdgeVertex> _initTPs;
@@ -84,7 +85,8 @@ public class LevelManager : MonoBehaviour
         // GenerateEdge(_initTPs[67], _initTPs[69]);
         // GenerateEdge(_initTPs[68], _initTPs[65]);
         // GenerateEdge(_initTPs[69], _initTPs[68]);
-
+        int tileLayer = LayerMask.NameToLayer("Tile");
+        _tileLayerMask = 1 << tileLayer;
     }
 
     // private void AddCubeVerticesToList(MeshRenderer renderer)
@@ -420,13 +422,13 @@ public class LevelManager : MonoBehaviour
         Face face = newQuad.AddComponent<Face>();
         face.Vertices = quadVertices;
         face.FaceId = _nextFaceId;
+        face.Tiles = new List<TileComponent>();
         newQuad.name = "Face " + _nextFaceId;
         newQuad.layer = LayerMask.NameToLayer("LevelGeometry");
         _nextFaceId++;
         
         gameObject.transform.parent = gameObject.transform;
         MeshRenderer meshRenderer = newQuad.AddComponent<MeshRenderer>();
-        // meshRenderer.sharedMaterial = WallMat1;
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/ColorZAlways"));
         meshRenderer.sharedMaterial.color = Color.gray;
 
@@ -467,6 +469,29 @@ public class LevelManager : MonoBehaviour
         meshFilter.mesh = mesh;
         
         BoxCollider collider = newQuad.AddComponent<BoxCollider>();
+        Vector3 overlapSize = new Vector3(
+            (collider.size.x == 0) ? .5f : collider.size.x,
+            (collider.size.y == 0) ? .5f : collider.size.y,
+            (collider.size.z == 0) ? .5f : collider.size.z
+            );
+        Collider[] hitColliders = Physics.OverlapBox(collider.center, overlapSize / 2.5f, 
+            Quaternion.identity, _tileLayerMask, QueryTriggerInteraction.Collide);
+        meshRenderer.enabled = false;
+        int i = 0;
+        //Check when there is a new collider coming into contact with the box
+        while (i < hitColliders.Length)
+        {
+            //Output all of the collider names
+            Debug.Log("Hit : " + hitColliders[i].name + i);
+            //Increase the number of Colliders in the array
+            GameObject tile = hitColliders[i].gameObject;
+            TileComponent tc = tile.GetComponent<TileComponent>();
+            BoxCollider tileCollider = tile.GetComponent<BoxCollider>();
+            //tileCollider.enabled = false;
+            tc.RevealTile();
+            face.Tiles.Add(tc);
+            i++;
+        }
     }
 
     public void NextLevel()
@@ -512,11 +537,11 @@ public class LevelManager : MonoBehaviour
             _zGraphs.Clear();
         }
 
-        Grid loadedLevel = _levelLoader.LoadLevel(_levelNames[currentLevel], true);
+        _loadedLevel = GameManager.SharedInstance.LevelLoader.LoadLevel(_levelNames[currentLevel], true);
 
-        if (loadedLevel.vertices == null)
+        if (_loadedLevel.vertices == null)
             return;
-        foreach (var vertex in loadedLevel.vertices)
+        foreach (var vertex in _loadedLevel.vertices)
         {
             GenerateSelectableVertex(vertex);
         }
@@ -525,10 +550,10 @@ public class LevelManager : MonoBehaviour
         
         GameManager.SharedInstance.uiManager.SwitchToDrawMode();
 
-        GameManager.SharedInstance.playerAgent.transform.position = loadedLevel.startPoint;
-        GameManager.SharedInstance.playerAgent.goalPoint = loadedLevel.goalPoint;
-        fakeStartFace.transform.position = loadedLevel.startPoint;
-        fakeGoalFace.transform.position = loadedLevel.goalPoint;
+        GameManager.SharedInstance.playerAgent.transform.position = _loadedLevel.startPoint;
+        GameManager.SharedInstance.playerAgent.goalPoint = _loadedLevel.goalPoint;
+        fakeStartFace.transform.position = _loadedLevel.startPoint;
+        fakeGoalFace.transform.position = _loadedLevel.goalPoint;
 
         StartCoroutine(DelayedScan());
         //AstarPath.active.Scan();
@@ -538,6 +563,11 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
         AstarPath.active.Scan();
+        foreach (var cube in _loadedLevel.cubeData)
+        {
+            var nearestGoal = GameManager.SharedInstance.levelGraph.GetNearest(cube.position, NNConstraint.Default);
+            var nearestNodePosTarget = (Vector3)nearestGoal.node.position;
+        }
     }
 
     // private void CombineCubesInLevel()

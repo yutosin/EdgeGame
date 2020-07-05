@@ -5,6 +5,8 @@
 ///     Also I made your default and selected mat public and not static, forgive me brother
 /////////////////////////
 
+//TODO: tile doesn't move with face currently, need to get that working (child tile to face?)
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +30,7 @@ public class Face : MonoBehaviour
     public Transform Parent;
     public Vector3[] Vertices;
     public int FaceId;
+    public List<TileComponent> Tiles;
 
     private MaterialSelectScript _mScript;
 
@@ -35,12 +38,17 @@ public class Face : MonoBehaviour
     void Start()
     {
         path = new NavMeshPath();
-        _rend = GetComponent<Renderer>();
+        if (Tiles.Count > 0)
+            _rend = Tiles[0].GetComponent<Renderer>();
+        else
+            _rend = GetComponent<Renderer>(); 
         Parent = gameObject.transform.parent;
 
-        _defaultMat = new Material(Shader.Find("Unlit/ColorZAlways"));
-        _defaultMat.color = Color.gray;
-        _defaultMat.renderQueue = 2001;
+        // _defaultMat = new Material(Shader.Find("Unlit/ColorZAlways"));
+        // _defaultMat.color = Color.gray;
+        // _defaultMat.renderQueue = 2001;
+
+        _defaultMat = _rend.material;
 
         _selectedMat = new Material(Shader.Find("Unlit/ColorZAlways"));
         Color selectColor = new Color();
@@ -101,6 +109,11 @@ public class Face : MonoBehaviour
             _selectedFace = face;
             _mScript.SelectedFace = _selectedFace;
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.collider.name);
     }
 
     private void OnMouseDown()
