@@ -77,10 +77,4 @@ public class UIScript : MonoBehaviour
     {
         GameManager.SharedInstance.levelManager.LoadLevel();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
