@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
+    public GameObject allUI;
     public GameObject InstructionsPanel;
     public GameObject FaceAbilitiesPanel;
     public GameObject FeedbackPanel;
@@ -55,7 +56,7 @@ public class UIScript : MonoBehaviour
         if (InstructionsPanel && InstructionsPanel.activeInHierarchy)
             InstructionsPanel.SetActive(false);
         if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
-            InstructionsPanel.SetActive(false);
+            FaceAbilitiesPanel.SetActive(false);
     }
 
     public void SwitchToPlayMode()
@@ -73,9 +74,8 @@ public class UIScript : MonoBehaviour
         GamePlayModeButton.interactable = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReloadLevel()
     {
-        
+        GameManager.SharedInstance.levelManager.LoadLevel();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -124,6 +125,8 @@ public class Jsonator : MonoBehaviour
         HSVVal = 0;
         SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
         SetColor(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
+        if (!GameManager.SharedInstance.InLevelEditor)
+            return;
         OnRefreshButton();
         OnNewButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
@@ -670,7 +673,13 @@ public class Jsonator : MonoBehaviour
         MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
         tile.AddComponent<BoxCollider>();
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
-        if (!GameManager.SharedInstance.InLevelEditor) tileC.enabled = false;
+        if (!GameManager.SharedInstance.InLevelEditor)
+        {
+            tileC.isTrigger = true;
+            TileComponent tc = tile.AddComponent<TileComponent>();
+            tc.orientation = dim;
+            tc.matName = mat;
+        }
 
         //Define and populate the variables and vectors.
         Material loadMat = null;
