@@ -1,11 +1,4 @@
-﻿/////////////////////////
-///Note to Nas from Alec
-///     I have commented out materials assigining steps in onmouse down, moved that functionality to Material select script
-///     I would have commented most out the sections where materials settings are set under the Start Function as that was also moved there
-///     Also I made your default and selected mat public and not static, forgive me brother
-/////////////////////////
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +51,21 @@ public class Face : MonoBehaviour
         _selectedMat.renderQueue = 2005;
 
         _mScript = GameObject.Find("GameManager").GetComponent<MaterialSelectScript>();
+        /*if(Vertices.Length == 0)
+        {
+            FillEmptyVerts();
+        }*/
+    }
+
+    private void FillEmptyVerts()
+    {
+        MeshFilter meshRend = GetComponent<MeshFilter>();
+
+        Vertices = meshRend.mesh.vertices;
+        for (int i = 0; i < Vertices.Length; i++)
+        {
+            Vertices[i] = transform.TransformPoint(Vertices[i]);
+        }
     }
 
     // Update is called once per frame

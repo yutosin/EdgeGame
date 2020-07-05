@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Camera MainCamera;
     public LevelManager levelManager;
     public EdgeManager edgeManager;
+    public UIScript uiManager;
     public DirectedAgent playerAgent;
     public GridGraph levelGraph;
     public MaterialSelectScript matSelect;

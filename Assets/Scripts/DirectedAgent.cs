@@ -28,7 +28,7 @@ public class DirectedAgent : MonoBehaviour
     }
 
     public void OnPathComplete (Path p) {
-        Debug.Log("Yay, we got a path back. Did it have an error? " + p.error);
+        //Debug.Log("Yay, we got a path back. Did it have an error? " + p.error);
         if (p.error)
         {
             Debug.Log(p.errorLog);

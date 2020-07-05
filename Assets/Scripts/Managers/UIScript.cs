@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
+    public GameObject allUI;
     public GameObject InstructionsPanel;
     public GameObject FaceAbilitiesPanel;
     public GameObject FeedbackPanel;
