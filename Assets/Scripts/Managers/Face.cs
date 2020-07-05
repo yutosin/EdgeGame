@@ -5,8 +5,6 @@
 ///     Also I made your default and selected mat public and not static, forgive me brother
 /////////////////////////
 
-//TODO: tile doesn't move with face currently, need to get that working (child tile to face?)
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +41,8 @@ public class Face : MonoBehaviour
         else
             _rend = GetComponent<Renderer>(); 
         Parent = gameObject.transform.parent;
-
+        
+        //Leaving this around just in case...
         // _defaultMat = new Material(Shader.Find("Unlit/ColorZAlways"));
         // _defaultMat.color = Color.gray;
         // _defaultMat.renderQueue = 2001;
@@ -109,11 +108,6 @@ public class Face : MonoBehaviour
             _selectedFace = face;
             _mScript.SelectedFace = _selectedFace;
         }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other.collider.name);
     }
 
     private void OnMouseDown()

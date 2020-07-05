@@ -141,7 +141,7 @@ public class Jsonator : MonoBehaviour
         {
             RaycastHit hitRay;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitRay, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
+            if (Physics.Raycast(ray, out hitRay))
             {
                 Vector3 rayPos = hitRay.transform.parent.gameObject.transform.position;
                 if (hitRay.collider != null)
@@ -279,9 +279,10 @@ public class Jsonator : MonoBehaviour
         MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
         tile.AddComponent<BoxCollider>();
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
-        tileC.isTrigger = true;
+        // tileC.isTrigger = true;
         if (!GameManager.SharedInstance.InLevelEditor)
         {
+            tileC.isTrigger = true;
             TileComponent tc = tile.AddComponent<TileComponent>();
             tc.orientation = dim;
             tc.matName = mat;

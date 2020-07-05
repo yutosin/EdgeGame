@@ -478,16 +478,10 @@ public class LevelManager : MonoBehaviour
             Quaternion.identity, _tileLayerMask, QueryTriggerInteraction.Collide);
         meshRenderer.enabled = false;
         int i = 0;
-        //Check when there is a new collider coming into contact with the box
         while (i < hitColliders.Length)
         {
-            //Output all of the collider names
-            Debug.Log("Hit : " + hitColliders[i].name + i);
-            //Increase the number of Colliders in the array
             GameObject tile = hitColliders[i].gameObject;
             TileComponent tc = tile.GetComponent<TileComponent>();
-            BoxCollider tileCollider = tile.GetComponent<BoxCollider>();
-            //tileCollider.enabled = false;
             tc.RevealTile();
             face.Tiles.Add(tc);
             i++;
@@ -556,69 +550,11 @@ public class LevelManager : MonoBehaviour
         fakeGoalFace.transform.position = _loadedLevel.goalPoint;
 
         StartCoroutine(DelayedScan());
-        //AstarPath.active.Scan();
     }
 
     IEnumerator DelayedScan()
     {
         yield return new WaitForFixedUpdate();
         AstarPath.active.Scan();
-        foreach (var cube in _loadedLevel.cubeData)
-        {
-            var nearestGoal = GameManager.SharedInstance.levelGraph.GetNearest(cube.position, NNConstraint.Default);
-            var nearestNodePosTarget = (Vector3)nearestGoal.node.position;
-        }
     }
-
-    // private void CombineCubesInLevel()
-    // {
-    //     GameObject cubeHolder = new GameObject();
-    //     cubeHolder.name = "LevelCombinedMesh";
-    //     cubeHolder.transform.position = Vector3.zero;
-    //     MeshFilter levelMeshFileter = cubeHolder.transform.gameObject.AddComponent<MeshFilter>();
-    //     MeshRenderer meshRenderer = cubeHolder.AddComponent<MeshRenderer>();
-    //     meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
-    //     meshRenderer.sharedMaterial.color = Color.black;
-    //     
-    //     List<CombineInstance> combines = new List<CombineInstance>(_cubeObjects.Count);
-    //     
-    //     foreach (var cube in _cubeObjects)
-    //     {
-    //         MeshFilter[] meshFilters = cube.GetComponents<MeshFilter>();
-    //
-    //         int i = 0;
-    //         while (i < meshFilters.Length)
-    //         {
-    //             CombineInstance cubeCombine = new CombineInstance();
-    //             cubeCombine.mesh = meshFilters[i].sharedMesh;
-    //             cubeCombine.transform = meshFilters[i].transform.localToWorldMatrix;
-    //             Destroy(meshFilters[i].gameObject);
-    //             combines.Add(cubeCombine);
-    //             i++;
-    //         }
-    //     }
-    //     
-    //     levelMeshFileter.mesh = new Mesh();
-    //     levelMeshFileter.mesh.CombineMeshes(combines.ToArray(), true,true);
-    //     levelMeshFileter.mesh.RecalculateBounds();
-    //     levelMeshFileter.mesh.RecalculateNormals();
-    //     levelMeshFileter.mesh.Optimize();
-    //     cubeHolder.SetActive(true);
-    //
-    //     MeshCollider cubeColl = cubeHolder.AddComponent<MeshCollider>();
-    //     cubeColl.sharedMesh = levelMeshFileter.mesh;
-    //
-    //     // NavMeshSurface surface = cubeHolder.AddComponent<NavMeshSurface>();
-    //     // surface.BuildNavMesh();
-    //     //
-    //     // combinedLevel = cubeHolder;
-    //     // cubeColl.convex = true;
-    //     // cubeColl.isTrigger = true;
-    // }
-    // private string GenerateEdgeID(string pt1ID, string pt2ID)
-    // {
-    //     int idCompare = string.Compare(pt1ID, pt2ID);
-    //     string edgeID = (idCompare < 0) ? pt1ID + pt2ID : pt2ID + pt1ID;
-    //     return edgeID;
-    // }
 }
