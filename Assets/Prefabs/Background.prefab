@@ -46,8 +46,9 @@ MonoBehaviour:
   mode: 1
   cube: {fileID: 6984385890063189296, guid: f38596ab9e6a8d94d8700db4f50c9c56, type: 3}
   cubeMat: {fileID: 2100000, guid: fbb086bce83c7514182379a07ce2c354, type: 2}
-  cubeCol: {r: 1, g: 1, b: 1, a: 0.6392157}
+  warpStars: {fileID: 3479277578397033603, guid: 4ff4a99ca8599134f8d2e576935a8995,
+    type: 3}
   cloudMin: {x: 0.5, y: 0.5, z: 0.5}
   cloudMax: {x: 5, y: 1, z: 5}
+  cloudColor: {r: 0, g: 0, b: 0, a: 0}
   speed: 1
-  direction: 1

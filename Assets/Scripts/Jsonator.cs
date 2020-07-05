@@ -113,45 +113,53 @@ public class Jsonator : MonoBehaviour
 
     void Start()
     {
-        //General Setup
+        //General setup.
         selectingStart = false;
         silhouetteMode = false;
         HSVMode = false;
         checkColor = false;
         BackgroundBuilder(0);
-
         silhouetteVal = 0;
         HSVVal = 0;
+
+        //Set sliders.
+        modeSet.value = 0;
+        abilityElevator.value = 0;
+        abilityTeleport.value = 0;
+        abilityMoveX.value = 0;
+        abilityMoveZ.value = 0;
+        abilityExtrude.value = 0;
         SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
+        SetColor(new Color(0, 0, 0), CloudColorR, CloudColorG, CloudColorB);
         SetColor(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
-        OnRefreshButton();
-        OnNewButton();
+
+        //Set up Materials array.
         RectTransform[] matButton = new RectTransform[materials.Length];
         matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
         displayMaterials = new Material[materials.Length];
         for (int m = 0; m < matButton.Length; m++)
         {
             displayMaterials[m] = new Material(materials[m]);
-            displayMaterials[m].shader = Shader.Find("UI/Unlit/Detail");
+            displayMaterials[m].shader = Shader.Find("Standard");
             matButton[m] = Instantiate(matTemplate, matContent);
             matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 110 + 60, 0);
-            matButton[m].GetComponent<Image>().material = displayMaterials[m];
+            matButton[m].GetChild(0).GetComponent<Renderer>().material = displayMaterials[m];
             matButton[m].name = m.ToString();
         }
+
+        //Populate start settings.
         selectCube = new Vector3(1, 1, 1);
         camPos = new Vector3(0, 0, 0);
         modeCheck = 0;
-        modeSet.value = 0;
         abElevVal = 0;
-        abilityElevator.value = 0;
         abTeleVal = 0;
-        abilityTeleport.value = 0;
         abMovXVal = 0;
-        abilityMoveX.value = 0;
         abMovZVal = 0;
-        abilityMoveZ.value = 0;
         abExtrVal = 0;
-        abilityExtrude.value = 0;
+
+        //Initiate.
+        OnRefreshButton();
+        OnNewButton();
     }
 
     void Update()
@@ -208,6 +216,7 @@ public class Jsonator : MonoBehaviour
             SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
             mainCamera.backgroundColor = backgroundColor;
             if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
+            if (backgroundInstance != null) backgroundInstance.GetComponent<BackgroundGenerator>().cloudColor = cloudColor;
             silhouette.color = silhouetteColor;
             checkColor = false;
         }
@@ -986,8 +995,10 @@ public class Jsonator : MonoBehaviour
     {
         backgroundInstance = backgroundGenerator;
         backgroundInstance.position = new Vector3(-100, -150, -100);
+        backgroundInstance.GetComponent<BackgroundGenerator>().cloudColor = cloudColor;
         backgroundInstance.GetComponent<BackgroundGenerator>().mode = (int)mode;
-        backgroundInstance = Instantiate(backgroundInstance);
+        if (mode == 3) backgroundInstance = Instantiate(backgroundInstance, mainCamera.transform);
+        else backgroundInstance = Instantiate(backgroundInstance);
     }
 }
 
