@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c54f4c3fe7d5d01419680a8ef4ddf1ec
+guid: b5c05ade24a89c04aab1dc0d4eade86c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -10,7 +10,7 @@ ModelImporter:
       74: -8312538846858333772
     second: T-Pose
   - first:
-      74: 4332986026630998209
+      74: -998496362607748373
     second: Play Idle
   - first:
       74: 7712529399265868831
@@ -22,7 +22,13 @@ ModelImporter:
       74: 3146438666066388550
     second: Walk Stop
   - first:
-      74: 1972024890343284174
+      74: -5899650854701679063
+    second: Climb
+  - first:
+      74: 5917537482288442099
+    second: Fall
+  - first:
+      74: 3060872287085348379
     second: Draw Transition
   - first:
       74: 6060125604054779216
@@ -72,7 +78,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 393
+      lastFrame: 500
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -242,11 +248,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Draw Transition
+      name: Climb
       takeName: Take 001
       internalID: 0
       firstFrame: 117
-      lastFrame: 194
+      lastFrame: 155
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fall
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 156
+      lastFrame: 212
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Draw Transition
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 213
+      lastFrame: 290
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -274,15 +338,15 @@ ModelImporter:
       name: Draw Idle
       takeName: Take 001
       internalID: 0
-      firstFrame: 195
-      lastFrame: 234
+      firstFrame: 291
+      lastFrame: 332
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -303,8 +367,8 @@ ModelImporter:
       name: Write Windup
       takeName: Take 001
       internalID: 0
-      firstFrame: 235
-      lastFrame: 256
+      firstFrame: 333
+      lastFrame: 354
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -332,15 +396,15 @@ ModelImporter:
       name: Write Hold
       takeName: Take 001
       internalID: 0
-      firstFrame: 257
-      lastFrame: 274
+      firstFrame: 355
+      lastFrame: 372
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -361,8 +425,8 @@ ModelImporter:
       name: Write Swing
       takeName: Take 001
       internalID: 0
-      firstFrame: 275
-      lastFrame: 317
+      firstFrame: 373
+      lastFrame: 415
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -390,8 +454,8 @@ ModelImporter:
       name: Play Transition
       takeName: Take 001
       internalID: 0
-      firstFrame: 318
-      lastFrame: 393
+      firstFrame: 416
+      lastFrame: 491
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
