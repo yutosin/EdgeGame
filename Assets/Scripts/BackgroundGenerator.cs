@@ -8,13 +8,16 @@ public class BackgroundGenerator : MonoBehaviour
     public int mode;
     public Transform cube;
     public Material cubeMat;
+    public GameObject warpStars;
 
     [Header("Set Cloudmode Parameters")]
     public Vector3 cloudMin;
     public Vector3 cloudMax;
+    public Color cloudColor;
     public float speed;
 
     private Transform subject;
+    private GameObject warpStarsInst;
     private int lockMode;
     private float time;
 
@@ -41,6 +44,13 @@ public class BackgroundGenerator : MonoBehaviour
             {
                 Cloudmaker(cube, transform.position + new Vector3(Random.Range(-40, 40), 0, Random.Range(-40, 60)));
             }
+        }
+        else if (lockMode == 3)
+        {
+            name = "Background_Warp";
+            warpStarsInst = Instantiate(warpStars, transform);
+            warpStarsInst.transform.position = new Vector3(0, -40, 0);
+            warpStarsInst.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.color = new Color(cloudColor.r, cloudColor.g, cloudColor.b, 1);
         }
     }
 
@@ -78,6 +88,10 @@ public class BackgroundGenerator : MonoBehaviour
                 time = 0;
             }
         }
+        else if (lockMode == 3)
+        {
+            warpStarsInst.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.color = new Color(cloudColor.r, cloudColor.g, cloudColor.b, 1);
+        }
     }
 
     void Cloudmaker(Transform sourceCube, Vector3 start)
@@ -91,7 +105,7 @@ public class BackgroundGenerator : MonoBehaviour
             Transform piece = Instantiate(sourceCube, cloud.transform);
             piece.localScale = new Vector3(Random.Range(cloudMin.x, cloudMax.x), Random.Range(cloudMin.y, cloudMax.y), Random.Range(cloudMin.z, cloudMax.z));
             piece.localPosition = new Vector3(Random.Range(cloudMin.x, cloudMax.x), Random.Range(cloudMin.y, cloudMax.y), Random.Range(cloudMin.z, cloudMax.z));
-            piece.GetComponent<Renderer>().material.color = new Color(0.8f, 0.8f, 0.8f, 0.4f);
+            piece.GetComponent<Renderer>().material.color = new Color(cloudColor.r, cloudColor.g, cloudColor.b, 0.2f);
             piece.GetComponent<Renderer>().material.shader = Shader.Find("Unlit/Transparent Colored");
         }
     }
