@@ -90,6 +90,7 @@ public class Jsonator : MonoBehaviour
     private bool silhouetteMode;
     private bool HSVMode;
     private bool checkColor;
+    private bool checkBackground;
     private float modeCheck;
     private float silhouetteVal;
     private float HSVVal;
@@ -171,6 +172,15 @@ public class Jsonator : MonoBehaviour
         if (!GameManager.SharedInstance.InLevelEditor) return;
 
         //Manage background settings
+        if (checkBackground)
+        {
+            if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
+            modeCheck = (int)ScrollParse(modeCheck, modeSet);
+            BackgroundBuilder(modeCheck);
+            if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
+            checkBackground = false;
+        }
+
         int modeParse = (int)ScrollParse(modeCheck, modeSet);
         if (modeParse != modeCheck)
         {
@@ -441,6 +451,10 @@ public class Jsonator : MonoBehaviour
         //Reset background mode.
         modeSet.value = 0;
 
+        //Place the camera.
+        mainCamera.transform.position = new Vector3(15, 25, 15);
+        mainCamera.orthographicSize = 8;
+
         //Build a single cube at 1, 1, 1
         Cuber("Top", developerTop.name, "Right", developerRight.name, "Left", developerLeft.name, new Vector3(1, 1, 1));
     }
@@ -465,8 +479,7 @@ public class Jsonator : MonoBehaviour
                 string cuberString;
                 if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left") cuberString = saveParse;
                 else cuberString = "";
-                Tile inTile = new Tile();
-                inTile.d = cuberString;
+                Tile inTile = new Tile { d = cuberString };
                 if (cube.GetChild(c).name.Contains("Tile")) inTile.m = cube.GetChild(c).name.Split('_')[2];
                 tileData[c] = inTile;
             }
@@ -484,6 +497,7 @@ public class Jsonator : MonoBehaviour
             backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b),
             cloudColor = new Vector3(cloudColor.r, cloudColor.g, cloudColor.b),
             silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b),
+            cameraPosition = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.z, mainCamera.orthographicSize),
             backgroundMode = (int)(modeSet.value * (modeSet.numberOfSteps - 1)),
             abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1)),
             abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1)),
@@ -496,7 +510,7 @@ public class Jsonator : MonoBehaviour
             gridSave.startPoint = startPoint;
             gridSave.goalPoint = goalPoint;
             string stringSave = JsonUtility.ToJson(gridSave, true);
-            File.WriteAllText(path + saveName.text + ".json", stringSave);
+            File.WriteAllText(path + "USER" + saveName.text + ".json", stringSave);
         }
         else
         {
@@ -519,7 +533,7 @@ public class Jsonator : MonoBehaviour
         selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
+        string stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
         startInd = Instantiate(startModel);
@@ -565,6 +579,12 @@ public class Jsonator : MonoBehaviour
             SilhouetteColorG.value = silhouetteColor.g;
             SilhouetteColorB.value = silhouetteColor.b;
         }
+
+        //Place the camera.
+        mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 25, gridLoad.cameraPosition.y);
+        mainCamera.orthographicSize = gridLoad.cameraPosition.z;
+
+        //Build the new level.
         saveName.text = button.transform.parent.name;
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
@@ -592,7 +612,6 @@ public class Jsonator : MonoBehaviour
                     toMatter[2] = loadCube.tileData[c].m;
                 }
             }
-            //Build the new level.
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
     }
@@ -607,16 +626,25 @@ public class Jsonator : MonoBehaviour
 
         //Build new buttons.
         RectTransform[] fileButton = new RectTransform[Directory.GetFiles(path).Length];
-        fileContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, fileTemplate.GetComponent<RectTransform>().rect.height * fileButton.Length + (fileButton.Length * 10) + 10);
+        int fileCount = 0;
         for (int r = 0; r < fileButton.Length; r++)
         {
-            fileButton[r] = Instantiate(fileTemplate, fileContent);
-            fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -r * 50 - 30);
             string[] fileParse = Directory.GetFiles(path)[r].Split('/', '\\');
-            string file = fileParse[fileParse.Length - 1].Replace(".json", "");
-            fileButton[r].name = file;
-            fileButton[r].GetComponentInChildren<Text>().text = file;
+            if (!fileParse[fileParse.Length - 1].Contains(".meta"))
+            {
+                string file = fileParse[fileParse.Length - 1].Replace(".json", "");
+                if (file.Substring(0, 4) == "USER")
+                {
+                    file = file.Remove(0, 4);
+                    fileButton[r] = Instantiate(fileTemplate, fileContent);
+                    fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
+                    fileButton[r].name = file;
+                    fileButton[r].GetComponentInChildren<Text>().text = file;
+                    fileCount++;
+                }
+            }
         }
+        fileContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, fileTemplate.GetComponent<RectTransform>().rect.height * fileCount + (fileCount * 10) + 10);
     }
 
     public void OnMaterialButton(Button button)
@@ -648,13 +676,18 @@ public class Jsonator : MonoBehaviour
 
     public void OnDeleteButton(Button button)
     {
-        File.Delete(path + button.transform.parent.name + ".json");
+        File.Delete(path + "USER" + button.transform.parent.name + ".json");
         OnRefreshButton();
     }
 
     public void ValueChecker()
     {
         checkColor = true;
+    }
+
+    public void BackgroundChecker()
+    {
+        checkBackground = true;
     }
 
     //Build a cube on the grid.
@@ -1054,6 +1087,7 @@ public class Grid
     public Vector3 backgroundColor;
     public Vector3 cloudColor;
     public Vector3 silhouetteColor;
+    public Vector3 cameraPosition;
     public int backgroundMode;
     public int abilityElevator;
     public int abilityTeleport;
