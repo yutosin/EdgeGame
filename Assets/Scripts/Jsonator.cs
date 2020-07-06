@@ -123,10 +123,10 @@ public class Jsonator : MonoBehaviour
 
         silhouetteVal = 0;
         HSVVal = 0;
-        SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
-        SetColor(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
         if (!GameManager.SharedInstance.InLevelEditor)
             return;
+        SetColor(new Color(0.5f, 0.55f, 0.6f), BGColorR, BGColorG, BGColorB);
+        SetColor(new Color(0, 0, 0), SilhouetteColorR, SilhouetteColorG, SilhouetteColorB);
         OnRefreshButton();
         OnNewButton();
         RectTransform[] matButton = new RectTransform[materials.Length];
@@ -667,6 +667,7 @@ public class Jsonator : MonoBehaviour
         //Create the gameobject.
         GameObject tile = new GameObject();
         tile.transform.SetParent(par);
+        tile.layer = LayerMask.NameToLayer("Tile");
         tile.AddComponent<MeshFilter>();
         MeshFilter tileF = tile.GetComponent<MeshFilter>();
         tile.AddComponent<MeshRenderer>();
@@ -887,55 +888,74 @@ public class Jsonator : MonoBehaviour
             }
         }
     }
-
-    //Load from .json as a playable level.
+    
     public Grid LoadLevel(string levelName, bool silhouetted)
     {
         //Clear out the old cubes.
         for (int d = 0; d < transform.childCount; d++)
         {
             Destroy(transform.GetChild(d).gameObject);
+            if (startInd != null) Destroy(startInd.gameObject);
+            if (goalInd != null) Destroy(goalInd.gameObject);
         }
-
-        //Check silhouetted and turn the mode on if true.
+        
         if (silhouetted) { silhouetteMode = true; }
         else { silhouetteMode = false; }
+        // SelectDeleter(selectCube);
+        // selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
-        //string stringLoad = File.ReadAllText(path + levelName + ".json");
         TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad.text);
+        startPoint = gridLoad.startPoint;
+        // startInd = Instantiate(startModel);
+        // startInd.transform.position = startPoint;
+        // startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
+        // startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
+        // startInd.name = "StartIndicator";
+        goalPoint = gridLoad.goalPoint;
+        // goalInd = Instantiate(goalModel);
+        // goalInd.position = goalPoint;
+        // goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
+        // goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
+        // goalInd.gameObject.name = "GoalIndicator";
+        backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
+        cloudColor = new Color(gridLoad.cloudColor.x, gridLoad.cloudColor.y, gridLoad.cloudColor.z);
+        silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
+        
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)
         {
             loadCube = gridLoad.cubeData[l];
-            Vector3 loadPos = new Vector3(loadCube.position.x - 0.5f, loadCube.position.y -0.5f, loadCube.position.z -0.5f);
-            string[] toCuber = new string[3] {"", "", ""};
-            string[] toMatter = new string[3] {"", "", ""};
+            Vector3 loadPos = new Vector3(loadCube.position.x - 0.5f, loadCube.position.y - 0.5f, loadCube.position.z - 0.5f);
+            string[] toCuber = new string[3] { "", "", "" };
+            string[] toMatter = new string[3] { "", "", "" };
             for (int c = 0; c < loadCube.tileData.Length; c++)
             {
-                string loadMat = loadCube.tileData[c].m;
                 if (loadCube.tileData[c].d == "Top")
                 {
                     toCuber[0] = "Top";
-                    toMatter[0] = (loadMat == null) ? "developerTop" : loadMat;
+                    toMatter[0] = loadCube.tileData[c].m;
                 }
                 else if (loadCube.tileData[c].d == "Right")
                 {
                     toCuber[1] = "Right";
-                    toMatter[1] = (loadMat == null) ? "developerRight" : loadMat;
+                    toMatter[1] = loadCube.tileData[c].m;
                 }
                 else if (loadCube.tileData[c].d == "Left")
                 {
                     toCuber[2] = "Left";
-                    toMatter[2] = (loadMat == null) ? "developerLeft" : loadMat;
+                    toMatter[2] = loadCube.tileData[c].m;
                 }
             }
-
             //Build the new level.
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
+        
+        BackgroundBuilder(gridLoad.backgroundMode);
+        CloudColorer(backgroundInstance, cloudColor);
+        
         return gridLoad;
     }
 

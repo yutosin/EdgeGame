@@ -248,8 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da9efa3ab4b18644a988fba3ace99b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 128532854}
-  canvasObj: {fileID: 1101079000}
 --- !u!328 &128532854
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -583,8 +581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da9efa3ab4b18644a988fba3ace99b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 148025718}
-  canvasObj: {fileID: 1101079000}
 --- !u!328 &148025718
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -3379,8 +3375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da9efa3ab4b18644a988fba3ace99b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 785668544}
-  canvasObj: {fileID: 1101079000}
 --- !u!328 &785668544
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -3692,8 +3686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da9efa3ab4b18644a988fba3ace99b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 984334839}
-  canvasObj: {fileID: 1101079000}
 --- !u!328 &984334839
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -5518,8 +5510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da9efa3ab4b18644a988fba3ace99b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 1463422077}
-  canvasObj: {fileID: 1101079000}
 --- !u!328 &1463422077
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -5603,8 +5593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da9efa3ab4b18644a988fba3ace99b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 1465906023}
-  canvasObj: {fileID: 1101079000}
 --- !u!328 &1465906023
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -6006,6 +5994,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c086b4440de874b989a421b77673ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  gridSize: {x: 0, y: 0, z: 0}
+  backgroundGenerator: {fileID: 2272833626780888006, guid: 64e4ffac1c8de5547b719b69e9276653,
+    type: 3}
+  selectCubeModel: {fileID: 0}
+  selectorCubeSize: 0
+  selectorCubeDistance: 0
+  selectorCubeColor: {r: 0, g: 0, b: 0, a: 0}
+  startModel: {fileID: 0}
+  startModelSize: 0
+  startModelColor: {r: 0, g: 0, b: 0, a: 0}
+  goalModel: {fileID: 0}
+  goalModelSize: 0
+  goalModelColor: {r: 0, g: 0, b: 0, a: 0}
   materials:
   - {fileID: 2100000, guid: 817bc4fec698d8b42a82197be537c709, type: 2}
   - {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
@@ -6019,15 +6021,33 @@ MonoBehaviour:
   developerTop: {fileID: 2100000, guid: 9605cff6cd0ab6146903fa0a94ea27d5, type: 2}
   developerRight: {fileID: 2100000, guid: 23f716eeb19fe554b908403cd89b7125, type: 2}
   developerLeft: {fileID: 2100000, guid: 8e7bea41b62b87943ba614c0685eccc3, type: 2}
-  playerModel: {fileID: 0}
   path: ./Assets/Resources/
   silhouetteSwitch: {fileID: 0}
+  HSVSwitch: {fileID: 0}
+  modeSet: {fileID: 0}
+  abilityElevator: {fileID: 0}
+  abilityTeleport: {fileID: 0}
+  abilityMoveX: {fileID: 0}
+  abilityMoveZ: {fileID: 0}
+  abilityExtrude: {fileID: 0}
   saveName: {fileID: 0}
   fileContent: {fileID: 0}
   fileTemplate: {fileID: 0}
   matContent: {fileID: 0}
   matTemplate: {fileID: 0}
   matView: {fileID: 0}
+  BackgroundColorDisplay: {fileID: 0}
+  cloudColorDisplay: {fileID: 0}
+  SilhouetteColorDisplay: {fileID: 0}
+  BGColorR: {fileID: 0}
+  BGColorG: {fileID: 0}
+  BGColorB: {fileID: 0}
+  CloudColorR: {fileID: 0}
+  CloudColorG: {fileID: 0}
+  CloudColorB: {fileID: 0}
+  SilhouetteColorR: {fileID: 0}
+  SilhouetteColorG: {fileID: 0}
+  SilhouetteColorB: {fileID: 0}
   cubeData: []
 --- !u!4 &1485480331
 Transform:
@@ -6534,15 +6554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d1a33574382124bac20bab18a28cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 1625019706}
-  previousButtonObj: {fileID: 483550360}
-  nextButtonObj: {fileID: 381417281}
-  panels:
-  - {fileID: 1274940224}
-  - {fileID: 1161496642}
-  - {fileID: 1065747677}
-  - {fileID: 1396962186}
-  pagePos: 0
 --- !u!114 &1625019709
 MonoBehaviour:
   m_ObjectHideFlags: 0
