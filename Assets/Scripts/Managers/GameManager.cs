@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GridGraph levelGraph;
     public MaterialSelectScript matSelect;
     public UIScript uiManager;
+    public Jsonator LevelLoader;
     public bool PlayMode;
     public bool InLevelEditor;
     
@@ -33,26 +34,19 @@ public class GameManager : MonoBehaviour
         _sharedInstance = this;
 
         MainCamera = Camera.main;
+        Physics.queriesHitTriggers = false;
     }
 
     // Update is called once per frame
     private void Start()
     {
         PlayMode = false;
+        if (InLevelEditor)
+            return;
         var gg = AstarPath.active.data.gridGraph;
         if (gg == null)
             return;
         levelGraph = gg;
-        gg.GetNodes(node => {
-            if (!node.Walkable)
-                return;
-            var gn = node as GridNode;
-            var connections = new List<GraphNode>();
-            gn.GetConnections(connections.Add);
-            // Here is a node
-            //Debug.Log("I found a node at position " + (Vector3)node.position);
-            //Debug.Log(node.SurfaceArea());
-        });
     }
 
     private void BuildNodeLinks(GridNode gridNode)

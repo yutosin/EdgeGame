@@ -278,11 +278,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -295,7 +295,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -316,11 +316,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -333,11 +333,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -358,11 +358,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -375,7 +375,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -396,11 +396,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -421,7 +421,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -434,11 +434,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -459,11 +459,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -476,11 +476,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -501,11 +501,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -518,11 +518,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -535,7 +535,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -548,11 +548,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -573,11 +573,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -590,11 +590,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -607,11 +607,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -624,11 +624,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -641,15 +641,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -662,11 +662,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -679,11 +679,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -696,11 +696,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -713,11 +713,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -730,11 +730,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -747,11 +747,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -764,11 +764,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -781,11 +781,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -798,11 +798,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -815,11 +815,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -832,11 +832,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -849,11 +849,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -866,11 +866,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -883,11 +883,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -900,15 +900,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -945,7 +945,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -974,11 +974,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1039,11 +1039,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1081,7 +1081,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -1102,11 +1102,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1119,11 +1119,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1136,11 +1136,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1177,7 +1177,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1190,11 +1190,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1207,11 +1207,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1248,7 +1248,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1277,7 +1277,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1290,11 +1290,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1315,7 +1315,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1328,7 +1328,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1341,11 +1341,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1358,7 +1358,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1371,7 +1371,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1384,11 +1384,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1401,11 +1401,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1418,11 +1418,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1435,11 +1435,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1452,15 +1452,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1481,7 +1481,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1494,11 +1494,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1551,11 +1551,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1580,7 +1580,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -1593,7 +1593,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1606,11 +1606,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1623,11 +1623,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1640,11 +1640,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1657,11 +1657,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1682,7 +1682,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1695,7 +1695,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1708,7 +1708,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1721,7 +1721,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1734,11 +1734,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1751,7 +1751,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1764,11 +1764,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1781,11 +1781,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1798,15 +1798,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1819,15 +1819,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1840,15 +1840,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1861,15 +1861,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "FloorMat"
                 }
             ]
         }
@@ -2623,6 +2623,16 @@
         {
             "x": 1,
             "y": 7,
+            "z": 0
+        },
+        {
+            "x": 0,
+            "y": 7,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 7,
             "z": 3
         },
         {
@@ -2740,5 +2750,31 @@
         "x": 7.5,
         "y": 1.0,
         "z": 0.5
-    }
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 7.5
+    },
+    "backgroundColor": {
+        "x": 0.5538208484649658,
+        "y": 0.5675838589668274,
+        "z": 0.6400718092918396
+    },
+    "cloudColor": {
+        "x": 0.3711535930633545,
+        "y": 0.3199167251586914,
+        "z": 0.7748633623123169
+    },
+    "silhouetteColor": {
+        "x": 0.1805286705493927,
+        "y": 0.21812739968299867,
+        "z": 0.14023949205875398
+    },
+    "backgroundMode": 1,
+    "abilityElevator": 0,
+    "abilityTeleport": 1,
+    "abilityMoveX": 2,
+    "abilityMoveZ": 3,
+    "abilityExtrude": 4
 }

@@ -962,5 +962,26 @@
         "x": 6.5,
         "y": 1.0,
         "z": 0.5
-    }
+    },
+    "backgroundColor": {
+        "x": 0.699999988079071,
+        "y": 0.699999988079071,
+        "z": 0.699999988079071
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "backgroundMode": 0,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

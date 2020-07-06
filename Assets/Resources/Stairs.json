@@ -2401,12 +2401,12 @@
             },
             "tileData": [
                 {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                },
-                {
                     "d": "Top",
                     "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -3847,5 +3847,31 @@
         "x": 7.5,
         "y": 2.0,
         "z": 0.5
-    }
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 8.0,
+        "z": 6.5
+    },
+    "backgroundColor": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.5749170780181885,
+        "y": 0.5749170780181885,
+        "z": 0.5749170780181885
+    },
+    "backgroundMode": 0,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

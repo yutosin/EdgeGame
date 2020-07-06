@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
+    public GameObject allUI;
     public GameObject InstructionsPanel;
     public GameObject FaceAbilitiesPanel;
     public GameObject FeedbackPanel;
@@ -76,11 +77,5 @@ public class UIScript : MonoBehaviour
     public void ReloadLevel()
     {
         GameManager.SharedInstance.levelManager.LoadLevel();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

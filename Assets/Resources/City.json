@@ -784,7 +784,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -875,7 +875,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -961,7 +961,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -995,7 +995,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1189,7 +1189,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1228,7 +1228,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -1310,7 +1310,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1412,7 +1412,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1498,7 +1498,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1555,7 +1555,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1633,7 +1633,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -1735,7 +1735,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1808,7 +1808,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1857,7 +1857,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1922,7 +1922,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -2007,7 +2007,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2086,7 +2086,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -2125,7 +2125,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -2194,7 +2194,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2279,7 +2279,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2384,7 +2384,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -2397,7 +2397,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2466,7 +2466,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -2551,7 +2551,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2635,7 +2635,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -2648,7 +2648,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2704,7 +2704,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -2772,7 +2772,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2817,7 +2817,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -2869,7 +2869,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -2925,7 +2925,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -2993,7 +2993,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -3056,7 +3056,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -3069,7 +3069,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -3112,7 +3112,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -3163,7 +3163,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -3369,11 +3369,21 @@
         },
         {
             "x": 1,
+            "y": 4,
+            "z": 2
+        },
+        {
+            "x": 1,
             "y": 5,
             "z": 2
         },
         {
             "x": 1,
+            "y": 6,
+            "z": 2
+        },
+        {
+            "x": 0,
             "y": 6,
             "z": 2
         },
@@ -3405,7 +3415,17 @@
         {
             "x": 2,
             "y": 6,
+            "z": 0
+        },
+        {
+            "x": 2,
+            "y": 6,
             "z": 1
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "z": 2
         },
         {
             "x": 2,
@@ -3443,6 +3463,11 @@
             "z": 2
         },
         {
+            "x": 2,
+            "y": 4,
+            "z": 1
+        },
+        {
             "x": 1,
             "y": 7,
             "z": 3
@@ -3464,6 +3489,16 @@
         },
         {
             "x": 2,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 2,
             "y": 6,
             "z": 3
         },
@@ -3481,6 +3516,11 @@
             "x": 2,
             "y": 7,
             "z": 4
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 5
         },
         {
             "x": 1,
@@ -3489,6 +3529,11 @@
         },
         {
             "x": 1,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 0,
             "y": 5,
             "z": 5
         },
@@ -3534,6 +3579,16 @@
         },
         {
             "x": 4,
+            "y": 5,
+            "z": 2
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 2
+        },
+        {
+            "x": 4,
             "y": 6,
             "z": 2
         },
@@ -3574,8 +3629,18 @@
         },
         {
             "x": 5,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 5,
             "y": 4,
             "z": 1
+        },
+        {
+            "x": 5,
+            "y": 5,
+            "z": 0
         },
         {
             "x": 5,
@@ -3620,6 +3685,16 @@
         {
             "x": 5,
             "y": 7,
+            "z": 2
+        },
+        {
+            "x": 7,
+            "y": 4,
+            "z": 2
+        },
+        {
+            "x": 6,
+            "y": 4,
             "z": 2
         },
         {
@@ -3926,6 +4001,16 @@
             "x": 0,
             "y": 6,
             "z": 8
+        },
+        {
+            "x": 2,
+            "y": 4,
+            "z": 6
+        },
+        {
+            "x": 2,
+            "y": 4,
+            "z": 7
         },
         {
             "x": 2,
@@ -4289,8 +4374,34 @@
         }
     ],
     "startPoint": {
-        "x": 3.5,
-        "y": 6.0,
-        "z": 3.5
-    }
+        "x": 7.5,
+        "y": 4.0,
+        "z": 7.5
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 8.0,
+        "z": 0.5
+    },
+    "backgroundColor": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "backgroundMode": 2,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

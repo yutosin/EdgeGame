@@ -541,12 +541,12 @@
             },
             "tileData": [
                 {
-                    "d": "Right",
-                    "m": "RightTexMat"
-                },
-                {
                     "d": "Top",
                     "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
@@ -651,12 +651,12 @@
                     "m": "TopTexMat"
                 },
                 {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                },
-                {
                     "d": "Right",
                     "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -1112,13 +1112,8 @@
         },
         {
             "x": 1,
-            "y": 2,
-            "z": 3
-        },
-        {
-            "x": 0,
-            "y": 2,
-            "z": 3
+            "y": 3,
+            "z": 2
         },
         {
             "x": 1,
@@ -1128,17 +1123,22 @@
         {
             "x": 0,
             "y": 3,
-            "z": 3
-        },
-        {
-            "x": 1,
-            "y": 3,
             "z": 2
         },
         {
             "x": 0,
             "y": 3,
-            "z": 2
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 2,
+            "z": 3
         },
         {
             "x": 2,
@@ -1295,5 +1295,26 @@
         "x": 0.5,
         "y": 1.0,
         "z": 4.5
-    }
+    },
+    "backgroundColor": {
+        "x": 0.699999988079071,
+        "y": 0.699999988079071,
+        "z": 0.699999988079071
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "backgroundMode": 0,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

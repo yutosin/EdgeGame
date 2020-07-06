@@ -130,7 +130,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -143,7 +143,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -156,7 +156,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -169,7 +169,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -203,7 +203,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -321,7 +321,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -346,7 +346,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -384,7 +384,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -397,7 +397,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -410,7 +410,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -423,7 +423,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -461,7 +461,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -744,7 +744,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -757,7 +757,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -770,7 +770,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -783,7 +783,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -796,7 +796,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -817,7 +817,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -944,7 +944,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -974,7 +974,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -987,7 +987,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -1093,7 +1093,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Left",
@@ -1110,7 +1110,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1131,7 +1131,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1157,7 +1157,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1170,7 +1170,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1187,7 +1187,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1213,7 +1213,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 }
             ]
         },
@@ -1226,7 +1226,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "FloorMat"
                 },
                 {
                     "d": "Right",
@@ -1467,11 +1467,6 @@
             "z": 2
         },
         {
-            "x": 0,
-            "y": 2,
-            "z": 2
-        },
-        {
             "x": 2,
             "y": 3,
             "z": 1
@@ -1667,11 +1662,6 @@
             "z": 5
         },
         {
-            "x": 0,
-            "y": 2,
-            "z": 4
-        },
-        {
             "x": 2,
             "y": 1,
             "z": 6
@@ -1785,11 +1775,6 @@
             "x": 1,
             "y": 4,
             "z": 5
-        },
-        {
-            "x": 0,
-            "y": 2,
-            "z": 6
         },
         {
             "x": 1,
@@ -2065,6 +2050,11 @@
             "x": 2,
             "y": 1,
             "z": 8
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 7
         },
         {
             "x": 1,
@@ -2193,8 +2183,34 @@
         }
     ],
     "startPoint": {
-        "x": 1.5,
+        "x": 5.5,
+        "y": 1.0,
+        "z": 1.5
+    },
+    "goalPoint": {
+        "x": 0.5,
         "y": 1.0,
         "z": 2.5
-    }
+    },
+    "backgroundColor": {
+        "x": 0.7720316648483276,
+        "y": 0.7705679535865784,
+        "z": 0.6705792546272278
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.20532754063606263,
+        "y": 0.13866905868053437,
+        "z": 0.08554428815841675
+    },
+    "backgroundMode": 0,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }
