@@ -305,7 +305,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -334,7 +334,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -355,7 +355,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -400,7 +400,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -421,7 +421,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -450,7 +450,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -479,7 +479,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -508,7 +508,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -537,7 +537,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -566,7 +566,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -595,7 +595,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -616,7 +616,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -637,7 +637,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -658,7 +658,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -695,7 +695,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -724,7 +724,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -753,7 +753,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -774,7 +774,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -803,7 +803,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -824,7 +824,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -845,7 +845,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -882,7 +882,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -903,7 +903,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -932,7 +932,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -961,7 +961,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -990,7 +990,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -1011,7 +1011,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -1032,7 +1032,7 @@
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTextMat"
+                    "m": "LeftTexMat"
                 }
             ]
         }
@@ -1573,5 +1573,36 @@
         "x": 6.5,
         "y": 1.0,
         "z": 0.5
-    }
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 6.5
+    },
+    "backgroundColor": {
+        "x": 0.5851649045944214,
+        "y": 0.5275506377220154,
+        "z": 0.20732735097408296
+    },
+    "cloudColor": {
+        "x": 0.7465848326683044,
+        "y": 0.6641631126403809,
+        "z": 0.44530022144317629
+    },
+    "silhouetteColor": {
+        "x": 0.26231223344802859,
+        "y": 0.1409679353237152,
+        "z": 0.07176749408245087
+    },
+    "cameraPosition": {
+        "x": 18.399999618530275,
+        "y": 18.719999313354493,
+        "z": 6.0
+    },
+    "backgroundMode": 1,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }
