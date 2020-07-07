@@ -283,7 +283,7 @@ public class MaterialSelectScript : MonoBehaviour
         buttonList.Add(xMoving);
         buttonList.Add(zMoving);
         buttonList.Add(teleport);
-        AssignUnSetVariables();//Got to make sure variables reliant on other variables actually get set
+        AssignUnSetVariables();
         SetButtonPositions();
     }
 
@@ -336,8 +336,6 @@ public class MaterialSelectScript : MonoBehaviour
                 }
 
                 Button button = buttonObj.GetComponent<Button>();
-                //This is important, as it makes the class refer to the instantiated button rather than the prefab
-                buttonList[i].ThisButton = button;
                 button.interactable = true;
                 buttonList[i].ButtonText = buttonList[i].ThisButton.GetComponentInChildren<Text>(); //Had to move the text grabbing here
                 //This assigns the function for the associated class to OnClick()
