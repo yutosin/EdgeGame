@@ -836,6 +836,11 @@
         "y": 0.0,
         "z": 0.0
     },
+    "cameraPosition": {
+        "x": 22.299999237060548,
+        "y": 19.139999389648439,
+        "z": 6.146240234375
+    },
     "backgroundMode": 0,
     "abilityElevator": 0,
     "abilityTeleport": 0,
