@@ -41,7 +41,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -54,11 +54,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -79,7 +79,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -92,11 +92,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -117,7 +117,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -130,7 +130,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -143,7 +143,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -156,7 +156,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -169,7 +169,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -182,7 +182,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -203,7 +203,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -232,7 +232,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -253,7 +253,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -274,7 +274,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -287,7 +287,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -300,7 +300,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -321,11 +321,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -346,7 +346,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -367,11 +367,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -384,7 +384,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -397,7 +397,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -410,7 +410,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -423,7 +423,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -436,11 +436,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -461,7 +461,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -474,7 +474,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -487,11 +487,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -504,7 +504,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -517,7 +517,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -530,7 +530,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -543,11 +543,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -560,7 +560,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -573,7 +573,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -586,7 +586,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -599,11 +599,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -616,11 +616,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -633,11 +633,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -650,11 +650,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -667,7 +667,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -680,11 +680,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -697,11 +697,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -714,7 +714,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -727,11 +727,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -744,7 +744,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -757,7 +757,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -770,7 +770,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -783,7 +783,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -796,7 +796,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -817,11 +817,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -834,11 +834,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -851,7 +851,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -864,11 +864,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -881,11 +881,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -898,11 +898,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -915,15 +915,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -944,11 +944,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -961,7 +961,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -974,7 +974,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -987,11 +987,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1004,11 +1004,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Roughsand"
                 }
             ]
         },
@@ -1021,11 +1021,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Roughsand"
                 }
             ]
         },
@@ -1038,11 +1038,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Roughsand"
                 }
             ]
         },
@@ -1055,11 +1055,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Roughsand"
                 }
             ]
         },
@@ -1072,15 +1072,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1093,11 +1093,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1110,15 +1110,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1131,7 +1131,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -1144,7 +1144,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1157,7 +1157,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -1170,11 +1170,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1187,7 +1187,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -1200,7 +1200,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1213,7 +1213,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -1226,11 +1226,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "FloorMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1251,7 +1251,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1264,11 +1264,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -1281,11 +1281,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -1298,11 +1298,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -1315,7 +1315,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -1328,11 +1328,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -1345,11 +1345,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1362,15 +1362,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Metal1"
                 }
             ]
         },
@@ -1383,15 +1383,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Roughsand"
                 }
             ]
         },
@@ -1404,15 +1404,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "Roughsand"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "Metal1"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "Roughsand"
                 }
             ]
         },
@@ -1425,7 +1425,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         }
@@ -2198,9 +2198,9 @@
         "z": 0.6705792546272278
     },
     "cloudColor": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+        "x": 0.8168061971664429,
+        "y": 0.6137297749519348,
+        "z": 0.47412145137786868
     },
     "silhouetteColor": {
         "x": 0.20532754063606263,
@@ -2212,7 +2212,7 @@
         "y": 20.880001068115236,
         "z": 6.0
     },
-    "backgroundMode": 0,
+    "backgroundMode": 1,
     "abilityElevator": 0,
     "abilityTeleport": 0,
     "abilityMoveX": 0,

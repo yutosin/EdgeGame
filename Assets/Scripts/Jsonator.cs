@@ -143,7 +143,7 @@ public class Jsonator : MonoBehaviour
             displayMaterials[m] = new Material(materials[m]);
             displayMaterials[m].shader = Shader.Find("Standard");
             matButton[m] = Instantiate(matTemplate, matContent);
-            matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 110 + 60, 0);
+            matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 80 + 60, 0);
             matButton[m].GetChild(0).GetComponent<Renderer>().material = displayMaterials[m];
             matButton[m].name = m.ToString();
         }
