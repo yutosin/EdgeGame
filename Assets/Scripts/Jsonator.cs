@@ -510,7 +510,10 @@ public class Jsonator : MonoBehaviour
             gridSave.startPoint = startPoint;
             gridSave.goalPoint = goalPoint;
             string stringSave = JsonUtility.ToJson(gridSave, true);
-            File.WriteAllText(path + "USER" + saveName.text + ".json", stringSave);
+            if (Application.isEditor)
+                File.WriteAllText(path + saveName.text + ".json", stringSave);
+            else
+                File.WriteAllText(path + "USER" + saveName.text + ".json", stringSave);
         }
         else
         {
@@ -533,7 +536,14 @@ public class Jsonator : MonoBehaviour
         selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
+        string stringLoad;
+        
+        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
+            stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
+        else if (Application.isEditor)
+            stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
+        else
+            return;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
         startInd = Instantiate(startModel);
@@ -633,15 +643,16 @@ public class Jsonator : MonoBehaviour
             if (!fileParse[fileParse.Length - 1].Contains(".meta"))
             {
                 string file = fileParse[fileParse.Length - 1].Replace(".json", "");
-                if (file.Substring(0, 4) == "USER")
-                {
+                bool userPrefix = file.Substring(0, 4) == "USER";
+                if (!Application.isEditor && !userPrefix)
+                    continue;
+                if (userPrefix)
                     file = file.Remove(0, 4);
-                    fileButton[r] = Instantiate(fileTemplate, fileContent);
-                    fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
-                    fileButton[r].name = file;
-                    fileButton[r].GetComponentInChildren<Text>().text = file;
-                    fileCount++;
-                }
+                fileButton[r] = Instantiate(fileTemplate, fileContent);
+                fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
+                fileButton[r].name = file;
+                fileButton[r].GetComponentInChildren<Text>().text = file;
+                fileCount++;
             }
         }
         fileContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, fileTemplate.GetComponent<RectTransform>().rect.height * fileCount + (fileCount * 10) + 10);
@@ -676,7 +687,10 @@ public class Jsonator : MonoBehaviour
 
     public void OnDeleteButton(Button button)
     {
-        File.Delete(path + "USER" + button.transform.parent.name + ".json");
+        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
+            File.Delete(path + "USER" + button.transform.parent.name + ".json");
+        else if (File.Exists(path + button.transform.parent.name + ".json"))
+            File.Delete(path + button.transform.parent.name + ".json");
         OnRefreshButton();
     }
 
