@@ -144,11 +144,11 @@ public class Jsonator : MonoBehaviour
         for (int m = 0; m < matButton.Length; m++)
         {
             displayMaterials[m] = new Material(materials[m]);
-            displayMaterials[m].shader = Shader.Find("Standard");
+            displayMaterials[m].shader = Shader.Find("UI/Unlit/Detail");
             matButton[m] = Instantiate(matTemplate, matContent);
             matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 110 + 60, 0);
-            matButton[m].GetChild(0).GetComponent<Renderer>().material = displayMaterials[m];
             matButton[m].name = m.ToString();
+            matButton[m].GetComponent<Image>().material = displayMaterials[m];
         }
 
         //Populate start settings.
