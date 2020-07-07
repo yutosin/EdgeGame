@@ -6200,7 +6200,7 @@ MonoBehaviour:
   - {fileID: 1161496642}
   - {fileID: 1065747677}
   - {fileID: 1396962186}
-  vScripts:
+  miniVideos:
   - {fileID: 1794985935}
   - {fileID: 611086196}
   - {fileID: 1841769578}

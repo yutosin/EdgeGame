@@ -9,7 +9,7 @@ public class InstructionScript : MonoBehaviour
     public GameObject previousButtonObj;
     public GameObject nextButtonObj;
     public GameObject[] panels;
-    public PlayVideoScript[] vScripts;
+    public PlayVideoScript[] miniVideos;
     public GameObject videoHolder;
     private bool _playVideo;
     public bool PlayVideo
@@ -22,11 +22,11 @@ public class InstructionScript : MonoBehaviour
             
             if(value == true)
             {
-                vScripts[_vPos].videoPlayer.Play();
+                miniVideos[_vPos].videoPlayer.Play();
             }
             else
             {
-                vScripts[_vPos].videoPlayer.Stop();
+                miniVideos[_vPos].videoPlayer.Stop();
             }
             videoHolder.SetActive(value);
         }
@@ -38,12 +38,12 @@ public class InstructionScript : MonoBehaviour
 
         set
         {
-            vScripts[_vPos].endLoop = true;
-            vScripts[_vPos].videoPlayer.Stop();
+            miniVideos[_vPos].endLoop = true;
+            miniVideos[_vPos].videoPlayer.Stop();
             _vPos = value;
-            if(_vPos <= vScripts.Length)
+            if(_vPos <= miniVideos.Length)
             {
-                vScripts[_vPos].videoPlayer.Play();
+                miniVideos[_vPos].videoPlayer.Play();
             }
             else
             {
@@ -59,9 +59,9 @@ public class InstructionScript : MonoBehaviour
         maxPage = panels.Length - 1;
         previousButtonObj.SetActive(false);
         videoHolder.SetActive(false);
-        if(vScripts.Length > 0)
+        if(miniVideos.Length > 0)
         {
-            vScripts[VPos].videoPlayer.Play();
+            miniVideos[VPos].videoPlayer.Play();
             StartCoroutine(WaitTilPrepared());
         }
     }
@@ -69,7 +69,7 @@ public class InstructionScript : MonoBehaviour
     private IEnumerator WaitTilPrepared()
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(.5f);
-        while (!vScripts[VPos].videoPlayer.isPrepared)
+        while (!miniVideos[VPos].videoPlayer.isPrepared)
         {
             yield return waitForSeconds;
             break;
