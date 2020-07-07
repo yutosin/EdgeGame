@@ -987,6 +987,6 @@
     "abilityElevator": 0,
     "abilityTeleport": 0,
     "abilityMoveX": 0,
-    "abilityMoveZ": 0,
+    "abilityMoveZ": 1,
     "abilityExtrude": 0
 }

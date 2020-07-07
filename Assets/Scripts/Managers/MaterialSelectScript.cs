@@ -270,6 +270,15 @@ public class MaterialSelectScript : MonoBehaviour
                 for (int i = 0; i < buttonList.Count; i++)
                 {
                     buttonList[i].Face = _selectedFace;
+                    buttonList[i].ButtonText.text = buttonList[i].uses.ToString();
+                    if (buttonList[i].uses <= 0)
+                    {
+                        buttonList[i].ThisButton.interactable = false;
+                    }
+                    else
+                    {
+                        buttonList[i].ThisButton.interactable = true;
+                    }
                 }
             }
         }

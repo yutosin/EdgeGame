@@ -1014,6 +1014,9 @@ public class Jsonator : MonoBehaviour
         BackgroundBuilder(gridLoad.backgroundMode);
         CloudColorer(backgroundInstance, cloudColor);
         
+        mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 20.5f, gridLoad.cameraPosition.y);
+        mainCamera.orthographicSize = gridLoad.cameraPosition.z;
+        
         return gridLoad;
     }
 

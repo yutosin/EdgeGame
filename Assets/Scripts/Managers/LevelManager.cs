@@ -550,6 +550,12 @@ public class LevelManager : MonoBehaviour
         fakeStartFace.transform.position = _loadedLevel.startPoint;
         fakeGoalFace.transform.position = _loadedLevel.goalPoint;
 
+        GameManager.SharedInstance.matSelect.elevator.uses = _loadedLevel.abilityElevator;
+        GameManager.SharedInstance.matSelect.teleport.uses = _loadedLevel.abilityTeleport;
+        GameManager.SharedInstance.matSelect.extrudeFace.uses = _loadedLevel.abilityExtrude;
+        GameManager.SharedInstance.matSelect.xMoving.uses = _loadedLevel.abilityMoveX;
+        GameManager.SharedInstance.matSelect.zMoving.uses = _loadedLevel.abilityMoveZ;
+
         StartCoroutine(DelayedScan());
     }
 

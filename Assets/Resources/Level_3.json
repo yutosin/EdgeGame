@@ -1356,7 +1356,7 @@
     "backgroundMode": 0,
     "abilityElevator": 0,
     "abilityTeleport": 0,
-    "abilityMoveX": 0,
+    "abilityMoveX": 1,
     "abilityMoveZ": 0,
     "abilityExtrude": 0
 }

@@ -1317,9 +1317,9 @@
         "z": 6.3254852294921879
     },
     "backgroundMode": 0,
-    "abilityElevator": 0,
+    "abilityElevator": 1,
     "abilityTeleport": 0,
-    "abilityMoveX": 0,
+    "abilityMoveX": 1,
     "abilityMoveZ": 0,
     "abilityExtrude": 0
 }
