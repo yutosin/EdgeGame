@@ -146,6 +146,7 @@ public class Jsonator : MonoBehaviour
             displayMaterials[m] = new Material(materials[m]);
             displayMaterials[m].shader = Shader.Find("UI/Unlit/Detail");
             matButton[m] = Instantiate(matTemplate, matContent);
+            matButton[m].gameObject.SetActive(true);
             matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 80 + 60, 0);
             matButton[m].name = m.ToString();
             matButton[m].GetComponent<Image>().material = displayMaterials[m];
@@ -665,7 +666,8 @@ public class Jsonator : MonoBehaviour
         selectingStart = false;
         int matNum = int.Parse(button.name);
         matView.GetComponentInChildren<Text>().text = "";
-        matView.GetComponent<Image>().material.SetTexture("_MainTex", displayMaterials[matNum].mainTexture);
+        Image btnImage = button.GetComponent<Image>();
+        matView.GetComponent<Image>().material = btnImage.material;
         selectedMaterial = materials[matNum];
     }
 
@@ -746,7 +748,7 @@ public class Jsonator : MonoBehaviour
             for (int m = 0; m < materials.Length; m++)
             {
                 matParse = materials[m].name;
-                if (matParse.Contains(mat))
+                if (matParse == mat)
                 {
                     loadMat = materials[m];
                     break;
