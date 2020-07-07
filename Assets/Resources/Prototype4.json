@@ -804,6 +804,11 @@
             "x": 4,
             "y": 4,
             "z": 0
+        },
+        {
+            "x": 5,
+            "y": 3,
+            "z": 0
         }
     ],
     "startPoint": {
@@ -815,5 +820,26 @@
         "x": 4.5,
         "y": 4.0,
         "z": 0.5
-    }
+    },
+    "backgroundColor": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "backgroundMode": 0,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

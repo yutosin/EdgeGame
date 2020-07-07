@@ -98,6 +98,7 @@ public class LateralMovingAbility : MonoBehaviour, IFaceAbility
         float step = 2 * Time.deltaTime;
         AbilityFace.Parent.position =
             Vector3.MoveTowards(AbilityFace.Parent.position, target, step);
+        AbilityFace.Tiles[0].transform.position = AbilityFace.Parent.position;
         if (Vector3.Distance(AbilityFace.Parent.position, target) < .001f)
         {
             IsActing = false;

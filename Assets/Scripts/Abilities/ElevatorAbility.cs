@@ -11,6 +11,10 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
     public int AbilityTimes { get; set; }
     private Vector3 _target;
 
+    public GameObject cubePrefab;
+    private GameObject cubeChild;
+    private ProceduralCube cScript;
+
     public void InitializeAbility(Face face)
     {
         AbilityFace = face;
@@ -29,6 +33,20 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         playerTransform.parent = null;
     }
 
+    private void CubeSpawn()
+    {
+        cubePrefab = GameManager.SharedInstance.matSelect.cubePrefab;
+
+        cubeChild = Instantiate(cubePrefab);
+        cScript = cubeChild.GetComponent<ProceduralCube>();
+        cScript.SetInitialPos(AbilityFace.Vertices, AbilityFace._rend.material);
+    }
+
+    private void RaiseCube()
+    {
+        cScript.MoveFace("YPlus", AbilityFace.Parent.position.y);
+    }
+
     private void Start()
     {
         AbilityTimes = 1;
@@ -42,13 +60,20 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         float step = 3 * Time.deltaTime;
         AbilityFace.Parent.position =
             Vector3.MoveTowards(AbilityFace.Parent.position, _target, step);
+        AbilityFace.Tiles[0].transform.position = AbilityFace.Parent.position;
         if (Vector3.Distance(AbilityFace.Parent.position, _target) < .001f)
         {
+            cubeChild.transform.SetParent(AbilityFace.transform);
             IsActing = false;
             GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
             AstarPath.active.Scan();
             StartCoroutine(SetAgentPosition());
             AbilityTimes--;
         }
+        if(cubeChild == null)
+        {
+            CubeSpawn();
+        }
+        RaiseCube();
     }
 }

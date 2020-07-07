@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -122,6 +123,8 @@ public class Jsonator : MonoBehaviour
         BackgroundBuilder(0);
         silhouetteVal = 0;
         HSVVal = 0;
+        if (!GameManager.SharedInstance.InLevelEditor)
+            return;
 
         //Set sliders.
         modeSet.value = 0;
@@ -141,11 +144,11 @@ public class Jsonator : MonoBehaviour
         for (int m = 0; m < matButton.Length; m++)
         {
             displayMaterials[m] = new Material(materials[m]);
-            displayMaterials[m].shader = Shader.Find("Standard");
+            displayMaterials[m].shader = Shader.Find("UI/Unlit/Detail");
             matButton[m] = Instantiate(matTemplate, matContent);
             matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 80 + 60, 0);
-            matButton[m].GetChild(0).GetComponent<Renderer>().material = displayMaterials[m];
             matButton[m].name = m.ToString();
+            matButton[m].GetComponent<Image>().material = displayMaterials[m];
         }
 
         //Populate start settings.
@@ -507,7 +510,10 @@ public class Jsonator : MonoBehaviour
             gridSave.startPoint = startPoint;
             gridSave.goalPoint = goalPoint;
             string stringSave = JsonUtility.ToJson(gridSave, true);
-            File.WriteAllText(path + "USER" + saveName.text + ".json", stringSave);
+            if (Application.isEditor)
+                File.WriteAllText(path + saveName.text + ".json", stringSave);
+            else
+                File.WriteAllText(path + "USER" + saveName.text + ".json", stringSave);
         }
         else
         {
@@ -530,7 +536,14 @@ public class Jsonator : MonoBehaviour
         selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
-        string stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
+        string stringLoad;
+        
+        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
+            stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
+        else if (Application.isEditor)
+            stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
+        else
+            return;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
         startInd = Instantiate(startModel);
@@ -630,15 +643,16 @@ public class Jsonator : MonoBehaviour
             if (!fileParse[fileParse.Length - 1].Contains(".meta"))
             {
                 string file = fileParse[fileParse.Length - 1].Replace(".json", "");
-                if (file.Substring(0, 4) == "USER")
-                {
+                bool userPrefix = file.Substring(0, 4) == "USER";
+                if (!Application.isEditor && !userPrefix)
+                    continue;
+                if (userPrefix)
                     file = file.Remove(0, 4);
-                    fileButton[r] = Instantiate(fileTemplate, fileContent);
-                    fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
-                    fileButton[r].name = file;
-                    fileButton[r].GetComponentInChildren<Text>().text = file;
-                    fileCount++;
-                }
+                fileButton[r] = Instantiate(fileTemplate, fileContent);
+                fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
+                fileButton[r].name = file;
+                fileButton[r].GetComponentInChildren<Text>().text = file;
+                fileCount++;
             }
         }
         fileContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, fileTemplate.GetComponent<RectTransform>().rect.height * fileCount + (fileCount * 10) + 10);
@@ -673,7 +687,10 @@ public class Jsonator : MonoBehaviour
 
     public void OnDeleteButton(Button button)
     {
-        File.Delete(path + "USER" + button.transform.parent.name + ".json");
+        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
+            File.Delete(path + "USER" + button.transform.parent.name + ".json");
+        else if (File.Exists(path + button.transform.parent.name + ".json"))
+            File.Delete(path + button.transform.parent.name + ".json");
         OnRefreshButton();
     }
 
@@ -706,13 +723,20 @@ public class Jsonator : MonoBehaviour
         //Create the gameobject.
         GameObject tile = new GameObject();
         tile.transform.SetParent(par);
+        tile.layer = LayerMask.NameToLayer("Tile");
         tile.AddComponent<MeshFilter>();
         MeshFilter tileF = tile.GetComponent<MeshFilter>();
         tile.AddComponent<MeshRenderer>();
         MeshRenderer tileR = tile.GetComponent<MeshRenderer>();
         tile.AddComponent<BoxCollider>();
         BoxCollider tileC = tile.GetComponent<BoxCollider>();
-        if (!GameManager.SharedInstance.InLevelEditor) tileC.enabled = false;
+        if (!GameManager.SharedInstance.InLevelEditor)
+        {
+            tileC.isTrigger = true;
+            TileComponent tc = tile.AddComponent<TileComponent>();
+            tc.orientation = dim;
+            tc.matName = mat;
+        }
 
         //Define and populate the variables and vectors.
         Material loadMat = null;
@@ -920,55 +944,74 @@ public class Jsonator : MonoBehaviour
             }
         }
     }
-
-    //Load from .json as a playable level.
+    
     public Grid LoadLevel(string levelName, bool silhouetted)
     {
         //Clear out the old cubes.
         for (int d = 0; d < transform.childCount; d++)
         {
             Destroy(transform.GetChild(d).gameObject);
+            if (startInd != null) Destroy(startInd.gameObject);
+            if (goalInd != null) Destroy(goalInd.gameObject);
         }
-
-        //Check silhouetted and turn the mode on if true.
+        
         if (silhouetted) { silhouetteMode = true; }
         else { silhouetteMode = false; }
+        // SelectDeleter(selectCube);
+        // selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
-        //string stringLoad = File.ReadAllText(path + levelName + ".json");
         TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad.text);
+        startPoint = gridLoad.startPoint;
+        // startInd = Instantiate(startModel);
+        // startInd.transform.position = startPoint;
+        // startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
+        // startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
+        // startInd.name = "StartIndicator";
+        goalPoint = gridLoad.goalPoint;
+        // goalInd = Instantiate(goalModel);
+        // goalInd.position = goalPoint;
+        // goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
+        // goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
+        // goalInd.gameObject.name = "GoalIndicator";
+        backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
+        cloudColor = new Color(gridLoad.cloudColor.x, gridLoad.cloudColor.y, gridLoad.cloudColor.z);
+        silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
+        
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)
         {
             loadCube = gridLoad.cubeData[l];
-            Vector3 loadPos = new Vector3(loadCube.position.x - 0.5f, loadCube.position.y -0.5f, loadCube.position.z -0.5f);
-            string[] toCuber = new string[3] {"", "", ""};
-            string[] toMatter = new string[3] {"", "", ""};
+            Vector3 loadPos = new Vector3(loadCube.position.x - 0.5f, loadCube.position.y - 0.5f, loadCube.position.z - 0.5f);
+            string[] toCuber = new string[3] { "", "", "" };
+            string[] toMatter = new string[3] { "", "", "" };
             for (int c = 0; c < loadCube.tileData.Length; c++)
             {
-                string loadMat = loadCube.tileData[c].m;
                 if (loadCube.tileData[c].d == "Top")
                 {
                     toCuber[0] = "Top";
-                    toMatter[0] = (loadMat == null) ? "developerTop" : loadMat;
+                    toMatter[0] = loadCube.tileData[c].m;
                 }
                 else if (loadCube.tileData[c].d == "Right")
                 {
                     toCuber[1] = "Right";
-                    toMatter[1] = (loadMat == null) ? "developerRight" : loadMat;
+                    toMatter[1] = loadCube.tileData[c].m;
                 }
                 else if (loadCube.tileData[c].d == "Left")
                 {
                     toCuber[2] = "Left";
-                    toMatter[2] = (loadMat == null) ? "developerLeft" : loadMat;
+                    toMatter[2] = loadCube.tileData[c].m;
                 }
             }
-
             //Build the new level.
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
+        
+        BackgroundBuilder(gridLoad.backgroundMode);
+        CloudColorer(backgroundInstance, cloudColor);
+        
         return gridLoad;
     }
 

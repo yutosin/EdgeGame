@@ -114,6 +114,18 @@ public class MaterialSelectScript : MonoBehaviour
                     }
                     break;
 
+                case "Extrude":
+                    if (!IsFlatSurface())
+                    {
+                        AssignExtrude();
+                    }
+                    else
+                    {
+                        string needsWallFeedback = "This ability must be placed on a wall";
+                        _mScript.GiveFeedback(needsWallFeedback);
+                    }
+                    break;
+
                 default:
                     Debug.LogError("That is not an ability");
                     break;
@@ -162,6 +174,17 @@ public class MaterialSelectScript : MonoBehaviour
             XMove.SetStartingConditions(face, isMotionX);
         }
 
+        private void AssignExtrude()
+        {
+            face.Ability = face.gameObject.AddComponent<ExtrudeFaceAbility>();
+
+            ExtrudeFaceAbility extrude = face.GetComponent<ExtrudeFaceAbility>();
+
+            SetMaterial();
+            UpdateUses();
+            extrude.SetStartingConditions(face);
+        }
+
         private void SetMaterial()
         {
             material = new Material(Shader.Find("Unlit/ColorZAlways"));
@@ -185,11 +208,11 @@ public class MaterialSelectScript : MonoBehaviour
         private bool IsFlatSurface()
         {
             bool isFlat = true;
-            float yValue = face.Vertices[0].y;
+            float yValue = Mathf.Round(face.Vertices[0].y);
             
             for (int i = 1; i < face.Vertices.Length; i++)
             {
-                if (yValue != face.Vertices[i].y)
+                if (yValue != Mathf.Round(face.Vertices[i].y))
                 {
                     isFlat = false;
                     break;
@@ -203,9 +226,11 @@ public class MaterialSelectScript : MonoBehaviour
     public GameObject cubePrefab;
     public UIScript uiScript;
     public GameObject panelObj;
+    public Button xButtonObj;
     private RectTransform panelSpace;
     public float buttonSpacing;//Adjust in inspector as you please, sets space between buttons and edge of panel
-    public List<MaterialButtons> buttonList;//Also set in inspector for prefab and in scene if you want different setups for levels
+    public MaterialButtons elevator, extrudeFace, xMoving, zMoving, teleport; //This is set in inspector
+    private List<MaterialButtons> buttonList = new List<MaterialButtons>();
     [HideInInspector]
     public TeleportAbility[] tpFaces = new TeleportAbility[2];
 
@@ -253,6 +278,11 @@ public class MaterialSelectScript : MonoBehaviour
     private void Awake()
     {
         panelSpace = panelObj.GetComponent<RectTransform>();//I didn't like setting it manually in the inspector
+        buttonList.Add(elevator);
+        buttonList.Add(extrudeFace);
+        buttonList.Add(xMoving);
+        buttonList.Add(zMoving);
+        buttonList.Add(teleport);
         AssignUnSetVariables();//Got to make sure variables reliant on other variables actually get set
         SetButtonPositions();
     }
@@ -283,14 +313,18 @@ public class MaterialSelectScript : MonoBehaviour
     {
         //This accounts for the size of the buttons in case we adjust button sizes
         RectTransform buttonDimensions = buttonList[0].ThisButton.GetComponent<RectTransform>();
+        RectTransform xButtonDimensions = xButtonObj.GetComponent<RectTransform>();
+
         buttonSpacing += buttonDimensions.sizeDelta.x;
 
         float buttonX = buttonSpacing;
-        float buttonY = panelSpace.sizeDelta.y - buttonSpacing;
+        float buttonY = panelSpace.sizeDelta.y - buttonSpacing - xButtonDimensions.sizeDelta.y;
         float xMax = panelSpace.sizeDelta.x - buttonSpacing;
 
         for (int i = 0; i < buttonList.Count; i++)
         {
+            GameObject buttonObj = buttonList[i].thisButtonObj;
+            buttonObj.transform.SetParent(panelSpace.transform, true);
             //So that only selected buttons are instantiated
             if (buttonList[i].useThisLevel == true)
             {
@@ -300,9 +334,6 @@ public class MaterialSelectScript : MonoBehaviour
                     buttonX = buttonSpacing;
                     buttonY -= buttonSpacing;
                 }
-                GameObject buttonObj = Instantiate(buttonList[i].thisButtonObj) as GameObject;
-                buttonList[i].thisButtonObj = buttonObj;
-                buttonObj.transform.SetParent(panelSpace.transform, true);
 
                 Button button = buttonObj.GetComponent<Button>();
                 //This is important, as it makes the class refer to the instantiated button rather than the prefab
@@ -314,6 +345,10 @@ public class MaterialSelectScript : MonoBehaviour
 
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, buttonY);
                 buttonX += buttonSpacing;
+            }
+            else
+            {
+                buttonObj.transform.position = new Vector2(10000f, 10000f);
             }
         }
     }
@@ -328,9 +363,9 @@ public class MaterialSelectScript : MonoBehaviour
 
         for (int i = 1; i < face.Vertices.Length; i++)
         {
-            float xGap = Mathf.Abs(xValue - face.Vertices[i].x);
-            float yGap = Mathf.Abs(yValue - face.Vertices[i].y);
-            float zGap = Mathf.Abs(zValue - face.Vertices[i].z);
+            float xGap = Mathf.Round(Mathf.Abs(xValue - face.Vertices[i].x));
+            float yGap = Mathf.Round(Mathf.Abs(yValue - face.Vertices[i].y));
+            float zGap = Mathf.Round(Mathf.Abs(zValue - face.Vertices[i].z));
             if ((xGap > maxDistance) || (yGap > maxDistance) || (zGap > maxDistance))
             {
                 isSquare = false;
