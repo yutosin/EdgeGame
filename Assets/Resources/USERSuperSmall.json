@@ -1,0 +1,130 @@
+{
+    "cubeData": [
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        }
+    ],
+    "vertices": [
+        {
+            "x": 1,
+            "y": 1,
+            "z": 0
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 0
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 0
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 2
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "z": 2
+        }
+    ],
+    "startPoint": {
+        "x": 1.5,
+        "y": 2.0,
+        "z": 1.5
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 1.5
+    },
+    "backgroundColor": {
+        "x": 0.0,
+        "y": 0.5092123746871948,
+        "z": 0.0
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "cameraPosition": {
+        "x": 18.200000762939454,
+        "y": 20.1200008392334,
+        "z": 3.0
+    },
+    "backgroundMode": 3,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
+}

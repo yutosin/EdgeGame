@@ -406,12 +406,12 @@
             },
             "tileData": [
                 {
-                    "d": "Right",
-                    "m": "RightTexMat"
-                },
-                {
                     "d": "Top",
                     "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
                 }
             ]
         },
@@ -423,12 +423,12 @@
             },
             "tileData": [
                 {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                },
-                {
                     "d": "Top",
                     "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
                 }
             ]
         },
@@ -440,16 +440,16 @@
             },
             "tileData": [
                 {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
                     "d": "Right",
                     "m": "RightTexMat"
                 },
                 {
                     "d": "Left",
                     "m": "LeftTexMat"
-                },
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
                 }
             ]
         }
@@ -696,6 +696,11 @@
             "z": 6
         },
         {
+            "x": 0,
+            "y": 3,
+            "z": 5
+        },
+        {
             "x": 2,
             "y": 3,
             "z": 4
@@ -718,22 +723,22 @@
         {
             "x": 1,
             "y": 4,
-            "z": 5
-        },
-        {
-            "x": 0,
-            "y": 4,
-            "z": 5
+            "z": 4
         },
         {
             "x": 1,
             "y": 4,
-            "z": 4
+            "z": 5
         },
         {
             "x": 0,
             "y": 4,
             "z": 4
+        },
+        {
+            "x": 0,
+            "y": 4,
+            "z": 5
         },
         {
             "x": 2,
@@ -765,5 +770,31 @@
         "x": 0.5,
         "y": 4.0,
         "z": 4.5
-    }
+    },
+    "backgroundColor": {
+        "x": 0.699999988079071,
+        "y": 0.699999988079071,
+        "z": 0.699999988079071
+    },
+    "cloudColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "cameraPosition": {
+        "x": 21.619998931884767,
+        "y": 20.299997329711915,
+        "z": 5.241607666015625
+    },
+    "backgroundMode": 0,
+    "abilityElevator": 1,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RobonautHandler : MonoBehaviour
 {
@@ -55,6 +56,9 @@ public class RobonautHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        AnimationController();
+
         if (commit)
         {
             stage = 0;
@@ -129,6 +133,13 @@ public class RobonautHandler : MonoBehaviour
             playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
             //Debug.Log(deltaAngle);
         }
+    }
+
+    private void AnimationController()
+    {
+        GetComponentInChildren<Animator>().SetBool("PlayMode", GameObject.Find("GameManager").GetComponent<GameManager>().PlayMode);
+
+        GetComponentInChildren<Animator>().SetFloat("MoveSpeed", vel);
     }
 
     private void Update()

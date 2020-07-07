@@ -60,6 +60,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         float step = 3 * Time.deltaTime;
         AbilityFace.Parent.position =
             Vector3.MoveTowards(AbilityFace.Parent.position, _target, step);
+        AbilityFace.Tiles[0].transform.position = AbilityFace.Parent.position;
         if (Vector3.Distance(AbilityFace.Parent.position, _target) < .001f)
         {
             cubeChild.transform.SetParent(AbilityFace.transform);

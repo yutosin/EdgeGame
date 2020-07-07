@@ -1,0 +1,2221 @@
+{
+    "cubeData": [
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 1.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 2.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 2.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 2.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 1.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 3.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 0.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 1.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 2.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 2.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 2.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 3.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 4.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 3.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 4.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 2.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 2.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 3.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 4.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 4.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 3.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 4.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 1.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Left",
+                    "m": "Roughsand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 2.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Left",
+                    "m": "Roughsand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 3.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Left",
+                    "m": "Roughsand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Right",
+                    "m": "Roughsand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 1.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Right",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 3.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 1.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "ArcaneBricks"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": []
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 2.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 4.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Metal1"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 1.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Roughsand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "Roughsand"
+                },
+                {
+                    "d": "Right",
+                    "m": "Metal1"
+                },
+                {
+                    "d": "Left",
+                    "m": "Roughsand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 2.5,
+                "y": 1.5,
+                "z": 0.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        }
+    ],
+    "vertices": [
+        {
+            "x": 2,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 2,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 2
+        },
+        {
+            "x": 2,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 2
+        },
+        {
+            "x": 3,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 2,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 0
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 0
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 2
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 2
+        },
+        {
+            "x": 6,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 2,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 3
+        },
+        {
+            "x": 4,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 3,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 2
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 2
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 3
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 6
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 6
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 3
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 3
+        },
+        {
+            "x": 6,
+            "y": 3,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 3,
+            "z": 0
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 4,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 4,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 5,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 4,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 4,
+            "z": 0
+        },
+        {
+            "x": 6,
+            "y": 5,
+            "z": 0
+        },
+        {
+            "x": 6,
+            "y": 5,
+            "z": 1
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 4
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 2
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 2
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 3
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 3
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 6,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 7
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 6,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 5,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 4,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 3,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 3,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 2,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 7
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 2,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 3,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 7
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 7
+        },
+        {
+            "x": 1,
+            "y": 4,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 4,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 7
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 7
+        },
+        {
+            "x": 1,
+            "y": 5,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "z": 8
+        },
+        {
+            "x": 3,
+            "y": 2,
+            "z": 7
+        },
+        {
+            "x": 3,
+            "y": 2,
+            "z": 8
+        },
+        {
+            "x": 2,
+            "y": 2,
+            "z": 7
+        },
+        {
+            "x": 2,
+            "y": 2,
+            "z": 8
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 7
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 8
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 7
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 8
+        }
+    ],
+    "startPoint": {
+        "x": 5.5,
+        "y": 1.0,
+        "z": 1.5
+    },
+    "goalPoint": {
+        "x": 0.5,
+        "y": 1.0,
+        "z": 2.5
+    },
+    "backgroundColor": {
+        "x": 0.7720316648483276,
+        "y": 0.7705679535865784,
+        "z": 0.6705792546272278
+    },
+    "cloudColor": {
+        "x": 0.8168061971664429,
+        "y": 0.6137297749519348,
+        "z": 0.47412145137786868
+    },
+    "silhouetteColor": {
+        "x": 0.20532754063606263,
+        "y": 0.13866905868053437,
+        "z": 0.08554428815841675
+    },
+    "cameraPosition": {
+        "x": 19.76000213623047,
+        "y": 20.880001068115236,
+        "z": 6.0
+    },
+    "backgroundMode": 1,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 0,
+    "abilityMoveZ": 0,
+    "abilityExtrude": 0
+}
