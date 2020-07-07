@@ -11,6 +11,26 @@ public class InstructionScript : MonoBehaviour
     public GameObject[] panels;
     public PlayVideoScript[] vScripts;
     public GameObject videoHolder;
+    private bool _playVideo;
+    public bool PlayVideo
+    {
+        get { return (_playVideo); }
+
+        set
+        {
+            _playVideo = value;
+            
+            if(value == true)
+            {
+                vScripts[_vPos].videoPlayer.Play();
+            }
+            else
+            {
+                vScripts[_vPos].videoPlayer.Stop();
+            }
+            videoHolder.SetActive(value);
+        }
+    }
     private int _vPos = 0;
     public int VPos
     {
