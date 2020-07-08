@@ -57,6 +57,11 @@ public class Jsonator : MonoBehaviour
     public Scrollbar abilityMoveX;
     public Scrollbar abilityMoveZ;
     public Scrollbar abilityExtrude;
+    public Text elevatorCount;
+    public Text teleportCount;
+    public Text moveXCount;
+    public Text moveZCount;
+    public Text extrudeCount;
     public InputField saveName;
     public RectTransform fileContent;
     public RectTransform fileTemplate;
@@ -225,9 +230,9 @@ public class Jsonator : MonoBehaviour
                 cloudColor = new Color(CloudColorR.value, CloudColorG.value, CloudColorB.value, 1);
                 silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
             }
-            BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
-            cloudColorDisplay.GetComponent<Image>().color = cloudColor;
-            SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
+            BackgroundColorDisplay.GetComponent<Image>().color = new Color(backgroundColor.r * 0.9f, backgroundColor.g * 0.9f, backgroundColor.b * 0.9f);
+            cloudColorDisplay.GetComponent<Image>().color = new Color(cloudColor.r * 0.9f, cloudColor.g * 0.9f, cloudColor.b * 0.9f);
+            SilhouetteColorDisplay.GetComponent<Image>().color = new Color(silhouetteColor.r * 0.9f, silhouetteColor.g * 0.9f, silhouetteColor.b * 0.9f);
             mainCamera.backgroundColor = backgroundColor;
             if (modeCheck == 1 || modeCheck == 2 || modeCheck == 4) CloudColorer(backgroundInstance, cloudColor);
             if (backgroundInstance != null) backgroundInstance.GetComponent<BackgroundGenerator>().cloudColor = cloudColor;
@@ -236,11 +241,16 @@ public class Jsonator : MonoBehaviour
         }
 
         //Manage ability settings
-        abElevVal = ScrollParse(abElevVal, abilityElevator);
-        abTeleVal = ScrollParse(abTeleVal, abilityTeleport);
-        abMovXVal = ScrollParse(abMovXVal, abilityMoveX);
-        abMovZVal = ScrollParse(abMovZVal, abilityMoveZ);
-        abExtrVal = ScrollParse(abExtrVal, abilityExtrude);
+        abElevVal = abilityElevator.value * 4;
+        abTeleVal = abilityTeleport.value * 4;
+        abMovXVal = abilityMoveX.value * 4;
+        abMovZVal = abilityMoveZ.value * 4;
+        abExtrVal = abilityExtrude.value * 4;
+        elevatorCount.text = ((int)abElevVal).ToString();
+        teleportCount.text = ((int)abTeleVal).ToString();
+        moveXCount.text = ((int)abMovXVal).ToString();
+        moveZCount.text = ((int)abMovZVal).ToString();
+        extrudeCount.text = ((int)abExtrVal).ToString();
 
         //Silhouette mode determination
         if (silhouetteVal != silhouetteSwitch.value)
@@ -567,15 +577,10 @@ public class Jsonator : MonoBehaviour
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
         modeSet.value = (float)gridLoad.backgroundMode / (modeSet.numberOfSteps - 1);
         abilityElevator.value = (float)gridLoad.abilityElevator / (abilityElevator.numberOfSteps - 1);
-        abilityElevator.GetComponentInChildren<Text>().text = abilityElevator.value.ToString();
         abilityTeleport.value = (float)gridLoad.abilityTeleport / (abilityTeleport.numberOfSteps - 1);
-        abilityTeleport.GetComponentInChildren<Text>().text = abilityTeleport.value.ToString();
         abilityMoveX.value = (float)gridLoad.abilityMoveX / (abilityMoveX.numberOfSteps - 1);
-        abilityMoveX.GetComponentInChildren<Text>().text = abilityMoveX.value.ToString();
         abilityMoveZ.value = (float)gridLoad.abilityMoveZ / (abilityMoveZ.numberOfSteps - 1);
-        abilityMoveZ.GetComponentInChildren<Text>().text = abilityMoveZ.value.ToString();
         abilityExtrude.value = (float)gridLoad.abilityExtrude / (abilityExtrude.numberOfSteps - 1);
-        abilityExtrude.GetComponentInChildren<Text>().text = abilityExtrude.value.ToString();
         if (HSVMode)
         {
             RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
@@ -634,7 +639,7 @@ public class Jsonator : MonoBehaviour
     public void OnRefreshButton()
     {
         //Clear old buttons.
-        for (int d = 1; d < fileContent.transform.childCount; d++)
+        for (int d = 0; d < fileContent.transform.childCount; d++)
         {
             Destroy(fileContent.GetChild(d).gameObject);
         }
@@ -654,6 +659,7 @@ public class Jsonator : MonoBehaviour
                 if (userPrefix)
                     file = file.Remove(0, 4);
                 fileButton[r] = Instantiate(fileTemplate, fileContent);
+                fileButton[r].gameObject.SetActive(true);
                 fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
                 fileButton[r].name = file;
                 fileButton[r].GetComponentInChildren<Text>().text = file;
@@ -679,11 +685,10 @@ public class Jsonator : MonoBehaviour
         matView.GetComponent<Image>().material = null;
     }
 
-    public void OnStartpointButton()
+    public void StartChecker(bool check)
     {
-        SelectDeleter(selectCube);
-        selectingStart = true;
-        matView.GetComponent<Image>().material = null;
+        if (check) SelectDeleter(selectCube);
+        selectingStart = check;
     }
 
     public void OnDeleteButton(Button button)
@@ -1080,7 +1085,6 @@ public class Jsonator : MonoBehaviour
         if (abilityVal != ability.value)
         {
             float abMult = ability.value * (ability.numberOfSteps - 1);
-            ability.GetComponentInChildren<Text>().text = abMult.ToString();
             return abMult;
         }
         return abilityVal;
