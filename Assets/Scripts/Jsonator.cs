@@ -187,15 +187,6 @@ public class Jsonator : MonoBehaviour
             checkBackground = false;
         }
 
-        int modeParse = (int)ScrollParse(modeCheck, modeSet);
-        if (modeParse != modeCheck)
-        {
-            if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
-            modeCheck = modeParse;
-            BackgroundBuilder(modeCheck);
-            CloudColorer(backgroundInstance, cloudColor);
-        }
-
         //Manage transition between RGB and HSV color modes.
         if (HSVVal != HSVSwitch.value)
         {
@@ -1021,8 +1012,10 @@ public class Jsonator : MonoBehaviour
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
         
+        if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
         BackgroundBuilder(gridLoad.backgroundMode);
-        CloudColorer(backgroundInstance, cloudColor);
+        if (gridLoad.backgroundMode == 1 || gridLoad.backgroundMode == 2)
+            CloudColorer(backgroundInstance, cloudColor);
         
         mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 20.5f, gridLoad.cameraPosition.y);
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
