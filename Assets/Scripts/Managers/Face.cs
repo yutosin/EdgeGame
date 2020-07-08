@@ -25,6 +25,8 @@ public class Face : MonoBehaviour
 
     private MaterialSelectScript _mScript;
 
+    private bool _hasShownElevatorTutorial = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +117,11 @@ public class Face : MonoBehaviour
             lastFace = face;
             _selectedFace = face;
             _mScript.SelectedFace = _selectedFace;
+            if (!_hasShownElevatorTutorial && GameManager.SharedInstance.InstructionScript.VPos == 1)
+            {
+                _hasShownElevatorTutorial = true;
+                GameManager.SharedInstance.InstructionScript.VPos++;
+            }
         }
     }
 

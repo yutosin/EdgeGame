@@ -4571,7 +4571,6 @@ GameObject:
   - component: {fileID: 1101079003}
   - component: {fileID: 1101079002}
   - component: {fileID: 1101079001}
-  - component: {fileID: 1101079005}
   - component: {fileID: 1101079006}
   m_Layer: 5
   m_Name: GameCanvas
@@ -4660,18 +4659,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1101079005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101079000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d1a33574382124bac20bab18a28cb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1101079006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4698,7 +4685,6 @@ MonoBehaviour:
   - {fileID: 1841769578}
   - {fileID: 819229249}
   - {fileID: 166400272}
-  - {fileID: 1892584307}
   videoHolder: {fileID: 111571106}
   pagePos: 0
 --- !u!1 &1109124936
@@ -5410,6 +5396,7 @@ MonoBehaviour:
   matSelect: {fileID: 1284671207}
   uiManager: {fileID: 1284671206}
   LevelLoader: {fileID: 1304968027}
+  InstructionScript: {fileID: 1101079006}
   PlayMode: 0
   InLevelEditor: 0
 --- !u!1 &1304968026

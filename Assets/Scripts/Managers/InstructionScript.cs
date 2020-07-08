@@ -41,7 +41,7 @@ public class InstructionScript : MonoBehaviour
             miniVideos[_vPos].endLoop = true;
             miniVideos[_vPos].videoPlayer.Stop();
             _vPos = value;
-            if(_vPos <= miniVideos.Length)
+            if(_vPos < miniVideos.Length)
             {
                 miniVideos[_vPos].videoPlayer.Play();
             }
