@@ -8,6 +8,9 @@ public class PlayVideoScript : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public GameObject canvasObj;
+    public bool miniPlayer;
+    [HideInInspector]
+    public bool endLoop = false;
     private bool mainMenu;
 
     private void Awake()
@@ -45,6 +48,10 @@ public class PlayVideoScript : MonoBehaviour
     private void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
         videoPlayer.Stop();
+        if(miniPlayer && !endLoop)
+        {
+            videoPlayer.Play();
+        }
         ShowPanel();
     }
 

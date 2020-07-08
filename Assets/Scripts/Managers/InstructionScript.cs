@@ -9,6 +9,28 @@ public class InstructionScript : MonoBehaviour
     public GameObject previousButtonObj;
     public GameObject nextButtonObj;
     public GameObject[] panels;
+    public PlayVideoScript[] vScripts;
+    public GameObject videoHolder;
+    private int _vPos = 0;
+    public int VPos
+    {
+        get { return(_vPos); }
+
+        set
+        {
+            vScripts[_vPos].endLoop = true;
+            vScripts[_vPos].videoPlayer.Stop();
+            _vPos = value;
+            if(_vPos <= vScripts.Length)
+            {
+                vScripts[_vPos].videoPlayer.Play();
+            }
+            else
+            {
+                videoHolder.SetActive(false);
+            }
+        }
+    }
     public int pagePos = 0;
     private int maxPage;
 
@@ -16,6 +38,24 @@ public class InstructionScript : MonoBehaviour
     {
         maxPage = panels.Length - 1;
         previousButtonObj.SetActive(false);
+        videoHolder.SetActive(false);
+        if(vScripts.Length > 0)
+        {
+            vScripts[VPos].videoPlayer.Play();
+            StartCoroutine(WaitTilPrepared());
+        }
+    }
+
+    private IEnumerator WaitTilPrepared()
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(.5f);
+        while (!vScripts[VPos].videoPlayer.isPrepared)
+        {
+            yield return waitForSeconds;
+            break;
+        }
+
+        videoHolder.SetActive(true);
     }
 
     public void PreviousButtonHit()
