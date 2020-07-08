@@ -4850,7 +4850,9 @@ MonoBehaviour:
   allUI: {fileID: 1171468506}
   InstructionsPanel: {fileID: 0}
   FaceAbilitiesPanel: {fileID: 0}
+  MainPanel: {fileID: 0}
   FeedbackPanel: {fileID: 610215299}
+  CreditsPanel: {fileID: 0}
   FeedackText: {fileID: 2013022893}
   mScript: {fileID: 1284671207}
   GamePlayModeButton: {fileID: 316264391}
@@ -8501,11 +8503,11 @@ MonoBehaviour:
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _levelNames:
-  - Level_1
-  - Level_2
-  - Level_3
-  - Level_4
-  - Level_5
+  - StaggeredElevator
+  - LateralMoves
+  - 1_Each
+  - StaggeredElevator
+  - LateralMoves
 --- !u!1 &2146475524
 GameObject:
   m_ObjectHideFlags: 0
