@@ -5,16 +5,23 @@ using UnityEngine;
 public class BackgroundGenerator : MonoBehaviour
 {
     [Header("General")]
-    public int mode;
     public Transform cube;
-    public Material cubeMat;
+    public int mode;
+
+    [Header("Set Warpstars Resources")]
     public GameObject warpStars;
 
-    [Header("Set Cloudmode Parameters")]
+    [Header("Set Cloudmode Resources")]
     public Vector3 cloudMin;
     public Vector3 cloudMax;
     public Color cloudColor;
     public float speed;
+
+    [Header("Set Cavern Resources")]
+    public int xSize;
+    public int ySize;
+    public int sizeFactor;
+    public int spreadFactor;
 
     private Transform subject;
     private GameObject warpStarsInst;
@@ -52,15 +59,29 @@ public class BackgroundGenerator : MonoBehaviour
             warpStarsInst.transform.position = new Vector3(0, -40, 0);
             warpStarsInst.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.color = new Color(cloudColor.r, cloudColor.g, cloudColor.b, 1);
         }
+        else if (lockMode == 4)
+        {
+            name = "Background_Caverns";
+            transform.position = new Vector3(transform.position.x, -300, transform.position.z);
+            for (int y = 0; y < ySize * spreadFactor; y += spreadFactor)
+            {
+                for (int x = 0; x < xSize * spreadFactor; x += spreadFactor)
+                {
+                    float height = Mathf.Pow((float)x / (xSize / 2), 2) + Mathf.Pow((float)y / (ySize / 2), 2) + Random.Range(1, 8);
+                    Transform cubeToParse = cube.transform;
+                    cubeToParse.position = new Vector3(transform.position.x - (x - (xSize / 2) + 1), transform.position.y + height + 0.5f, transform.position.z - (y - (ySize / 2) + 1));
+                    cubeToParse.localScale = new Vector3(sizeFactor, height * 2 + 1, sizeFactor);
+                    Transform parsedCube = Instantiate(cubeToParse, transform);
+                    parsedCube.GetComponent<Renderer>().material.color = new Color(cloudColor.r, cloudColor.g, cloudColor.b, 1);
+                }
+            }
+        }
     }
 
     void FixedUpdate()
     {
         time += Time.fixedDeltaTime;
-        if (lockMode == 0)
-        {
-        }
-        else if (lockMode == 1)
+        if (lockMode == 1)
         {
             for (int c = 0; c < transform.childCount; c++)
             {

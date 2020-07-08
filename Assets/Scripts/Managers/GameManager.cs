@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public MaterialSelectScript matSelect;
     public UIScript uiManager;
     public Jsonator LevelLoader;
+    public InstructionScript InstructionScript;
     public bool PlayMode;
     public bool InLevelEditor;
     

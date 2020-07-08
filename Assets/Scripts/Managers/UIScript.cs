@@ -92,6 +92,6 @@ public class UIScript : MonoBehaviour
 
     public void ReloadLevel()
     {
-        GameManager.SharedInstance.levelManager.LoadLevel();
+        GameManager.SharedInstance.levelManager.LoadLevel(true);
     }
 }

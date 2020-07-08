@@ -9,6 +9,48 @@ public class InstructionScript : MonoBehaviour
     public GameObject previousButtonObj;
     public GameObject nextButtonObj;
     public GameObject[] panels;
+    public PlayVideoScript[] miniVideos;
+    public GameObject videoHolder;
+    private bool _playVideo;
+    public bool PlayVideo
+    {
+        get { return (_playVideo); }
+
+        set
+        {
+            _playVideo = value;
+
+            if(value == true)
+            {
+                miniVideos[_vPos].videoPlayer.Play();
+            }
+            else
+            {
+                miniVideos[_vPos].videoPlayer.Stop();
+            }
+            videoHolder.SetActive(value);
+        }
+    }
+    private int _vPos = 0;
+    public int VPos
+    {
+        get { return(_vPos); }
+
+        set
+        {
+            miniVideos[_vPos].endLoop = true;
+            miniVideos[_vPos].videoPlayer.Stop();
+            _vPos = value;
+            if(_vPos < miniVideos.Length)
+            {
+                miniVideos[_vPos].videoPlayer.Play();
+            }
+            else
+            {
+                videoHolder.SetActive(false);
+            }
+        }
+    }
     public int pagePos = 0;
     private int maxPage;
 
@@ -16,6 +58,24 @@ public class InstructionScript : MonoBehaviour
     {
         maxPage = panels.Length - 1;
         previousButtonObj.SetActive(false);
+        videoHolder.SetActive(false);
+        if(miniVideos.Length > 0)
+        {
+            miniVideos[VPos].videoPlayer.Play();
+            StartCoroutine(WaitTilPrepared());
+        }
+    }
+
+    private IEnumerator WaitTilPrepared()
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(.5f);
+        while (!miniVideos[VPos].videoPlayer.isPrepared)
+        {
+            yield return waitForSeconds;
+            break;
+        }
+
+        videoHolder.SetActive(true);
     }
 
     public void PreviousButtonHit()
@@ -60,11 +120,14 @@ public class InstructionScript : MonoBehaviour
     public void PullUpInstructions()
     {
         uiPanel.SetActive(true);
+        if (videoHolder.activeInHierarchy)
+            videoHolder.SetActive(false);
     }
 
     public void ReturnToGame()
     {
         uiPanel.SetActive(false);
+        videoHolder.SetActive(true);
     }
 
 }

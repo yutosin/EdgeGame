@@ -1,0 +1,974 @@
+{
+    "cubeData": [
+        {
+            "position": {
+                "x": 4.5,
+                "y": 4.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 5.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 8.5,
+                "y": 4.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 4.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 5.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 6.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 6.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 6.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 7.5,
+                "y": 6.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 8.5,
+                "y": 6.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 6.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 6.5,
+                "z": 12.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 7.5,
+                "z": 12.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 4.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 5.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 4.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 5.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 4.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 7.5,
+                "y": 5.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 8.5,
+                "y": 5.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 5.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 7.5,
+                "y": 4.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 8.5,
+                "y": 4.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 4.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 5.5,
+                "z": 12.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 4.5,
+                "z": 12.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "StoneBricksFancy"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricksFancy"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 6.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 7.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 5.5,
+                "y": 7.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 7.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 7.5,
+                "y": 7.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 8.5,
+                "y": 7.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 9.5,
+                "y": 7.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "CaveRockDark"
+                },
+                {
+                    "d": "Right",
+                    "m": "StoneBricks"
+                },
+                {
+                    "d": "Left",
+                    "m": "StoneBricks"
+                }
+            ]
+        }
+    ],
+    "vertices": [
+        {
+            "x": 5,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 6,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 6,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 6,
+            "z": 4
+        },
+        {
+            "x": 9,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 9,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 8,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 8,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 9,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 8,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 10,
+            "y": 5,
+            "z": 4
+        },
+        {
+            "x": 10,
+            "y": 5,
+            "z": 5
+        },
+        {
+            "x": 10,
+            "y": 4,
+            "z": 5
+        },
+        {
+            "x": 10,
+            "y": 4,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 4,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 5,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 4,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 5,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 4,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 6,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 6,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 7,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 7,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 8,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 8,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 9,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 9,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 6,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 7,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 6,
+            "z": 8
+        },
+        {
+            "x": 10,
+            "y": 7,
+            "z": 8
+        },
+        {
+            "x": 10,
+            "y": 6,
+            "z": 13
+        },
+        {
+            "x": 9,
+            "y": 6,
+            "z": 13
+        },
+        {
+            "x": 10,
+            "y": 7,
+            "z": 13
+        },
+        {
+            "x": 9,
+            "y": 7,
+            "z": 13
+        },
+        {
+            "x": 10,
+            "y": 6,
+            "z": 12
+        },
+        {
+            "x": 10,
+            "y": 7,
+            "z": 12
+        },
+        {
+            "x": 10,
+            "y": 8,
+            "z": 12
+        },
+        {
+            "x": 10,
+            "y": 8,
+            "z": 13
+        },
+        {
+            "x": 9,
+            "y": 8,
+            "z": 12
+        },
+        {
+            "x": 9,
+            "y": 8,
+            "z": 13
+        },
+        {
+            "x": 5,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 4,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 6,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 6,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 7,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 7,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 8,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 9,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 5,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 5,
+            "z": 8
+        },
+        {
+            "x": 8,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 9,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 4,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 4,
+            "z": 8
+        },
+        {
+            "x": 10,
+            "y": 5,
+            "z": 13
+        },
+        {
+            "x": 9,
+            "y": 5,
+            "z": 13
+        },
+        {
+            "x": 10,
+            "y": 5,
+            "z": 12
+        },
+        {
+            "x": 10,
+            "y": 4,
+            "z": 13
+        },
+        {
+            "x": 9,
+            "y": 4,
+            "z": 13
+        },
+        {
+            "x": 10,
+            "y": 4,
+            "z": 12
+        },
+        {
+            "x": 5,
+            "y": 7,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 7,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 7,
+            "z": 4
+        },
+        {
+            "x": 4,
+            "y": 7,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 5,
+            "y": 8,
+            "z": 9
+        },
+        {
+            "x": 4,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 4,
+            "y": 8,
+            "z": 9
+        },
+        {
+            "x": 6,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 6,
+            "y": 8,
+            "z": 9
+        },
+        {
+            "x": 7,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 7,
+            "y": 8,
+            "z": 9
+        },
+        {
+            "x": 8,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 8,
+            "y": 8,
+            "z": 9
+        },
+        {
+            "x": 9,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 9,
+            "y": 8,
+            "z": 9
+        },
+        {
+            "x": 10,
+            "y": 8,
+            "z": 8
+        },
+        {
+            "x": 10,
+            "y": 8,
+            "z": 9
+        }
+    ],
+    "startPoint": {
+        "x": 9.5,
+        "y": 5.0,
+        "z": 4.5
+    },
+    "goalPoint": {
+        "x": 9.5,
+        "y": 8.0,
+        "z": 12.5
+    },
+    "backgroundColor": {
+        "x": 0.5681465268135071,
+        "y": 0.4716854691505432,
+        "z": 0.6000000238418579
+    },
+    "cloudColor": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "silhouetteColor": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "cameraPosition": {
+        "x": 21.73106575012207,
+        "y": 22.899799346923829,
+        "z": 7.0
+    },
+    "backgroundMode": 1,
+    "abilityElevator": 0,
+    "abilityTeleport": 0,
+    "abilityMoveX": 1,
+    "abilityMoveZ": 2,
+    "abilityExtrude": 0
+}
