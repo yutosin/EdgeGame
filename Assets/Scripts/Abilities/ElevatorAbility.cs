@@ -33,6 +33,12 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         playerTransform.parent = null;
     }
 
+    private IEnumerator DelayedScan()
+    {
+        yield return new WaitForFixedUpdate();
+        AstarPath.active.Scan();
+    }
+
     private void CubeSpawn()
     {
         cubePrefab = GameManager.SharedInstance.matSelect.cubePrefab;
@@ -68,6 +74,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
             GameManager.SharedInstance.playerAgent.OnActiveAbility = false;
             AstarPath.active.Scan();
             StartCoroutine(SetAgentPosition());
+            StartCoroutine(DelayedScan());
             AbilityTimes--;
         }
         if(cubeChild == null)

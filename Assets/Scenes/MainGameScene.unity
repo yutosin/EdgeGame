@@ -8503,11 +8503,16 @@ MonoBehaviour:
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _levelNames:
-  - StaggeredElevator
-  - LateralMoves
+  - Level_1
+  - Level_2
+  - Level_3
+  - Level_4
+  - Level_5
   - 1_Each
-  - StaggeredElevator
   - LateralMoves
+  - ExtrudeClimb
+  - StaggeredV2
+  - UseThemAll
 --- !u!1 &2146475524
 GameObject:
   m_ObjectHideFlags: 0

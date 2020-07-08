@@ -167,12 +167,12 @@
             },
             "tileData": [
                 {
-                    "d": "Left",
-                    "m": "GravelRock"
-                },
-                {
                     "d": "Top",
                     "m": "SkyLand"
+                },
+                {
+                    "d": "Left",
+                    "m": "GravelRock"
                 }
             ]
         },
@@ -660,9 +660,9 @@
         "z": 0.0
     },
     "cameraPosition": {
-        "x": 15.0,
-        "y": 19.436870574951173,
-        "z": 8.0
+        "x": 16.601604461669923,
+        "y": 19.696584701538087,
+        "z": 5.0
     },
     "backgroundMode": 2,
     "abilityElevator": 0,
