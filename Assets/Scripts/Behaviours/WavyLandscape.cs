@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class WavyLandscape : MonoBehaviour
 {
+    public Material mat;
     public GameObject cube;
     public int xSize;
     public int ySize;
-    // Start is called before the first frame update
+    public int sizeFactor;
+    public int spreadFactor;
+
     void Awake()
     {
-        //Cube[,] cubes = new Cube[xSize, ySize];
-        for (int y = 0; y < ySize; y++)
+        for (int y = 0; y < ySize * spreadFactor; y += spreadFactor)
         {
-            for (int x = 0; x < xSize; x++)
+            for (int x = 0; x < xSize * spreadFactor; x += spreadFactor)
             {
-                Transform newCube = cube.transform;
-                newCube.localPosition = new Vector3(x - (xSize / 2), 0, y - (ySize / 2));
-                Instantiate(cube, transform);
+                float height = Mathf.Pow((float)x / (xSize / 2), 2) + Mathf.Pow((float)y / (ySize / 2), 2) + Random.Range(1,8);
+                Transform cubeToParse = cube.transform;
+                cubeToParse.position = new Vector3(transform.position.x - (x - (xSize / 2) + 1), transform.position.y + height + 0.5f, transform.position.z - (y - (ySize / 2) + 1));
+                cubeToParse.localScale = new Vector3(sizeFactor, height * 2 + 1, sizeFactor);
+                Instantiate(cubeToParse, transform);
             }
         }
     }
