@@ -19,7 +19,7 @@ public class InstructionScript : MonoBehaviour
         set
         {
             _playVideo = value;
-            
+
             if(value == true)
             {
                 miniVideos[_vPos].videoPlayer.Play();
@@ -120,11 +120,14 @@ public class InstructionScript : MonoBehaviour
     public void PullUpInstructions()
     {
         uiPanel.SetActive(true);
+        if (videoHolder.activeInHierarchy)
+            videoHolder.SetActive(false);
     }
 
     public void ReturnToGame()
     {
         uiPanel.SetActive(false);
+        videoHolder.SetActive(true);
     }
 
 }
