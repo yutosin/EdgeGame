@@ -500,7 +500,7 @@ public class LevelManager : MonoBehaviour
         //currentLevel++;
         if (currentLevel >= _levelNames.Length)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("MainMenuALT");
             return;
         }
 

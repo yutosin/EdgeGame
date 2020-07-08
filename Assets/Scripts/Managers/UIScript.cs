@@ -31,7 +31,7 @@ public class UIScript : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuALT");
     }
 
     public void ShowInstructionsPanel()

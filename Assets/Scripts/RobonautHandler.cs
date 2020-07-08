@@ -57,8 +57,6 @@ public class RobonautHandler : MonoBehaviour
     private void FixedUpdate()
     {
 
-        AnimationController();
-
         if (commit)
         {
             stage = 0;
@@ -133,6 +131,8 @@ public class RobonautHandler : MonoBehaviour
             playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
             //Debug.Log(deltaAngle);
         }
+
+        AnimationController();
     }
 
     private void AnimationController()
@@ -140,6 +140,13 @@ public class RobonautHandler : MonoBehaviour
         GetComponentInChildren<Animator>().SetBool("PlayMode", GameObject.Find("GameManager").GetComponent<GameManager>().PlayMode);
 
         GetComponentInChildren<Animator>().SetFloat("MoveSpeed", vel);
+
+        if (oldPos.y < pos.y)
+            GetComponentInChildren<Animator>().SetInteger("ChangeY", 1);
+        else if (oldPos.y < pos.y)
+            GetComponentInChildren<Animator>().SetInteger("ChangeY", -1);
+        else if (oldPos.y == pos.y)
+            GetComponentInChildren<Animator>().SetInteger("ChangeY", 0);
     }
 
     private void Update()
