@@ -31,7 +31,7 @@ public class UIScript : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuALT");
     }
 
     public void ShowInstructionsPanel()
@@ -92,6 +92,6 @@ public class UIScript : MonoBehaviour
 
     public void ReloadLevel()
     {
-        GameManager.SharedInstance.levelManager.LoadLevel();
+        GameManager.SharedInstance.levelManager.LoadLevel(true);
     }
 }

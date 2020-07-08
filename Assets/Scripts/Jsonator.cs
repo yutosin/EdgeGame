@@ -57,6 +57,11 @@ public class Jsonator : MonoBehaviour
     public Scrollbar abilityMoveX;
     public Scrollbar abilityMoveZ;
     public Scrollbar abilityExtrude;
+    public Text elevatorCount;
+    public Text teleportCount;
+    public Text moveXCount;
+    public Text moveZCount;
+    public Text extrudeCount;
     public InputField saveName;
     public RectTransform fileContent;
     public RectTransform fileTemplate;
@@ -123,8 +128,7 @@ public class Jsonator : MonoBehaviour
         BackgroundBuilder(0);
         silhouetteVal = 0;
         HSVVal = 0;
-        if (!GameManager.SharedInstance.InLevelEditor)
-            return;
+        if (!GameManager.SharedInstance.InLevelEditor) return;
 
         //Set sliders.
         modeSet.value = 0;
@@ -139,7 +143,7 @@ public class Jsonator : MonoBehaviour
 
         //Set up Materials array.
         RectTransform[] matButton = new RectTransform[materials.Length];
-        matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.GetComponent<RectTransform>().rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
+        matContent.GetComponent<RectTransform>().sizeDelta = new Vector2(matTemplate.rect.width * matButton.Length + (matButton.Length * 10) + 10, 0);
         displayMaterials = new Material[materials.Length];
         for (int m = 0; m < matButton.Length; m++)
         {
@@ -147,7 +151,7 @@ public class Jsonator : MonoBehaviour
             displayMaterials[m].shader = Shader.Find("UI/Unlit/Detail");
             matButton[m] = Instantiate(matTemplate, matContent);
             matButton[m].gameObject.SetActive(true);
-            matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * 80 + 60, 0);
+            matButton[m].GetComponent<RectTransform>().anchoredPosition = new Vector2(m * (matTemplate.rect.width + 10) + (matTemplate.rect.width / 2 + 10), 0);
             matButton[m].name = m.ToString();
             matButton[m].GetComponent<Image>().material = displayMaterials[m];
         }
@@ -170,7 +174,8 @@ public class Jsonator : MonoBehaviour
     void Update()
     {
         //Externally disable level editor mode via GameManager.
-        if (!GameManager.SharedInstance.InLevelEditor) return;
+        if (!GameManager.SharedInstance.InLevelEditor)
+            return;
 
         //Manage background settings
         if (checkBackground)
@@ -180,15 +185,6 @@ public class Jsonator : MonoBehaviour
             BackgroundBuilder(modeCheck);
             if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
             checkBackground = false;
-        }
-
-        int modeParse = (int)ScrollParse(modeCheck, modeSet);
-        if (modeParse != modeCheck)
-        {
-            if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
-            modeCheck = modeParse;
-            BackgroundBuilder(modeCheck);
-            CloudColorer(backgroundInstance, cloudColor);
         }
 
         //Manage transition between RGB and HSV color modes.
@@ -225,22 +221,27 @@ public class Jsonator : MonoBehaviour
                 cloudColor = new Color(CloudColorR.value, CloudColorG.value, CloudColorB.value, 1);
                 silhouetteColor = new Color(SilhouetteColorR.value, SilhouetteColorG.value, SilhouetteColorB.value, 1);
             }
-            BackgroundColorDisplay.GetComponent<Image>().color = backgroundColor;
-            cloudColorDisplay.GetComponent<Image>().color = cloudColor;
-            SilhouetteColorDisplay.GetComponent<Image>().color = silhouetteColor;
+            BackgroundColorDisplay.GetComponent<Image>().color = new Color(backgroundColor.r * 0.9f, backgroundColor.g * 0.9f, backgroundColor.b * 0.9f);
+            cloudColorDisplay.GetComponent<Image>().color = new Color(cloudColor.r * 0.9f, cloudColor.g * 0.9f, cloudColor.b * 0.9f);
+            SilhouetteColorDisplay.GetComponent<Image>().color = new Color(silhouetteColor.r * 0.9f, silhouetteColor.g * 0.9f, silhouetteColor.b * 0.9f);
             mainCamera.backgroundColor = backgroundColor;
-            if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
+            if (modeCheck == 1 || modeCheck == 2 || modeCheck == 4) CloudColorer(backgroundInstance, cloudColor);
             if (backgroundInstance != null) backgroundInstance.GetComponent<BackgroundGenerator>().cloudColor = cloudColor;
             silhouette.color = silhouetteColor;
             checkColor = false;
         }
 
         //Manage ability settings
-        abElevVal = ScrollParse(abElevVal, abilityElevator);
-        abTeleVal = ScrollParse(abTeleVal, abilityTeleport);
-        abMovXVal = ScrollParse(abMovXVal, abilityMoveX);
-        abMovZVal = ScrollParse(abMovZVal, abilityMoveZ);
-        abExtrVal = ScrollParse(abExtrVal, abilityExtrude);
+        abElevVal = abilityElevator.value * 4;
+        abTeleVal = abilityTeleport.value * 4;
+        abMovXVal = abilityMoveX.value * 4;
+        abMovZVal = abilityMoveZ.value * 4;
+        abExtrVal = abilityExtrude.value * 4;
+        elevatorCount.text = ((int)abElevVal).ToString();
+        teleportCount.text = ((int)abTeleVal).ToString();
+        moveXCount.text = ((int)abMovXVal).ToString();
+        moveZCount.text = ((int)abMovZVal).ToString();
+        extrudeCount.text = ((int)abExtrVal).ToString();
 
         //Silhouette mode determination
         if (silhouetteVal != silhouetteSwitch.value)
@@ -329,9 +330,12 @@ public class Jsonator : MonoBehaviour
                         {
                             if (hitRay.collider.name.Contains("Tile"))
                             {
-                                hitRay.collider.GetComponentInParent<Renderer>().material = selectedMaterial;
-                                string[] parseSplit = hitRay.collider.name.Split('_');
-                                hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + selectedMaterial.name.Replace(" (Instance)", "");
+                                if (selectedMaterial != null)
+                                {
+                                    hitRay.collider.GetComponentInParent<Renderer>().material = selectedMaterial;
+                                    string[] parseSplit = hitRay.collider.name.Split('_');
+                                    hitRay.collider.name = parseSplit[0] + "_" + parseSplit[1] + "_" + selectedMaterial.name.Replace(" (Instance)", "");
+                                }
                             }
                         }
                         else if (!paintMode)
@@ -428,12 +432,13 @@ public class Jsonator : MonoBehaviour
     //Buttons
     public void OnNewButton()
     {
-        //Clear out the old cubes.
+        //Clear out the old stuff.
         for (int d = 0; d < transform.childCount; d++)
         {
             Destroy(transform.GetChild(d).gameObject);
             if (startInd != null) { Destroy(startInd.gameObject); }
         }
+        saveName.text = "";
 
         //Reset colors.
         if (HSVMode)
@@ -453,11 +458,11 @@ public class Jsonator : MonoBehaviour
         modeSet.value = 0;
 
         //Place the camera.
-        mainCamera.transform.position = new Vector3(15, 25, 15);
+        mainCamera.transform.position = new Vector3(34, 25, 34);
         mainCamera.orthographicSize = 8;
 
         //Build a single cube at 1, 1, 1
-        Cuber("Top", developerTop.name, "Right", developerRight.name, "Left", developerLeft.name, new Vector3(1, 1, 1));
+        Cuber("Top", developerTop.name, "Right", developerRight.name, "Left", developerLeft.name, new Vector3(19, 1, 19));
     }
 
     public void OnSaveButton()
@@ -563,15 +568,10 @@ public class Jsonator : MonoBehaviour
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
         modeSet.value = (float)gridLoad.backgroundMode / (modeSet.numberOfSteps - 1);
         abilityElevator.value = (float)gridLoad.abilityElevator / (abilityElevator.numberOfSteps - 1);
-        abilityElevator.GetComponentInChildren<Text>().text = abilityElevator.value.ToString();
         abilityTeleport.value = (float)gridLoad.abilityTeleport / (abilityTeleport.numberOfSteps - 1);
-        abilityTeleport.GetComponentInChildren<Text>().text = abilityTeleport.value.ToString();
         abilityMoveX.value = (float)gridLoad.abilityMoveX / (abilityMoveX.numberOfSteps - 1);
-        abilityMoveX.GetComponentInChildren<Text>().text = abilityMoveX.value.ToString();
         abilityMoveZ.value = (float)gridLoad.abilityMoveZ / (abilityMoveZ.numberOfSteps - 1);
-        abilityMoveZ.GetComponentInChildren<Text>().text = abilityMoveZ.value.ToString();
         abilityExtrude.value = (float)gridLoad.abilityExtrude / (abilityExtrude.numberOfSteps - 1);
-        abilityExtrude.GetComponentInChildren<Text>().text = abilityExtrude.value.ToString();
         if (HSVMode)
         {
             RGBToHSV(backgroundColor, BGColorR, BGColorG, BGColorB);
@@ -630,7 +630,7 @@ public class Jsonator : MonoBehaviour
     public void OnRefreshButton()
     {
         //Clear old buttons.
-        for (int d = 1; d < fileContent.transform.childCount; d++)
+        for (int d = 0; d < fileContent.transform.childCount; d++)
         {
             Destroy(fileContent.GetChild(d).gameObject);
         }
@@ -650,6 +650,7 @@ public class Jsonator : MonoBehaviour
                 if (userPrefix)
                     file = file.Remove(0, 4);
                 fileButton[r] = Instantiate(fileTemplate, fileContent);
+                fileButton[r].gameObject.SetActive(true);
                 fileButton[r].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -fileCount * 50 - 30);
                 fileButton[r].name = file;
                 fileButton[r].GetComponentInChildren<Text>().text = file;
@@ -662,10 +663,8 @@ public class Jsonator : MonoBehaviour
     public void OnMaterialButton(Button button)
     {
         SelectDeleter(selectCube);
-        paintMode = true;
         selectingStart = false;
         int matNum = int.Parse(button.name);
-        matView.GetComponentInChildren<Text>().text = "";
         Image btnImage = button.GetComponent<Image>();
         matView.GetComponent<Image>().material = btnImage.material;
         selectedMaterial = materials[matNum];
@@ -673,18 +672,14 @@ public class Jsonator : MonoBehaviour
 
     public void OnTileButton()
     {
-        paintMode = false;
         selectingStart = false;
-        matView.GetComponentInChildren<Text>().text = "EDITING\nTILE";
         matView.GetComponent<Image>().material = null;
     }
 
-    public void OnStartpointButton()
+    public void StartChecker(bool check)
     {
-        SelectDeleter(selectCube);
-        selectingStart = true;
-        matView.GetComponentInChildren<Text>().text = "SETTING\nSTART & GOAL";
-        matView.GetComponent<Image>().material = null;
+        if (check) SelectDeleter(selectCube);
+        selectingStart = check;
     }
 
     public void OnDeleteButton(Button button)
@@ -699,6 +694,12 @@ public class Jsonator : MonoBehaviour
     public void ValueChecker()
     {
         checkColor = true;
+    }
+
+    public void PaintChecker(bool check)
+    {
+        paintMode = check;
+        if (check) SelectDeleter(selectCube);
     }
 
     public void BackgroundChecker()
@@ -1011,8 +1012,10 @@ public class Jsonator : MonoBehaviour
             Cuber(toCuber[0], toMatter[0], toCuber[1], toMatter[1], toCuber[2], toMatter[2], new Vector3(loadPos.x + 1, loadPos.y + 1, loadPos.z + 1));
         }
         
+        if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
         BackgroundBuilder(gridLoad.backgroundMode);
-        CloudColorer(backgroundInstance, cloudColor);
+        if (gridLoad.backgroundMode == 1 || gridLoad.backgroundMode == 2)
+            CloudColorer(backgroundInstance, cloudColor);
         
         mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 20.5f, gridLoad.cameraPosition.y);
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
@@ -1050,11 +1053,21 @@ public class Jsonator : MonoBehaviour
     //Color the clouds.
     void CloudColorer(Transform gen, Color color)
     {
-        for (int c = 0; c < gen.childCount; c++)
+        if (modeCheck == 1 || modeCheck == 2)
         {
-            for (int p = 0; p < gen.GetChild(c).childCount; p++)
+            for (int c = 0; c < gen.childCount; c++)
             {
-                gen.GetChild(c).GetChild(p).GetComponent<Renderer>().material.color = new Color(color.r, color.g, color.b, 0.2f);
+                for (int p = 0; p < gen.GetChild(c).childCount; p++)
+                {
+                    gen.GetChild(c).GetChild(p).GetComponent<Renderer>().material.color = new Color(color.r, color.g, color.b, 0.2f);
+                }
+            }
+        }
+        else if (modeCheck == 4)
+        {
+            for (int c = 0; c < gen.childCount; c++)
+            {
+                gen.GetChild(c).GetComponent<Renderer>().material.color = new Color(color.r, color.g, color.b, 0.2f);
             }
         }
     }
@@ -1065,7 +1078,6 @@ public class Jsonator : MonoBehaviour
         if (abilityVal != ability.value)
         {
             float abMult = ability.value * (ability.numberOfSteps - 1);
-            ability.GetComponentInChildren<Text>().text = abMult.ToString();
             return abMult;
         }
         return abilityVal;
