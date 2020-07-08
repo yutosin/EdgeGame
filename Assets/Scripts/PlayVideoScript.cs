@@ -6,6 +6,7 @@ using UnityEngine.Video;
 
 public class PlayVideoScript : MonoBehaviour
 {
+    [HideInInspector]
     public VideoPlayer videoPlayer;
     public GameObject canvasObj;
     public bool miniPlayer;
@@ -15,6 +16,7 @@ public class PlayVideoScript : MonoBehaviour
 
     private void Awake()
     {
+        videoPlayer = GetComponent<VideoPlayer>();
         if (canvasObj == null)
         {
             mainMenu = false;

@@ -1323,9 +1323,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '
 
-    This ability will, when activated move Robonaut up one unit and
-    then move 3 units up or to the right. The directions depends on the color of
-    the ability'
+    This ability will, when activated move Robonaut up one unit and then move 3 units
+    up or to the right. The directions depends on the color of the ability'
 --- !u!222 &266447518
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2577,10 +2576,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: To navigate levels you will need to draw faces on which to draw. To do
-    this, hover over a point on the level and click. Then click an available point
-    elsewhere on the level to draw a straight line. Keep doing this until you make
-    a rectangle, at which point the level will be navigable within the rectangle.
+  m_Text: To navigate levels you will need to draw faces on which to draw. To do this,
+    hover over a point on the level and click. Then click an available point elsewhere
+    on the level to draw a straight line. Keep doing this until you make a rectangle,
+    at which point the level will be navigable within the rectangle.
 --- !u!222 &526824522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2821,9 +2820,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: When a square has been selected a menu with all the available abilities
-    for the level are available. If you want to assign that face with an ability
-    click on one of the buttons, at which point the rectangle will light up. Once
-    an ability has been assigned, press "E" over it to activate the ability.
+    for the level are available. If you want to assign that face with an ability click
+    on one of the buttons, at which point the rectangle will light up. Once an ability
+    has been assigned, press "E" over it to activate the ability.
 --- !u!222 &629570333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3266,9 +3265,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '
 
-    In order to assign an ability to a rectangle you first need to make
-    a 1X1 rectangle on which to draw. Some abilities can only be placed on the floor,
-    some can only be placed on walls.'
+    In order to assign an ability to a rectangle you first need to make a 1X1 rectangle
+    on which to draw. Some abilities can only be placed on the floor, some can only
+    be placed on walls.'
 --- !u!222 &697764026
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4338,9 +4337,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This ability will always come in 2's. In order to use this ability, it
-    must be placed on 2 seperate faces. Once placed, you will be able to teleport
-    between the two faces, but only once each.
+  m_Text: This ability will always come in 2's. In order to use this ability, it must
+    be placed on 2 seperate faces. Once placed, you will be able to teleport between
+    the two faces, but only once each.
 --- !u!222 &1058730764
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4672,6 +4671,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d1a33574382124bac20bab18a28cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniVideos:
+  - {fileID: 1794985935}
+  - {fileID: 611086196}
+  - {fileID: 1841769578}
+  - {fileID: 1892584307}
+  - {fileID: 819229249}
+  - {fileID: 166400272}
 --- !u!114 &1101079006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7512,10 +7518,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: To navigate the level once you have drawn rectangles to move on, click
-    play mode. Once in play mode you can navigate the level by click on a space you
-    want to go to. If the Robonaut can navigate rectangles to where you click they
-    will move to that point!
+  m_Text: To navigate the level once you have drawn rectangles to move on, click play
+    mode. Once in play mode you can navigate the level by click on a space you want
+    to go to. If the Robonaut can navigate rectangles to where you click they will
+    move to that point!
 --- !u!222 &1712350645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8976,9 +8982,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '
 
-    This ability will, when activated draw you up in the air as the
-    square becomes a cube, pushing you up 3 units. Once used it cannot be used on
-    the same square again.'
+    This ability will, when activated draw you up in the air as the square becomes
+    a cube, pushing you up 3 units. Once used it cannot be used on the same square
+    again.'
 --- !u!222 &2104146964
 CanvasRenderer:
   m_ObjectHideFlags: 0
