@@ -137,7 +137,8 @@ public class RobonautHandler : MonoBehaviour
 
     private void AnimationController()
     {
-        GetComponentInChildren<Animator>().SetBool("PlayMode", GameObject.Find("GameManager").GetComponent<GameManager>().PlayMode);
+        if (GameManager.SharedInstance)
+            GetComponentInChildren<Animator>().SetBool("PlayMode", GameManager.SharedInstance.PlayMode);
 
         GetComponentInChildren<Animator>().SetFloat("MoveSpeed", vel);
 
