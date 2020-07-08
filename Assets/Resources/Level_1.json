@@ -9,7 +9,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -22,7 +22,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -35,11 +35,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -52,11 +52,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -69,11 +69,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -86,11 +86,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -103,15 +103,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -124,11 +124,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -141,11 +141,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -158,11 +158,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -175,7 +175,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -188,11 +188,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "StoneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricks"
                 }
             ]
         },
@@ -205,15 +205,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "HotTiles"
                 }
             ]
         },
@@ -226,11 +226,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "HotTiles"
                 }
             ]
         }

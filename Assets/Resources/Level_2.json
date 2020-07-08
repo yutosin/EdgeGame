@@ -22,7 +22,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -43,7 +43,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -56,7 +56,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -69,7 +69,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -82,11 +82,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -99,11 +99,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -116,11 +116,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -133,11 +133,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -150,11 +150,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -167,15 +167,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -188,7 +188,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -201,7 +201,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -214,7 +214,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -227,7 +227,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 }
             ]
         },
@@ -240,11 +240,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -257,11 +257,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -274,11 +274,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -291,11 +291,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "ArcaneBricks"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -308,7 +308,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -321,7 +321,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -334,11 +334,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -364,7 +364,7 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -377,7 +377,7 @@
             "tileData": [
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -390,11 +390,11 @@
             "tileData": [
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "StoneBricksFancy"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "StoneBricksFancy"
                 }
             ]
         },
@@ -407,11 +407,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "LargeTilesFancy"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "LargeTilesFancy"
                 }
             ]
         },
@@ -424,11 +424,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "LargeTilesFancy"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "LargeTilesFancy"
                 }
             ]
         },
@@ -441,15 +441,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "LargeTilesFancy"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "LargeTilesFancy"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "LargeTilesFancy"
                 }
             ]
         }

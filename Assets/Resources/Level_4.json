@@ -9,11 +9,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -26,11 +26,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -43,11 +43,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -60,11 +60,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -77,7 +77,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 }
             ]
         },
@@ -90,15 +90,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -111,49 +111,15 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.5,
-                "y": 0.5,
-                "z": 6.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -166,11 +132,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -183,45 +149,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 6.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -234,11 +166,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -251,11 +183,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -268,62 +200,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 5.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -336,100 +217,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 0.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 7.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 8.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "TopTexMat"
-                },
-                {
-                    "d": "Right",
-                    "m": "RightTexMat"
-                },
-                {
-                    "d": "Left",
-                    "m": "LeftTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -442,11 +234,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -459,11 +251,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -476,11 +268,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -493,11 +285,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -510,11 +302,11 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
                 }
             ]
         },
@@ -527,11 +319,117 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "TopTexMat"
+                    "m": "HotTiles"
                 },
                 {
                     "d": "Right",
-                    "m": "RightTexMat"
+                    "m": "SkyLand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 0.5,
+                "z": 5.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 0.5,
+                "z": 6.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 0.5,
+                "z": 7.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 6.5,
+                "y": 0.5,
+                "z": 8.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Right",
+                    "m": "SkyLand"
+                },
+                {
+                    "d": "Left",
+                    "m": "SkyLand"
                 }
             ]
         }
@@ -665,57 +563,17 @@
         {
             "x": 1,
             "y": 0,
-            "z": 4
-        },
-        {
-            "x": 0,
-            "y": 0,
-            "z": 4
-        },
-        {
-            "x": 1,
-            "y": 0,
             "z": 3
         },
         {
             "x": 1,
-            "y": 1,
-            "z": 6
-        },
-        {
-            "x": 1,
-            "y": 1,
-            "z": 7
-        },
-        {
-            "x": 0,
-            "y": 1,
-            "z": 6
-        },
-        {
-            "x": 0,
-            "y": 1,
-            "z": 7
-        },
-        {
-            "x": 1,
             "y": 0,
-            "z": 6
-        },
-        {
-            "x": 1,
-            "y": 0,
-            "z": 7
-        },
-        {
-            "x": 1,
-            "y": 1,
-            "z": 8
+            "z": 4
         },
         {
             "x": 0,
-            "y": 1,
-            "z": 8
+            "y": 0,
+            "z": 4
         },
         {
             "x": 7,
@@ -780,51 +638,6 @@
         {
             "x": 7,
             "y": 1,
-            "z": 6
-        },
-        {
-            "x": 7,
-            "y": 1,
-            "z": 7
-        },
-        {
-            "x": 6,
-            "y": 1,
-            "z": 6
-        },
-        {
-            "x": 6,
-            "y": 1,
-            "z": 7
-        },
-        {
-            "x": 7,
-            "y": 0,
-            "z": 6
-        },
-        {
-            "x": 7,
-            "y": 0,
-            "z": 7
-        },
-        {
-            "x": 7,
-            "y": 1,
-            "z": 8
-        },
-        {
-            "x": 6,
-            "y": 1,
-            "z": 8
-        },
-        {
-            "x": 7,
-            "y": 0,
-            "z": 8
-        },
-        {
-            "x": 7,
-            "y": 1,
             "z": 4
         },
         {
@@ -853,23 +666,13 @@
             "z": 5
         },
         {
-            "x": 7,
+            "x": 6,
             "y": 1,
-            "z": 9
+            "z": 8
         },
         {
             "x": 6,
             "y": 1,
-            "z": 9
-        },
-        {
-            "x": 7,
-            "y": 0,
-            "z": 9
-        },
-        {
-            "x": 6,
-            "y": 0,
             "z": 9
         },
         {
@@ -880,6 +683,11 @@
         {
             "x": 5,
             "y": 1,
+            "z": 9
+        },
+        {
+            "x": 6,
+            "y": 0,
             "z": 9
         },
         {
@@ -930,6 +738,11 @@
         {
             "x": 1,
             "y": 1,
+            "z": 8
+        },
+        {
+            "x": 1,
+            "y": 1,
             "z": 9
         },
         {
@@ -945,10 +758,95 @@
         {
             "x": 0,
             "y": 1,
+            "z": 8
+        },
+        {
+            "x": 0,
+            "y": 1,
             "z": 9
         },
         {
             "x": 0,
+            "y": 0,
+            "z": 9
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 7
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 6
+        },
+        {
+            "x": 7,
+            "y": 0,
+            "z": 6
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 6,
+            "y": 1,
+            "z": 7
+        },
+        {
+            "x": 7,
+            "y": 0,
+            "z": 7
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 8
+        },
+        {
+            "x": 7,
+            "y": 0,
+            "z": 8
+        },
+        {
+            "x": 7,
+            "y": 1,
+            "z": 9
+        },
+        {
+            "x": 7,
             "y": 0,
             "z": 9
         }
