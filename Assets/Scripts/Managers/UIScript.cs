@@ -9,7 +9,9 @@ public class UIScript : MonoBehaviour
     public GameObject allUI;
     public GameObject InstructionsPanel;
     public GameObject FaceAbilitiesPanel;
+    public GameObject MainPanel;
     public GameObject FeedbackPanel;
+    public GameObject CreditsPanel;
     public Text FeedackText;
     public MaterialSelectScript mScript;
     public Button GamePlayModeButton;
@@ -29,16 +31,27 @@ public class UIScript : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuALT");
     }
 
     public void ShowInstructionsPanel()
     {
+        if (MainPanel && MainPanel.activeInHierarchy)
+            MainPanel.SetActive(false);
         if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
             FaceAbilitiesPanel.SetActive(false);
         InstructionsPanel.SetActive(true);
     }
-    
+
+    public void ShowCreditsPanel()
+    {
+        if (MainPanel && MainPanel.activeInHierarchy)
+            MainPanel.SetActive(false);
+        if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
+            FaceAbilitiesPanel.SetActive(false);
+        CreditsPanel.SetActive(true);
+    }
+
     public void ShowFaceAbilitiesPanel()
     {
         if (InstructionsPanel && InstructionsPanel.activeInHierarchy)
@@ -55,8 +68,11 @@ public class UIScript : MonoBehaviour
     {
         if (InstructionsPanel && InstructionsPanel.activeInHierarchy)
             InstructionsPanel.SetActive(false);
+        if (CreditsPanel && CreditsPanel.activeInHierarchy)
+            CreditsPanel.SetActive(false);
         if (FaceAbilitiesPanel && FaceAbilitiesPanel.activeInHierarchy)
             FaceAbilitiesPanel.SetActive(false);
+        MainPanel.SetActive(true);
     }
 
     public void SwitchToPlayMode()
@@ -76,6 +92,6 @@ public class UIScript : MonoBehaviour
 
     public void ReloadLevel()
     {
-        GameManager.SharedInstance.levelManager.LoadLevel();
+        GameManager.SharedInstance.levelManager.LoadLevel(true);
     }
 }

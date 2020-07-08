@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGameScene.unity
     guid: 30f3651fc1b6a453eb174510573caf2a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PrototypingScene_Restructure.unity
     guid: 31921144ab4414b418f44a0c94c52ab5
   m_configObjects: {}
