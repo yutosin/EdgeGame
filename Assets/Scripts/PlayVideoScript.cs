@@ -53,6 +53,7 @@ public class PlayVideoScript : MonoBehaviour
         if(miniPlayer && !endLoop)
         {
             videoPlayer.Play();
+            return;
         }
         ShowPanel();
     }
