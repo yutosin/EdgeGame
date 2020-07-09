@@ -20,6 +20,8 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!FeedackText)
+            return;
         FeedackText.text = "";
         FeedbackPanel.SetActive(false);
     }
@@ -32,6 +34,11 @@ public class UIScript : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenuALT");
+    }
+
+    public void OpenLevelEditor()
+    {
+        SceneManager.LoadScene("LevelEditor");
     }
 
     public void ShowInstructionsPanel()
