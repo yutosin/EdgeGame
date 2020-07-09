@@ -519,7 +519,7 @@ public class Jsonator : MonoBehaviour
             if (Application.isEditor)
                 File.WriteAllText(path + saveName.text + ".json", stringSave);
             else
-                File.WriteAllText(path + "USER" + saveName.text + ".json", stringSave);
+                File.WriteAllText(Application.persistentDataPath + "/USER" + saveName.text + ".json", stringSave);
         }
         else
         {
@@ -546,6 +546,8 @@ public class Jsonator : MonoBehaviour
         
         if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
             stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
+        else if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
+            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
         else if (Application.isEditor)
             stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
         else
@@ -636,11 +638,14 @@ public class Jsonator : MonoBehaviour
         }
 
         //Build new buttons.
-        RectTransform[] fileButton = new RectTransform[Directory.GetFiles(path).Length];
+        var directoryFiles = (Application.isEditor)
+            ? Directory.GetFiles(path)
+            : Directory.GetFiles(Application.persistentDataPath);
+        RectTransform[] fileButton = new RectTransform[directoryFiles.Length];
         int fileCount = 0;
         for (int r = 0; r < fileButton.Length; r++)
         {
-            string[] fileParse = Directory.GetFiles(path)[r].Split('/', '\\');
+            string[] fileParse = directoryFiles[r].Split('/', '\\');
             if (!fileParse[fileParse.Length - 1].Contains(".meta"))
             {
                 string file = fileParse[fileParse.Length - 1].Replace(".json", "");
@@ -684,7 +689,9 @@ public class Jsonator : MonoBehaviour
 
     public void OnDeleteButton(Button button)
     {
-        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
+        if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
+            File.Delete(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
+        else if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
             File.Delete(path + "USER" + button.transform.parent.name + ".json");
         else if (File.Exists(path + button.transform.parent.name + ".json"))
             File.Delete(path + button.transform.parent.name + ".json");
