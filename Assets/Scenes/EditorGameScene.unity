@@ -1889,7 +1889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -680, y: 485.5}
+  m_AnchoredPosition: {x: -545, y: 485.5}
   m_SizeDelta: {x: 158.31006, y: 62.108147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438183058
@@ -3674,7 +3674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -510, y: 485.5}
+  m_AnchoredPosition: {x: -359, y: 485.5}
   m_SizeDelta: {x: 158.31006, y: 62.108147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026758487
@@ -8965,13 +8965,4 @@ MonoBehaviour:
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _levelNames:
-  - Level_1
-  - Level_2
-  - Level_3
-  - Level_4
-  - Level_5
-  - 1_Each
-  - LateralMoves
-  - ExtrudeClimb
-  - StaggeredV2
-  - UseThemAll
+  - 

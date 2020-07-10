@@ -542,14 +542,19 @@ public class Jsonator : MonoBehaviour
         selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
+        LoadEditorLevel(button.transform.parent.name);
+    }
+
+    private void LoadEditorLevel(string levelName)
+    {
         string stringLoad;
         
-        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
-            stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
-        else if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
-            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
+        if (File.Exists(path + "USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(path + "USER" + levelName + ".json");
+        else if (File.Exists(Application.persistentDataPath + "/USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + levelName + ".json");
         else if (Application.isEditor)
-            stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
+            stringLoad = File.ReadAllText(path + levelName + ".json");
         else
             return;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
@@ -598,7 +603,7 @@ public class Jsonator : MonoBehaviour
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
 
         //Build the new level.
-        saveName.text = button.transform.parent.name;
+        saveName.text = levelName;
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)
