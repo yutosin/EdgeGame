@@ -138,6 +138,7 @@ public class MaterialSelectScript : MonoBehaviour
             face.Ability = face.gameObject.AddComponent<ElevatorAbility>();
             SetMaterial();
             UpdateUses();
+            GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
         }
 
         private void AssignTP()
@@ -161,6 +162,7 @@ public class MaterialSelectScript : MonoBehaviour
 
             SetMaterial();
             UpdateUses();
+            GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
         }
 
         private void AssignMoving(bool isMotionX)
@@ -171,6 +173,7 @@ public class MaterialSelectScript : MonoBehaviour
 
             SetMaterial();
             UpdateUses();
+            GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
             XMove.SetStartingConditions(face, isMotionX);
         }
 
@@ -182,6 +185,7 @@ public class MaterialSelectScript : MonoBehaviour
 
             SetMaterial();
             UpdateUses();
+            GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
             extrude.SetStartingConditions(face);
         }
 

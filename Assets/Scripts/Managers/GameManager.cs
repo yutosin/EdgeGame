@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public UIScript uiManager;
     public Jsonator LevelLoader;
     public InstructionScript InstructionScript;
+    public AudioManager AudioManager;
     public bool PlayMode;
     public bool InLevelEditor;
     
