@@ -2,6 +2,69 @@
     "cubeData": [
         {
             "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
                 "x": 4.5,
                 "y": 0.5,
                 "z": 0.5
@@ -269,6 +332,41 @@
         }
     ],
     "vertices": [
+        {
+            "x": 19,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 19,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 18
+        },
         {
             "x": 5,
             "y": 0,
