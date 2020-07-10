@@ -12,8 +12,10 @@ public class Jsonator : MonoBehaviour
 
     //Set the maximum allowed size of the grid.
     [Header("General Editor")]
+    public RectTransform canvas;
     public Vector3 gridSize;
     public Transform backgroundGenerator;
+    public RectTransform errorBar;
 
     public Transform selectCubeModel;
     public float selectorCubeSize;
@@ -49,9 +51,9 @@ public class Jsonator : MonoBehaviour
     public string path;
 
     [Header("UI Elements")]
+    public Slider modeSet;
     public Scrollbar silhouetteSwitch;
     public Scrollbar HSVSwitch;
-    public Scrollbar modeSet;
     public Scrollbar abilityElevator;
     public Scrollbar abilityTeleport;
     public Scrollbar abilityMoveX;
@@ -96,7 +98,7 @@ public class Jsonator : MonoBehaviour
     private bool HSVMode;
     private bool checkColor;
     private bool checkBackground;
-    private float modeCheck;
+    private int modeCheck;
     private float silhouetteVal;
     private float HSVVal;
     private float abElevVal;
@@ -107,6 +109,7 @@ public class Jsonator : MonoBehaviour
     private Material[] displayMaterials;
     private Material selectedMaterial;
     private Vector3 camPos;
+    private Vector3 saveCamPos;
     private Vector3 startPoint;
     private Vector3 goalPoint;
     private Vector3 selectCube;
@@ -181,8 +184,7 @@ public class Jsonator : MonoBehaviour
         if (checkBackground)
         {
             if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
-            modeCheck = (int)ScrollParse(modeCheck, modeSet);
-            BackgroundBuilder(modeCheck);
+            BackgroundBuilder(modeSet.value);
             if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
             checkBackground = false;
         }
@@ -318,13 +320,16 @@ public class Jsonator : MonoBehaviour
                     {
                         if (selectingStart)
                         {
-                            if (startInd != null) Destroy(startInd.gameObject);
-                            startPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
-                            startInd = Instantiate(startModel);
-                            startInd.transform.position = startPoint;
-                            startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
-                            startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
-                            startInd.name = "StartIndicator";
+                            if (hitRay.collider.name.Split('_')[1] == "Top" && goalPoint != new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z))
+                            {
+                                if (startInd != null) Destroy(startInd.gameObject);
+                                startPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
+                                startInd = Instantiate(startModel);
+                                startInd.transform.position = startPoint;
+                                startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
+                                startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
+                                startInd.name = "StartIndicator";
+                            }
                         }
                         else if (paintMode && !silhouetteMode)
                         {
@@ -383,13 +388,16 @@ public class Jsonator : MonoBehaviour
                     {
                         if (selectingStart)
                         {
-                            if (goalInd != null) Destroy(goalInd.gameObject);
-                            goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
-                            goalInd = Instantiate(goalModel);
-                            goalInd.transform.position = goalPoint;
-                            goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
-                            goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
-                            goalInd.name = "GoalIndicator";
+                            if (hitRay.collider.name.Split('_')[1] == "Top" && startPoint != new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z))
+                            {
+                                if (goalInd != null) Destroy(goalInd.gameObject);
+                                goalPoint = new Vector3(rayPos.x, rayPos.y + 0.5f, rayPos.z);
+                                goalInd = Instantiate(goalModel);
+                                goalInd.transform.position = goalPoint;
+                                goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
+                                goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
+                                goalInd.name = "GoalIndicator";
+                            }
                         }
                         else if (paintMode && !silhouetteMode)
                         {
@@ -421,11 +429,11 @@ public class Jsonator : MonoBehaviour
                                     DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, transform.GetChild(r).transform.position, r);
                                 }
                             }
-                            else if (hitRay.collider == null) SelectDeleter(selectCube);
                         }
                     }
                 }
             }
+            else SelectDeleter(selectCube);
         }
     }
 
@@ -459,6 +467,7 @@ public class Jsonator : MonoBehaviour
 
         //Place the camera.
         mainCamera.transform.position = new Vector3(34, 25, 34);
+        saveCamPos = mainCamera.transform.position;
         mainCamera.orthographicSize = 8;
 
         //Build a single cube at 1, 1, 1
@@ -467,66 +476,75 @@ public class Jsonator : MonoBehaviour
 
     public void OnSaveButton()
     {
-        SelectDeleter(selectCube);
-
-        //Check and read all tiles in the field.
-        int saveCount = transform.childCount;
-        cubeData = new Cube[saveCount];
-        List<Vector3Int> vertices = new List<Vector3Int>(saveCount * 4);
-        for (int s = 0; s < saveCount; s++)
+        if (saveName.text != "")
         {
-            Transform cube = transform.GetChild(s);
-            AddTileVerticesToList(cube, vertices);
-            int tileCount = cube.childCount;
-            tileData = new Tile[tileCount];
-            for (int c = 0; c < tileCount; c++)
+            SelectDeleter(selectCube);
+
+            //Check and read all tiles in the field.
+            int saveCount = transform.childCount;
+            cubeData = new Cube[saveCount];
+            List<Vector3Int> vertices = new List<Vector3Int>(saveCount * 4);
+            for (int s = 0; s < saveCount; s++)
             {
-                string saveParse = cube.GetChild(c).name.Split('_')[1];
-                string cuberString;
-                if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left") cuberString = saveParse;
-                else cuberString = "";
-                Tile inTile = new Tile { d = cuberString };
-                if (cube.GetChild(c).name.Contains("Tile")) inTile.m = cube.GetChild(c).name.Split('_')[2];
-                tileData[c] = inTile;
+                Transform cube = transform.GetChild(s);
+                AddTileVerticesToList(cube, vertices);
+                int tileCount = cube.childCount;
+                tileData = new Tile[tileCount];
+                for (int c = 0; c < tileCount; c++)
+                {
+                    string saveParse = cube.GetChild(c).name.Split('_')[1];
+                    string cuberString;
+                    if (saveParse == "Top" || saveParse == "Right" || saveParse == "Left") cuberString = saveParse;
+                    else cuberString = "";
+                    Tile inTile = new Tile { d = cuberString };
+                    if (cube.GetChild(c).name.Contains("Tile")) inTile.m = cube.GetChild(c).name.Split('_')[2];
+                    tileData[c] = inTile;
+                }
+                Cube inCube = new Cube();
+                inCube.position = new Vector3(cube.position.x, cube.position.y, cube.position.z);
+                inCube.tileData = tileData;
+                cubeData[s] = inCube;
             }
-            Cube inCube = new Cube();
-            inCube.position = new Vector3(cube.position.x, cube.position.y, cube.position.z);
-            inCube.tileData = tileData;
-            cubeData[s] = inCube;
-        }
 
-        //Save the data into a json file.
-        Grid gridSave = new Grid
-        {
-            cubeData = cubeData,
-            vertices = vertices.ToArray(),
-            backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b),
-            cloudColor = new Vector3(cloudColor.r, cloudColor.g, cloudColor.b),
-            silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b),
-            cameraPosition = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.z, mainCamera.orthographicSize),
-            backgroundMode = (int)(modeSet.value * (modeSet.numberOfSteps - 1)),
-            abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1)),
-            abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1)),
-            abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1)),
-            abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1)),
-            abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1))
-        };
-        if (startPoint != null && goalPoint != null)
-        {
-            gridSave.startPoint = startPoint;
-            gridSave.goalPoint = goalPoint;
-            string stringSave = JsonUtility.ToJson(gridSave, true);
-            if (Application.isEditor)
-                File.WriteAllText(path + saveName.text + ".json", stringSave);
+            //Save the data into a json file.
+            Grid gridSave = new Grid
+            {
+                cubeData = cubeData,
+                vertices = vertices.ToArray(),
+                backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b),
+                cloudColor = new Vector3(cloudColor.r, cloudColor.g, cloudColor.b),
+                silhouetteColor = new Vector3(silhouetteColor.r, silhouetteColor.g, silhouetteColor.b),
+                cameraPosition = saveCamPos,
+                backgroundMode = modeCheck,
+                abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1)),
+                abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1)),
+                abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1)),
+                abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1)),
+                abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1))
+            };
+            if (startInd != null && goalInd != null)
+            {
+                if (startPoint != goalPoint)
+                {
+                    gridSave.startPoint = startPoint;
+                    gridSave.goalPoint = goalPoint;
+                    string stringSave = JsonUtility.ToJson(gridSave, true);
+                    if (Application.isEditor)
+                        File.WriteAllText(path + saveName.text + ".json", stringSave);
+                    else
+                        File.WriteAllText(Application.persistentDataPath + "/USER" + saveName.text + ".json", stringSave);
+                }
+                else ErrorBar(4, "THE STARTPOINT AND GOALPOINT MUST NOT BE IN THE SAME PLACE TO SAVE.");
+            }
             else
-                File.WriteAllText(Application.persistentDataPath + "/USER" + saveName.text + ".json", stringSave);
+            {
+                if (startInd == null && goalInd == null) ErrorBar(4, "A SET STARTPOINT AND GOALPOINT ARE REQUIRED TO SAVE.");
+                else if (startInd == null) ErrorBar(4, "A SET STARTPOINT IS REQUIRED TO SAVE.");
+                else if (goalInd == null) ErrorBar(4, "A SET GOALPOINT IS REQUIRED TO SAVE.");
+            }
+            OnRefreshButton();
         }
-        else
-        {
-            if (startPoint == null ) Debug.Log("ERROR - player start position required.");
-            if (goalPoint == null) Debug.Log("ERROR - goal position required.");
-        }
-        OnRefreshButton();
+        else ErrorBar(3, "SAVE MUST HAVE A NAME IN THE INPUT FIELD UNDER THE SAVE BUTTON.");
     }
 
     public void OnLoadButton(Button button)
@@ -568,7 +586,7 @@ public class Jsonator : MonoBehaviour
         backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
         cloudColor = new Color(gridLoad.cloudColor.x, gridLoad.cloudColor.y, gridLoad.cloudColor.z);
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
-        modeSet.value = (float)gridLoad.backgroundMode / (modeSet.numberOfSteps - 1);
+        modeSet.value = gridLoad.backgroundMode;
         abilityElevator.value = (float)gridLoad.abilityElevator / (abilityElevator.numberOfSteps - 1);
         abilityTeleport.value = (float)gridLoad.abilityTeleport / (abilityTeleport.numberOfSteps - 1);
         abilityMoveX.value = (float)gridLoad.abilityMoveX / (abilityMoveX.numberOfSteps - 1);
@@ -596,6 +614,7 @@ public class Jsonator : MonoBehaviour
         //Place the camera.
         mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 25, gridLoad.cameraPosition.y);
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
+        saveCamPos = gridLoad.cameraPosition;
 
         //Build the new level.
         saveName.text = button.transform.parent.name;
@@ -712,6 +731,21 @@ public class Jsonator : MonoBehaviour
     public void BackgroundChecker()
     {
         checkBackground = true;
+    }
+
+    public void OnCameraButton(bool mode)
+    {
+        if (mode)
+        {
+            saveCamPos = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.z, mainCamera.orthographicSize);
+            ErrorBar(4, "START CAMERA POSITION HAS BEEN SET AT CURRENT VIEW.");
+        }
+        else
+        {
+            mainCamera.transform.position = new Vector3(saveCamPos.x, 25, saveCamPos.y);
+            mainCamera.orthographicSize = saveCamPos.z;
+            ErrorBar(4, "VIEW HAS BEEN SET TO STAGED CAMERA.");
+        }
     }
 
     //Build a cube on the grid.
@@ -967,24 +1001,12 @@ public class Jsonator : MonoBehaviour
         
         if (silhouetted) { silhouetteMode = true; }
         else { silhouetteMode = false; }
-        // SelectDeleter(selectCube);
-        // selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
         TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad.text);
         startPoint = gridLoad.startPoint;
-        // startInd = Instantiate(startModel);
-        // startInd.transform.position = startPoint;
-        // startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
-        // startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
-        // startInd.name = "StartIndicator";
         goalPoint = gridLoad.goalPoint;
-        // goalInd = Instantiate(goalModel);
-        // goalInd.position = goalPoint;
-        // goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
-        // goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
-        // goalInd.gameObject.name = "GoalIndicator";
         backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
         cloudColor = new Color(gridLoad.cloudColor.x, gridLoad.cloudColor.y, gridLoad.cloudColor.z);
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
@@ -1090,6 +1112,14 @@ public class Jsonator : MonoBehaviour
         return abilityVal;
     }
 
+    //Trigger the error bar.
+    void ErrorBar(float dur, string content)
+    {
+        errorBar.GetComponent<ErrorBar>().content = content;
+        errorBar.GetComponent<ErrorBar>().duration = dur;
+        errorBar.GetComponent<ErrorBar>().trigger = true;
+    }
+
     //Set up the background.
     void BackgroundBuilder(float mode)
     {
@@ -1097,6 +1127,7 @@ public class Jsonator : MonoBehaviour
         backgroundInstance.position = new Vector3(-100, -150, -100);
         backgroundInstance.GetComponent<BackgroundGenerator>().cloudColor = cloudColor;
         backgroundInstance.GetComponent<BackgroundGenerator>().mode = (int)mode;
+        modeCheck = (int)mode;
         if (mode == 3) backgroundInstance = Instantiate(backgroundInstance, mainCamera.transform);
         else backgroundInstance = Instantiate(backgroundInstance);
     }
