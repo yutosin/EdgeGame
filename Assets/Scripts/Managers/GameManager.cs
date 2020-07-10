@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public AudioManager AudioManager;
     public bool PlayMode;
     public bool InLevelEditor;
+    public bool TestingLevel = false;
     
     // Start is called before the first frame update
     private void Awake()

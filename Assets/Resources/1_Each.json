@@ -2,6 +2,69 @@
     "cubeData": [
         {
             "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
                 "x": 4.5,
                 "y": 0.5,
                 "z": 0.5
@@ -115,7 +178,7 @@
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "HotTiles"
+                    "m": "LifeSand"
                 },
                 {
                     "d": "Right",
@@ -136,8 +199,127 @@
             "tileData": [
                 {
                     "d": "Top",
+                    "m": "LifeSand"
+                },
+                {
+                    "d": "Right",
                     "m": "HotTiles"
                 },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 2.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 1.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 4.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 3.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 2.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 1.5,
+                "z": 4.5
+            },
+            "tileData": [
+                {
+                    "d": "Right",
+                    "m": "HotTiles"
+                },
+                {
+                    "d": "Left",
+                    "m": "HotTiles"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 4.5
+            },
+            "tileData": [
                 {
                     "d": "Right",
                     "m": "HotTiles"
@@ -151,6 +333,41 @@
     ],
     "vertices": [
         {
+            "x": 19,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 19,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 18
+        },
+        {
             "x": 5,
             "y": 0,
             "z": 1
@@ -328,6 +545,111 @@
         {
             "x": 1,
             "y": 4,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 5,
+            "y": 0,
+            "z": 5
+        },
+        {
+            "x": 4,
+            "y": 0,
+            "z": 5
+        },
+        {
+            "x": 5,
+            "y": 0,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 3,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 3,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 2,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 2,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 1,
+            "z": 4
+        },
+        {
+            "x": 1,
+            "y": 0,
+            "z": 5
+        },
+        {
+            "x": 0,
+            "y": 0,
+            "z": 5
+        },
+        {
+            "x": 1,
+            "y": 0,
             "z": 4
         }
     ],
@@ -366,5 +688,6 @@
     "abilityTeleport": 0,
     "abilityMoveX": 1,
     "abilityMoveZ": 1,
-    "abilityExtrude": 1
+    "abilityExtrude": 1,
+    "levelName": "1_Each"
 }

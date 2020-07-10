@@ -2,470 +2,482 @@
     "cubeData": [
         {
             "position": {
-                "x": 1.5,
+                "x": 17.5,
                 "y": 0.5,
-                "z": 4.5
+                "z": 18.5
             },
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 2.5,
-                "y": 0.5,
-                "z": 4.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 3.5,
-                "y": 0.5,
-                "z": 4.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
+                    "m": "TopTexMat"
                 },
                 {
                     "d": "Right",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 4.5,
-                "y": 0.5,
-                "z": 4.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
-                },
-                {
-                    "d": "Right",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 6.5,
-                "y": 0.5,
-                "z": 4.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
-                },
-                {
-                    "d": "Right",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 5.5,
-                "y": 0.5,
-                "z": 4.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
-                },
-                {
-                    "d": "Right",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 2.5,
-                "y": 0.5,
-                "z": 5.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
-                },
-                {
-                    "d": "Right",
-                    "m": "StoneBricks"
+                    "m": "RightTexMat"
                 },
                 {
                     "d": "Left",
-                    "m": "StoneBricks"
+                    "m": "LeftTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 1.5,
+                "x": 16.5,
                 "y": 0.5,
-                "z": 5.5
+                "z": 18.5
             },
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "StoneBricks"
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 15.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 14.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 14.5,
+                "y": 0.5,
+                "z": 19.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 14.5,
+                "y": 0.5,
+                "z": 20.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
                     "d": "Right",
-                    "m": "StoneBricks"
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 7.5,
+                "x": 15.5,
                 "y": 0.5,
-                "z": 4.5
+                "z": 20.5
             },
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "StoneBricks"
+                    "m": "TopTexMat"
                 },
                 {
                     "d": "Right",
-                    "m": "StoneBricks"
+                    "m": "RightTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 8.5,
+                "x": 16.5,
                 "y": 0.5,
-                "z": 4.5
+                "z": 20.5
             },
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "StoneBricks"
+                    "m": "TopTexMat"
                 },
                 {
                     "d": "Right",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 1.5,
-                "y": 0.5,
-                "z": 3.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
-                }
-            ]
-        },
-        {
-            "position": {
-                "x": 2.5,
-                "y": 0.5,
-                "z": 3.5
-            },
-            "tileData": [
-                {
-                    "d": "Top",
-                    "m": "StoneBricks"
+                    "m": "RightTexMat"
                 },
                 {
                     "d": "Left",
-                    "m": "StoneBricks"
+                    "m": "LeftTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 9.5,
+                "x": 16.5,
                 "y": 0.5,
-                "z": 4.5
+                "z": 19.5
             },
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "HotTiles"
-                },
-                {
-                    "d": "Right",
-                    "m": "HotTiles"
+                    "m": "TopTexMat"
                 },
                 {
                     "d": "Left",
-                    "m": "HotTiles"
+                    "m": "LeftTexMat"
                 }
             ]
         },
         {
             "position": {
-                "x": 0.5,
+                "x": 15.5,
                 "y": 0.5,
-                "z": 4.5
+                "z": 19.5
             },
             "tileData": [
                 {
                     "d": "Top",
-                    "m": "HotTiles"
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 16.5,
+                "y": 0.5,
+                "z": 17.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 16.5,
+                "y": 0.5,
+                "z": 16.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 15.5,
+                "y": 0.5,
+                "z": 16.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 14.5,
+                "y": 0.5,
+                "z": 16.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 14.5,
+                "y": 0.5,
+                "z": 17.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 15.5,
+                "y": 0.5,
+                "z": 17.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 13.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
                 },
                 {
                     "d": "Right",
-                    "m": "HotTiles"
+                    "m": "RightTexMat"
                 }
             ]
         }
     ],
     "vertices": [
         {
-            "x": 2,
+            "x": 18,
             "y": 1,
-            "z": 4
+            "z": 18
         },
         {
-            "x": 2,
+            "x": 18,
             "y": 1,
-            "z": 5
+            "z": 19
         },
         {
-            "x": 1,
+            "x": 17,
             "y": 1,
-            "z": 4
+            "z": 18
         },
         {
-            "x": 1,
+            "x": 17,
             "y": 1,
-            "z": 5
+            "z": 19
         },
         {
-            "x": 3,
-            "y": 1,
-            "z": 4
-        },
-        {
-            "x": 3,
-            "y": 1,
-            "z": 5
-        },
-        {
-            "x": 4,
-            "y": 1,
-            "z": 4
-        },
-        {
-            "x": 4,
-            "y": 1,
-            "z": 5
-        },
-        {
-            "x": 4,
+            "x": 18,
             "y": 0,
-            "z": 5
+            "z": 19
         },
         {
-            "x": 3,
+            "x": 17,
             "y": 0,
-            "z": 5
+            "z": 19
         },
         {
-            "x": 5,
-            "y": 1,
-            "z": 4
-        },
-        {
-            "x": 5,
-            "y": 1,
-            "z": 5
-        },
-        {
-            "x": 5,
+            "x": 18,
             "y": 0,
-            "z": 5
+            "z": 18
         },
         {
-            "x": 7,
+            "x": 16,
             "y": 1,
-            "z": 4
+            "z": 18
         },
         {
-            "x": 7,
+            "x": 16,
             "y": 1,
-            "z": 5
+            "z": 19
         },
         {
-            "x": 6,
+            "x": 15,
             "y": 1,
-            "z": 4
+            "z": 18
         },
         {
-            "x": 6,
+            "x": 15,
             "y": 1,
-            "z": 5
+            "z": 19
         },
         {
-            "x": 7,
+            "x": 14,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 14,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 15,
+            "y": 1,
+            "z": 20
+        },
+        {
+            "x": 14,
+            "y": 1,
+            "z": 20
+        },
+        {
+            "x": 15,
+            "y": 1,
+            "z": 21
+        },
+        {
+            "x": 14,
+            "y": 1,
+            "z": 21
+        },
+        {
+            "x": 15,
             "y": 0,
-            "z": 5
+            "z": 21
         },
         {
-            "x": 6,
+            "x": 14,
             "y": 0,
-            "z": 5
+            "z": 21
         },
         {
-            "x": 3,
+            "x": 16,
             "y": 1,
-            "z": 6
+            "z": 20
         },
         {
-            "x": 2,
+            "x": 16,
             "y": 1,
-            "z": 6
+            "z": 21
         },
         {
-            "x": 3,
+            "x": 16,
             "y": 0,
-            "z": 6
+            "z": 21
         },
         {
-            "x": 2,
+            "x": 17,
+            "y": 1,
+            "z": 20
+        },
+        {
+            "x": 17,
+            "y": 1,
+            "z": 21
+        },
+        {
+            "x": 17,
             "y": 0,
-            "z": 6
+            "z": 21
         },
         {
-            "x": 1,
-            "y": 1,
-            "z": 6
-        },
-        {
-            "x": 1,
+            "x": 17,
             "y": 0,
-            "z": 6
+            "z": 20
         },
         {
-            "x": 8,
+            "x": 17,
             "y": 1,
-            "z": 4
+            "z": 17
         },
         {
-            "x": 8,
+            "x": 16,
             "y": 1,
-            "z": 5
+            "z": 17
         },
         {
-            "x": 8,
+            "x": 17,
             "y": 0,
-            "z": 5
+            "z": 17
         },
         {
-            "x": 9,
+            "x": 17,
             "y": 1,
-            "z": 4
+            "z": 16
         },
         {
-            "x": 9,
+            "x": 16,
             "y": 1,
-            "z": 5
+            "z": 16
         },
         {
-            "x": 9,
+            "x": 17,
             "y": 0,
-            "z": 5
+            "z": 16
         },
         {
-            "x": 2,
+            "x": 15,
             "y": 1,
-            "z": 3
+            "z": 16
         },
         {
-            "x": 1,
+            "x": 15,
             "y": 1,
-            "z": 3
+            "z": 17
         },
         {
-            "x": 3,
+            "x": 14,
             "y": 1,
-            "z": 3
+            "z": 16
         },
         {
-            "x": 3,
+            "x": 14,
+            "y": 1,
+            "z": 17
+        },
+        {
+            "x": 13,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 13,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 13,
             "y": 0,
-            "z": 3
-        },
-        {
-            "x": 10,
-            "y": 1,
-            "z": 4
-        },
-        {
-            "x": 10,
-            "y": 1,
-            "z": 5
-        },
-        {
-            "x": 10,
-            "y": 0,
-            "z": 5
-        },
-        {
-            "x": 10,
-            "y": 0,
-            "z": 4
-        },
-        {
-            "x": 0,
-            "y": 1,
-            "z": 4
-        },
-        {
-            "x": 0,
-            "y": 1,
-            "z": 5
-        },
-        {
-            "x": 0,
-            "y": 0,
-            "z": 5
+            "z": 19
         }
     ],
     "startPoint": {
-        "x": 9.5,
+        "x": 17.5,
         "y": 1.0,
-        "z": 4.5
+        "z": 18.5
     },
     "goalPoint": {
-        "x": 0.5,
+        "x": 13.5,
         "y": 1.0,
-        "z": 4.5
+        "z": 18.5
     },
     "backgroundColor": {
-        "x": 0.699999988079071,
-        "y": 0.699999988079071,
-        "z": 0.699999988079071
+        "x": 0.5,
+        "y": 0.550000011920929,
+        "z": 0.6000000238418579
     },
     "cloudColor": {
-        "x": 0.668505072593689,
-        "y": 0.6685050129890442,
-        "z": 0.6685049533843994
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
     },
     "silhouetteColor": {
         "x": 0.0,
@@ -473,15 +485,14 @@
         "z": 0.0
     },
     "cameraPosition": {
-        "x": 21.919994354248048,
-        "y": 21.800003051757814,
-        "z": 5.6661376953125
+        "x": 32.93946838378906,
+        "y": 35.363525390625,
+        "z": 5.0
     },
-    "backgroundMode": 4,
-    "abilityElevator": 0,
-    "abilityTeleport": 0,
-    "abilityMoveX": 0,
-    "abilityMoveZ": 0,
-    "abilityExtrude": 0,
-    "levelName": "Level_1"
+    "backgroundMode": 0,
+    "abilityElevator": 1,
+    "abilityTeleport": 2,
+    "abilityMoveX": 1,
+    "abilityMoveZ": 1,
+    "abilityExtrude": 1
 }

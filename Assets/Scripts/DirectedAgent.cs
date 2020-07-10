@@ -46,6 +46,14 @@ public class DirectedAgent : MonoBehaviour
             //SceneManager.LoadScene("MainMenu");
             LevelLoading = true;
             GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.GoalReached);
+            if (GameManager.SharedInstance.TestingLevel)
+            {
+                SceneManager.LoadScene("LevelEditor");
+                PlayerPrefs.SetInt("loadEditorLevel", 0);
+                GameManager.SharedInstance.TestingLevel = false;
+                return;
+            }
+
             GameManager.SharedInstance.levelManager.NextLevel();
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Jsonator : MonoBehaviour
@@ -117,6 +118,7 @@ public class Jsonator : MonoBehaviour
     [SerializeField]
     private Cube[] cubeData;
     private Tile[] tileData;
+    private Grid _currentLevel;
 
     void Start()
     {
@@ -169,6 +171,11 @@ public class Jsonator : MonoBehaviour
         //Initiate.
         OnRefreshButton();
         OnNewButton();
+        if (PlayerPrefs.GetString("editorLevel", "") != "")
+        {
+            LoadEditorLevel(PlayerPrefs.GetString("editorLevel"));
+            PlayerPrefs.SetString("editorLevel", "");
+        }
     }
 
     void Update()
@@ -509,7 +516,8 @@ public class Jsonator : MonoBehaviour
             abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1)),
             abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1)),
             abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1)),
-            abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1))
+            abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1)),
+            levelName = saveName.text
         };
         if (startPoint != null && goalPoint != null)
         {
@@ -526,6 +534,8 @@ public class Jsonator : MonoBehaviour
             if (startPoint == null ) Debug.Log("ERROR - player start position required.");
             if (goalPoint == null) Debug.Log("ERROR - goal position required.");
         }
+
+        _currentLevel = gridSave;
         OnRefreshButton();
     }
 
@@ -542,17 +552,23 @@ public class Jsonator : MonoBehaviour
         selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
+        LoadEditorLevel(button.transform.parent.name);
+    }
+
+    private void LoadEditorLevel(string levelName)
+    {
         string stringLoad;
         
-        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
-            stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
-        else if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
-            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
+        if (File.Exists(path + "USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(path + "USER" + levelName + ".json");
+        else if (File.Exists(Application.persistentDataPath + "/USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + levelName + ".json");
         else if (Application.isEditor)
-            stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
+            stringLoad = File.ReadAllText(path + levelName + ".json");
         else
             return;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
+        _currentLevel = gridLoad;
         startPoint = gridLoad.startPoint;
         startInd = Instantiate(startModel);
         startInd.transform.position = startPoint;
@@ -598,7 +614,7 @@ public class Jsonator : MonoBehaviour
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
 
         //Build the new level.
-        saveName.text = button.transform.parent.name;
+        saveName.text = levelName;
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)
@@ -955,7 +971,7 @@ public class Jsonator : MonoBehaviour
         }
     }
     
-    public Grid LoadLevel(string levelName, bool silhouetted)
+    public Grid LoadLevel(string levelName, bool silhouetted = true)
     {
         //Clear out the old cubes.
         for (int d = 0; d < transform.childCount; d++)
@@ -964,27 +980,27 @@ public class Jsonator : MonoBehaviour
             if (startInd != null) Destroy(startInd.gameObject);
             if (goalInd != null) Destroy(goalInd.gameObject);
         }
-        
-        if (silhouetted) { silhouetteMode = true; }
-        else { silhouetteMode = false; }
-        // SelectDeleter(selectCube);
-        // selectCube = new Vector3(0, 0, 0);
+
+        silhouetteMode = silhouetted;
 
         //Read and interpret the save file.
-        TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
-        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad.text);
+        string stringLoad;
+        if (File.Exists(Application.persistentDataPath + "/USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + levelName + ".json");
+        else if (Application.isEditor && Resources.Load("USER" + levelName))
+        {
+            TextAsset resourceLevel = Resources.Load("USER" + levelName) as TextAsset;
+            stringLoad = resourceLevel.text;
+        }
+        else
+        {
+            TextAsset resourceLevel = Resources.Load(levelName) as TextAsset;
+            stringLoad = resourceLevel.text;
+        }
+        //TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
+        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
-        // startInd = Instantiate(startModel);
-        // startInd.transform.position = startPoint;
-        // startInd.transform.localScale = new Vector3(startModelSize, startModelSize, startModelSize);
-        // startInd.GetComponent<Renderer>().material.SetColor("_Color", startModelColor);
-        // startInd.name = "StartIndicator";
         goalPoint = gridLoad.goalPoint;
-        // goalInd = Instantiate(goalModel);
-        // goalInd.position = goalPoint;
-        // goalInd.transform.localScale = new Vector3(goalModelSize, goalModelSize, goalModelSize);
-        // goalInd.GetComponent<Renderer>().material.SetColor("_Color", goalModelColor);
-        // goalInd.gameObject.name = "GoalIndicator";
         backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
         cloudColor = new Color(gridLoad.cloudColor.x, gridLoad.cloudColor.y, gridLoad.cloudColor.z);
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
@@ -1028,6 +1044,14 @@ public class Jsonator : MonoBehaviour
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
         
         return gridLoad;
+    }
+
+    public void TestLevel()
+    {
+        OnSaveButton();
+        PlayerPrefs.SetString("editorLevel", _currentLevel.levelName);
+        PlayerPrefs.SetInt("loadEditorLevel", 1);
+        SceneManager.LoadScene("EditorGameScene");
     }
 
     //Convert from RGB to HSV
@@ -1132,4 +1156,5 @@ public class Grid
     public int abilityMoveX;
     public int abilityMoveZ;
     public int abilityExtrude;
+    public string levelName;
 }

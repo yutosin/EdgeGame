@@ -2,6 +2,27 @@
     "cubeData": [
         {
             "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
                 "x": 7.5,
                 "y": 9.5,
                 "z": 7.5
@@ -384,6 +405,41 @@
     ],
     "vertices": [
         {
+            "x": 19,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 19,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 18
+        },
+        {
             "x": 8,
             "y": 10,
             "z": 7
@@ -669,5 +725,6 @@
     "abilityTeleport": 0,
     "abilityMoveX": 0,
     "abilityMoveZ": 0,
-    "abilityExtrude": 4
+    "abilityExtrude": 4,
+    "levelName": "ExtrudeClimb"
 }

@@ -1358,5 +1358,6 @@
     "abilityTeleport": 0,
     "abilityMoveX": 1,
     "abilityMoveZ": 0,
-    "abilityExtrude": 0
+    "abilityExtrude": 0,
+    "levelName": "Level_3"
 }

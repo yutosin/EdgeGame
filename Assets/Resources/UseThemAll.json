@@ -2033,5 +2033,6 @@
     "abilityTeleport": 2,
     "abilityMoveX": 2,
     "abilityMoveZ": 1,
-    "abilityExtrude": 0
+    "abilityExtrude": 0,
+    "levelName": "UseThemAll"
 }
