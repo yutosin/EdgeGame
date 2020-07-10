@@ -21,7 +21,7 @@ public class EdgeVertex : MonoBehaviour
     private bool _isActiveSelectable;
     [SerializeField]private bool _onPoint;
     private IEnumerator coroutine;
-    
+
     private void Start()
     {
         // _rend = GetComponent<Renderer>();
@@ -126,6 +126,7 @@ public class EdgeVertex : MonoBehaviour
         if (GameManager.SharedInstance.PlayMode)
             return;
         //Debug.Log(ptID);
+        AudioManager audioManager = GameManager.SharedInstance.AudioManager;
         if (!_activePoint)
         {
             GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", true);
@@ -137,6 +138,7 @@ public class EdgeVertex : MonoBehaviour
             coroutine = PreviewSelectablePoints();
             StartCoroutine(coroutine);
             _rend.enabled = true;
+            audioManager.PlaySoundEffect(audioManager.VertexClick);
         }
         else if (_isActiveSelectable)
         {
@@ -150,6 +152,7 @@ public class EdgeVertex : MonoBehaviour
             _activePoint._onPoint = false;
             _activePoint = null;
             _rend.enabled = true;
+            audioManager.PlaySoundEffect(audioManager.VertexClick);
         }
     }
 

@@ -122,6 +122,7 @@ public class Face : MonoBehaviour
                 _hasShownElevatorTutorial = true;
                 GameManager.SharedInstance.InstructionScript.VPos++;
             }
+            //GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
         }
     }
 

@@ -9,6 +9,7 @@ public class TeleportAbility : MonoBehaviour, IFaceAbility
         AbilityFace = face;
         GameManager.SharedInstance.playerAgent.OnActiveAbility = true;
         SetAgentPosition();
+        GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.Teleport);
     }
 
     public Face AbilityFace { get; set; }

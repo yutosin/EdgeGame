@@ -362,14 +362,9 @@ public class LevelManager : MonoBehaviour
             SortVerticesForQuad(ref vertexVectors);
             
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-
-            // if (!_navMeshBuilt)
-            // {
-            //     _meshSurface.BuildNavMesh();
-            //     _navMeshBuilt = true;
-            // }
-            // else
-            //     _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
+            
+            GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.FaceComplete);
+            
             AstarPath.active.Scan();
         }
     }
