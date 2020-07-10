@@ -764,5 +764,6 @@
     "abilityTeleport": 2,
     "abilityMoveX": 0,
     "abilityMoveZ": 1,
-    "abilityExtrude": 3
+    "abilityExtrude": 3,
+    "levelName": "StaggeredV2"
 }

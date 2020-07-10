@@ -366,5 +366,6 @@
     "abilityTeleport": 0,
     "abilityMoveX": 1,
     "abilityMoveZ": 1,
-    "abilityExtrude": 1
+    "abilityExtrude": 1,
+    "levelName": "1_Each"
 }

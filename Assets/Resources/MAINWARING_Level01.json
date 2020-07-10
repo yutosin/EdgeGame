@@ -2957,5 +2957,6 @@
     "abilityTeleport": 0,
     "abilityMoveX": 0,
     "abilityMoveZ": 0,
-    "abilityExtrude": 0
+    "abilityExtrude": 0,
+    "levelName": "MAINWARING_Level01"
 }

@@ -34,6 +34,11 @@ public class UIScript : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenuALT");
+        if (GameManager.SharedInstance.TestingLevel)
+        {
+            PlayerPrefs.SetInt("loadEditorLevel", 0);
+            GameManager.SharedInstance.TestingLevel = false;
+        }
     }
 
     public void OpenLevelEditor()

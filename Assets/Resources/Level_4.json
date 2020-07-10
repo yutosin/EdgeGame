@@ -886,5 +886,6 @@
     "abilityTeleport": 0,
     "abilityMoveX": 0,
     "abilityMoveZ": 1,
-    "abilityExtrude": 0
+    "abilityExtrude": 0,
+    "levelName": "Level_4"
 }
