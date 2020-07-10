@@ -63,7 +63,7 @@ public class InstructionScript : MonoBehaviour
             videos[VPos].videoPlayer.Play();
             StartCoroutine(WaitTilPrepared());
         }
-        CreateReferenceToThisScript();
+        StartingValuesSet();
     }
 
     private IEnumerator WaitTilPrepared()
@@ -135,11 +135,14 @@ public class InstructionScript : MonoBehaviour
         StartCoroutine(vC.WaitTilPrepared());
     }
 
-    private void CreateReferenceToThisScript()
+    private void StartingValuesSet()
     {
         for (int i = 0; i < videos.Length; i++)
         {
             videos[i].iScript = this;
+            videos[i].StartingValues();
+            RawImage raw = videos[i].projectTo.GetComponent<RawImage>();
+
         }
     }
 
@@ -155,14 +158,8 @@ public class InstructionScript : MonoBehaviour
             set { _iScript = value; }
         }
         public VideoPlayer videoPlayer;
-        private PlayVideoScript _vScript;
-        public PlayVideoScript vScript
-        {
-            get { return (_vScript); }
-
-            set { _vScript = value; }
-        }
         public GameObject projectTo, playButtonObj, stopButtonObj;
+        private RawImage raw;
         private Button _playButton, _stopButton;
         public Button playButton
         {
@@ -177,9 +174,9 @@ public class InstructionScript : MonoBehaviour
             set { _stopButton = value; }
         }
 
-        private void Awake()
+        public void StartingValues()
         {
-            vScript = videoPlayer.GetComponent<PlayVideoScript>();
+            raw = projectTo.GetComponent<RawImage>();
             playButton = playButtonObj.GetComponent<Button>();
             stopButton = stopButtonObj.GetComponent<Button>();
 
@@ -187,9 +184,11 @@ public class InstructionScript : MonoBehaviour
 
             playButton.onClick.AddListener(PlayVideo);
             stopButton.onClick.AddListener(StopVideo);
-            playButtonObj.SetActive(true);
-            stopButtonObj.SetActive(false);
-            projectTo.SetActive(false);
+            videoPlayer.Prepare();
+            StopVideo();
+            Color transparent = raw.color;
+            transparent.a = 0;
+            raw.color = transparent;
         }
 
         private void PlayVideo()
@@ -198,6 +197,9 @@ public class InstructionScript : MonoBehaviour
             iScript.AccessDleayCoroutine(this);
             playButtonObj.SetActive(false);
             stopButtonObj.SetActive(true);
+            Color filledColor = raw.color;
+            filledColor.a = 1;
+            raw.color = filledColor;
         }
 
         private void StopVideo()
@@ -215,7 +217,7 @@ public class InstructionScript : MonoBehaviour
 
         public IEnumerator WaitTilPrepared()
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(.5f);
+            WaitForSeconds waitForSeconds = new WaitForSeconds(.1f);
             while (!videoPlayer.isPrepared)
             {
                 yield return waitForSeconds;
