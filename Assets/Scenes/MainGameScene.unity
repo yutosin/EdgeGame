@@ -1702,6 +1702,7 @@ Transform:
   - {fileID: 1284671208}
   - {fileID: 2118634881}
   - {fileID: 332189101}
+  - {fileID: 1303186492}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4226,18 +4227,16 @@ MonoBehaviour:
     to complete a rectangle, and fill in the face.
 
 
-    Click on a 1x1 square to
-    assign it an ability. Be careful: you only have a limited number of ability squares.
+    Click on a 1x1 square to assign it an ability. Be careful: you only have a limited
+    number of ability squares.
 
 
 
 
-    Click
-    on a face that you''ve drawn, and you''ll navigate there.
+    Click on a face that you''ve drawn, and you''ll navigate there.
 
 
-    If you are on
-    an ability square, press ''E'' to activate it.'
+    If you are on an ability square, press ''E'' to activate it.'
 --- !u!222 &768553238
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4774,10 +4773,9 @@ MonoBehaviour:
     object you are drawing on looks like!
 
 
-    More importantly, if you draw a 1X1
-    square then you will be able to assign an ability to the face. As long as there
-    are uses left you can place an ability onto a square. They each act differently
-    and can be placed on either a wall or a square!'
+    More importantly, if you draw a 1X1 square then you will be able to assign an
+    ability to the face. As long as there are uses left you can place an ability onto
+    a square. They each act differently and can be placed on either a wall or a square!'
 --- !u!222 &895722635
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6439,6 +6437,7 @@ GameObject:
   - component: {fileID: 1284671206}
   - component: {fileID: 1284671209}
   - component: {fileID: 1284671207}
+  - component: {fileID: 1284671210}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6548,8 +6547,179 @@ MonoBehaviour:
   uiManager: {fileID: 1284671206}
   LevelLoader: {fileID: 1304968027}
   InstructionScript: {fileID: 1101079005}
+  AudioManager: {fileID: 1303186490}
   PlayMode: 0
   InLevelEditor: 0
+--- !u!114 &1284671210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284671205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348469c13a0524a8686bed6507df8f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VertexClick: {fileID: 8300000, guid: 0f0b84a36693048d8b44d0c850f6344b, type: 3}
+  FaceComplete: {fileID: 8300000, guid: bbda884b92fc74ac19ac55cc84a85adb, type: 3}
+  GoalReached: {fileID: 8300000, guid: 5fedbb496bf9d4aa9b4abf1feb69588e, type: 3}
+  AbilityAssign: {fileID: 8300000, guid: a1a2e8d2a27cb4a6cb87ee286e39c61a, type: 3}
+  AbilityActivate: {fileID: 8300000, guid: b1ee34abd4fa34752a67983eba4e3df5, type: 3}
+  CubeRaise: {fileID: 0}
+  RaiseComplete: {fileID: 0}
+  Teleport: {fileID: 8300000, guid: 541675a3385ea43eb92c89f438c4a6c3, type: 3}
+  _audioSource: {fileID: 0}
+--- !u!1 &1303186489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1303186492}
+  - component: {fileID: 1303186490}
+  - component: {fileID: 1303186491}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1303186490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303186489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348469c13a0524a8686bed6507df8f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VertexClick: {fileID: 8300000, guid: 0f0b84a36693048d8b44d0c850f6344b, type: 3}
+  FaceComplete: {fileID: 8300000, guid: bbda884b92fc74ac19ac55cc84a85adb, type: 3}
+  GoalReached: {fileID: 8300000, guid: 5fedbb496bf9d4aa9b4abf1feb69588e, type: 3}
+  AbilityAssign: {fileID: 8300000, guid: a1a2e8d2a27cb4a6cb87ee286e39c61a, type: 3}
+  AbilityActivate: {fileID: 8300000, guid: b1ee34abd4fa34752a67983eba4e3df5, type: 3}
+  CubeRaise: {fileID: 0}
+  RaiseComplete: {fileID: 0}
+  Teleport: {fileID: 8300000, guid: 541675a3385ea43eb92c89f438c4a6c3, type: 3}
+  _audioSource: {fileID: 1303186491}
+--- !u!82 &1303186491
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303186489}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1303186492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303186489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 286893393}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287125868
 GameObject:
   m_ObjectHideFlags: 0
@@ -8488,10 +8658,9 @@ MonoBehaviour:
 
 
 
-    For this ability
-    you will need to assign the ability to two different squares in order to be used!
-    After you place two of this ability just hover over it and press E to teleport
-    to the other face!'
+    For this ability you will need to assign the ability to two different squares
+    in order to be used! After you place two of this ability just hover over it and
+    press E to teleport to the other face!'
 --- !u!222 &1516162352
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8853,10 +9022,9 @@ MonoBehaviour:
     object you are drawing on looks like!
 
 
-    More importantly, if you draw a 1X1
-    square then you will be able to assign an ability to the face. As long as there
-    are uses left you can place an ability onto a square. They each act differently
-    and can be placed on either a wall or a square!'
+    More importantly, if you draw a 1X1 square then you will be able to assign an
+    ability to the face. As long as there are uses left you can place an ability onto
+    a square. They each act differently and can be placed on either a wall or a square!'
 --- !u!222 &1570839253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9160,9 +9328,8 @@ MonoBehaviour:
     short). This latest mission has sent you far from home to an unfamiliar land.
 
 
-    Using
-    your Cartographer''s Quill, map out this strange world, and draw life into it
-    from the inky black. Make your way to the next area and avoid falling off the
+    Using your Cartographer''s Quill, map out this strange world, and draw life into
+    it from the inky black. Make your way to the next area and avoid falling off the
     Edge of the Abyss.'
 --- !u!222 &1592684263
 CanvasRenderer:
@@ -9695,6 +9862,7 @@ GameObject:
   - component: {fileID: 1701562705}
   - component: {fileID: 1701562704}
   - component: {fileID: 1701562703}
+  - component: {fileID: 1701562706}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9767,6 +9935,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45.000004, y: -135, z: 0}
+--- !u!82 &1701562706
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701562702}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b4d98822b44a943f0b229f861b1f9224, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1743392971
 GameObject:
   m_ObjectHideFlags: 0
@@ -10349,10 +10613,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "These two abilities activate by pressing the E key and lifting you up
-    in the air by one unit. \n\nThen they will carry you 3 units up or to the right
-    depending on the color!\n\nKeep in mind which direction is which, or you will
-    be left hanging over the abyss!"
+  m_Text: "These two abilities activate by pressing the E key and lifting you up in
+    the air by one unit. \n\nThen they will carry you 3 units up or to the right depending
+    on the color!\n\nKeep in mind which direction is which, or you will be left hanging
+    over the abyss!"
 --- !u!222 &1892655729
 CanvasRenderer:
   m_ObjectHideFlags: 0

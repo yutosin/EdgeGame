@@ -24,6 +24,7 @@ public class ElevatorAbility : MonoBehaviour, IFaceAbility
         GameManager.SharedInstance.playerAgent.transform.parent = transform;
         GameManager.SharedInstance.playerAgent.OnActiveAbility = true;
         IsActing = true;
+        GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.CubeRaiseLong);
     }
     
     IEnumerator SetAgentPosition()

@@ -17,6 +17,8 @@ public class LateralMovingAbility : MonoBehaviour, IFaceAbility
             cScript = cubeChild.GetComponent<ProceduralCube>();
             cScript.SetInitialPos(AbilityFace.Vertices, AbilityFace._rend.material);
         }
+        
+        GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.CubeRaiseShort);
     }
 
     public Face AbilityFace { get; set; }
