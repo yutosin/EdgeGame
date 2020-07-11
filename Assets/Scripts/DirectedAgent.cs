@@ -66,9 +66,8 @@ public class DirectedAgent : MonoBehaviour
             var nearestGoal = GameManager.SharedInstance.levelGraph.GetNearest(_hitInfo.point, NNConstraint.Default);
             var nearestNodePosTarget = (Vector3)nearestGoal.node.position;
             
-            // var nearestStart = GameManager.SharedInstance.levelGraph.GetNearest(transform.position, NNConstraint.Default);
-            // var nearestNodePosStart= (Vector3)nearestStart.node.position;
-            _seeker.StartPath(transform.position, nearestNodePosTarget, OnPathComplete);
+            // _seeker.StartPath(transform.position, nearestNodePosTarget, OnPathComplete);
+            _seeker.StartPath(transform.position, _hitInfo.point, OnPathComplete);
         }
 
         if (_hitInfo.collider.gameObject.CompareTag("Finish"))

@@ -386,12 +386,17 @@ namespace Pathfinding {
 #endif
 
 		/// <summary>Prepares the path. Searches for start and end nodes and does some simple checking if a path is at all possible</summary>
+		//!!!!!IMPORTANT: HACKY MODIFICATION IN THIS FUNCTION TO IGNORE POINT GRAPH NODES WHICH WAS CAUSING WONKY
+		//BEHAVIORS, SHOULD CHANGE AND FIGURE OUT ROOT ISSUE!!!!
 		protected override void Prepare () {
 			AstarProfiler.StartProfile("Get Nearest");
 
 			//Initialize the NNConstraint
 			nnConstraint.tags = enabledTags;
-			var startNNInfo  = AstarPath.active.GetNearest(startPoint, nnConstraint);
+			NNConstraint newConstraint = NNConstraint.Default;
+			newConstraint.graphMask = GraphMask.FromGraph(AstarPath.active.data.gridGraph);
+			var startNNInfo  = AstarPath.active.GetNearest(startPoint, newConstraint);
+			//var startNNInfo  = AstarPath.active.GetNearest(startPoint, nnConstraint);
 
 			//Tell the NNConstraint which node was found as the start node if it is a PathNNConstraint and not a normal NNConstraint
 			var pathNNConstraint = nnConstraint as PathNNConstraint;
@@ -417,7 +422,8 @@ namespace Pathfinding {
 			// If it is declared that this path type has an end point
 			// Some path types might want to use most of the ABPath code, but will not have an explicit end point at this stage
 			if (hasEndPoint) {
-				var endNNInfo = AstarPath.active.GetNearest(endPoint, nnConstraint);
+				// var endNNInfo = AstarPath.active.GetNearest(endPoint, nnConstraint);
+				var endNNInfo = AstarPath.active.GetNearest(endPoint, newConstraint);
 				endPoint = endNNInfo.position;
 				endNode = endNNInfo.node;
 
