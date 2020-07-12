@@ -157,6 +157,8 @@ public class InstructionScript : MonoBehaviour
 
             set { _iScript = value; }
         }
+
+        public string VideoName;
         public VideoPlayer videoPlayer;
         public GameObject projectTo, playButtonObj, stopButtonObj;
         private RawImage raw;
@@ -180,6 +182,7 @@ public class InstructionScript : MonoBehaviour
             playButton = playButtonObj.GetComponent<Button>();
             stopButton = stopButtonObj.GetComponent<Button>();
 
+            videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, VideoName + ".mp4");
             videoPlayer.loopPointReached += OnVideoEnd;
 
             playButton.onClick.AddListener(PlayVideo);
