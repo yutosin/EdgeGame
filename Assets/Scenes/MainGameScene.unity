@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+uB0FGzRwIAAPAEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVMtu2zAQ/BWD57aQHCtNemsVx+khD8QpctFlI64swhQp8BHbCfzvXVKypTgoerI8M7s7+5DemVC2xdJpszCC32qO7MeEhWf2ZTKQN7iFlVZL8YYHzbPgrg4iiJpHcEITnoYwqxt0RpQ/1UoGcUKgV6LSppnzFebaOktwBdIiUUa7EK0Iep+wbR+w63/fwu9kT08lKofmfyqvSglNizy4HcSzg3rWyRT10SuC51JLKWxvgrldG5vMobWeWiABF0BNxfLpt4yAGsWqdvR3Og6/ryqLrjdlYHclDE2ny8t+6W5kDdh15+wVpA+VsnQaXXVJbz/x0+w88pXRzc2hcJqEIq4W5foRdiVYNxrqGL4aeY8T2oBcw4vE5xrVnV4Y7RUn0hkfQr3F6dUo1bG5vMZyPeg6syegbz8vKB0WtI/tb3MpmpeAxFESsJQ6jvwyxKCh5fwmw/EsbJ+J0GDij8UnWI3vpyeuhbGOqL6gCu5etDdByuZxZqEZ73JtFJpxhhYVSLd7oDzudIkn3L+jriG8Kn31nju8ASchER70SXJCPejNcVu21ptbtPW9d1IoHCYdiDsaVK6V6m7MfiRD1NKbCspR1MoL/vG22OyMZ7P0MsmycyyT2fnXFC74WXaRpJffAS6yhMXbE4raBPnQ+eynQ1tTQ3JFd3b4gEwWBtp47tzAZiHeGj3yJ1Sll6VBVPddhsOELBoqQi8mn3NB81mic0LFfbP3gkldrpEXx0RF7HS+dQaKIUvBWvGqXUAKlsfPRsH2bP8XUEsDBBQAAAgIAACYn+u0AP/aFgEAANgBAAALACQAZ3JhcGgxLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtkN1OAjEQhV+l6ZUmmrALi+g1hiuVgC8wtrO7k+22pNMiP+HdbZEfSbya6deZ03O6l965IF+EjcY8CMkIXrWf0FxRD5spcQCrMMFBIoZ6CpwOeyE3J7Y91V2u4pA6D1sFnLWDj5hAZCyn83bLpPJyDYYzDi2pbnEZ/g8vQFPMO0XWRRU90xqvyj1w92tnDSbixYJNaZDDu9N4jvCW+nQvM5NppImkb1dlNZjgBEej56LC8aB6eixxOJxUWJeqxLoYf8mjOFkKBGaOFkw4x3crtH9CWOiPknNHNsw8rFpxl75Bi9p5YZMFYch2fJ+daA/fM9r1jq/ByNZuqTyi/bgVZvTpbdqhftUUnF9iCGSbvCr3B3n4AVBLAwQUAAAICAAAmJ/rGZ9THZAAAAC3AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAU2NPQ6DMBSDr4Iylyh/LyRcgK1irxhS8gIZGhCklaqqdy8RSzfbn2V/yAu3PS6JtJWignK4VGTa3DrvRyKKeUZf9I0o6UFxywA0jkzpmjvjJRjGbeOcAUaOOjCDBpWyHFAzaGqBUhrAIEaBges7GY5Wfq94dQ88h3uX5xCTj2mi3RZ9V/7L2D/ol5jySYbvD1BLAQItABQAAAgIAACYn+uB0FGzRwIAAPAEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+u0AP/aFgEAANgBAAALACQAAAAAAAAAAAAAAJQCAABncmFwaDEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+sZn1MdkAAAALcAAAAJACQAAAAAAAAAAAAAAPcDAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAMAAwAVAQAA0gQAAAAA
+    dataString: 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
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -2559,7 +2559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.047312498, y: 0.22962964}
   m_AnchorMax: {x: 0.42800003, y: 0.77040744}
-  m_AnchoredPosition: {x: 4, y: 2.300293}
+  m_AnchoredPosition: {x: 4.0004883, y: 2.300293}
   m_SizeDelta: {x: -5, y: -8.004395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526824521
@@ -5511,9 +5511,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1701562704}
+  canvas: {fileID: 0}
   gridSize: {x: 40, y: 15, z: 40}
   backgroundGenerator: {fileID: 2272833626780888006, guid: 64e4ffac1c8de5547b719b69e9276653,
     type: 3}
+  errorBar: {fileID: 0}
   selectCubeModel: {fileID: 6984385890063189296, guid: c98ba19f907fd0844be8749853a9b6e0,
     type: 3}
   selectorCubeSize: 0.6
@@ -5557,9 +5559,9 @@ MonoBehaviour:
   developerRight: {fileID: 2100000, guid: 23f716eeb19fe554b908403cd89b7125, type: 2}
   developerLeft: {fileID: 2100000, guid: 8e7bea41b62b87943ba614c0685eccc3, type: 2}
   path: ./Assets/Resources/
+  modeSet: {fileID: 0}
   silhouetteSwitch: {fileID: 0}
   HSVSwitch: {fileID: 0}
-  modeSet: {fileID: 0}
   abilityElevator: {fileID: 0}
   abilityTeleport: {fileID: 0}
   abilityMoveX: {fileID: 0}
@@ -6164,8 +6166,12 @@ MonoBehaviour:
   turnSpeed: 10
   foreLean: 120
   sideLean: 30
+  swingOut: 0.5
   targetPath: []
   commit: 0
+  stage: 0
+  climbOn: 0
+  goHere: {x: 0, y: 0, z: 0}
 --- !u!114 &1444456279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9153,7 +9159,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -9210,13 +9216,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108466395}
-  m_LocalRotation: {x: 0.1464466, y: -0.8535535, z: 0.35355338, w: 0.35355338}
+  m_LocalRotation: {x: 0.13088545, y: -0.8681628, z: 0.35960478, w: 0.31598547}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 45, y: -135, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: -140, z: 0}
 --- !u!1 &2113076583
 GameObject:
   m_ObjectHideFlags: 0
@@ -9369,7 +9375,7 @@ MonoBehaviour:
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _levelNames:
-  - Level_1
+  - ClimbTest
   - Level_2
   - Level_3
   - Level_4

@@ -44,9 +44,6 @@ public class Jsonator : MonoBehaviour
     public Material developerRight;
     public Material developerLeft;
 
-    // Model for displaying where the start position in the editor is.
-    [Header("Player Model")]
-
     [Header("Save Path")]
     public string path;
 
@@ -350,7 +347,12 @@ public class Jsonator : MonoBehaviour
                                 //Define adjacent voxels to the one clicked on.
                                 if (hitRay.collider.name.Contains("LeftPositive")) rayPos.x++;
                                 else if (hitRay.collider.name.Contains("LeftNegative")) rayPos.x--;
-                                else if (hitRay.collider.name.Contains("TopPositive")) rayPos.y++;
+                                else if (hitRay.collider.name.Contains("TopPositive"))
+                                {
+                                    if (hitRay.collider.transform.parent.position == new Vector3(startPoint.x, startPoint.y - 0.5f, startPoint.z)) Destroy(startInd.gameObject);
+                                    if (hitRay.collider.transform.parent.position == new Vector3(goalPoint.x, goalPoint.y - 0.5f, goalPoint.z)) Destroy(goalInd.gameObject);
+                                    rayPos.y++;
+                                }
                                 else if (hitRay.collider.name.Contains("TopNegative")) rayPos.y--;
                                 else if (hitRay.collider.name.Contains("RightPositive")) rayPos.z++;
                                 else if (hitRay.collider.name.Contains("RightNegative")) rayPos.z--;
@@ -428,6 +430,8 @@ public class Jsonator : MonoBehaviour
                                 {
                                     DeleteCube(cubeXPos, cubeYPos, cubeZPos, rayPos, transform.GetChild(r).transform.position, r);
                                 }
+                                if (hitRay.collider.transform.parent.position == new Vector3(startPoint.x, startPoint.y - 0.5f, startPoint.z)) Destroy(startInd.gameObject);
+                                if (hitRay.collider.transform.parent.position == new Vector3(goalPoint.x, goalPoint.y - 0.5f, goalPoint.z)) Destroy(goalInd.gameObject);
                             }
                         }
                     }
