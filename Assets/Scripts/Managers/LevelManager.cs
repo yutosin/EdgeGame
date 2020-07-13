@@ -175,6 +175,7 @@ public class LevelManager : MonoBehaviour
         tp.ptID = "Pt" + _nextPtID;
         edgePoint.name = tp.ptID;
         tp.listLoc = _nextPtID;
+        edgePoint.layer = LayerMask.NameToLayer("Player");
         
         // if (Array.Exists(_initTPLocs, i => _nextPtID == i ))
         //     _initTPs.Add(_nextPtID, tp);

@@ -1042,6 +1042,9 @@ public class Jsonator : MonoBehaviour
         
         mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 20.5f, gridLoad.cameraPosition.y);
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
+
+        GameManager.SharedInstance.EdgeCamera.orthographicSize = gridLoad.cameraPosition.z;
+        GameManager.SharedInstance.PlayerCamera.orthographicSize = gridLoad.cameraPosition.z;
         
         return gridLoad;
     }

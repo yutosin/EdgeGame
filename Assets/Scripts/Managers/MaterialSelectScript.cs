@@ -191,7 +191,8 @@ public class MaterialSelectScript : MonoBehaviour
 
         private void SetMaterial()
         {
-            material = new Material(Shader.Find("Unlit/ColorZAlways"));
+            // material = new Material(Shader.Find("Unlit/ColorZAlways"));
+            material = new Material(Shader.Find("Custom/EdgeRTApply"));
             material.color = ThisButton.GetComponent<Image>().color;
             material.renderQueue = 2005;
 

@@ -51,6 +51,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: bodyTex
     second: {fileID: 2100000, guid: 9dcb5acf96a21436c8b30ba800c2bfd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: quillTex
+    second: {fileID: 2100000, guid: ddcd934e5594108488a093d6652ff782, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

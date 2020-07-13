@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     }
 
     public Camera MainCamera;
+    public Camera EdgeCamera;
+    public Camera PlayerCamera;
     public LevelManager levelManager;
     public EdgeManager edgeManager;
     public DirectedAgent playerAgent;
