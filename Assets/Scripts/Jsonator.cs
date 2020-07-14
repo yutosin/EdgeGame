@@ -13,6 +13,7 @@ public class Jsonator : MonoBehaviour
     //Set the maximum allowed size of the grid.
     [Header("General Editor")]
     public RectTransform canvas;
+    public RectTransform wholePanel;
     public Vector3 gridSize;
     public Transform backgroundGenerator;
     public RectTransform errorBar;
@@ -232,7 +233,7 @@ public class Jsonator : MonoBehaviour
 
         //Manage ability settings
         abElevVal = abilityElevator.value * 4;
-        abTeleVal = abilityTeleport.value * 4;
+        abTeleVal = abilityTeleport.value * 2;
         abMovXVal = abilityMoveX.value * 4;
         abMovZVal = abilityMoveZ.value * 4;
         abExtrVal = abilityExtrude.value * 4;
@@ -287,6 +288,10 @@ public class Jsonator : MonoBehaviour
             }
             silhouetteVal = silhouetteSwitch.value;
         }
+
+        //Hide lower panels when spacebar is down.
+        if (Input.GetKeyDown(KeyCode.Space)) wholePanel.gameObject.SetActive(false);
+        else if (Input.GetKeyUp(KeyCode.Space)) wholePanel.gameObject.SetActive(true);
 
         //Handle all operations with mouse.
         bool leftMouse = Input.GetMouseButtonDown(0);
@@ -521,7 +526,7 @@ public class Jsonator : MonoBehaviour
                 cameraPosition = saveCamPos,
                 backgroundMode = modeCheck,
                 abilityElevator = (int)(abilityElevator.value * (abilityElevator.numberOfSteps - 1)),
-                abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps - 1)),
+                abilityTeleport = (int)(abilityTeleport.value * (abilityTeleport.numberOfSteps)),
                 abilityMoveX = (int)(abilityMoveX.value * (abilityMoveX.numberOfSteps - 1)),
                 abilityMoveZ = (int)(abilityMoveZ.value * (abilityMoveZ.numberOfSteps - 1)),
                 abilityExtrude = (int)(abilityExtrude.value * (abilityExtrude.numberOfSteps - 1))
@@ -537,6 +542,7 @@ public class Jsonator : MonoBehaviour
                         File.WriteAllText(path + saveName.text + ".json", stringSave);
                     else
                         File.WriteAllText(Application.persistentDataPath + "/USER" + saveName.text + ".json", stringSave);
+                    ErrorBar(3, "Level " + saveName.text + " has been saved.");
                 }
                 else ErrorBar(4, "THE STARTPOINT AND GOALPOINT MUST NOT BE IN THE SAME PLACE TO SAVE.");
             }
@@ -712,13 +718,22 @@ public class Jsonator : MonoBehaviour
 
     public void OnDeleteButton(Button button)
     {
-        if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
-            File.Delete(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
-        else if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
-            File.Delete(path + "USER" + button.transform.parent.name + ".json");
-        else if (File.Exists(path + button.transform.parent.name + ".json"))
-            File.Delete(path + button.transform.parent.name + ".json");
-        OnRefreshButton();
+        if (button.GetComponentInChildren<Text>().text == "DELETE")
+        {
+            button.GetComponentInChildren<Text>().text = "CONFIRM";
+            button.GetComponent<Image>().color = new Color(1, 0.08f, 0);
+        }
+        else
+        {
+            if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
+                File.Delete(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
+            else if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
+                File.Delete(path + "USER" + button.transform.parent.name + ".json");
+            else if (File.Exists(path + button.transform.parent.name + ".json"))
+                File.Delete(path + button.transform.parent.name + ".json");
+            ErrorBar(4, "File " + button.transform.parent.name + " has been deleted.");
+            OnRefreshButton();
+        }
     }
 
     public void ValueChecker()
