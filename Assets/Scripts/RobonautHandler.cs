@@ -21,6 +21,7 @@ public class RobonautHandler : MonoBehaviour
     public bool commit;
 
     private int stage;
+    private int clampedStage;
     private bool stageOn;
     private int climbOn;
     private float dist;
@@ -40,6 +41,7 @@ public class RobonautHandler : MonoBehaviour
     {
         commit = false;
         stage = 0;
+        clampedStage = 0;
         stageOn = false;
         climbOn = 0;
         dist = 0;
@@ -80,7 +82,7 @@ public class RobonautHandler : MonoBehaviour
 
             //Locomotion
             oldPos = pos;
-            int clampedStage = Mathf.Clamp(stage, 0, targetPath.Length - 1);
+            clampedStage = Mathf.Clamp(stage, 0, targetPath.Length - 1);
             if (climbOn == 0) goHere = targetPath[clampedStage];
             dist = Mathf.Sqrt(Mathf.Pow(goHere.z - pos.z, 2) + Mathf.Pow(goHere.y - pos.y, 2) + Mathf.Pow(goHere.x - pos.x, 2));
             angle = -Mathf.Atan2(goHere.z - basePos.z, goHere.x - basePos.x) * (180 / Mathf.PI) / 360 + 0.5f;
@@ -92,8 +94,8 @@ public class RobonautHandler : MonoBehaviour
             basePos += dynPos;
             if (climbOn == 2)
             {
-                if (pos.y > targetPath[stage].y) pos -= new Vector3(0, (climbSpeed / 100), 0);
-                else if (pos.y < targetPath[stage].y) pos += new Vector3(0, (climbSpeed / 100), 0);
+                if (pos.y > targetPath[clampedStage].y) pos -= new Vector3(0, (climbSpeed / 100), 0);
+                else if (pos.y < targetPath[clampedStage].y) pos += new Vector3(0, (climbSpeed / 100), 0);
             }
             else
             {
@@ -107,18 +109,9 @@ public class RobonautHandler : MonoBehaviour
             vel = Mathf.Sqrt(Mathf.Pow(oldPos.z - pos.z, 2) + Mathf.Pow(oldPos.x - pos.x, 2));
             if (climbOn == 0)
             {
-                if (dist < playerSpeed / 10 && dist > -(playerSpeed / 10))
+                if (dist < playerSpeed / 12 && dist > -(playerSpeed / 12))
                 {
-                    stage++;
-                    if (stage >= targetPath.Length)
-                    {
-                        if (dist < playerSpeed / 8000 && dist > -(playerSpeed / 8000))
-                        {
-                            stageOn = false;
-                            transform.position = targetPath[targetPath.Length - 1];
-                        }
-                    }
-                    else
+                    if (!StageOverflow())
                     {
                         if (pos.y != targetPath[stage].y) climbOn = 1;
                         if (Mathf.Abs(targetPath[stage - 1].x - targetPath[stage].x) > Mathf.Abs(targetPath[stage - 1].z - targetPath[stage].z))
@@ -162,9 +155,8 @@ public class RobonautHandler : MonoBehaviour
             }
             else if (climbOn == 2)
             {
-                if (pos.y < targetPath[stage].y + 0.001f && pos.y > targetPath[stage].y - 0.001f)
+                if (pos.y < targetPath[clampedStage].y + 0.001f && pos.y > targetPath[clampedStage].y - 0.001f)
                 {
-                    stage++;
                     goHere = targetPath[stage];
                     transform.position = new Vector3(transform.position.x, goHere.y, transform.position.z);
                     climbOn = 0;
@@ -190,6 +182,21 @@ public class RobonautHandler : MonoBehaviour
             playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
         }
         AnimationController();
+    }
+
+    bool StageOverflow()
+    {
+        stage++;
+        if (stage >= targetPath.Length)
+        {
+            if (dist < playerSpeed / 8000 && dist > -(playerSpeed / 8000))
+            {
+                stageOn = false;
+                transform.position = targetPath[targetPath.Length - 1];
+            }
+            return true;
+        }
+        else return false;
     }
 
     private void AnimationController()
