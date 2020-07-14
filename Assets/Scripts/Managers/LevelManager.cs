@@ -558,9 +558,6 @@ public class LevelManager : MonoBehaviour
         GameManager.SharedInstance.matSelect.extrudeFace.uses = _loadedLevel.abilityExtrude;
         GameManager.SharedInstance.matSelect.xMoving.uses = _loadedLevel.abilityMoveX;
         GameManager.SharedInstance.matSelect.zMoving.uses = _loadedLevel.abilityMoveZ;
-        
-        if (currentLevel > 0 && !reload)
-            GameManager.SharedInstance.InstructionScript.VPos++;
 
         StartCoroutine(DelayedScan());
     }
