@@ -2559,7 +2559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.047312498, y: 0.22962964}
   m_AnchorMax: {x: 0.42800003, y: 0.77040744}
-  m_AnchoredPosition: {x: 4.0004883, y: 2.300293}
+  m_AnchoredPosition: {x: 4.001343, y: 2.300293}
   m_SizeDelta: {x: -5, y: -8.004395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526824521
@@ -6163,15 +6163,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerModel: {fileID: 1485150135}
   playerSpeed: 12
-  turnSpeed: 10
+  turnSpeed: 8
   foreLean: 120
   sideLean: 30
-  swingOut: 0.5
+  climbSpeed: 2
+  swingOut: 0.3
   targetPath: []
   commit: 0
-  stage: 0
-  climbOn: 0
-  goHere: {x: 0, y: 0, z: 0}
 --- !u!114 &1444456279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9375,7 +9373,7 @@ MonoBehaviour:
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _levelNames:
-  - ClimbTest
+  - Level_1
   - Level_2
   - Level_3
   - Level_4
