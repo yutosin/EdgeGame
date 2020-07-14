@@ -11,6 +11,7 @@ public class ProceduralCube : MonoBehaviour
 
     Mesh mesh;
     MeshRenderer rend;
+    private BoxCollider _collider;
 
     List<Vector3> vertices;
     List<int> triangles;
@@ -20,6 +21,7 @@ public class ProceduralCube : MonoBehaviour
     {
         mesh = GetComponent<MeshFilter>().mesh;
         rend = GetComponent<MeshRenderer>();
+        gameObject.layer = LayerMask.NameToLayer("Edge");
         FillFacesDictionary();
 
     }
@@ -181,8 +183,10 @@ public class ProceduralCube : MonoBehaviour
     {
         faces.Add("XPlus", new int[4] { 1, 2, 4, 7 });
         faces.Add("XMinus", new int[4] { 0, 3, 5, 6 });
-        faces.Add("YPlus", new int[4] { 0, 1, 4, 5 });
-        faces.Add("YMinus", new int[4] { 2, 3, 6, 7 });
+        //faces.Add("YPlus", new int[4] { 0, 1, 4, 5 });
+        faces.Add("YPlus", new int[4] { 2, 3, 6, 7 });
+        // faces.Add("YMinus", new int[4] { 2, 3, 6, 7 });
+        faces.Add("YMinus", new int[4] { 0, 1, 4, 5 });
         faces.Add("ZPlus", new int[4] { 0, 1, 2, 3 });
         faces.Add("ZMinus", new int[4] { 4, 5, 6, 7 });
 
