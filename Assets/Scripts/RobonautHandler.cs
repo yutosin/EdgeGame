@@ -179,7 +179,7 @@ public class RobonautHandler : MonoBehaviour
                 eulerY -= 360;
                 deltaAngle += 360;
             }
-            playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
+            if (dist > 0.1f) playerModel.eulerAngles = new Vector3(0, Mathf.Lerp(playerModel.eulerAngles.y, eulerY, turnSpeed / 50), 0);
         }
         AnimationController();
     }

@@ -5512,6 +5512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1701562704}
   canvas: {fileID: 0}
+  wholePanel: {fileID: 0}
   gridSize: {x: 40, y: 15, z: 40}
   backgroundGenerator: {fileID: 2272833626780888006, guid: 64e4ffac1c8de5547b719b69e9276653,
     type: 3}
@@ -9373,7 +9374,7 @@ MonoBehaviour:
   FloorMat: {fileID: 2100000, guid: 47bcadd122960e541ba70121b3994584, type: 2}
   WallMat1: {fileID: 2100000, guid: 8bcfed5393448aa449058497ec51420d, type: 2}
   _levelNames:
-  - Level_3
+  - ExtrudeClimb
   - Level_2
   - Level_3
   - Level_4
