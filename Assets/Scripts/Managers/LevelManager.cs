@@ -175,6 +175,7 @@ public class LevelManager : MonoBehaviour
         tp.ptID = "Pt" + _nextPtID;
         edgePoint.name = tp.ptID;
         tp.listLoc = _nextPtID;
+        edgePoint.layer = LayerMask.NameToLayer("Player");
         
         // if (Array.Exists(_initTPLocs, i => _nextPtID == i ))
         //     _initTPs.Add(_nextPtID, tp);
@@ -362,14 +363,9 @@ public class LevelManager : MonoBehaviour
             SortVerticesForQuad(ref vertexVectors);
             
             GenerateQuadWithQuadMeshTop(vertexVectors.ToArray());
-
-            // if (!_navMeshBuilt)
-            // {
-            //     _meshSurface.BuildNavMesh();
-            //     _navMeshBuilt = true;
-            // }
-            // else
-            //     _meshSurface.UpdateNavMesh(_meshSurface.navMeshData);
+            
+            GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.FaceComplete);
+            
             AstarPath.active.Scan();
         }
     }
@@ -498,7 +494,7 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(bool reload = false)
     {
         //currentLevel++;
-        if (currentLevel >= _levelNames.Length)
+        if (currentLevel >= _levelNames.Length && PlayerPrefs.GetInt("loadEditorLevel", 0) != 0)
         {
             SceneManager.LoadScene("Victory");
             return;
@@ -532,7 +528,14 @@ public class LevelManager : MonoBehaviour
             _zGraphs.Clear();
         }
 
-        _loadedLevel = GameManager.SharedInstance.LevelLoader.LoadLevel(_levelNames[currentLevel], true);
+        if (PlayerPrefs.GetInt("loadEditorLevel", 0) == 1)
+        {
+            _loadedLevel = GameManager.SharedInstance.LevelLoader.LoadLevel(PlayerPrefs.GetString("editorLevel"));
+            PlayerPrefs.SetInt("loadEditorLevel", 0);
+            GameManager.SharedInstance.TestingLevel = true;
+        }
+        else
+            _loadedLevel = GameManager.SharedInstance.LevelLoader.LoadLevel(_levelNames[currentLevel]);
 
         if (_loadedLevel.vertices == null)
             return;
@@ -555,9 +558,6 @@ public class LevelManager : MonoBehaviour
         GameManager.SharedInstance.matSelect.extrudeFace.uses = _loadedLevel.abilityExtrude;
         GameManager.SharedInstance.matSelect.xMoving.uses = _loadedLevel.abilityMoveX;
         GameManager.SharedInstance.matSelect.zMoving.uses = _loadedLevel.abilityMoveZ;
-        
-        if (currentLevel > 0 && !reload)
-            GameManager.SharedInstance.InstructionScript.VPos++;
 
         StartCoroutine(DelayedScan());
     }

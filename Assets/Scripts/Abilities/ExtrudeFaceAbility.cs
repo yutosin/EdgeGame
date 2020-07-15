@@ -79,6 +79,7 @@ public class ExtrudeFaceAbility : MonoBehaviour, IFaceAbility
         }
         AbilityTimes--;
         IsActing = true;
+        GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.CubeRaiseShort);
     }
 
     private void ExtrudeFace()

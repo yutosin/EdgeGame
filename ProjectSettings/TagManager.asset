@@ -17,9 +17,9 @@ TagManager:
   - LevelGeometry
   - Obstacle
   - Tile
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Edge
+  - Player
   - 
   - 
   - 

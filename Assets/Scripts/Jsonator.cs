@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Jsonator : MonoBehaviour
@@ -118,6 +119,7 @@ public class Jsonator : MonoBehaviour
     [SerializeField]
     private Cube[] cubeData;
     private Tile[] tileData;
+    private Grid _currentLevel;
 
     void Start()
     {
@@ -170,6 +172,11 @@ public class Jsonator : MonoBehaviour
         //Initiate.
         OnRefreshButton();
         OnNewButton();
+        if (PlayerPrefs.GetString("editorLevel", "") != "")
+        {
+            LoadEditorLevel(PlayerPrefs.GetString("editorLevel"));
+            PlayerPrefs.SetString("editorLevel", "");
+        }
     }
 
     void Update()
@@ -514,7 +521,6 @@ public class Jsonator : MonoBehaviour
                 inCube.tileData = tileData;
                 cubeData[s] = inCube;
             }
-
             //Save the data into a json file.
             Grid gridSave = new Grid
             {
@@ -552,6 +558,7 @@ public class Jsonator : MonoBehaviour
                 else if (startInd == null) ErrorBar(4, "A SET STARTPOINT IS REQUIRED TO SAVE.");
                 else if (goalInd == null) ErrorBar(4, "A SET GOALPOINT IS REQUIRED TO SAVE.");
             }
+            _currentLevel = gridSave;
             OnRefreshButton();
         }
         else ErrorBar(3, "SAVE MUST HAVE A NAME IN THE INPUT FIELD UNDER THE SAVE BUTTON.");
@@ -570,17 +577,23 @@ public class Jsonator : MonoBehaviour
         selectCube = new Vector3(0, 0, 0);
 
         //Read and interpret the save file.
+        LoadEditorLevel(button.transform.parent.name);
+    }
+
+    private void LoadEditorLevel(string levelName)
+    {
         string stringLoad;
         
-        if (File.Exists(path + "USER" + button.transform.parent.name + ".json"))
-            stringLoad = File.ReadAllText(path + "USER" + button.transform.parent.name + ".json");
-        else if (File.Exists(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json"))
-            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + button.transform.parent.name + ".json");
+        if (File.Exists(path + "USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(path + "USER" + levelName + ".json");
+        else if (File.Exists(Application.persistentDataPath + "/USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + levelName + ".json");
         else if (Application.isEditor)
-            stringLoad = File.ReadAllText(path + button.transform.parent.name + ".json");
+            stringLoad = File.ReadAllText(path + levelName + ".json");
         else
             return;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
+        _currentLevel = gridLoad;
         startPoint = gridLoad.startPoint;
         startInd = Instantiate(startModel);
         startInd.transform.position = startPoint;
@@ -627,7 +640,7 @@ public class Jsonator : MonoBehaviour
         saveCamPos = gridLoad.cameraPosition;
 
         //Build the new level.
-        saveName.text = button.transform.parent.name;
+        saveName.text = levelName;
         int loadCount = gridLoad.cubeData.Length;
         Cube loadCube;
         for (int l = 0; l < loadCount; l++)
@@ -1008,7 +1021,7 @@ public class Jsonator : MonoBehaviour
         }
     }
     
-    public Grid LoadLevel(string levelName, bool silhouetted)
+    public Grid LoadLevel(string levelName, bool silhouetted = true)
     {
         //Clear out the old cubes.
         for (int d = 0; d < transform.childCount; d++)
@@ -1017,13 +1030,25 @@ public class Jsonator : MonoBehaviour
             if (startInd != null) Destroy(startInd.gameObject);
             if (goalInd != null) Destroy(goalInd.gameObject);
         }
-        
-        if (silhouetted) { silhouetteMode = true; }
-        else { silhouetteMode = false; }
 
+        silhouetteMode = silhouetted;
+        
         //Read and interpret the save file.
-        TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
-        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad.text);
+        string stringLoad;
+        if (File.Exists(Application.persistentDataPath + "/USER" + levelName + ".json"))
+            stringLoad = File.ReadAllText(Application.persistentDataPath + "/USER" + levelName + ".json");
+        else if (Application.isEditor && Resources.Load("USER" + levelName))
+        {
+            TextAsset resourceLevel = Resources.Load("USER" + levelName) as TextAsset;
+            stringLoad = resourceLevel.text;
+        }
+        else
+        {
+            TextAsset resourceLevel = Resources.Load(levelName) as TextAsset;
+            stringLoad = resourceLevel.text;
+        }
+        //TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
+        Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
         goalPoint = gridLoad.goalPoint;
         backgroundColor = new Color(gridLoad.backgroundColor.x, gridLoad.backgroundColor.y, gridLoad.backgroundColor.z);
@@ -1068,8 +1093,19 @@ public class Jsonator : MonoBehaviour
         mainCamera.transform.position = new Vector3(gridLoad.cameraPosition.x, 20.5f, gridLoad.cameraPosition.y);
         mainCamera.orthographicSize = gridLoad.cameraPosition.z;
         mainCamera.backgroundColor = backgroundColor;
-        
+
+        GameManager.SharedInstance.EdgeCamera.orthographicSize = gridLoad.cameraPosition.z;
+        GameManager.SharedInstance.PlayerCamera.orthographicSize = gridLoad.cameraPosition.z;
+
         return gridLoad;
+    }
+
+    public void TestLevel()
+    {
+        OnSaveButton();
+        PlayerPrefs.SetString("editorLevel", _currentLevel.levelName);
+        PlayerPrefs.SetInt("loadEditorLevel", 1);
+        SceneManager.LoadScene("EditorGameScene");
     }
 
     //Convert from RGB to HSV
@@ -1183,4 +1219,5 @@ public class Grid
     public int abilityMoveX;
     public int abilityMoveZ;
     public int abilityExtrude;
+    public string levelName;
 }

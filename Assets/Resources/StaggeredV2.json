@@ -2,6 +2,48 @@
     "cubeData": [
         {
             "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
                 "x": 10.5,
                 "y": 8.5,
                 "z": 7.5
@@ -404,6 +446,41 @@
     ],
     "vertices": [
         {
+            "x": 19,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 19,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 18,
+            "y": 1,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 18
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 19
+        },
+        {
             "x": 11,
             "y": 8,
             "z": 7
@@ -755,8 +832,8 @@
         "z": 0.0
     },
     "cameraPosition": {
-        "x": 19.003997802734376,
-        "y": 18.030071258544923,
+        "x": 15.454497337341309,
+        "y": 15.0,
         "z": 8.0
     },
     "backgroundMode": 3,
@@ -764,5 +841,6 @@
     "abilityTeleport": 2,
     "abilityMoveX": 0,
     "abilityMoveZ": 1,
-    "abilityExtrude": 3
+    "abilityExtrude": 3,
+    "levelName": "StaggeredV2"
 }
