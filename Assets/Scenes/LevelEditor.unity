@@ -1207,66 +1207,67 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\t<b>INDEX</b>\n\t1 - General Overview\n\t2 - Save / Load\n\t3 - Tile Painter\n\t4
-    - Background\n\t5 - Abilities\n\t6 - Start / Goal\n\t7 - Set Camera\n\n\n\n\n\n<size=25><b>1.
-    GENERAL OVERVIEW</b></size>\n\nThis editor allows the player to create their own
-    levels, set start / end goals, populate special abilities, set backgrounds and
-    colors. This guide will detail how the editor works and what all of the buttons
+  m_Text: "\t<b>INDEX</b>\n\t1 - General Overview\n\t2 - Save / Load\n\t3 - Tile
+    Painter\n\t4 - Background\n\t5 - Abilities\n\t6 - Start / Goal\n\t7 - Set Camera\n\n\n\n\n\n<size=25><b>1.
+    GENERAL OVERVIEW</b></size>\n\nThis editor allows the player to create their
+    own levels, set start / end goals, populate special abilities, set backgrounds
+    and colors. This guide will detail how the editor works and what all of the buttons
     and sliders do.\n\nTo get back to this window, click <b>Help</b> in the top-left.
     To return to the main menu, click <b>Menu</b> on the top-right.\n\nTo move your
     view around a level, hold down <b>middle-mouse</b> and move the mouse until you
     reach your desired view. Use the <b>scroll-wheel</b> or pinch in or out to zoom
     the camera in or out.\n\nTo hide the UI, hold down <b>Spacebar</b>.\n\nThe core
-    mechanics of the main game include silhouetted levels unveiled as the player \"draws\"
-    the living world into being. To see what your level will look like on starting
-    play, use the <b>Silhouette Slider</b> in the top-middle to switch between textured
-    and silhouette mode.\n\nThis game is built out of cubes. To add a cube to your
-    level in this editor, <b>left-click</b> on a cube to select it. Markers will appear
-    around your selected cube. By clicking on any of these, a new cube will be created
-    in the selected position; for example, clicking the top marker will create a new
-    cube upwards. To delete a cube, <b>right-click</b> on the cube you wish to delete.\n\nThe
-    panels below allow you to edit various atributes and properties of your level,
-    including the start and end points, your level's textures and your level's background
-    environment and colors. The six buttons seen in the <b>Navigation Panel</b> on
-    the bottom-left will change the panel on the right to their corresponding features;
-    clicking on Abilities, for instance, will bring up the abilities panel.\nNote:
-    selecting Tile Painter or Start / Goal will change what left and right click does.
-    To return to building mode, select one of the other four panels.\n\n\n\n\n\n<size=25><b>2.
-    SAVE / LOAD</b></size>\n\nBy clicking <b>Save / Load</b> in the  Navigation Panel,
-    you will enter the save and load panel.\n\nIn this panel, you will find a scroll-list
-    to the right with all current save files. To load a level, click on the button
-    with your level's name. To delete the level, click the red <b>Delete</b> button
-    to the immediate right of your file. Be sure not to click the wrong one.\n\nIf
-    you do not see your level, or believe the list is not up to date, you can click
-    the <b>Refresh</b> button to the left to refresh the list.\n\nTo create a new
-    blank level, click the <b>Create New</b> button.\n\nTo save your existing level,
-    click <b>Save</b>. For your level to save, you must have a start and end point,
-    and your level must have a name. If one or more of these are not satisfied, you
-    will see a message telling you which thing needs doing. To name your level, simply
-    click in the green input field on the bottom left of the save panel and enter
-    your desired name.\n\n\n\n\n\n<size=25><b>3. TILE PAINTER</b></size>\n\nBy clicking
-    <b>Tile Painter</b> in the  Navigation Panel, you will enter the material painter
-    panel. While this panel is activated, <b>Paint Mode</b> will be activated, and
-    left and right click will be changed accordingly. Now, when you <b>left-click</b>
+    mechanics of the main game include silhouetted levels unveiled as the player
+    \"draws\" the living world into being. To see what your level will look like
+    on starting play, use the <b>Silhouette Slider</b> in the top-middle to switch
+    between textured and silhouette mode.\n\nThis game is built out of cubes. To
+    add a cube to your level in this editor, <b>left-click</b> on a cube to select
+    it. Markers will appear around your selected cube. By clicking on any of these,
+    a new cube will be created in the selected position; for example, clicking the
+    top marker will create a new cube upwards. To delete a cube, <b>right-click</b>
+    on the cube you wish to delete.\n\nThe panels below allow you to edit various
+    atributes and properties of your level, including the start and end points, your
+    level's textures and your level's background environment and colors. The six
+    buttons seen in the <b>Navigation Panel</b> on the bottom-left will change the
+    panel on the right to their corresponding features; clicking on Abilities, for
+    instance, will bring up the abilities panel.\nNote: selecting Tile Painter or
+    Start / Goal will change what left and right click does. To return to building
+    mode, select one of the other four panels.\n\n\n\n\n\n<size=25><b>2. SAVE / LOAD</b></size>\n\nBy
+    clicking <b>Save / Load</b> in the  Navigation Panel, you will enter the save
+    and load panel.\n\nIn this panel, you will find a scroll-list to the right with
+    all current save files. To load a level, click on the button with your level's
+    name. To delete the level, click the red <b>Delete</b> button to the immediate
+    right of your file. Be sure not to click the wrong one.\n\nIf you do not see
+    your level, or believe the list is not up to date, you can click the <b>Refresh</b>
+    button to the left to refresh the list.\n\nTo create a new blank level, click
+    the <b>Create New</b> button.\n\nTo save your existing level, click <b>Save</b>.
+    For your level to save, you must have a start and end point, and your level must
+    have a name. If one or more of these are not satisfied, you will see a message
+    telling you which thing needs doing. To name your level, simply click in the
+    green input field on the bottom left of the save panel and enter your desired
+    name.\n\n\n\n\n\n<size=25><b>3. TILE PAINTER</b></size>\n\nBy clicking <b>Tile
+    Painter</b> in the  Navigation Panel, you will enter the material painter panel.
+    While this panel is activated, <b>Paint Mode</b> will be activated, and left
+    and right click will be changed accordingly. Now, when you <b>left-click</b>
     on a cube's tile, that tile will be painted your selected material. To select
     a material, use the horizontal scroll field in the panel to find your desired
     material, then click on the corresponding square. The larger square on the far
     left of the panel will show you your selected material. To erase a tile's material,
-    <b>right-click</b> on it.\nPaint Mode can be exited by selecting a different button
-    in the Navigation Panel.\n\n\n\n\n\n<size=25><b>4. BACKGROUND</b></size>\n\nThe
+    <b>right-click</b> on it.\nPaint Mode can be exited by selecting a different
+    button in the Navigation Panel.\n\n\n\n\n\n<size=25><b>4. BACKGROUND</b></size>\n\nThe
     background can be changed using the <b>Background Slider</b> in the top of this
     panel. By moving this slider to other positions, the background will change accordingly.\n\nBelow
-    this, you will find three groups of <b>Color Sliders</b>, with three sliders each,
-    as well as an <b>RGB / HSV Switch</b>.\n\nFor each separate group of sliders:\n\tThe
+    this, you will find three groups of <b>Color Sliders</b>, with three sliders
+    each, as well as an <b>RGB / HSV Switch</b>.\n\nFor each separate group of sliders:\n\tThe
     top slider controls Red in RGB mode, or Hue in HSV mode.\n\tThe middle slider
     controls Green in RGB mode, or Saturation in HSV mode.\n\tThe bottom slider controls
     Blue in RGB mode, or Value / Brightness in HSV mode.\n\nThe <b>Background Color</b>
     group controls the background color (Not seen while Caverns is selected).\nThe
-    <b>Environment color</b> group controls the background elements' colors - if you
-    set this to red, you will see red clouds, red warp-stars or red caverns (The effect
-    will not be visible while in blank because there's nothing to color).\nThe <b>Silhouette
-    Color</b> group controls the silhouette (Silhouette Mode must be turned on via
-    the slider in the top of the game window for this to be visible).\n\nChanging
+    <b>Environment color</b> group controls the background elements' colors - if
+    you set this to red, you will see red clouds, red warp-stars or red caverns (The
+    effect will not be visible while in blank because there's nothing to color).\nThe
+    <b>Silhouette Color</b> group controls the silhouette (Silhouette Mode must be
+    turned on via the slider in the top of the game window for this to be visible).\n\nChanging
     between HSV and RGB mode will automatically translate and preserve your chosen
     colors.\n\n\n\n\n\n<size=25><b>5. ABILITIES</b></size>\n\nEach level can have
     five special abilities, with a maximum count of 4 each (except for Teleport).
@@ -1282,13 +1283,13 @@ MonoBehaviour:
     an overlapping cube, both of which will erase the start or goal and require a
     new position to be selected before the level can be saved.\n\n\n\n\n\n<size=25><b>7.
     SET CAMERA</b></size>\n\nThe Set Camera panel has only two buttons. The <b>Set
-    Camera</b> button on the left will set your level's saved camera position to your
-    current view. To get the best use:\n\t- Hold down Space to hide the UI.\n\t- Move
-    your camera view to your desired location.\n\t- Set your desired zoom.\n\t- Release
-    Space and press Set Camera.\nThe <b>View Camera</b> button will set your current
-    view to your set camera position. Note that the UI panels will not be seen in
-    your main game; always use Space to hide the UI and see what your level will look
-    like in-game before committing to a chosen camera position. "
+    Camera</b> button on the left will set your level's saved camera position to
+    your current view. To get the best use:\n\t- Hold down Space to hide the UI.\n\t-
+    Move your camera view to your desired location.\n\t- Set your desired zoom.\n\t-
+    Release Space and press Set Camera.\nThe <b>View Camera</b> button will set your
+    current view to your set camera position. Note that the UI panels will not be
+    seen in your main game; always use Space to hide the UI and see what your level
+    will look like in-game before committing to a chosen camera position. "
 --- !u!222 &81008556
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5060,9 +5061,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1986308650}
+  - {fileID: 1246722618}
   m_Father: {fileID: 411432949}
-  m_RootOrder: 11
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9, y: 0.9}
   m_AnchorMax: {x: 0.98, y: 0.98}
@@ -5142,8 +5143,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8e828587397d83f4d947484d30b1312b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -12548,6 +12549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 1701562704}
+  EdgeCamera: {fileID: 0}
+  PlayerCamera: {fileID: 0}
   levelManager: {fileID: 0}
   edgeManager: {fileID: 0}
   playerAgent: {fileID: 0}
@@ -12558,6 +12561,7 @@ MonoBehaviour:
   AudioManager: {fileID: 0}
   PlayMode: 0
   InLevelEditor: 1
+  TestingLevel: 0
 --- !u!114 &1175074562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13090,6 +13094,84 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244057111}
+  m_CullTransparentMesh: 0
+--- !u!1 &1246722617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1246722618}
+  - component: {fileID: 1246722620}
+  - component: {fileID: 1246722619}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1246722618
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246722617}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6692699, y: 0.6692699, z: 0.6692699}
+  m_Children: []
+  m_Father: {fileID: 477090144}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.00010681152, y: 0.000091552734}
+  m_SizeDelta: {x: 19.199951, y: -0.00012207031}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1246722619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246722617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 4ba0f310ff2286446bfbc8cd0d92b681, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: TEST LEVEL
+--- !u!222 &1246722620
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246722617}
   m_CullTransparentMesh: 0
 --- !u!1 &1267712433
 GameObject:
@@ -14320,7 +14402,11 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: [{fileID: 701726848}, {fileID: 1199666352}, {fileID: 831372744}, {fileID: 68363706}]
+  m_Children:
+  - {fileID: 701726848}
+  - {fileID: 1199666352}
+  - {fileID: 831372744}
+  - {fileID: 68363706}
   m_Father: {fileID: 1563236080}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16166,12 +16252,13 @@ MonoBehaviour:
   m_Text: '<size=30><b>EDGE OF THE ABYSS LEVEL EDITOR</b></size>
 
 
-    To get started, click on the Help button in the top-left of the screen to learn
-    how the editor works, or any of the six buttons to the left to get started right
-    away. Note that you may encounter some buttons or sliders that appear to do nothing,
-    because they need something else turned on to be relevant (For example, silhouette
-    colors in the Backgrounds panel will do nothing unless Silhouette mode is turned
-    on (Top-middle slider). To get back to the main menu, click Menu (Top-right).'
+    To get started,
+    click on the Help button in the top-left of the screen to learn how the editor
+    works, or any of the six buttons to the left to get started right away. Note
+    that you may encounter some buttons or sliders that appear to do nothing, because
+    they need something else turned on to be relevant (For example, silhouette colors
+    in the Backgrounds panel will do nothing unless Silhouette mode is turned on
+    (Top-middle slider). To get back to the main menu, click Menu (Top-right).'
 --- !u!222 &1700043351
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18101,84 +18188,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942995942}
-  m_CullTransparentMesh: 0
---- !u!1 &1986308649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1986308650}
-  - component: {fileID: 1986308652}
-  - component: {fileID: 1986308651}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1986308650
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986308649}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 477090144}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1986308651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986308649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 50
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Test Level
---- !u!222 &1986308652
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986308649}
   m_CullTransparentMesh: 0
 --- !u!1 &1964548360
 GameObject:
