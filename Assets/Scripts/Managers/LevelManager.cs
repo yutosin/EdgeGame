@@ -493,8 +493,8 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(bool reload = false)
     {
-        //currentLevel++;
-        if (currentLevel >= _levelNames.Length && PlayerPrefs.GetInt("loadEditorLevel", 0) != 0)
+        int loadEditorLevel = PlayerPrefs.GetInt("loadEditorLevel", 0);
+        if (currentLevel >= _levelNames.Length && loadEditorLevel == 0)
         {
             SceneManager.LoadScene("Victory");
             return;
@@ -528,7 +528,7 @@ public class LevelManager : MonoBehaviour
             _zGraphs.Clear();
         }
 
-        if (PlayerPrefs.GetInt("loadEditorLevel", 0) == 1)
+        if (loadEditorLevel == 1)
         {
             _loadedLevel = GameManager.SharedInstance.LevelLoader.LoadLevel(PlayerPrefs.GetString("editorLevel"));
             PlayerPrefs.SetInt("loadEditorLevel", 0);
