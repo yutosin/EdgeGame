@@ -524,6 +524,7 @@ public class Jsonator : MonoBehaviour
             //Save the data into a json file.
             Grid gridSave = new Grid
             {
+                levelName = saveName.text,
                 cubeData = cubeData,
                 vertices = vertices.ToArray(),
                 backgroundColor = new Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b),
