@@ -493,6 +493,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(bool reload = false)
     {
+        GameManager.SharedInstance.playerAgent.LevelLoading = true;
         //currentLevel++;
         if (currentLevel >= _levelNames.Length && PlayerPrefs.GetInt("loadEditorLevel", 0) != 0)
         {
