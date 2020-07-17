@@ -7863,8 +7863,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0763336, y: 0.068822116}
   m_AnchorMax: {x: 0.6226665, y: 0.799}
-  m_AnchoredPosition: {x: -1.5, y: -2}
-  m_SizeDelta: {x: -1.4747314, y: -0.25280762}
+  m_AnchoredPosition: {x: -20, y: 6.1445923}
+  m_SizeDelta: {x: 7.2211304, y: 56.31726}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655562094
 MonoBehaviour:
@@ -7900,7 +7900,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Lead Programmer:\n   Naseer Muhammed\n\nProgrammer:\n   Alec Martinez\n\nLevel
     Editor and Texture Artist:\n   Gordon Mainwaring\n\nCharacter Animator and UI
-    Design:\n   Trevor Collins\n"
+    Design:\n   Trevor Collins\n\nCredits to Soft and Furious from the Loyalty Freak
+    Music Bandcamp for the menu and in-game music.\n"
 --- !u!222 &1655562095
 CanvasRenderer:
   m_ObjectHideFlags: 0
