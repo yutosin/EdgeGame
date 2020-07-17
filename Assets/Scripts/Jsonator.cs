@@ -128,7 +128,8 @@ public class Jsonator : MonoBehaviour
         silhouetteMode = false;
         HSVMode = false;
         checkColor = false;
-        BackgroundBuilder(0);
+        if (backgroundInstance == null)
+            BackgroundBuilder(0);
         silhouetteVal = 0;
         HSVVal = 0;
         if (!GameManager.SharedInstance.InLevelEditor) return;
