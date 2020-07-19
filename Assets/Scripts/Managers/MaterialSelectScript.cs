@@ -196,7 +196,12 @@ public class MaterialSelectScript : MonoBehaviour
             material.color = ThisButton.GetComponent<Image>().color;
             material.renderQueue = 2005;
 
-            face._rend.material = material;
+            face._rend.material = face._defaultMat;
+
+            GameObject newParticle = Instantiate(_mScript.paintPrefab);
+            Vector3 startPos = GameManager.SharedInstance.playerAgent.transform.position;
+            newParticle.transform.position = startPos;
+            _mScript.StartCoroutine(_mScript.SetParticleSettings(newParticle, face, material));
         }
 
         private void UpdateUses()
@@ -229,6 +234,7 @@ public class MaterialSelectScript : MonoBehaviour
     }
 
     public GameObject cubePrefab;
+    public GameObject paintPrefab;
     public UIScript uiScript;
     public GameObject panelObj;
     public Button xButtonObj;
@@ -433,6 +439,18 @@ public class MaterialSelectScript : MonoBehaviour
     {
         uiScript.FeedackText.text = "";
         uiScript.FeedbackPanel.SetActive(false);
+    }
+
+    private IEnumerator SetParticleSettings(GameObject newPart, Face face, Material material)
+    {
+        yield return new WaitForEndOfFrame();
+
+
+        ParticleScript pScript = newPart.GetComponent<ParticleScript>();
+        pScript.endPos = face.Parent.transform.position;
+        pScript.selectedFace = face;
+        pScript.mat = material;
+        pScript.SetColorAndGradient();
     }
 
 }
