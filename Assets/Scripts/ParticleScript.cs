@@ -20,7 +20,7 @@ public class ParticleScript : MonoBehaviour
 
     private void Update()
     {
-        float step = 10 * Time.deltaTime;
+        float step = 12 * Time.deltaTime;
         particle.transform.position = Vector3.MoveTowards(particle.transform.position, endPos, step);
         if (Vector3.Distance(particle.transform.position, endPos) < .001f)
         {
@@ -29,6 +29,13 @@ public class ParticleScript : MonoBehaviour
             if(selectedFace != null)
             {
                 selectedFace._rend.material = mat;
+                if(selectedFace.Ability == null)
+                {
+                    selectedFace.Ability = selectedFace.gameObject.AddComponent<ExtrudeFaceAbility>();
+
+                    ExtrudeFaceAbility extrude = selectedFace.GetComponent<ExtrudeFaceAbility>();
+                    extrude.SetStartingConditions(selectedFace);
+                }
             }
         }
     }
@@ -44,7 +51,7 @@ public class ParticleScript : MonoBehaviour
         Color setTo = mat.color;
 
         Material partRend = particle.GetComponent<Renderer>().material;
-        partRend.renderQueue = 3000;
+        partRend.renderQueue = 4000;
 
         var overTime = particle.colorOverLifetime;
 

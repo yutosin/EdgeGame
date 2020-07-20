@@ -179,14 +179,16 @@ public class MaterialSelectScript : MonoBehaviour
 
         private void AssignExtrude()
         {
-            face.Ability = face.gameObject.AddComponent<ExtrudeFaceAbility>();
+            /*face.Ability = face.gameObject.AddComponent<ExtrudeFaceAbility>();
 
             ExtrudeFaceAbility extrude = face.GetComponent<ExtrudeFaceAbility>();
+            extrude.SetStartingConditions(face);*/
 
-            SetMaterial();
-            UpdateUses();
             GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
-            extrude.SetStartingConditions(face);
+            
+
+            UpdateUses();
+            SetMaterial();
         }
 
         private void SetMaterial()
