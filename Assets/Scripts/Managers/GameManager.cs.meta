@@ -3,7 +3,20 @@ guid: ee371baeb3cee4db0bbba39dae11e1fe
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MainCamera: {instanceID: 0}
+  - EdgeCamera: {instanceID: 0}
+  - PlayerCamera: {instanceID: 0}
+  - levelManager: {instanceID: 0}
+  - edgeManager: {instanceID: 0}
+  - playerAgent: {instanceID: 0}
+  - lineParticlePrefab: {fileID: 1315533958344502249, guid: 25b985389d2785b4a9f2769aa0241cfa,
+      type: 3}
+  - matSelect: {instanceID: 0}
+  - uiManager: {instanceID: 0}
+  - LevelLoader: {instanceID: 0}
+  - InstructionScript: {instanceID: 0}
+  - AudioManager: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

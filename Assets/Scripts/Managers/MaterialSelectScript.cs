@@ -204,6 +204,7 @@ public class MaterialSelectScript : MonoBehaviour
             Vector3 startPos = GameManager.SharedInstance.playerAgent.transform.position;
             newParticle.transform.position = startPos;
             _mScript.StartCoroutine(_mScript.SetParticleSettings(newParticle, face, material));
+            GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", false);
         }
 
         private void UpdateUses()
@@ -269,7 +270,8 @@ public class MaterialSelectScript : MonoBehaviour
             {
                 PutAwayFeedback();
                 panelObj.SetActive(true);
-                if((_selectedFace != null))
+                GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", true);
+                if ((_selectedFace != null))
                 {
                     _lastFace = _selectedFace;
                     if (!IsAbilityAssigned(_lastFace))
@@ -427,6 +429,7 @@ public class MaterialSelectScript : MonoBehaviour
             _selectedFace = null;
         }
         panelObj.SetActive(false);
+        GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", false);
     }
 
     private void GiveFeedback(string feedback)
@@ -449,6 +452,7 @@ public class MaterialSelectScript : MonoBehaviour
 
 
         ParticleScript pScript = newPart.GetComponent<ParticleScript>();
+        pScript.speed = 8;
         pScript.endPos = face.Parent.transform.position;
         pScript.selectedFace = face;
         pScript.mat = material;

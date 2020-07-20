@@ -10,17 +10,20 @@ public class ParticleScript : MonoBehaviour
     public Material mat;
     public ParticleSystem particle;
     public Vector3 endPos;
+    public float speed = 15f;
 
     private void Start()
     {
         self = this.gameObject;
         particle = GetComponent<ParticleSystem>();
         particle.Play();
+        Material partRend = particle.GetComponent<Renderer>().material;
+        partRend.renderQueue = 4000;
     }
 
     private void Update()
     {
-        float step = 12 * Time.deltaTime;
+        float step = speed * Time.deltaTime;
         particle.transform.position = Vector3.MoveTowards(particle.transform.position, endPos, step);
         if (Vector3.Distance(particle.transform.position, endPos) < .001f)
         {
@@ -49,9 +52,6 @@ public class ParticleScript : MonoBehaviour
     public void SetColorAndGradient()
     {
         Color setTo = mat.color;
-
-        Material partRend = particle.GetComponent<Renderer>().material;
-        partRend.renderQueue = 4000;
 
         var overTime = particle.colorOverLifetime;
 
