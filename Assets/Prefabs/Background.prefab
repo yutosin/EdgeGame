@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7598756081563469832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: -150, z: -100}
+  m_LocalPosition: {x: -100, y: -100, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,15 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 6984385890063189296, guid: 66192eadddc2dd04eb36225ca3f66de7, type: 3}
-  mode: 4
+  mode: 3
   warpStars: {fileID: 3479277578397033603, guid: 4ff4a99ca8599134f8d2e576935a8995,
     type: 3}
   cloudMin: {x: 0.5, y: 0.5, z: 0.5}
   cloudMax: {x: 5, y: 1, z: 5}
-  cloudColor: {r: 0, g: 0, b: 0, a: 1}
+  cloudColor: {r: 0.48866153, g: 0, b: 0, a: 1}
   speed: 1
-  cavernCube: {fileID: 6984385890063189296, guid: 66192eadddc2dd04eb36225ca3f66de7,
-    type: 3}
   xSize: 36
   ySize: 36
   sizeFactor: 8

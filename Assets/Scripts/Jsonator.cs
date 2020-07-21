@@ -129,7 +129,7 @@ public class Jsonator : MonoBehaviour
         HSVMode = false;
         checkColor = false;
         if (backgroundInstance == null)
-            BackgroundBuilder(0);
+            BackgroundBuilder(0, false);
         silhouetteVal = 0;
         HSVVal = 0;
         if (!GameManager.SharedInstance.InLevelEditor) return;
@@ -190,7 +190,7 @@ public class Jsonator : MonoBehaviour
         if (checkBackground)
         {
             if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
-            BackgroundBuilder(modeSet.value);
+            BackgroundBuilder(modeSet.value, false);
             if (modeCheck == 1 || modeCheck == 2) CloudColorer(backgroundInstance, cloudColor);
             checkBackground = false;
         }
@@ -613,7 +613,7 @@ public class Jsonator : MonoBehaviour
         silhouetteColor = new Color(gridLoad.silhouetteColor.x, gridLoad.silhouetteColor.y, gridLoad.silhouetteColor.z);
         modeSet.value = gridLoad.backgroundMode;
         abilityElevator.value = (float)gridLoad.abilityElevator / (abilityElevator.numberOfSteps - 1);
-        abilityTeleport.value = (float)gridLoad.abilityTeleport / (abilityTeleport.numberOfSteps - 1);
+        abilityTeleport.value = gridLoad.abilityTeleport;
         abilityMoveX.value = (float)gridLoad.abilityMoveX / (abilityMoveX.numberOfSteps - 1);
         abilityMoveZ.value = (float)gridLoad.abilityMoveZ / (abilityMoveZ.numberOfSteps - 1);
         abilityExtrude.value = (float)gridLoad.abilityExtrude / (abilityExtrude.numberOfSteps - 1);
@@ -1049,7 +1049,6 @@ public class Jsonator : MonoBehaviour
             TextAsset resourceLevel = Resources.Load(levelName) as TextAsset;
             stringLoad = resourceLevel.text;
         }
-        //TextAsset stringLoad = Resources.Load(levelName) as TextAsset;
         Grid gridLoad = JsonUtility.FromJson<Grid>(stringLoad);
         startPoint = gridLoad.startPoint;
         goalPoint = gridLoad.goalPoint;
@@ -1088,7 +1087,7 @@ public class Jsonator : MonoBehaviour
         }
         
         if (backgroundInstance != null) Destroy(backgroundInstance.gameObject);
-        BackgroundBuilder(gridLoad.backgroundMode);
+        BackgroundBuilder(gridLoad.backgroundMode, true);
         if (gridLoad.backgroundMode == 1 || gridLoad.backgroundMode == 2)
             CloudColorer(backgroundInstance, cloudColor);
         
@@ -1102,12 +1101,17 @@ public class Jsonator : MonoBehaviour
         return gridLoad;
     }
 
+    //Loads the current level in play mode from the editor.
     public void TestLevel()
     {
-        OnSaveButton();
-        PlayerPrefs.SetString("editorLevel", _currentLevel.levelName);
-        PlayerPrefs.SetInt("loadEditorLevel", 1);
-        SceneManager.LoadScene("EditorGameScene");
+        if (saveName.text != "")
+        {
+            OnSaveButton();
+            PlayerPrefs.SetString("editorLevel", _currentLevel.levelName);
+            PlayerPrefs.SetInt("loadEditorLevel", 1);
+            SceneManager.LoadScene("EditorGameScene");
+        }
+        else ErrorBar(3, "SAVE MUST HAVE A NAME IN THE INPUT FIELD UNDER THE SAVE BUTTON.");
     }
 
     //Convert from RGB to HSV
@@ -1179,10 +1183,10 @@ public class Jsonator : MonoBehaviour
     }
 
     //Set up the background.
-    void BackgroundBuilder(float mode)
+    void BackgroundBuilder(float mode, bool play)
     {
         backgroundInstance = backgroundGenerator;
-        backgroundInstance.position = new Vector3(-100, -150, -100);
+        backgroundInstance.position = new Vector3(-100, play ? -100 : -150, -100);
         backgroundInstance.GetComponent<BackgroundGenerator>().cloudColor = cloudColor;
         backgroundInstance.GetComponent<BackgroundGenerator>().mode = (int)mode;
         modeCheck = (int)mode;

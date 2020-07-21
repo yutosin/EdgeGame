@@ -1210,14 +1210,17 @@ MonoBehaviour:
   m_Text: "\t<b>INDEX</b>\n\t1 - General Overview\n\t2 - Save / Load\n\t3 - Tile
     Painter\n\t4 - Background\n\t5 - Abilities\n\t6 - Start / Goal\n\t7 - Set Camera\n\n\n\n\n\n<size=25><b>1.
     GENERAL OVERVIEW</b></size>\n\nThis editor allows the player to create their
-    own levels, set start / end goals, populate special abilities, set backgrounds
-    and colors. This guide will detail how the editor works and what all of the buttons
-    and sliders do.\n\nTo get back to this window, click <b>Help</b> in the top-left.
-    To return to the main menu, click <b>Menu</b> on the top-right.\n\nTo move your
-    view around a level, hold down <b>middle-mouse</b> and move the mouse until you
-    reach your desired view. Use the <b>scroll-wheel</b> or pinch in or out to zoom
-    the camera in or out.\n\nTo hide the UI, hold down <b>Spacebar</b>.\n\nThe core
-    mechanics of the main game include silhouetted levels unveiled as the player
+    own levels for Edge of the Abyss, including setting start / end goals, populating
+    special abilities, and setting backgrounds and colors. This guide will detail
+    how the editor works and what all of the buttons and sliders do.\n\nTo get back
+    to this window, click <b>Help</b> in the top-left. To return to the main menu,
+    click <b>Menu</b> on the top-right. The <b>Save & Test</b> button next to the
+    Menu button will load your level in play mode, allowing you to test it in play
+    (NOTE: Your level will also be automatically saved when you enter play mode).\n\nTo
+    move your view around a level, hold down <b>middle-mouse</b> and move the mouse
+    until you reach your desired view. Use the <b>scroll-wheel</b> or pinch in or
+    out to zoom the camera in or out.\n\nTo hide the UI, hold down <b>Spacebar</b>.\n\nThe
+    core mechanics of the main game include silhouetted levels unveiled as the player
     \"draws\" the living world into being. To see what your level will look like
     on starting play, use the <b>Silhouette Slider</b> in the top-middle to switch
     between textured and silhouette mode.\n\nThis game is built out of cubes. To
@@ -5065,9 +5068,9 @@ RectTransform:
   m_Father: {fileID: 411432949}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.9, y: 0.9}
-  m_AnchorMax: {x: 0.98, y: 0.98}
-  m_AnchoredPosition: {x: -179, y: 0}
+  m_AnchorMin: {x: 0.79, y: 0.9}
+  m_AnchorMax: {x: 0.88, y: 0.98}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &477090145
@@ -6180,7 +6183,7 @@ RectTransform:
   m_Father: {fileID: 1505967819}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.93124497}
+  m_AnchorMin: {x: 0, y: 0.89901555}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
@@ -9405,7 +9408,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 20, y: 0}
-  m_SizeDelta: {x: -20, y: 3600}
+  m_SizeDelta: {x: -20, y: 3360}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &932104533
 GameObject:
@@ -9440,12 +9443,13 @@ RectTransform:
   - {fileID: 463744770}
   - {fileID: 41092402}
   - {fileID: 932821005}
+  - {fileID: 1718648192}
   - {fileID: 1485788698}
   m_Father: {fileID: 411432949}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3, y: 0.4}
-  m_AnchorMax: {x: 0.7, y: 0.7}
+  m_AnchorMin: {x: 0.2, y: 0.35}
+  m_AnchorMax: {x: 0.8, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10729,7 +10733,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 662871784}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.06875504
+  m_Size: 0.100984424
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13122,15 +13126,15 @@ RectTransform:
   m_GameObject: {fileID: 1246722617}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6692699, y: 0.6692699, z: 0.6692699}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 477090144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00010681152, y: 0.000091552734}
-  m_SizeDelta: {x: 19.199951, y: -0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246722619
 MonoBehaviour:
@@ -13153,7 +13157,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4ba0f310ff2286446bfbc8cd0d92b681, type: 3}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -13164,7 +13168,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TEST LEVEL
+  m_Text: 'SAVE   &
+
+    TEST'
 --- !u!222 &1246722620
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14898,9 +14904,8 @@ RectTransform:
   m_Children:
   - {fileID: 851113071}
   - {fileID: 994980543}
-  - {fileID: 1718648192}
   m_Father: {fileID: 932104534}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.15}
   m_AnchorMax: {x: 1, y: 1}
@@ -16088,7 +16093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 441476bae828e9b4985309e800b44888, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4ca7211a3c4dd342a8a62d05afac827, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16381,13 +16386,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1886198725}
-  m_Father: {fileID: 1485788698}
-  m_RootOrder: 2
+  m_Father: {fileID: 932104534}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.15}
-  m_AnchoredPosition: {x: 0, y: -49.86818}
-  m_SizeDelta: {x: 0, y: -2.5078735}
+  m_AnchoredPosition: {x: 0, y: 7}
+  m_SizeDelta: {x: -28, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718648193
 MonoBehaviour:

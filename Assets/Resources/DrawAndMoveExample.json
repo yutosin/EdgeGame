@@ -2,6 +2,27 @@
     "cubeData": [
         {
             "position": {
+                "x": 18.5,
+                "y": 0.5,
+                "z": 18.5
+            },
+            "tileData": [
+                {
+                    "d": "Top",
+                    "m": "TopTexMat"
+                },
+                {
+                    "d": "Right",
+                    "m": "RightTexMat"
+                },
+                {
+                    "d": "Left",
+                    "m": "LeftTexMat"
+                }
+            ]
+        },
+        {
+            "position": {
                 "x": 17.5,
                 "y": 0.5,
                 "z": 18.5
@@ -264,6 +285,16 @@
     ],
     "vertices": [
         {
+            "x": 19,
+            "y": 1,
+            "z": 18
+        },
+        {
+            "x": 19,
+            "y": 1,
+            "z": 19
+        },
+        {
             "x": 18,
             "y": 1,
             "z": 18
@@ -272,6 +303,21 @@
             "x": 18,
             "y": 1,
             "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 18,
+            "y": 0,
+            "z": 19
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 18
         },
         {
             "x": 17,
@@ -284,19 +330,9 @@
             "z": 19
         },
         {
-            "x": 18,
-            "y": 0,
-            "z": 19
-        },
-        {
             "x": 17,
             "y": 0,
             "z": 19
-        },
-        {
-            "x": 18,
-            "y": 0,
-            "z": 18
         },
         {
             "x": 16,
@@ -491,8 +527,9 @@
     },
     "backgroundMode": 0,
     "abilityElevator": 1,
-    "abilityTeleport": 2,
+    "abilityTeleport": 8,
     "abilityMoveX": 1,
     "abilityMoveZ": 1,
-    "abilityExtrude": 1
+    "abilityExtrude": 1,
+    "levelName": "DrawAndMoveExample"
 }
