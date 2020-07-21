@@ -179,14 +179,16 @@ public class MaterialSelectScript : MonoBehaviour
 
         private void AssignExtrude()
         {
-            face.Ability = face.gameObject.AddComponent<ExtrudeFaceAbility>();
+            /*face.Ability = face.gameObject.AddComponent<ExtrudeFaceAbility>();
 
             ExtrudeFaceAbility extrude = face.GetComponent<ExtrudeFaceAbility>();
+            extrude.SetStartingConditions(face);*/
 
-            SetMaterial();
-            UpdateUses();
             GameManager.SharedInstance.AudioManager.PlaySoundEffect(GameManager.SharedInstance.AudioManager.AbilityAssign);
-            extrude.SetStartingConditions(face);
+            
+
+            UpdateUses();
+            SetMaterial();
         }
 
         private void SetMaterial()
@@ -196,7 +198,13 @@ public class MaterialSelectScript : MonoBehaviour
             material.color = ThisButton.GetComponent<Image>().color;
             material.renderQueue = 2005;
 
-            face._rend.material = material;
+            face._rend.material = face._defaultMat;
+
+            GameObject newParticle = Instantiate(_mScript.paintPrefab);
+            Vector3 startPos = GameManager.SharedInstance.playerAgent.transform.position;
+            newParticle.transform.position = startPos;
+            _mScript.StartCoroutine(_mScript.SetParticleSettings(newParticle, face, material));
+            GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", false);
         }
 
         private void UpdateUses()
@@ -229,6 +237,7 @@ public class MaterialSelectScript : MonoBehaviour
     }
 
     public GameObject cubePrefab;
+    public GameObject paintPrefab;
     public UIScript uiScript;
     public GameObject panelObj;
     public Button xButtonObj;
@@ -261,7 +270,8 @@ public class MaterialSelectScript : MonoBehaviour
             {
                 PutAwayFeedback();
                 panelObj.SetActive(true);
-                if((_selectedFace != null))
+                GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", true);
+                if ((_selectedFace != null))
                 {
                     _lastFace = _selectedFace;
                     if (!IsAbilityAssigned(_lastFace))
@@ -419,6 +429,7 @@ public class MaterialSelectScript : MonoBehaviour
             _selectedFace = null;
         }
         panelObj.SetActive(false);
+        GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", false);
     }
 
     private void GiveFeedback(string feedback)
@@ -433,6 +444,19 @@ public class MaterialSelectScript : MonoBehaviour
     {
         uiScript.FeedackText.text = "";
         uiScript.FeedbackPanel.SetActive(false);
+    }
+
+    private IEnumerator SetParticleSettings(GameObject newPart, Face face, Material material)
+    {
+        yield return new WaitForEndOfFrame();
+
+
+        ParticleScript pScript = newPart.GetComponent<ParticleScript>();
+        pScript.speed = 8;
+        pScript.endPos = face.Parent.transform.position;
+        pScript.selectedFace = face;
+        pScript.mat = material;
+        pScript.SetColorAndGradient();
     }
 
 }

@@ -134,6 +134,7 @@ public class EdgeVertex : MonoBehaviour
             GameObject.Find("Robonaut").GetComponentInChildren<Animator>().SetBool("Painting", false);
 
             GameManager.SharedInstance.levelManager.GenerateEdge(_activePoint, this);
+            CreateParticleEffect();
             _activePoint.isActivePoint = false;
             _activePoint._rend.enabled = false;
             StopCoroutine(_activePoint.coroutine);
@@ -143,6 +144,16 @@ public class EdgeVertex : MonoBehaviour
             _rend.enabled = true;
             audioManager.PlaySoundEffect(audioManager.VertexClick);
         }
+    }
+
+    private void CreateParticleEffect()
+    {
+        GameObject newParticle = Instantiate(GameManager.SharedInstance.lineParticlePrefab);
+        Vector3 startPos = _activePoint.transform.position;
+        Vector3 endPos = this.transform.position;
+        newParticle.transform.position = startPos;
+        ParticleScript pScript = newParticle.GetComponent<ParticleScript>();
+        pScript.endPos = endPos;
     }
 
     private void CleanAdjacentPointLists()
