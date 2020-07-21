@@ -24,20 +24,9 @@ public class EdgeVertex : MonoBehaviour
 
     private void Start()
     {
-        // _rend = GetComponent<Renderer>();
-        // _rend.shadowCastingMode = ShadowCastingMode.Off;
-        // _rend.receiveShadows = false;
-        //
-        // _isActiveSelectable = false;
-        // _onPoint = false;
-        //
-        // _adjacentXPoints = new List<EdgeVertex>();
-        // _adjacentYPoints = new List<EdgeVertex>();
-        // _adjacentZPoints = new List<EdgeVertex>();
-        //
-        // FillAdjacentList(_adjacentXPoints, Vector3.right);
-        // FillAdjacentList(_adjacentYPoints, Vector3.up);
-        // FillAdjacentList(_adjacentZPoints, Vector3.forward);
+        _rend = GetComponent<Renderer>();
+        _rend.shadowCastingMode = ShadowCastingMode.Off;
+        _rend.receiveShadows = false;
         StartCoroutine(DelayedStart());
     }
 
@@ -250,27 +239,11 @@ public class EdgeVertex : MonoBehaviour
                 zIndex %= adjZPoints.Count;
             }
         }
-        
-        // foreach (var tp in adjXPoints)
-        // {
-        //     tp._rend.enabled = false;
-        // }
-        // foreach (var tp in adjYPoints)
-        // {
-        //     tp._rend.enabled = false;
-        // }
-        // foreach (var tp in adjZPoints)
-        // {
-        //     tp._rend.enabled = false;
-        // }
     }
 
     IEnumerator DelayedStart()
     {
         yield return new WaitForFixedUpdate();
-        _rend = GetComponent<Renderer>();
-        _rend.shadowCastingMode = ShadowCastingMode.Off;
-        _rend.receiveShadows = false;
 
         _isActiveSelectable = false;
         _onPoint = false;
@@ -286,6 +259,7 @@ public class EdgeVertex : MonoBehaviour
 
     private void Update()
     {
-        
+        if (_rend.enabled && !_onPoint && !_activePoint && !_isActiveSelectable)
+            _rend.enabled = false;
     }
 }

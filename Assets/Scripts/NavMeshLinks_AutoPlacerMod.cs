@@ -59,6 +59,8 @@ namespace NavmeshLinksGenerator
                         continue;
                     if (!subNode.Walkable)
                         continue;
+                    if (Mathf.Abs(gridNode.position.x - subNode.position.x) > 0 && Mathf.Abs(gridNode.position.z - subNode.position.z) > 0)
+                        continue;
                     if (Mathf.Abs(gridNode.position.y - subNode.position.y) == 1000)
                     {
                         Transform linkObject = Instantiate(linkPrefab, (Vector3)gridNode.position, Quaternion.identity);

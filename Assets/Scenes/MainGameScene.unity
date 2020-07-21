@@ -4519,41 +4519,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666133005}
   m_CullTransparentMesh: 0
---- !u!84 &667499957
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &677459384
 GameObject:
   m_ObjectHideFlags: 0
@@ -5739,7 +5704,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4096
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 667499957}
+  m_TargetTexture: {fileID: 1759011968}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -8871,9 +8836,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1701562704}
+  canvas: {fileID: 0}
+  wholePanel: {fileID: 0}
   gridSize: {x: 40, y: 15, z: 40}
   backgroundGenerator: {fileID: 2272833626780888006, guid: 64e4ffac1c8de5547b719b69e9276653,
     type: 3}
+  errorBar: {fileID: 0}
   selectCubeModel: {fileID: 6984385890063189296, guid: c98ba19f907fd0844be8749853a9b6e0,
     type: 3}
   selectorCubeSize: 0.6
@@ -8917,9 +8885,9 @@ MonoBehaviour:
   developerRight: {fileID: 2100000, guid: 23f716eeb19fe554b908403cd89b7125, type: 2}
   developerLeft: {fileID: 2100000, guid: 8e7bea41b62b87943ba614c0685eccc3, type: 2}
   path: ./Assets/Resources/
+  modeSet: {fileID: 0}
   silhouetteSwitch: {fileID: 0}
   HSVSwitch: {fileID: 0}
-  modeSet: {fileID: 0}
   abilityElevator: {fileID: 0}
   abilityTeleport: {fileID: 0}
   abilityMoveX: {fileID: 0}
@@ -9892,6 +9860,8 @@ MonoBehaviour:
   turnSpeed: 10
   foreLean: 120
   sideLean: 30
+  climbSpeed: 0
+  swingOut: 0
   targetPath: []
   commit: 0
 --- !u!114 &1444456279
@@ -12762,6 +12732,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743392971}
   m_CullTransparentMesh: 0
+--- !u!84 &1759011968
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 1285
+  m_Height: 723
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 1
+  m_ColorFormat: 59
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1761578504
 GameObject:
   m_ObjectHideFlags: 0
